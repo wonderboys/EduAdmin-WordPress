@@ -6,6 +6,10 @@
 	margin-top: 0.3em;
 }
 
+.eduadmin .myReservationsTable {
+	width: 100%;
+}
+
 .eduadmin .title {
 	display: table-row;
 }

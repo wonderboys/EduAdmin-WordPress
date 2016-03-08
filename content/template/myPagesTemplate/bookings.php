@@ -31,6 +31,32 @@ else
 	$s = new XSort('Created', 'DESC');
 	$sorting->AddItem($s);
 	$bookings = $api->GetEventBooking($token, $sorting->ToString(), $filtering->ToString());
-	echo "<xmp>" . print_r($bookings, true) . "</xmp>";
+	#echo "<xmp>" . print_r($bookings, true) . "</xmp>";
 	?>
+	<table class="myReservationsTable">
+		<tr>
+			<th align="left"><?php edu_e("Booked"); ?></th>
+			<th align="left"><?php edu_e("Course"); ?></th>
+			<th align="left"><?php edu_e("Dates"); ?></th>
+			<th align="right"><?php edu_e("Participants"); ?></th>
+			<th align="right"><?php edu_e("Price"); ?></th>
+		</tr>
+		<?php
+		if(count($bookings) == 0) {
+		?>
+		<tr><td colspan="5" align="center"><i><?php edu_e("No courses booked"); ?></i></td></tr>
+		<?php
+		} else {
+			foreach($bookings as $book) {
+		?>
+		<tr>
+			<td><?php echo getDisplayDate($book->Created, true); ?></td>
+			<td><?php echo $book->EventDescription; ?></td>
+			<td><?php echo GetStartEndDisplayDate($book->PeriodStart, $book->PeriodEnd, true); ?></td>
+			<td align="right"><?php echo $book->ParticipantNr; ?></td>
+			<td align="right"><?php echo convertToMoney($book->TotalPrice); ?></td>
+		</tr>
+		<?php }
+		} ?>
+	</table>
 </div>
