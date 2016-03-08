@@ -361,7 +361,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				foreach($events as $ev)
 				{
 					?>				<option value="<?php echo $ev->EventID; ?>"><?php
-						echo wp_strip_all_tags(GetDisplayDate($ev->PeriodStart, $ev->PeriodEnd)) . ", ";
+						echo wp_strip_all_tags(GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd)) . ", ";
 						echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd));
 						$addresses = get_transient('eduadmin-location-' . $ev->LocationAddressID);
 						if(!$addresses)
@@ -388,7 +388,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			</select>
 			<?php
 			} else {
-				echo "<div class=\"dateInfo\">" . GetDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
+				echo "<div class=\"dateInfo\">" . GetStartEndDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
 				echo date("H:i", strtotime($event->PeriodStart)); ?> - <?php echo date("H:i", strtotime($event->PeriodEnd));
 				$addresses = get_transient('eduadmin-location-' . $event->LocationAddressID);
 				if(!$addresses)

@@ -233,7 +233,7 @@ else
 	?>
 		<div class="eventItem">
 			<div class="eventDate<?php echo $groupByCityClass; ?>">
-				<?php echo GetDisplayDate($ev->PeriodStart, $ev->PeriodEnd); ?>,
+				<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd); ?>,
 				<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
 			</div>
 			<?php if(!$groupByCity) { ?>
