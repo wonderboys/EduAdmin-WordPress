@@ -135,25 +135,25 @@ else
 								</td>
 							</tr>
 						</table>
-						<h3><?php _e("Search options", "eduadmin"); ?></h3>
+						<h3><?php _e("Filter options", "eduadmin"); ?></h3>
 						<label>
 							<input type="checkbox" name="eduadmin-allowLocationSearch"<?php if(get_option('eduadmin-allowLocationSearch', true)) { echo " checked=\"checked\""; } ?> />
-							<?php _e("Allow search by city", "eduadmin"); ?>
+							<?php _e("Allow filter by city", "eduadmin"); ?>
 						</label>
 						<br />
 						<label>
 							<input type="checkbox" name="eduadmin-allowSubjectSearch"<?php if(get_option('eduadmin-allowSubjectSearch', false)) { echo " checked=\"checked\""; } ?> />
-							<?php _e("Allow search by subject", "eduadmin"); ?>
+							<?php _e("Allow filter by subject", "eduadmin"); ?>
 						</label>
 						<br />
 						<label>
 							<input type="checkbox" name="eduadmin-allowCategorySearch"<?php if(get_option('eduadmin-allowCategorySearch', false)) { echo " checked=\"checked\""; } ?> />
-							<?php _e("Allow search by category", "eduadmin"); ?>
+							<?php _e("Allow filter by category", "eduadmin"); ?>
 						</label>
 						<br />
 						<label>
 							<input type="checkbox" name="eduadmin-allowLevelSearch"<?php if(get_option('eduadmin-allowLevelSearch', false)) { echo " checked=\"checked\""; } ?> />
-							<?php _e("Allow search by course level", "eduadmin"); ?>
+							<?php _e("Allow filter by course level", "eduadmin"); ?>
 						</label>
 					</td>
 					<td valign="top">

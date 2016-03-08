@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-03-03 16:58+0100\n"
-"PO-Revision-Date: 2016-03-03 16:58+0100\n"
+"POT-Creation-Date: 2016-03-08 16:17+0100\n"
+"PO-Revision-Date: 2016-03-08 16:18+0100\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -510,24 +510,24 @@ msgid "Course attributes"
 msgstr "Egna fält"
 
 #: includes/listSettings.php:138
-msgid "Search options"
-msgstr "Sökalternativ"
+msgid "Filter options"
+msgstr "Filtreringsalternativ"
 
 #: includes/listSettings.php:141
-msgid "Allow search by city"
-msgstr "Tillåt sökning efter stad"
+msgid "Allow filter by city"
+msgstr "Tillåt filtrering på ort"
 
 #: includes/listSettings.php:146
-msgid "Allow search by subject"
-msgstr "Tillåt sökning efter ämne"
+msgid "Allow filter by subject"
+msgstr "Tillåt filtrering på ämne"
 
 #: includes/listSettings.php:151
-msgid "Allow search by category"
-msgstr "Tillåt sökning efter kategori"
+msgid "Allow filter by category"
+msgstr "Tillåt filtrering på kategori"
 
 #: includes/listSettings.php:156
-msgid "Allow search by course level"
-msgstr "Tillåt sökning efter kursnivå"
+msgid "Allow filter by course level"
+msgstr "Tillåt filtrering på kursnivå"
 
 #: includes/listSettings.php:177
 msgid "Save changes"
@@ -599,6 +599,21 @@ msgstr "Chris Gårdenberg, MultiNet Interactive AB"
 #. Author URI of the plugin/theme
 msgid "http://www.multinet.se"
 msgstr "http://www.multinet.se"
+
+#~ msgid "Search options"
+#~ msgstr "Sökalternativ"
+
+#~ msgid "Allow search by city"
+#~ msgstr "Tillåt sökning efter stad"
+
+#~ msgid "Allow search by subject"
+#~ msgstr "Tillåt sökning efter ämne"
+
+#~ msgid "Allow search by category"
+#~ msgstr "Tillåt sökning efter kategori"
+
+#~ msgid "Allow search by course level"
+#~ msgstr "Tillåt sökning efter kursnivå"
 
 #~ msgid "Test Api-connection"
 #~ msgstr "Testa anslutning"
