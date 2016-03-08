@@ -105,6 +105,9 @@ function renderNumberQuestion($question)
 	echo "<label>";
 	echo "<div class=\"inputLabel noHide\">";
 	echo $question[0]->QuestionText;
+	if($question[0]->Price > 0) {
+		echo " (" . convertToMoney($question[0]->Price) . ")";
+	}
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
 	echo "<input type=\"number\" class=\"questionText\" min=\"0\" name=\"question_" . $question[0]->AnswerID . "_number\" placeholder=\"" . edu__("Quantity") . "\" />";

@@ -224,6 +224,8 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	});
 }
 
+$showCourseDays = get_option('eduadmin-showCourseDays', true);
+$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
 
 foreach($ede as $object)
 {
@@ -248,10 +250,6 @@ foreach($ede as $object)
 		{
 			echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
 		}
-
-		$showCourseDays = get_option('eduadmin-showCourseDays', true);
-		$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
-
 
 		if($object->Days > 0) {
 			echo
