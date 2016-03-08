@@ -1,0 +1,604 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EduAdmin Booking\n"
+"POT-Creation-Date: 2016-03-03 16:58+0100\n"
+"PO-Revision-Date: 2016-03-03 16:58+0100\n"
+"Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: eduadmin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/_metaBox.php:1
+msgid "Page shortcodes"
+msgstr "Sid-shortcodes"
+
+#: includes/_metaBox.php:3
+msgid ""
+"Shortcode to display the course list.\n"
+"(Click to view attributes)"
+msgstr ""
+"Shortcode för att visa kurslistan\n"
+"(Klicka för att visa attributen)"
+
+#: includes/_metaBox.php:8
+msgid "Filters the course list by category (Insert category ID)"
+msgstr "Filtrerar kurslistan på kategori (Ange kategori-id)"
+
+#: includes/_metaBox.php:11
+msgid "Filters the course list by subject (Text)"
+msgstr "Filtrerar kurslistan på ämne (Text)"
+
+#: includes/_metaBox.php:16
+msgid ""
+"Shortcode to display the course detail view.\n"
+"(Click to view attributes)"
+msgstr ""
+"Shortcode för att visa kursdetaljsidan.\n"
+"(Klicka för att visa attribut)"
+
+#: includes/_metaBox.php:21
+msgid ""
+"For custom pages, you must provide courseid in all detail-info attributes."
+msgstr ""
+"För helt skräddarsydda sidor, så måste du ange courseid för all "
+"detaljinformation."
+
+#: includes/_metaBox.php:24
+msgid ""
+"By using this attribute, you will tell the plugin not to load any templates."
+msgstr ""
+"Genom att ange detta attributet, så säger du åt pluginet att inte ladda in "
+"någon av standardmallarna."
+
+#: includes/_metaBox.php:29
+msgid "Shortcode to display the booking form view."
+msgstr "Shortcode för att visa bokningsformuläret."
+
+#: includes/_metaBox.php:34
+msgid ""
+"Shortcode to display the login view\n"
+"(My Pages, Profile, Bookings, etc.)"
+msgstr ""
+"Shortcode för att visa inloggningssidan\n"
+"(Mina sidor, Profil, Bokningar, m.m.)"
+
+#: includes/_metaBox.php:39
+msgid "Widgets"
+msgstr "Widgets"
+
+#: includes/_metaBox.php:41
+msgid "Shortcode to inject the login widget."
+msgstr "Shortcode för att injicera inloggnings-widgeten."
+
+#: includes/_metaBox.php:46
+msgid "Detail shortcodes"
+msgstr "Detalj-shortcodes"
+
+#: includes/_metaBox.php:48
+msgid ""
+"Shortcode to display detailed information from provided attributes.\n"
+"(Click to view attributes)"
+msgstr ""
+"Shortcode för att visa detaljerad information från angivna attribut.\n"
+"(Klicka för att visa attribut)"
+
+#: includes/_metaBox.php:53
+msgid ""
+"This attribute is only required if you do full custom pages for your courses."
+msgstr ""
+"Det här attributet är enbart ett krav om du gör helt skräddarsydda sidor för "
+"dina kurser."
+
+#: includes/_metaBox.php:56
+msgid "Fetches the name of the course"
+msgstr "Hämtar namnet på kursen"
+
+#: includes/_metaBox.php:59
+msgid "Fetches the public name of the course"
+msgstr "Hämtar det publika namnet på kursen"
+
+#: includes/_metaBox.php:62
+msgid "Fetches what level this course is"
+msgstr "Hämtar vilken nivå denna kurs är för"
+
+#: includes/_metaBox.php:65
+msgid "Fetches the URL of the course image"
+msgstr "Hämtar bild-URLen för kursbilden"
+
+#: includes/_metaBox.php:68
+msgid "Fetches the image text of the course image"
+msgstr "Hämtar bildtexten för kursbilden"
+
+#: includes/_metaBox.php:71
+msgid "Fetches the number of days the course usually has"
+msgstr "Hämtar antalet dagar som kursen vanligtvis har"
+
+#: includes/_metaBox.php:74
+msgid "Fetches the start time of the course"
+msgstr "Hämtar starttiden för kursen"
+
+#: includes/_metaBox.php:77
+msgid "Fetches the end time of the course"
+msgstr "Hämtar sluttiden för kursen"
+
+#: includes/_metaBox.php:80
+msgid "Fetches the price of the course"
+msgstr "Hämtar priset på kursen"
+
+#: includes/_metaBox.php:83
+msgid "Fetches the short description of the course"
+msgstr "Hämtar den korta beskrivningen av kursen"
+
+#: includes/_metaBox.php:86
+msgid "Fetches the description of the course"
+msgstr "Hämtar en beskrivning av kursen"
+
+#: includes/_metaBox.php:89
+msgid "Fetches the goal of the course"
+msgstr "Hämtar målet med kursen"
+
+#: includes/_metaBox.php:92
+msgid "Fetches the target group of the course"
+msgstr "Hämtar målgruppen för kursen"
+
+#: includes/_metaBox.php:95
+msgid "Fetches the prerequisites of the course"
+msgstr "Hämtar förutsättningarna för kursen"
+
+#: includes/_metaBox.php:98
+msgid "Fetches what to do after the course"
+msgstr "Hämtar \"efter kursen\"-fältet"
+
+#: includes/_metaBox.php:101
+msgid "Fetches all the quotes from the course"
+msgstr "Hämtar alla citat från kursen"
+
+#: includes/_metaBox.php:104
+msgid "Fetches a list of events for the course"
+msgstr "Hämtar en lista över tillfällen för kursen"
+
+#: includes/_metaBox.php:107
+msgid ""
+"Filters the courseeventlist to show the specified amount of courses (Number)"
+msgstr ""
+"Filtrerar courseeventlist att enbart visa angivet antal kurser (Nummer)"
+
+#: includes/_metaBox.php:110
+msgid "Filters the courseeventlist to show only the specified city (Text)"
+msgstr ""
+"Filtrerar courseeventlist att enbart visa den specificerade orten (Text)"
+
+#: includes/_metaBox.php:113
+msgid "Fetches value from a course attribute (Insert attribute ID)"
+msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
+
+#: includes/_options.php:98
+msgid "EduAdmin - General"
+msgstr "EduAdmin - Allmänt"
+
+#: includes/_options.php:98 includes/generalSettings.php:8
+msgid "General settings"
+msgstr "﻿Allmänna inställningar"
+
+#: includes/_options.php:99
+msgid "EduAdmin - List view"
+msgstr "EduAdmin - Listvy"
+
+#: includes/_options.php:99 includes/listSettings.php:32
+#: includes/listSettings.php:46
+msgid "List settings"
+msgstr "Listvy-inställningar"
+
+#: includes/_options.php:100
+msgid "EduAdmin - Detail view"
+msgstr "EduAdmin - Detaljvy"
+
+#: includes/_options.php:100 includes/detailSettings.php:2
+msgid "Detail settings"
+msgstr "Detaljvy-inställningar"
+
+#: includes/_options.php:101
+msgid "EduAdmin - Booking view"
+msgstr "EduAdmin - Bokningsvy"
+
+#: includes/_options.php:101 includes/bookingSettings.php:2
+msgid "Booking settings"
+msgstr "Bokningsinställningar"
+
+#: includes/_options.php:102
+msgid "EduAdmin - Translation"
+msgstr "EduAdmin - Översättning"
+
+#: includes/_options.php:102 includes/textSettings.php:2
+#: includes/textSettings.php:11
+msgid "Translation"
+msgstr "Översättning"
+
+#: includes/_options.php:103
+msgid "EduAdmin - Style"
+msgstr "EduAdmin - Stil"
+
+#: includes/_options.php:103
+msgid "Style settings"
+msgstr "Stilinställningar"
+
+#: includes/_options.php:104
+msgid "EduAdmin - Api Authentication"
+msgstr "EduAdmin - Api Autentisering"
+
+#: includes/_options.php:104
+msgid "Api Authentication"
+msgstr "Api Autentisering"
+
+#: includes/_options.php:144
+msgid "EduAdmin - Shortcodes"
+msgstr "EduAdmin - Shortcodes"
+
+#: includes/bookingSettings.php:2 includes/detailSettings.php:2
+#: includes/generalSettings.php:2 includes/listSettings.php:32
+#: includes/settingsPage.php:19 includes/styleSettings.php:8
+#: includes/textSettings.php:2
+#, php-format
+msgid "EduAdmin settings - %s"
+msgstr "EduAdmin inställningar - %s"
+
+#: includes/bookingSettings.php:36
+msgid "Default customer group"
+msgstr "Förvald kundgrupp"
+
+#: includes/bookingSettings.php:96
+msgid "Use login"
+msgstr "Använd inloggning"
+
+#: includes/bookingSettings.php:101
+msgid "Currency"
+msgstr "Valuta"
+
+#: includes/bookingSettings.php:262
+msgid "Booking terms"
+msgstr "Bokningsvillkor"
+
+#: includes/bookingSettings.php:263
+msgid "Booking terms link"
+msgstr "Länk till bokningsvillkor"
+
+#: includes/bookingSettings.php:267
+msgid "Use booking terms"
+msgstr "Använd bokningsvillkor"
+
+#: includes/bookingSettings.php:270 includes/detailSettings.php:28
+#: includes/generalSettings.php:34 includes/generalSettings.php:173
+#: includes/settingsPage.php:36 includes/styleSettings.php:22
+#: includes/textSettings.php:40
+msgid "Save settings"
+msgstr "Spara inställningar"
+
+#: includes/detailSettings.php:8 includes/listSettings.php:41
+msgid "Template"
+msgstr "Mall"
+
+#: includes/detailSettings.php:10
+msgid "One column layout"
+msgstr "Enkolumnslayout"
+
+#: includes/detailSettings.php:11
+msgid "Two column layout"
+msgstr "Tvåkolumnslayout"
+
+#: includes/detailSettings.php:16
+msgid "Show headers in detail view"
+msgstr "Visa rubriker i detaljvyn"
+
+#: includes/detailSettings.php:19
+msgid "Uncheck to hide the headers in the course detail view"
+msgstr "Avmarkera för att dölja rubriker i kursens detaljvy"
+
+#: includes/detailSettings.php:23
+msgid "Group events by city"
+msgstr "Gruppera tillfällen per ort"
+
+#: includes/detailSettings.php:26
+msgid "Check to group the event list by city"
+msgstr "Kryssa i för att gruppera tillfälleslistan per ort"
+
+#: includes/generalSettings.php:2
+msgid "General"
+msgstr "Allmänt"
+
+#: includes/generalSettings.php:9
+msgid "Availability text"
+msgstr "Tillgänglighetstext"
+
+#: includes/generalSettings.php:14
+msgid "Exact numbers"
+msgstr "Exakt antal"
+
+#: includes/generalSettings.php:15
+msgid "Only text (Spots left/ Few spots / No spots left)"
+msgstr "Enbart text (Platser kvar / Få platser kvar / Inga platser kvar)"
+
+#: includes/generalSettings.php:16
+msgid "Interval (Please specify below)"
+msgstr "Intervall (Vänliga specificera nedan)"
+
+#: includes/generalSettings.php:17
+msgid "Always few spots"
+msgstr "Alltid få platser"
+
+#: includes/generalSettings.php:23
+msgid "Interval settings"
+msgstr "Intervallinställningar"
+
+#: includes/generalSettings.php:24
+msgid "Insert one interval range per row (1-3, 4-10, 10+)"
+msgstr "Enbart ett intervall på rad (1-3, 4-10, 10+)"
+
+#: includes/generalSettings.php:29
+msgid "Number of participants before showing as \"Few spots left\""
+msgstr "Antal registrerade deltagare innan \"Få platser kvar\" visas"
+
+#: includes/generalSettings.php:36
+msgid "Rewrite settings"
+msgstr "Rewrite-inställningar"
+
+#: includes/generalSettings.php:38
+msgid ""
+"Enter the URL you want to use with the application (please check that the "
+"URL does not exists)"
+msgstr ""
+"Ange Webbadressen du vill använda med programmet (Vänligen kontrollera att "
+"adressen inte finns)"
+
+#: includes/generalSettings.php:40
+msgid "URL"
+msgstr "URL"
+
+#: includes/generalSettings.php:54
+msgid "List view page"
+msgstr "Listvy-sida"
+
+#: includes/generalSettings.php:57 includes/generalSettings.php:82
+#: includes/generalSettings.php:107 includes/generalSettings.php:132
+#: includes/generalSettings.php:149
+msgid "No page selected"
+msgstr "Ingen sida vald"
+
+#: includes/generalSettings.php:68 includes/generalSettings.php:93
+#: includes/generalSettings.php:118 includes/generalSettings.php:160
+msgid "suggested"
+msgstr "föreslagen"
+
+#: includes/generalSettings.php:75 includes/generalSettings.php:100
+#: includes/generalSettings.php:125 includes/generalSettings.php:167
+msgid "Shortcode to use in your page"
+msgstr "Kortkod att använda i din sida"
+
+#: includes/generalSettings.php:79
+msgid "Details view page"
+msgstr "Detaljvy-sida"
+
+#: includes/generalSettings.php:104
+msgid "Booking view page"
+msgstr "Bokningsvy-sida"
+
+#: includes/generalSettings.php:129
+msgid "Thank you page"
+msgstr "Tack-sida"
+
+#: includes/generalSettings.php:146
+msgid "Login page"
+msgstr "Inloggningssida"
+
+#: includes/generalSettings.php:181
+msgid "No spots left / 5 spots left"
+msgstr "Inga platser kvar / 5 platser kvar"
+
+#: includes/generalSettings.php:182
+msgid "No spots left / Few spots left / Spots left"
+msgstr "Inga platser kvar / Få platser kvar / Platser kvar"
+
+#: includes/generalSettings.php:183
+msgid "No spots left / 3-5 spots left / 6+ spots left"
+msgstr "Inga platser kvar / 3-5 platser kvar / 6+ platser kvar"
+
+#: includes/generalSettings.php:184
+msgid "Few spots left"
+msgstr "Få platser kvar"
+
+#: includes/listSettings.php:49
+msgid "Show events instead of courses"
+msgstr "Visa tillfällen istället för kurser"
+
+#: includes/listSettings.php:54
+msgid "Show course images"
+msgstr "Visa kursbilder"
+
+#: includes/listSettings.php:59
+msgid "Show coming dates (Only course list, not events)"
+msgstr "Visa kommande datum (enbart kurskatalog)"
+
+#: includes/listSettings.php:64
+msgid "Show locations (Only course list, not events)"
+msgstr "Visa orter (enbart kurskatalog)"
+
+#: includes/listSettings.php:69
+msgid "Show price"
+msgstr "Visa pris"
+
+#: includes/listSettings.php:74
+msgid "Show days"
+msgstr "Visa dagar"
+
+#: includes/listSettings.php:79
+msgid "Show time"
+msgstr "Visa tid"
+
+#: includes/listSettings.php:84
+msgid "Show course description"
+msgstr "Visa kursbeskrivning"
+
+#: includes/listSettings.php:92
+msgid "Sort order"
+msgstr "Sorteringsordning"
+
+#: includes/listSettings.php:95
+msgid "Sort index"
+msgstr "Sorteringsindex"
+
+#: includes/listSettings.php:96
+msgid "Course name"
+msgstr "Kursens namn"
+
+#: includes/listSettings.php:97
+msgid "Category name"
+msgstr "Kategorinamn"
+
+#: includes/listSettings.php:98
+msgid "Item number"
+msgstr "Artikelnummer"
+
+#: includes/listSettings.php:106
+msgid "Description field"
+msgstr "Beskrivningsfält"
+
+#: includes/listSettings.php:118
+msgid "Course fields"
+msgstr "Kursfält"
+
+#: includes/listSettings.php:119
+msgid "Short course description"
+msgstr "Kort kursbeskrivning"
+
+#: includes/listSettings.php:120
+msgid "Course description"
+msgstr "Kursbeskrivning"
+
+#: includes/listSettings.php:121
+msgid "Course goal"
+msgstr "Kursmål"
+
+#: includes/listSettings.php:122
+msgid "Target group"
+msgstr "Målgrupp"
+
+#: includes/listSettings.php:123
+msgid "Prerequisites"
+msgstr "Förkunskaper"
+
+#: includes/listSettings.php:124
+msgid "After the course"
+msgstr "Efter kursen"
+
+#: includes/listSettings.php:125
+msgid "Quote"
+msgstr "Citat"
+
+#: includes/listSettings.php:128
+msgid "Course attributes"
+msgstr "Egna fält"
+
+#: includes/listSettings.php:138
+msgid "Search options"
+msgstr "Sökalternativ"
+
+#: includes/listSettings.php:141
+msgid "Allow search by city"
+msgstr "Tillåt sökning efter stad"
+
+#: includes/listSettings.php:146
+msgid "Allow search by subject"
+msgstr "Tillåt sökning efter ämne"
+
+#: includes/listSettings.php:151
+msgid "Allow search by category"
+msgstr "Tillåt sökning efter kategori"
+
+#: includes/listSettings.php:156
+msgid "Allow search by course level"
+msgstr "Tillåt sökning efter kursnivå"
+
+#: includes/listSettings.php:177
+msgid "Save changes"
+msgstr "Spara ändringar"
+
+#: includes/settingsPage.php:19
+msgid "Api authentication"
+msgstr "Api autentisering"
+
+#: includes/settingsPage.php:27
+msgid "Enter the provided Api User Id and Api Hash to connect to EduAdmin"
+msgstr "Fyll i API-användare och API-hash för att ansluta till EduAdmin"
+
+#: includes/settingsPage.php:30
+#, php-format
+msgid "You can get these details by contacting %s"
+msgstr "Du kan få dessa uppgifter genom att kontakta %s"
+
+#: includes/settingsPage.php:30
+msgid "our support"
+msgstr "vår support"
+
+#: includes/settingsPage.php:32
+msgid "Api User Id"
+msgstr "API-användare:"
+
+#: includes/settingsPage.php:33
+msgid "Api Hash"
+msgstr "API-Hash"
+
+#: includes/settingsPage.php:34
+msgid "Click here to unlock the Api Authentication-fields"
+msgstr "Klicka här för att låsa upp Api autentiserings-fälten"
+
+#: includes/styleSettings.php:8
+msgid "Style"
+msgstr "Stil"
+
+#: includes/styleSettings.php:23
+msgid "Are you sure you want to reset the style settings?"
+msgstr "Är du säker på att du vill återställa stilinställningarna?"
+
+#: includes/styleSettings.php:23
+msgid "Reset styles"
+msgstr "Återställ stilar"
+
+#: includes/textSettings.php:10
+msgid "Key text"
+msgstr "Nyckelfras"
+
+#. Plugin Name of the plugin/theme
+msgid "EduAdmin Booking"
+msgstr "EduAdmin Booking"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.eduadmin.se"
+msgstr "http://www.eduadmin.se"
+
+#. Description of the plugin/theme
+msgid "EduAdmin plugin to allow visitors to book courses at your website"
+msgstr ""
+"EduAdmin-plugin för att ge besökare möjligheten att boka in sig på era "
+"kurser via er hemsida"
+
+#. Author of the plugin/theme
+msgid "Chris Gårdenberg, MultiNet Interactive AB"
+msgstr "Chris Gårdenberg, MultiNet Interactive AB"
+
+#. Author URI of the plugin/theme
+msgid "http://www.multinet.se"
+msgstr "http://www.multinet.se"
+
+#~ msgid "Test Api-connection"
+#~ msgstr "Testa anslutning"
