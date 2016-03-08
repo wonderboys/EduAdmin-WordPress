@@ -1,4 +1,46 @@
 <?php
+// Render ALL the types
+function renderQuestion($question)
+{
+	print_r($question);
+	switch($question[0]->QuestionTypeID)
+	{
+		case 1: // Text-fråga
+			renderTextQuestion($question);
+			break;
+		case 2: // Checkbox-fråga
+			renderCheckBoxQuestion($question);
+			break;
+		case 3: // Radio - Vertikal
+			renderRadioQuestion($question, 'vertical');
+			break;
+		case 4: // Nummerfråga
+			renderNumberQuestion($question);
+			break;
+		case 5: // Anteckningar
+			renderNoteQuestion($question);
+			break;
+		case 6: // Infotext - hel rad
+			renderInfoText($question);
+			break;
+		case 8: // Datum-fråga
+			renderDateQuestion($question);
+			break;
+		case 9: // Infotext - halv rad
+			renderInfoText($question);
+			break;
+		case 10: // Radio - horisontell
+			renderRadioQuestion($question, 'horizontal');
+			break;
+		case 11: // Droplist-fråga
+			renderDropListQuestion($question);
+			break;
+		default:
+			echo "<xmp>" . print_r($question, true) . "</xmp>";
+		break;
+	}
+}
+
 // QuestionTypeID 5
 function renderNoteQuestion ($question)
 {
