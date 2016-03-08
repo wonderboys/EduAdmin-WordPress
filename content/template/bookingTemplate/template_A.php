@@ -339,6 +339,16 @@ else
 			die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
 		}
 	}
+
+$contact = new CustomerContact();
+$customer = new Customer();
+
+if(isset($_SESSION['eduadmin-loginUser']))
+{
+	$user = $_SESSION['eduadmin-loginUser'];
+	$contact = $user->Contact;
+	$customer = $user->Customer;
+}
 ?>
 <div class="eduadmin">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
@@ -412,7 +422,7 @@ else
 					<?php edu_e("Customer name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" required name="customerName" placeholder="<?php edu_e("Customer name"); ?>" />
+					<input type="text" required name="customerName" placeholder="<?php edu_e("Customer name"); ?>" value="<?php echo esc_attr($customer->CustomerName); ?>" />
 				</div>
 			</label>
 			<label>
