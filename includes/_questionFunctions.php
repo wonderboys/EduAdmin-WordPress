@@ -65,7 +65,7 @@ function renderNumberQuestion($question)
 	echo $question[0]->QuestionText;
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
-	echo "<input type=\"number\" class=\"questionText\" name=\"question_" . $question[0]->AnswerID . "_number\" />";
+	echo "<input type=\"number\" class=\"questionText\" min=\"0\" name=\"question_" . $question[0]->AnswerID . "_number\" placeholder=\"" . edu__("Quantity") . "\" />";
 	echo "</div>";
 	echo "</label>";
 }
