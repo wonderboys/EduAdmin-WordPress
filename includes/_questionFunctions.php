@@ -2,7 +2,6 @@
 // Render ALL the types
 function renderQuestion($question)
 {
-	print_r($question);
 	switch($question[0]->QuestionTypeID)
 	{
 		case 1: // Text-fråga
@@ -60,6 +59,9 @@ function renderCheckBoxQuestion($question)
 		echo "<div class=\"inputHolder\">";
 		echo "<input type=\"checkbox\" class=\"questionCheck\" name=\"question_" . $q->QuestionID . "_check\"" . ($q->DefaultAlternative == 1 ? " checked=\"checked\"" : "") . " value=\"" . $q->AnswerID . "\" /> ";
 		echo $q->AnswerText;
+		if($q->Price > 0) {
+			echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+		}
 		echo "</div>";
 		echo "</label>";
 	}
@@ -93,7 +95,12 @@ function renderDropListQuestion($question)
 	echo "<select class=\"questionDropdown\" name=\"question_" . $question[0]->QuestionID . "_dropdown\">";
 	foreach($question as $q)
 	{
-		echo "<option value=\"" . $q->AnswerID . "\"" . ($q->DefaultAlternative == 1 ? " selected=\"selected\"" : "") . ">" . $q->AnswerText . "</option>";
+		echo "<option value=\"" . $q->AnswerID . "\"" . ($q->DefaultAlternative == 1 ? " selected=\"selected\"" : "") . ">";
+		echo $q->AnswerText;
+		if($q->Price > 0) {
+			echo " (" . convertToMoney($q->Price) . ")";
+		}
+		echo "</option>";
 	}
 	echo "</select>";
 	echo "</div>";
@@ -106,7 +113,7 @@ function renderNumberQuestion($question)
 	echo "<div class=\"inputLabel noHide\">";
 	echo $question[0]->QuestionText;
 	if($question[0]->Price > 0) {
-		echo " (" . convertToMoney($question[0]->Price) . ")";
+		echo " <i>(" . sprintf(edu__('%1$s / pcs'), convertToMoney($question[0]->Price)) . ")</i>";
 	}
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
@@ -138,6 +145,9 @@ function renderRadioQuestion($question, $display)
 			echo "<div class=\"inputHolder\">";
 			echo "<input type=\"radio\" class=\"questionRadio\" name=\"question_" . $question[0]->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
 			echo $q->AnswerText;
+			if($q->Price > 0) {
+				echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+			}
 			echo "</div>";
 			echo "</label>";
 		}
@@ -150,6 +160,9 @@ function renderRadioQuestion($question, $display)
 			echo "<div class=\"inputHolder\">";
 			echo "<input type=\"radio\" class=\"questionRadio\" name=\"question_" . $question[0]->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
 			echo $q->AnswerText;
+			if($q->Price > 0) {
+				echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+			}
 			echo "</div>";
 			echo "</label>";
 		}
