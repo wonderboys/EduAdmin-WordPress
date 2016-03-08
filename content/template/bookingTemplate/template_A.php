@@ -633,7 +633,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			</div>
 			<div>
 				<a href="javascript://" onclick="eduBookingView.AddParticipant(); return false;"><?php edu_e("Add participant"); ?></a>
-				<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 			</div>
 			<div class="edu-modal warning" id="edu-warning-participants">
 				<?php edu_e("You cannot add any more participants."); ?>
@@ -643,17 +642,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			</div>
 		</div>
 		<br />
-		<?php
-		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink')))
-		{
-			?>
-			<label>
-				<input type="checkbox" id="confirmTerms" name="confirmTerms" value="agree" />
-				<?php echo sprintf(edu__('I agree to the %sTerms and Conditions%s'), '<a href="' . get_option('eduadmin-bookingTermsLink') . '" target="_blank">', '</a>'); ?>
-			</label>
-			<?php
-		}
-		?>
 		<?php
 		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
@@ -723,7 +711,21 @@ if(isset($_SESSION['eduadmin-loginUser']))
 
 
 		?>
+		<?php
+		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink')))
+		{
+			?>
+			<label>
+				<input type="checkbox" id="confirmTerms" name="confirmTerms" value="agree" />
+				<?php echo sprintf(edu__('I agree to the %sTerms and Conditions%s'), '<a href="' . get_option('eduadmin-bookingTermsLink') . '" target="_blank">', '</a>'); ?>
+			</label>
+			<?php
+		}
+		?>
+		<div>
 		<input type="submit" class="bookButton" onclick="var validated = eduBookingView.CheckValidation(); return validated;" value="<?php edu_e("Book"); ?>" />
+		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
+		</div>
 	</form>
 </div>
 <?php
