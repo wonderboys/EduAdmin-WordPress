@@ -361,7 +361,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				foreach($events as $ev)
 				{
 					?>				<option value="<?php echo $ev->EventID; ?>"><?php
-						echo wp_strip_all_tags(GetDisplayDate($ev->PeriodStart)) . ", ";
+						echo wp_strip_all_tags(GetDisplayDate($ev->PeriodStart, $ev->PeriodEnd)) . ", ";
 						echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd));
 						$addresses = get_transient('eduadmin-location-' . $ev->LocationAddressID);
 						if(!$addresses)
@@ -388,7 +388,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			</select>
 			<?php
 			} else {
-				echo "<div class=\"dateInfo\">" . GetDisplayDate($event->PeriodStart) . ", ";
+				echo "<div class=\"dateInfo\">" . GetDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
 				echo date("H:i", strtotime($event->PeriodStart)); ?> - <?php echo date("H:i", strtotime($event->PeriodEnd));
 				$addresses = get_transient('eduadmin-location-' . $event->LocationAddressID);
 				if(!$addresses)
@@ -430,7 +430,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Org.No."); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerVatNo" placeholder="<?php edu_e("Org.No."); ?>" />
+					<input type="text" name="customerVatNo" placeholder="<?php edu_e("Org.No."); ?>" value="<?php echo esc_attr($customer->InvoiceOrgnr); ?>" />
 				</div>
 			</label>
 			<label>
@@ -438,7 +438,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Address"); ?> 1
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerAddress1" placeholder="<?php edu_e("Address"); ?> 1" />
+					<input type="text" name="customerAddress1" placeholder="<?php edu_e("Address"); ?> 1" value="<?php echo esc_attr($customer->Address1); ?>" />
 				</div>
 			</label>
 			<label>
@@ -446,7 +446,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Address"); ?> 2
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerAddress2" placeholder="<?php edu_e("Address"); ?> 2" />
+					<input type="text" name="customerAddress2" placeholder="<?php edu_e("Address"); ?> 2" value="<?php echo esc_attr($customer->Address2); ?>" />
 				</div>
 			</label>
 			<label>
@@ -454,7 +454,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Postal code"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerPostalCode" placeholder="<?php edu_e("Postal code"); ?>" />
+					<input type="text" name="customerPostalCode" placeholder="<?php edu_e("Postal code"); ?>" value="<?php echo esc_attr($customer->Zip); ?>" />
 				</div>
 			</label>
 			<label>
@@ -462,7 +462,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Postal city"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerPostalCity" placeholder="<?php edu_e("Postal city"); ?>" />
+					<input type="text" name="customerPostalCity" placeholder="<?php edu_e("Postal city"); ?>" value="<?php echo esc_attr($customer->City); ?>" />
 				</div>
 			</label>
 			<label>
@@ -470,7 +470,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Invoice reference"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoiceReference" placeholder="<?php edu_e("Invoice reference"); ?>" />
+					<input type="text" name="invoiceReference" placeholder="<?php edu_e("Invoice reference"); ?>" value="<?php echo esc_attr($customer->CustomerReference); ?>" />
 				</div>
 			</label>
 			<label>
@@ -487,7 +487,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Customer name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoiceName" placeholder="<?php edu_e("Customer name"); ?>" />
+					<input type="text" name="invoiceName" placeholder="<?php edu_e("Customer name"); ?>" value="<?php echo esc_attr($customer->InvoiceName); ?>" />
 				</div>
 			</label>
 			<label>
@@ -495,7 +495,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Address"); ?> 1
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoiceAddress1" placeholder="<?php edu_e("Address"); ?> 1" />
+					<input type="text" name="invoiceAddress1" placeholder="<?php edu_e("Address"); ?> 1" value="<?php echo esc_attr($customer->InvoiceAddress1); ?>" />
 				</div>
 			</label>
 			<label>
@@ -503,7 +503,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Address"); ?> 2
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address"); ?> 2" />
+					<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address"); ?> 2" value="<?php echo esc_attr($customer->InvoiceAddress2); ?>" />
 				</div>
 			</label>
 			<label>
@@ -511,7 +511,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Postal code"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoicePostalCode" placeholder="<?php edu_e("Postal code"); ?>" />
+					<input type="text" name="invoicePostalCode" placeholder="<?php edu_e("Postal code"); ?>" value="<?php echo esc_attr($customer->InvoiceZip); ?>" />
 				</div>
 			</label>
 			<label>
@@ -519,7 +519,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Postal city"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="invoicePostalCity" placeholder="<?php edu_e("Postal city"); ?>" />
+					<input type="text" name="invoicePostalCity" placeholder="<?php edu_e("Postal city"); ?>" value="<?php echo esc_attr($customer->InvoiceCity); ?>" />
 				</div>
 			</label>
 		</div>
@@ -530,8 +530,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Contact name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" style="width: 40%; display: inline-block;" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" />
-					<input type="text" style="width: 49%; display: inline-block;" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" />
+					<input type="text" style="width: 40%; display: inline-block;" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
+					<input type="text" style="width: 49%; display: inline-block;" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
 				</div>
 			</label>
 			<label>
@@ -539,7 +539,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("E-mail address"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="email" name="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" />
+					<input type="email" name="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
 				</div>
 			</label>
 			<label>
@@ -547,7 +547,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Phone number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" name="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" />
+					<input type="tel" name="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
 				</div>
 			</label>
 			<label>
@@ -555,7 +555,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Mobile number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" name="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" />
+					<input type="tel" name="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
 				</div>
 			</label>
 			<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
@@ -564,7 +564,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Civic Registration Number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" required name="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
+					<input type="text" required name="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
 				</div>
 			</label>
 			<?php } ?>
