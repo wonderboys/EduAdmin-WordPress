@@ -363,7 +363,7 @@ foreach($edo as $object)
 				if($object->Days > 0) {
 					echo
 					"<div class=\"dayInfo\">" .
-						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ', ' : '') .
+						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
 						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
 						' - ' .
 						date("H:i", strtotime($object->EndTime)) : '') .
