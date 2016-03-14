@@ -45,12 +45,12 @@ else
 						</select>
 						<h3><?php _e("List settings", "eduadmin"); ?></h3>
 						<label>
-							<input type="checkbox" name="eduadmin-showEventsInList"<?php if(get_option('eduadmin-showEventsInList', false)) { echo " checked=\"checked\""; } ?> />
+							<input type="checkbox" id="eduadmin-showEventsInList" name="eduadmin-showEventsInList"<?php if(get_option('eduadmin-showEventsInList', false)) { echo " checked=\"checked\""; } ?> />
 							<?php _e("Show events instead of courses", "eduadmin"); ?>
 						</label>
 						<br />
 						<label>
-							<input type="checkbox" name="eduadmin-showCourseImage"<?php if(get_option('eduadmin-showCourseImage', true)) { echo " checked=\"checked\""; } ?> />
+							<input type="checkbox" id="eduadmin-showCourseImage" name="eduadmin-showCourseImage"<?php if(get_option('eduadmin-showCourseImage', true)) { echo " checked=\"checked\""; } ?> />
 							<?php _e("Show course images", "eduadmin"); ?>
 						</label>
 						<br />
@@ -79,32 +79,15 @@ else
 							<?php _e("Show time", "eduadmin"); ?>
 						</label>
 						<br />
-						<label>
-							<input type="checkbox" name="eduadmin-showCourseDescription"<?php if(get_option('eduadmin-showCourseDescription', true)) { echo " checked=\"checked\""; } ?> />
-							<?php _e("Show course description", "eduadmin"); ?>
-						</label>
-						<br />
-						<?php
-							$sortOrder = get_option('eduadmin-listSortOrder', 'SortIndex');
-						?>
-						<table>
+						<table cellpadding="0" cellspacing="0">
 							<tr>
-								<td><?php _e("Sort order", "eduadmin"); ?></td>
 								<td>
-									<select name="eduadmin-listSortOrder">
-										<option value="SortIndex"<?php echo ($sortOrder === "SortIndex" ? " selected=\"selected\"":""); ?>><?php _e("Sort index", "eduadmin"); ?></option>
-										<option value="PublicName"<?php echo ($sortOrder === "PublicName" ? " selected=\"selected\"":""); ?>><?php _e("Course name", "eduadmin"); ?></option>
-										<option value="CategoryName"<?php echo ($sortOrder === "CategoryName" ? " selected=\"selected\"":""); ?>><?php _e("Category name", "eduadmin"); ?></option>
-										<option value="ItemNr"<?php echo ($sortOrder === "ItemNr" ? " selected=\"selected\"":""); ?>><?php _e("Item number", "eduadmin"); ?></option>
-									</select>
+									<label>
+										<input type="checkbox" id="eduadmin-showCourseDescription" name="eduadmin-showCourseDescription"<?php if(get_option('eduadmin-showCourseDescription', true)) { echo " checked=\"checked\""; } ?> />
+										<?php _e("Show course description", "eduadmin"); ?>
+									</label>
 								</td>
-							</tr>
-						</table>
-						<br />
-						<table>
-							<tr>
-								<td><?php _e("Description field", "eduadmin"); ?></td>
-								<td>
+								<td style="padding-left: 5px;">
 									<?php
 									$selectedDescriptionField = get_option('eduadmin-layout-descriptionfield', 'CourseDescriptionShort');
 									$filter = new XFiltering();
@@ -135,6 +118,24 @@ else
 								</td>
 							</tr>
 						</table>
+						<br />
+						<?php
+							$sortOrder = get_option('eduadmin-listSortOrder', 'SortIndex');
+						?>
+						<table>
+							<tr>
+								<td><?php _e("Sort order", "eduadmin"); ?></td>
+								<td>
+									<select name="eduadmin-listSortOrder">
+										<option value="SortIndex"<?php echo ($sortOrder === "SortIndex" ? " selected=\"selected\"":""); ?>><?php _e("Sort index", "eduadmin"); ?></option>
+										<option value="PublicName"<?php echo ($sortOrder === "PublicName" ? " selected=\"selected\"":""); ?>><?php _e("Course name", "eduadmin"); ?></option>
+										<option value="CategoryName"<?php echo ($sortOrder === "CategoryName" ? " selected=\"selected\"":""); ?>><?php _e("Category name", "eduadmin"); ?></option>
+										<option value="ItemNr"<?php echo ($sortOrder === "ItemNr" ? " selected=\"selected\"":""); ?>><?php _e("Item number", "eduadmin"); ?></option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<br />
 						<h3><?php _e("Filter options", "eduadmin"); ?></h3>
 						<label>
 							<input type="checkbox" name="eduadmin-allowLocationSearch"<?php if(get_option('eduadmin-allowLocationSearch', true)) { echo " checked=\"checked\""; } ?> />
