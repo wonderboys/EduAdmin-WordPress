@@ -46,5 +46,8 @@ var EduAdmin = {
 			jQuery('#eduadmin-alwaysFewSpots').show();
 			break;
 		}
+	},
+	ListSettingsSetFields: function() {
+
 	}
 };
