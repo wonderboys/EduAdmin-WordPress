@@ -95,7 +95,23 @@ var eduBookingView = {
 			var participant = participants[i];
 			var fields = participant.querySelectorAll('input');
 			for(var f = 0; f < fields.length; f++) {
+				if(requiredFieldsToCreateParticipants.indexOf(fields[f].name) >= 0) {
 
+					if(fields[f].value.replace(/ /i, '') == '') {
+						/* Show missing participant-name warning */
+
+						var partWarning = document.getElementById('edu-warning-missing-participants');
+						if(partWarning)
+						{
+							partWarning.style.display = 'block';
+							setTimeout(function() {
+								var partWarning = document.getElementById('edu-warning-missing-participants');
+								partWarning.style.display = '';
+							}, 5000);
+						}
+						return false;
+					}
+				}
 			}
 		}
 

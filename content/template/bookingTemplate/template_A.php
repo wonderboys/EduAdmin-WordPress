@@ -693,6 +693,9 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<div class="edu-modal warning" id="edu-warning-terms">
 			<?php edu_e("You must accept Terms and Conditions to continue."); ?>
 		</div>
+		<div class="edu-modal warning" id="edu-warning-missing-participants">
+				<?php edu_e("One or more participants is missing a name."); ?>
+			</div>
 		<div>
 		<input type="submit" class="bookButton" onclick="var validated = eduBookingView.CheckValidation(); return validated;" value="<?php edu_e("Book"); ?>" />
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
