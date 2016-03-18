@@ -108,7 +108,7 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 			<h3><?php edu_e("Contact information"); ?></h3>
 			<label>
 				<div class="inputLabel"><?php edu_e("Contact name"); ?></div>
-				<div class="inputHolder"><input type="text" name="contactName" required placeholder="<?php echo esc_attr(edu__("Contact name")); ?>" value="<?php echo esc_attr($contact->ContactName); ?>" /></div>
+				<div class="inputHolder"><input type="text" name="contactName" readonly required placeholder="<?php echo esc_attr(edu__("Contact name")); ?>" value="<?php echo esc_attr($contact->ContactName); ?>" /></div>
 			</label>
 			<label>
 				<div class="inputLabel"><?php edu_e("Phone"); ?></div>
@@ -121,7 +121,7 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 			</label>
 			<label>
 				<div class="inputLabel"><?php edu_e("E-mail address"); ?></div>
-				<div class="inputHolder"><input type="text" name="contactEmail" required placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo esc_attr($contact->Email); ?>" /></div>
+				<div class="inputHolder"><input type="text" name="contactEmail" readonly required placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo esc_attr($contact->Email); ?>" /></div>
 			</label>
 		</div>
 		<button class="profileSaveButton"><?php edu_e("Save"); ?></button>

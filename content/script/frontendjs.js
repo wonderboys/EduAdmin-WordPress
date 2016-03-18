@@ -12,6 +12,7 @@ var eduBookingView = {
 			var tmpl = document.querySelector('.eduadmin .participantItem.template');
 			var cloned = tmpl.cloneNode(true);
 			cloned.style.display = 'block';
+			cloned.className = cloned.className.replace(' template', '');
 			holder.appendChild(cloned);
 		}
 		else
