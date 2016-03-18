@@ -91,6 +91,20 @@ var eduBookingView = {
 		var requiredFieldsToCreateParticipants = [
 			'participantFirstName[]'
 		];
+
+		if(participants.length == 0) {
+			var noPartWarning = document.getElementById('edu-warning-no-participants');
+			if(noPartWarning)
+			{
+				noPartWarning.style.display = 'block';
+				setTimeout(function() {
+					var noPartWarning = document.getElementById('edu-warning-no-participants');
+					noPartWarning.style.display = '';
+				}, 5000);
+			}
+			return false;
+		}
+
 		for(var i = 0; i < participants.length; i++) {
 			var participant = participants[i];
 			var fields = participant.querySelectorAll('input');

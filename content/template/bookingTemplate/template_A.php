@@ -693,6 +693,10 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<div class="edu-modal warning" id="edu-warning-terms">
 			<?php edu_e("You must accept Terms and Conditions to continue."); ?>
 		</div>
+		<div class="edu-modal warning" id="edu-warning-no-participants">
+				<?php edu_e("You must add some participants."); ?>
+			</div>
+		<div>
 		<div class="edu-modal warning" id="edu-warning-missing-participants">
 				<?php edu_e("One or more participants is missing a name."); ?>
 			</div>
