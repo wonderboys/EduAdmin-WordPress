@@ -82,9 +82,23 @@ var eduBookingView = {
 						termWarning.style.display = '';
 					}, 5000);
 				}
+				return false;
 			}
-			return terms.checked;
 		}
+
+		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template)');
+		console.log(participants);
+		var requiredFieldsToCreateParticipants = [
+			'participantFirstName[]'
+		];
+		for(var i = 0; i < participants.length; i++) {
+			var participant = participants[i];
+			var fields = participant.querySelectorAll('input');
+			for(var f = 0; f < fields.length; f++) {
+
+			}
+		}
+
 		return true;
 	}
 };
