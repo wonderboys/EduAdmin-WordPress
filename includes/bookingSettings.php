@@ -261,11 +261,15 @@ else
 			</select>
 			<h3><?php _e("Booking terms", "eduadmin"); ?></h3>
 			<h4><?php _e("Booking terms link", "eduadmin"); ?></h4>
-			<input type="url" class="form-control" style="width: 100%;" name="eduadmin-bookingTermsLink" placeholder="Booking terms link" value="<?php echo get_option('eduadmin-bookingTermsLink'); ?>" />
+			<input type="url" class="form-control" style="width: 100%;" name="eduadmin-bookingTermsLink" placeholder="<?php _e("Booking terms link", "eduadmin"); ?>" value="<?php echo get_option('eduadmin-bookingTermsLink'); ?>" />
 			<br />
 			<label>
 				<input type="checkbox" name="eduadmin-useBookingTermsCheckbox" value="true"<?php if(get_option('eduadmin-useBookingTermsCheckbox', false)) { echo " checked=\"checked\""; } ?> /> <?php _e("Use booking terms", "eduadmin"); ?>
 			</label>
+			<h3><?php _e("Javascript to run when a booking is completed", "eduadmin"); ?></h3>
+			<i><?php _e("You do not need to include &lt;script&gt;-tags", "eduadmin"); ?></i><br />
+			<textarea class="form-control" rows="10" cols="60" name="eduadmin-javascript"><?php get_option('eduadmin-javascript'); ?></textarea>
+			<br />
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
 			</p>

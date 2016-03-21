@@ -6,6 +6,7 @@ add_action('admin_menu', 'eduadmin_backend_menu');
 add_action('admin_enqueue_scripts', 'eduadmin_backend_content');
 add_action('wp_enqueue_scripts', 'eduadmin_frontend_content');
 add_action('add_meta_boxes', 'eduadmin_shortcode_metabox');
+add_action('wp_footer', 'eduadmin_printJavascript');
 
 function eduadmin_settings_init()
 {
@@ -29,6 +30,7 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-booking', 'eduadmin-currency');
 	register_setting('eduadmin-booking', 'eduadmin-bookingTermsLink');
 	register_setting('eduadmin-booking', 'eduadmin-useBookingTermsCheckbox');
+	register_setting('eduadmin-booking', 'eduadmin-javascript');
 
 	/* Phrase settings */
 	register_setting('eduadmin-phrases', 'eduadmin-phrases');
@@ -147,5 +149,16 @@ function eduadmin_shortcode_metabox()
 function eduadmin_create_metabox()
 {
 	include_once("_metaBox.php");
+}
+
+function eduadmin_printJavascript()
+{
+	if(get_option('eduadmin-javascript') != '' && isset($_SESSION['eduadmin-printJS']))
+	{
+		echo "<script type=\"text/javascript\">\n";
+		echo get_option('eduadmin-javascript');
+		echo "\n</script>";
+		unset($_SESSION['eduadmin-printJS']);
+	}
 }
 ?>
