@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-03-08 16:17+0100\n"
-"PO-Revision-Date: 2016-03-08 16:18+0100\n"
+"POT-Creation-Date: 2016-03-21 14:23+0100\n"
+"PO-Revision-Date: 2016-03-21 14:24+0100\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -184,65 +184,65 @@ msgstr ""
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:98
+#: includes/_options.php:100
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:98 includes/generalSettings.php:8
+#: includes/_options.php:100 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:99
+#: includes/_options.php:101
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:99 includes/listSettings.php:32
+#: includes/_options.php:101 includes/listSettings.php:32
 #: includes/listSettings.php:46
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:100
+#: includes/_options.php:102
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:100 includes/detailSettings.php:2
+#: includes/_options.php:102 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:101
+#: includes/_options.php:103
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:101 includes/bookingSettings.php:2
+#: includes/_options.php:103 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:102
+#: includes/_options.php:104
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:102 includes/textSettings.php:2
+#: includes/_options.php:104 includes/textSettings.php:2
 #: includes/textSettings.php:11
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:103
+#: includes/_options.php:105
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:103
+#: includes/_options.php:105
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:104
+#: includes/_options.php:106
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:104
+#: includes/_options.php:106
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:144
+#: includes/_options.php:146
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
@@ -270,7 +270,7 @@ msgstr "Valuta"
 msgid "Booking terms"
 msgstr "Bokningsvillkor"
 
-#: includes/bookingSettings.php:263
+#: includes/bookingSettings.php:263 includes/bookingSettings.php:264
 msgid "Booking terms link"
 msgstr "Länk till bokningsvillkor"
 
@@ -278,7 +278,15 @@ msgstr "Länk till bokningsvillkor"
 msgid "Use booking terms"
 msgstr "Använd bokningsvillkor"
 
-#: includes/bookingSettings.php:270 includes/detailSettings.php:28
+#: includes/bookingSettings.php:269
+msgid "Javascript to run when a booking is completed"
+msgstr "Javaskript att köra när en bokning har genomförts"
+
+#: includes/bookingSettings.php:270
+msgid "You do not need to include &lt;script&gt;-tags"
+msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
+
+#: includes/bookingSettings.php:274 includes/detailSettings.php:28
 #: includes/generalSettings.php:34 includes/generalSettings.php:173
 #: includes/settingsPage.php:36 includes/styleSettings.php:22
 #: includes/textSettings.php:40
@@ -445,91 +453,87 @@ msgstr "Visa dagar"
 msgid "Show time"
 msgstr "Visa tid"
 
-#: includes/listSettings.php:84
+#: includes/listSettings.php:87
 msgid "Show course description"
 msgstr "Visa kursbeskrivning"
 
-#: includes/listSettings.php:92
-msgid "Sort order"
-msgstr "Sorteringsordning"
-
-#: includes/listSettings.php:95
-msgid "Sort index"
-msgstr "Sorteringsindex"
-
-#: includes/listSettings.php:96
-msgid "Course name"
-msgstr "Kursens namn"
-
-#: includes/listSettings.php:97
-msgid "Category name"
-msgstr "Kategorinamn"
-
-#: includes/listSettings.php:98
-msgid "Item number"
-msgstr "Artikelnummer"
-
-#: includes/listSettings.php:106
-msgid "Description field"
-msgstr "Beskrivningsfält"
-
-#: includes/listSettings.php:118
+#: includes/listSettings.php:101
 msgid "Course fields"
 msgstr "Kursfält"
 
-#: includes/listSettings.php:119
+#: includes/listSettings.php:102
 msgid "Short course description"
 msgstr "Kort kursbeskrivning"
 
-#: includes/listSettings.php:120
+#: includes/listSettings.php:103
 msgid "Course description"
 msgstr "Kursbeskrivning"
 
-#: includes/listSettings.php:121
+#: includes/listSettings.php:104
 msgid "Course goal"
 msgstr "Kursmål"
 
-#: includes/listSettings.php:122
+#: includes/listSettings.php:105
 msgid "Target group"
 msgstr "Målgrupp"
 
-#: includes/listSettings.php:123
+#: includes/listSettings.php:106
 msgid "Prerequisites"
 msgstr "Förkunskaper"
 
-#: includes/listSettings.php:124
+#: includes/listSettings.php:107
 msgid "After the course"
 msgstr "Efter kursen"
 
-#: includes/listSettings.php:125
+#: includes/listSettings.php:108
 msgid "Quote"
 msgstr "Citat"
 
-#: includes/listSettings.php:128
+#: includes/listSettings.php:111
 msgid "Course attributes"
 msgstr "Egna fält"
 
-#: includes/listSettings.php:138
+#: includes/listSettings.php:127
+msgid "Sort order"
+msgstr "Sorteringsordning"
+
+#: includes/listSettings.php:130
+msgid "Sort index"
+msgstr "Sorteringsindex"
+
+#: includes/listSettings.php:131
+msgid "Course name"
+msgstr "Kursens namn"
+
+#: includes/listSettings.php:132
+msgid "Category name"
+msgstr "Kategorinamn"
+
+#: includes/listSettings.php:133
+msgid "Item number"
+msgstr "Artikelnummer"
+
+#: includes/listSettings.php:139
 msgid "Filter options"
 msgstr "Filtreringsalternativ"
 
-#: includes/listSettings.php:141
+#: includes/listSettings.php:142
 msgid "Allow filter by city"
 msgstr "Tillåt filtrering på ort"
 
-#: includes/listSettings.php:146
+#: includes/listSettings.php:147
 msgid "Allow filter by subject"
 msgstr "Tillåt filtrering på ämne"
 
-#: includes/listSettings.php:151
+#: includes/listSettings.php:152
 msgid "Allow filter by category"
 msgstr "Tillåt filtrering på kategori"
 
-#: includes/listSettings.php:156
+#: includes/listSettings.php:157
 msgid "Allow filter by course level"
 msgstr "Tillåt filtrering på kursnivå"
 
-#: includes/listSettings.php:177
+#: includes/listSettings.php:178
 msgid "Save changes"
 msgstr "Spara ändringar"
 
@@ -599,6 +603,9 @@ msgstr "Chris Gårdenberg, MultiNet Interactive AB"
 #. Author URI of the plugin/theme
 msgid "http://www.multinet.se"
 msgstr "http://www.multinet.se"
+
+#~ msgid "Description field"
+#~ msgstr "Beskrivningsfält"
 
 #~ msgid "Search options"
 #~ msgstr "Sökalternativ"

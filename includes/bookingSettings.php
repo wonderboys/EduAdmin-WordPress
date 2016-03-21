@@ -268,7 +268,7 @@ else
 			</label>
 			<h3><?php _e("Javascript to run when a booking is completed", "eduadmin"); ?></h3>
 			<i><?php _e("You do not need to include &lt;script&gt;-tags", "eduadmin"); ?></i><br />
-			<textarea class="form-control" rows="10" cols="60" name="eduadmin-javascript"><?php get_option('eduadmin-javascript'); ?></textarea>
+			<textarea class="form-control" rows="10" cols="60" name="eduadmin-javascript"><?php echo get_option('eduadmin-javascript'); ?></textarea>
 			<br />
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
