@@ -10,7 +10,7 @@ function eduadmin_rewrite_init()
 	add_rewrite_tag('%edu-bookings%', '([^&]+)');
 	add_rewrite_tag('%edu-certificates%', '([^&]+)');
 	add_rewrite_tag('%edu-logout%', '([^&]+)');
-	if(get_option('eduadmin-options_have_changed', 'false') == true)
+	//if(get_option('eduadmin-options_have_changed', 'false') == true)
 	{
 		$listView = get_option('eduadmin-listViewPage');
 		$loginView = get_option('eduadmin-loginViewPage');
