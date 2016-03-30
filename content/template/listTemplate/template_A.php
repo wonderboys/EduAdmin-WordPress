@@ -86,6 +86,7 @@ else
 	}
 ?>
 <div class="eduadmin">
+	<?php if($attributes['hidesearch'] == false) { ?>
 	<form method="POST" class="search-form">
 		<table style="width: 100%;">
 			<tr>
@@ -155,6 +156,7 @@ else
 			</tr>
 		</table>
 	</form>
+	<?php } ?>
 <?php
 	$eds = get_transient('eduadmin-courseSubject');
 	if(!$eds)

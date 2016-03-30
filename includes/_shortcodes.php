@@ -21,7 +21,8 @@ function eduadmin_get_list_view($attributes)
 		array(
 			'template' => $selectedTemplate,
 			'category' => null,
-			'subject' => null
+			'subject' => null,
+			'hidesearch' => false
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
