@@ -93,13 +93,11 @@ else
 		set_transient('eduadmin-events-object' . $selectedCourse->ObjectID, $events, 6 * HOUR_IN_SECONDS);
 	}
 
-
-		$ft = new XFiltering();
-		$f = new XFilter('PublicPriceName', '=', 'true');
-		$ft->AddItem($f);
-		$pricenames = $api->GetPriceName($token,'',$ft->ToString());
-		set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
-	#echo "<xmp>" . print_r($pricenames, true) . "</xmp>";
+	$ft = new XFiltering();
+	$f = new XFilter('PublicPriceName', '=', 'true');
+	$ft->AddItem($f);
+	$pricenames = $api->GetPriceName($token,'',$ft->ToString());
+	set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 	if(count($pricenames) > 0)
 	{
@@ -115,8 +113,6 @@ else
 			return false;
 		});
 	}
-
-	#echo "<xmp>" . print_r($events, true) . "</xmp>";
 
 	$courseLevel = get_transient('eduadmin-courseLevel-' . $selectedCourse->ObjectID);
 	if(!$courseLevel)
