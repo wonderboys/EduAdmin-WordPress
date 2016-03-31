@@ -86,10 +86,11 @@ else
 	}
 ?>
 <div class="eduadmin">
+	<?php if($attributes['hidesearch'] == false) { ?>
 	<form method="POST" class="search-form">
 		<table style="width: 100%;">
 			<tr>
-		<?php if($allowLocationSearch && count($addresses) > 0 && $showEvents) { ?>
+				<?php if($allowLocationSearch && count($addresses) > 0 && $showEvents) { ?>
 				<td style="width: 15%;">
 					<select name="eduadmin-city">
 						<option value=""><?php edu_e("Choose city"); ?></option>
@@ -155,6 +156,7 @@ else
 			</tr>
 		</table>
 	</form>
+	<?php } ?>
 	<div class="courseContainer">
 <?php
 	$eds = get_transient('eduadmin-courseSubject');
