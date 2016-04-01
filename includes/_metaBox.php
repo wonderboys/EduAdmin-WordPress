@@ -10,6 +10,9 @@
 		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("Filters the course list by subject (Text)", "eduadmin"); ?>">subject</span>
 		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Hides the search box from the list", "eduadmin"); ?>">hidesearch</span>
+		</div>
 	</div>
 </div>
 <div class="eduadmin-shortcode" onclick="EduAdmin.ToggleAttributeList(this);">
