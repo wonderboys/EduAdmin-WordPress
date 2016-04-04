@@ -21,10 +21,13 @@ var EduAdmin = {
 		}
 	},
 	UnlockApiAuthentication: function() {
-		var apiUserId = document.getElementById('eduadmin-api_user_id');
+		/*var apiUserId = document.getElementById('eduadmin-api_user_id');
 		var apiHash = document.getElementById('eduadmin-api_hash');
 		apiUserId.readOnly = false;
-		apiHash.readOnly = false;
+		apiHash.readOnly = false;*/
+
+		var apiKey = document.getElementById('eduadmin-api-key');
+		apiKey.readOnly = false;
 
 		var unlock = document.getElementById('edu-unlockButton');
 		unlock.style.display = 'none';

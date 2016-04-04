@@ -11,8 +11,9 @@ add_action('wp_footer', 'eduadmin_printJavascript');
 function eduadmin_settings_init()
 {
 	/* Credential settings */
-	register_setting('eduadmin-credentials', 'eduadmin-api_user_id');
-	register_setting('eduadmin-credentials', 'eduadmin-api_hash');
+	register_setting('eduadmin-credentials', 'eduadmin-api-key');
+	/*register_setting('eduadmin-credentials', 'eduadmin-api_user_id');
+	register_setting('eduadmin-credentials', 'eduadmin-api_hash');*/
 	register_setting('eduadmin-credentials', 'eduadmin-credentials_have_changed');
 
 	/* Rewrite settings */
