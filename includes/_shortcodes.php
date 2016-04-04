@@ -112,21 +112,25 @@ function eduadmin_get_detailinfo($attributes)
 		$courseId = $attributes['courseid'];
 	}
 
-	$apiUserId = get_option('eduadmin-api_user_id');
-	$apiHash = get_option('eduadmin-api_hash');
+	$apiKey = get_option('eduadmin-api-key');
 
-	if(!$apiUserId || !$apiHash || (empty($apiUserId) || empty($apiHash)))
+	if(!$apiKey || empty($apiKey))
 	{
-		return 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin settings - Api authentication</a>';
+		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
 	}
 	else
 	{
 		$api = new EduAdminClient();
-
+		$key = DecryptApiKey($apiKey);
+		if(!$key)
+		{
+			echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
+			return;
+		}
 		$token = get_transient('eduadmin-token');
 		if(!$token)
 		{
-			$token = $api->GetAuthToken($apiUserId, $apiHash);
+			$token = $api->GetAuthToken($key->UserId, $key->Hash);
 			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 		}
 		else
@@ -134,7 +138,7 @@ function eduadmin_get_detailinfo($attributes)
 			$valid = $api->ValidateAuthToken($token);
 			if(!$valid)
 			{
-				$token = $api->GetAuthToken($apiUserId, $apiHash);
+				$token = $api->GetAuthToken($key->UserId, $key->Hash);
 				set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 			}
 		}
@@ -440,10 +444,9 @@ function eduadmin_get_login_widget($attributes)
 {
 	$attributes = shortcode_atts(
 		array(
-			'loginText' => edu__("Log in"),
-			'logoutText' => edu__("Log out"),
-			'guestText' => edu__("Guest"),
-			'subject' => null
+			'logintext' => edu__("Log in"),
+			'logouttext' => edu__("Log out"),
+			'guesttext' => edu__("Guest")
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-loginwidget'
@@ -462,7 +465,7 @@ function eduadmin_get_login_widget($attributes)
 		"</a> - <a href=\"" . $baseUrl . "/profile/bookings\" class=\"eduadminBookingsLink\">" .
 		edu__("Reservations") .
 		"</a> - <a href=\"" . $baseUrl . "/profile/logout\" class=\"eduadminLogoutButton\">" .
-		$attributes['logoutText'] .
+		$attributes['logouttext'] .
 		"</a>" .
 		"</div>";
 	}
@@ -470,10 +473,10 @@ function eduadmin_get_login_widget($attributes)
 	{
 		echo
 		"<div class=\"eduadminLogin\"><i>" .
-		$attributes['guestText'] .
+		$attributes['guesttext'] .
 		"</i> - " .
 		"<a href=\"" . $baseUrl . "/profile/login\" class=\"eduadminLoginButton\">" .
-		$attributes['loginText'] .
+		$attributes['logintext'] .
 		"</a>" .
 		"</div>";
 	}
@@ -483,10 +486,9 @@ function eduadmin_get_login_view($attributes)
 {
 	$attributes = shortcode_atts(
 		array(
-			'loginText' => edu__("Log in"),
-			'logoutText' => edu__("Log out"),
-			'guestText' => edu__("Guest"),
-			'subject' => null
+			'logintext' => edu__("Log in"),
+			'logouttext' => edu__("Log out"),
+			'guesttext' => edu__("Guest")
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-loginview'

@@ -4,10 +4,16 @@ $contact = $user->Contact;
 $customer = $user->Customer;
 
 global $api;
+$key = DecryptApiKey($apiKey);
+if(!$key)
+{
+	echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
+	return;
+}
 $token = get_transient('eduadmin-token');
 if(!$token)
 {
-	$token = $api->GetAuthToken($apiUserId, $apiHash);
+	$token = $api->GetAuthToken($key->UserId, $key->Hash);
 	set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 }
 else
@@ -15,7 +21,7 @@ else
 	$valid = $api->ValidateAuthToken($token);
 	if(!$valid)
 	{
-		$token = $api->GetAuthToken($apiUserId, $apiHash);
+		$token = $api->GetAuthToken($key->UserId, $key->Hash);
 		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 	}
 }

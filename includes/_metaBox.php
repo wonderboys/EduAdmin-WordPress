@@ -32,6 +32,11 @@
 	<span title="<?php esc_attr_e("Shortcode to display the booking form view.", "eduadmin"); ?>">
 		[eduadmin-bookingview]
 	</span>
+	<div class="eduadmin-attributelist">
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("To build custom booking view pages, you can provide a course id", "eduadmin"); ?>">courseid</span>
+		</div>
+	</div>
 </div>
 <div class="eduadmin-shortcode" onclick="EduAdmin.ToggleAttributeList(this);">
 	<span title="<?php esc_attr_e("Shortcode to display the login view\n(My Pages, Profile, Bookings, etc.)", "eduadmin"); ?>">
@@ -44,6 +49,17 @@
 	<span title="<?php esc_attr_e("Shortcode to inject the login widget.", "eduadmin"); ?>">
 		[eduadmin-loginwidget]
 	</span>
+	<div class="eduadmin-attributelist">
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Text to show instead of standard", "eduadmin"); ?>">logintext</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Text to show instead of standard", "eduadmin"); ?>">logouttext</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Text to show instead of standard", "eduadmin"); ?>">guesttext</span>
+		</div>
+	</div>
 </div>
 <hr noshade="noshade" />
 <b><?php _e("Detail shortcodes", "eduadmin"); ?></b><br />

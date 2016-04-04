@@ -1,18 +1,24 @@
 <?php
-$apiUserId = get_option('eduadmin-api_user_id');
-$apiHash = get_option('eduadmin-api_hash');
+global $wp_query;
+$apiKey = get_option('eduadmin-api-key');
 
-if(!$apiUserId || !$apiHash || (empty($apiUserId) || empty($apiHash)))
+if(!$apiKey || empty($apiKey))
 {
 	echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
 }
 else
 {
 	$api = new EduAdminClient();
+	$key = DecryptApiKey($apiKey);
+	if(!$key)
+	{
+		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
+		return;
+	}
 	$token = get_transient('eduadmin-token');
 	if(!$token)
 	{
-		$token = $api->GetAuthToken($apiUserId, $apiHash);
+		$token = $api->GetAuthToken($key->UserId, $key->Hash);
 		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 	}
 	else
@@ -20,7 +26,7 @@ else
 		$valid = $api->ValidateAuthToken($token);
 		if(!$valid)
 		{
-			$token = $api->GetAuthToken($apiUserId, $apiHash);
+			$token = $api->GetAuthToken($key->UserId, $key->Hash);
 			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
 		}
 	}
