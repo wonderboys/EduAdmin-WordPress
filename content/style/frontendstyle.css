@@ -349,7 +349,6 @@
 .eduadmin .inputLabel, .eduadmin .inputHolder
 {
 	display: inline-block;
-	overflow: hidden;
 }
 
 .eduadmin form label
@@ -361,13 +360,20 @@
 {
 	margin-right: 1em;
 	width: 30%;
-
+	vertical-align: top;
+	margin-top: 1.0em;
 }
 
 .eduadmin .inputHolder
 {
 	width: 60%;
 }
+
+.eduadmin .inputHolder input
+{
+	margin: 0 !important;
+}
+
 
 .eduadmin .removeParticipant
 {

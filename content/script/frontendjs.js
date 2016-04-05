@@ -60,7 +60,9 @@ var eduBookingView = {
 		if(priceObject && pricePerParticipant && currency != '') {
 			var newPrice = eduBookingView.CurrentParticipants * pricePerParticipant;
 			priceObject.innerText = numberWithSeparator(newPrice, ' ') + ' ' + currency;
+			priceObject.textContent = numberWithSeparator(newPrice, ' ') + ' ' + currency;
 		}
+
 	},
 	UpdateInvoiceCustomer: function() {
 		var invoiceView = document.getElementById('invoiceView');
@@ -87,7 +89,6 @@ var eduBookingView = {
 		}
 
 		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template)');
-		console.log(participants);
 		var requiredFieldsToCreateParticipants = [
 			'participantFirstName[]'
 		];
