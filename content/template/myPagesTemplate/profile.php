@@ -102,8 +102,8 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 				<div class="inputHolder"><input type="text" name="customerInvoiceCity" placeholder="<?php echo esc_attr(edu__("Postal city")); ?>" value="<?php echo esc_attr($customer->InvoiceCity); ?>" /></div>
 			</label>
 			<label>
-				<div class="inputLabel"><?php edu_e("Org. No."); ?></div>
-				<div class="inputHolder"><input type="text" name="customerInvoiceOrgNr" placeholder="<?php echo esc_attr(edu__("Org. No.")); ?>" value="<?php echo esc_attr($customer->InvoiceOrgnr); ?>" /></div>
+				<div class="inputLabel"><?php edu_e("Org.No."); ?></div>
+				<div class="inputHolder"><input type="text" name="customerInvoiceOrgNr" placeholder="<?php echo esc_attr(edu__("Org.No.")); ?>" value="<?php echo esc_attr($customer->InvoiceOrgnr); ?>" /></div>
 			</label>
 			<label>
 				<div class="inputLabel"><?php edu_e("Invoice reference"); ?></div>
