@@ -544,7 +544,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				</div>
 				<div class="inputHolder">
 					<input type="text" style="width: 49%; display: inline-block;" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
-					<input type="text" style="width: 49%; display: inline-block;" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
+					<input type="text" style="width: 49%; display: inline-block; float: right;" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
 				</div>
 			</label>
 			<label>
@@ -605,7 +605,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 						</div>
 						<div class="inputHolder">
 							<input type="text" style="width: 49%; display: inline-block;" name="participantFirstName[]" placeholder="<?php edu_e("Participant first name"); ?>" />
-							<input type="text" style="width: 49%; display: inline-block;" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
+							<input type="text" style="width: 49%; display: inline-block; float: right;" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
 						</div>
 					</label>
 					<label>
@@ -687,6 +687,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 
 
 		?>
+		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 		<?php
 		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink')))
 		{
@@ -709,8 +710,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				<?php edu_e("One or more participants is missing a name."); ?>
 			</div>
 		<div>
-		<input type="submit" class="bookButton" onclick="var validated = eduBookingView.CheckValidation(); return validated;" value="<?php edu_e("Book"); ?>" />
-		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
+		<input type="submit" class="bookButton" onclick="var validated = eduBookingView.CheckValidation(); return validated;" value="<?php edu_e("Book now"); ?>" />
+
 		</div>
 	</form>
 </div>
