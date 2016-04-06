@@ -197,7 +197,7 @@ else
 
 			$persons = array();
 			$personEmail = array();
-			if(!empty($contact->Email))
+			if(!empty($contact->Email) && !in_array($contact->Email, $personEmail))
 			{
 				$personEmail[] = $contact->Email;
 			}
@@ -243,7 +243,7 @@ else
 					}
 					$pArr[] = $person;
 
-					if(!empty($person->PersonEmail))
+					if(!empty($person->PersonEmail) && !in_array($person->PersonEmail, $personEmail))
 					{
 						$personEmail[] = $person->PersonEmail;
 					}
@@ -653,6 +653,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 
 		</div>
 		<br />
+		<div class="questionPanel">
 		<?php
 		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
@@ -687,6 +688,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 
 
 		?>
+		</div>
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 		<?php
 		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink')))

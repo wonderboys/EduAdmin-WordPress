@@ -1,6 +1,7 @@
 <?php
 global $wp_query;
 $q = $wp_query->query;
+$apiKey = get_option('eduadmin-api-key');
 
 if(isset($_SESSION['eduadmin-loginUser']))
 {
