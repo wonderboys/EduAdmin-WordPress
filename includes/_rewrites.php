@@ -44,12 +44,12 @@ function eduadmin_rewrite_init()
 				add_rewrite_rule($courseFolder . '/?$', 'index.php?page_id=' . $listView, 'top');
 			}
 		}
-		flush_rewrite_rules();
+		//flush_rewrite_rules();
 		update_option('eduadmin-options_have_changed', false);
 	}
 }
 
 add_action('init', 'eduadmin_rewrite_init');
 add_action('admin_init', 'eduadmin_rewrite_init');
-//add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5, 1);
+add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
 ?>
