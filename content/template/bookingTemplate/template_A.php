@@ -594,6 +594,54 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<div class="participantView">
 			<h2><?php edu_e("Participant information"); ?></h2>
 			<div class="participantHolder" id="edu-participantHolder">
+				<div class="participantItem contactPerson" style="display: none;">
+					<h3>
+						<?php edu_e("Participant"); ?>
+					</h3>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("Participant name"); ?>
+						</div>
+						<div class="inputHolder">
+							<input type="text" readonly style="width: 49%; display: inline-block;" class="contactFirstName" name="participantFirstName[]" placeholder="<?php edu_e("Participant first name"); ?>" />
+							<input type="text" readonly style="width: 49%; display: inline-block; float: right;" class="contactLastName" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
+						</div>
+					</label>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("E-mail address"); ?>
+						</div>
+						<div class="inputHolder">
+							<input type="email" readonly class="contactEmail" name="participantEmail[]" placeholder="<?php edu_e("E-mail address"); ?>" />
+						</div>
+					</label>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("Phone number"); ?>
+						</div>
+						<div class="inputHolder">
+							<input type="tel" readonly class="contactPhone" name="participantPhone[]" placeholder="<?php edu_e("Phone number"); ?>" />
+						</div>
+					</label>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("Mobile number"); ?>
+						</div>
+						<div class="inputHolder">
+							<input type="tel" readonly class="contactMobile" name="participantMobile[]" placeholder="<?php edu_e("Mobile number"); ?>" />
+						</div>
+					</label>
+					<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("Civic Registration Number"); ?>
+						</div>
+						<div class="inputHolder">
+							<input type="text" readonly class="contactCivReg" name="participantCivReg[]" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
+						</div>
+					</label>
+					<?php } ?>
+				</div>
 				<div class="participantItem template" style="display: none;">
 					<h3>
 						<?php edu_e("Participant"); ?>
