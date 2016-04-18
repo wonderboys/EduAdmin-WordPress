@@ -50,7 +50,7 @@ function edu_load_language()
 function edu_check_for_updates()
 {
 	require_once("includes/auto_update.php");
-	$current_version = '0.0.54';
+	$current_version = '0.0.66';
 	$slug = plugin_basename(__FILE__);
 	new wp_auto_update($current_version, $slug);
 }
