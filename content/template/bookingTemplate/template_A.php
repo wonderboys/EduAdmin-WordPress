@@ -435,8 +435,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				echo "</div>";
 			}
 ?>
-</div>
-	<hr />
+	</div>
 	<form action="" method="post">
 		<input type="hidden" name="act" value="bookCourse" />
 		<div class="customerView">

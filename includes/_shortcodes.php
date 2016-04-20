@@ -88,7 +88,8 @@ function eduadmin_get_detailinfo($attributes)
 			'showmore' => null,
 			'courseattributeid' => null,
 			'courseeventlistfiltercity' => null,
-			'pagetitlejs' => null
+			'pagetitlejs' => null,
+			'bookurl' => null
 			//'coursesubject' => null
 		),
 		normalize_empty_atts($attributes),
@@ -301,6 +302,15 @@ function eduadmin_get_detailinfo($attributes)
 					document.title = '" . $newTitle . " | ' + title;
 				})();
 				</script>";
+			 }
+
+			 if(isset($attributes['bookurl']))
+			 {
+			 	$surl = get_site_url();
+				$cat = get_option('eduadmin-rewriteBaseUrl');
+				$baseUrl = $surl . '/' . $cat;
+				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
+				$retStr .= $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/';
 			 }
 
 			 if(isset($attributes['courseeventlist']))
