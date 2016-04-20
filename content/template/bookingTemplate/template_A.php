@@ -221,7 +221,7 @@ else
 
 				if(!empty($_POST['participantFirstName'][$key]))
 				{
-					$person = new Person();
+					$person = new SubEventPerson();
 					$person->CustomerID = $customer->CustomerID;
 					$person->PersonName = trim($_POST['participantFirstName'][$key]) . ";" . trim($_POST['participantLastName'][$key]);
 					$person->PersonEmail = trim($_POST['participantEmail'][$key]);
@@ -261,7 +261,7 @@ else
 
 			if(isset($_POST['contactIsAlsoParticipant']) && $contact->CustomerContactID > 0)
 			{
-				$person = new Person();
+				$person = new SubEventPerson();
 				$person->CustomerID = $customer->CustomerID;
 				$person->CustomerContactID = $contact->CustomerContactID;
 				$person->PersonName = $contact->ContactName;
@@ -287,15 +287,18 @@ else
 				// Deltagare saknas, avbryt
 			}
 
-			$persons = $api->SetPerson($token, $pArr);
+			//$persons = $api->SetPerson($token, $pArr);
 
-			$eventCustomerLnkID = $api->BookIncCustomerReference(
+			$bi = new BookingInfoSubEvent();
+			$bi->EventID = $eventId;
+			$bi->CustomerID = $customer->CustomerID;
+			$bi->CustomerContactID = $contact->CustomerContactID;
+			$bi->SubEventPersons = $pArr;
+			$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : $contact->ContactName);
+
+			$eventCustomerLnkID = $api->CreateSubEventBooking(
 				$token,
-				$eventId,
-				$customer->CustomerID,
-				$contact->CustomerContactID,
-				(!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : $contact->ContactName),
-				$persons
+				$bookingInfo
 			);
 
 			$answers = array();
