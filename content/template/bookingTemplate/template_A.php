@@ -146,9 +146,18 @@ else
 				$customer->InvoiceCity = trim($_POST['invoicePostalCity']);
 			}
 
-			$ft = new XFiltering();
-			$f = new XFilter('CustomerName', '=', $customer->CustomerName);
-			$ft->AddItem($f);
+			if(empty($customer->InvoiceOrgnr))
+			{
+				$ft = new XFiltering();
+				$f = new XFilter('CustomerName', '=', $customer->CustomerName);
+				$ft->AddItem($f);
+			}
+			else
+			{
+				$ft = new XFiltering();
+				$f = new XFilter('InvoiceOrgnr', '=', $customer->InvoiceOrgnr);
+				$ft->AddItem($f);
+			}
 			$f = new XFilter('Zip', '=', $customer->Zip);
 			$ft->AddItem($f);
 			$matchingCustomer = $api->GetCustomer($token, '', $ft->ToString());
@@ -409,7 +418,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					$f = new XFilter('LocationAddressID', '=', $event->LocationAddressID);
 					$ft->AddItem($f);
 					$addresses = $api->GetLocationAddress($token, '', $ft->ToString());
-					set_transient('eduadmin-location-' . $event->LocationAddressID, $addresses, DAY_IN_SECONDS);
+					set_transient('eduadmin-location-' . $event->LocationAddressID, $addresses, HOUR_IN_SECONDS);
 				}
 
 				foreach($addresses as $address)

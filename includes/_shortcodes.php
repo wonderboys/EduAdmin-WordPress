@@ -87,7 +87,8 @@ function eduadmin_get_detailinfo($attributes)
 			'courseeventlist' => null,
 			'showmore' => null,
 			'courseattributeid' => null,
-			'courseeventlistfiltercity' => null
+			'courseeventlistfiltercity' => null,
+			'pagetitlejs' => null
 			//'coursesubject' => null
 		),
 		normalize_empty_atts($attributes),
@@ -286,6 +287,20 @@ function eduadmin_get_detailinfo($attributes)
 
 				$currency = get_option('eduadmin-currency', 'SEK');
 			 	$retStr .= convertToMoney(current($uniquePrices)->Price, $currency);
+			 }
+
+			 if(isset($attributes['pagetitlejs']))
+			 {
+				$originalTitle = get_the_title();
+				$newTitle = $selectedCourse->PublicName;
+				$retStr .= "
+				<script type=\"text/javascript\">
+				(function() {
+					var title = document.title;
+					//title = title.replace('" . $originalTitle . "', '" . $newTitle . "');
+					document.title = '" . $newTitle . " | ' + title;
+				})();
+				</script>";
 			 }
 
 			 if(isset($attributes['courseeventlist']))

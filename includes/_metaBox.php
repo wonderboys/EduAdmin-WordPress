@@ -69,6 +69,9 @@
 	</span>
 	<div class="eduadmin-attributelist">
 		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("This will include a Javascript-snippet that replaces the page title with the current course name", "eduadmin"); ?>">pagetitlejs</span>
+		</div>
+		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("This attribute is only required if you do full custom pages for your courses.", "eduadmin"); ?>">courseid</span>
 		</div>
 		<div class="eduadmin-attribute">
