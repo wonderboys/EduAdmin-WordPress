@@ -160,7 +160,7 @@ else
 			}
 			$f = new XFilter('Zip', '=', $customer->Zip);
 			$ft->AddItem($f);
-			$matchingCustomer = $api->GetCustomer($token, '', $ft->ToString());
+			$matchingCustomer = $api->GetCustomer($token, '', $ft->ToString(), false);
 			if(count($matchingCustomer) == 0)
 			{
 				$cres = $api->SetCustomer($token, array($customer));
@@ -193,7 +193,7 @@ else
 				$ft->AddItem($f);
 				$f = new XFilter('Email', '=', $contact->Email);
 				$ft->AddItem($f);
-				$matchingContacts = $api->GetCustomerContact($token, '', $ft->ToString());
+				$matchingContacts = $api->GetCustomerContact($token, '', $ft->ToString(), false);
 				if(count($matchingContacts) == 0)
 				{
 					$contact->CustomerContactID = $api->SetCustomerContact($token, array($contact))[0];
@@ -236,7 +236,7 @@ else
 					$ft->AddItem($f);
 					$f = new XFilter('PersonEmail', '=', $person->PersonEmail);
 					$ft->AddItem($f);
-					$matchingPersons = $api->GetPerson($token, '', $ft->ToString());
+					$matchingPersons = $api->GetPerson($token, '', $ft->ToString(), false);
 					if(count($matchingPersons) > 0)
 					{
 						$person = $matchingPersons[0];
@@ -274,7 +274,7 @@ else
 				$ft->AddItem($f);
 				$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
 				$ft->AddItem($f);
-				$matchingPersons = $api->GetPerson($token, '', $ft->ToString());
+				$matchingPersons = $api->GetPerson($token, '', $ft->ToString(), false);
 				if(count($matchingPersons) > 0)
 				{
 					$person = $matchingPersons[0];
@@ -282,85 +282,83 @@ else
 				$pArr[] = $person;
 			}
 
-			if(count($pArr) == 0)
+			if(count($pArr) > 0)
 			{
 				// Deltagare saknas, avbryt
-			}
+				//$persons = $api->SetPerson($token, $pArr);
 
-			//$persons = $api->SetPerson($token, $pArr);
+				$bi = new BookingInfoSubEvent();
+				$bi->EventID = $eventId;
+				$bi->CustomerID = $customer->CustomerID;
+				$bi->CustomerContactID = $contact->CustomerContactID;
+				$bi->SubEventPersons = $pArr;
+				$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : $contact->ContactName);
+				$api->debug = true;
+				$eventCustomerLnkID = $api->CreateSubEventBooking(
+					$token,
+					$bi
+				);
 
-			$bi = new BookingInfoSubEvent();
-			$bi->EventID = $eventId;
-			$bi->CustomerID = $customer->CustomerID;
-			$bi->CustomerContactID = $contact->CustomerContactID;
-			$bi->SubEventPersons = $pArr;
-			$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : $contact->ContactName);
-
-			$eventCustomerLnkID = $api->CreateSubEventBooking(
-				$token,
-				$bookingInfo
-			);
-
-			$answers = array();
-			// TODO: Add loop to push in all Answers from Questions
-			foreach($_POST as $input => $value)
-			{
-				if(stripos($input, "question_") !== FALSE)
+				$answers = array();
+				// TODO: Add loop to push in all Answers from Questions
+				foreach($_POST as $input => $value)
 				{
-					$question = explode('_', $input);
-					$answerID = $question[1];
-					$type = $question[2];
+					if(stripos($input, "question_") !== FALSE)
+					{
+						$question = explode('_', $input);
+						$answerID = $question[1];
+						$type = $question[2];
 
-					switch($type)
-					{
-						case 'radio':
-						case 'check':
-						case 'dropdown':
-							$answerID = $value;
-							break;
-					}
-					if($type == "time")
-					{
-						$answers[$answerID]['AnswerTime'] = trim($value);
-					}
-					else
-					{
-						$answers[$answerID] =
-						array(
-							'AnswerID' => $answerID,
-							'AnswerText' => trim($value),
-							'EventID' => $eventId,
-							'EventCustomerLnkID' => $eventCustomerLnkID
-						);
+						switch($type)
+						{
+							case 'radio':
+							case 'check':
+							case 'dropdown':
+								$answerID = $value;
+								break;
+						}
+						if($type == "time")
+						{
+							$answers[$answerID]['AnswerTime'] = trim($value);
+						}
+						else
+						{
+							$answers[$answerID] =
+							array(
+								'AnswerID' => $answerID,
+								'AnswerText' => trim($value),
+								'EventID' => $eventId,
+								'EventCustomerLnkID' => $eventCustomerLnkID
+							);
+						}
 					}
 				}
-			}
 
-			// Spara alla frågor till eventcustomeranswerv2
-			if(count($answers) > 0)
-			{
-				$sanswers = array();
-				foreach($answers as $answer)
+				// Spara alla frågor till eventcustomeranswerv2
+				if(count($answers) > 0)
 				{
-					$sanswers[] = $answer;
+					$sanswers = array();
+					foreach($answers as $answer)
+					{
+						$sanswers[] = $answer;
+					}
+					$api->SetEventCustomerAnswerV2($token, $sanswers);
 				}
-				$api->SetEventCustomerAnswerV2($token, $sanswers);
-			}
 
-			$ai = $api->GetAccountInfo($token);
-			$senderEmail = $ai->Email;
-			if(empty($senderEmail))
-			{
-				$senderEmail = "no-reply@legaonline.se";
+				$ai = $api->GetAccountInfo($token);
+				$senderEmail = $ai->Email;
+				if(empty($senderEmail))
+				{
+					$senderEmail = "no-reply@legaonline.se";
+				}
+				if(!empty($personEmail))
+				{
+					$api->SendConfirmationEmail($token, $eventCustomerLnkID, $senderEmail, $personEmail);
+				}
+				$api->debug = false;
+				$_SESSION['eduadmin-printJS'] = true;
+				//die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
 			}
-			if(!empty($personEmail))
-			{
-				$api->SendConfirmationEmail($token, $eventCustomerLnkID, $senderEmail, $personEmail);
-			}
-
-			$_SESSION['eduadmin-printJS'] = true;
-
-			//die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
 		}
 	}
 
