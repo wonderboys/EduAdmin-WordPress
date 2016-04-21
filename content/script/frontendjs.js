@@ -37,7 +37,7 @@ var eduBookingView = {
 	},
 	CheckParticipantCount: function()
 	{
-		var participants = document.querySelectorAll('.eduadmin .participantItem').length - 2;
+		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template)').length - 1;
 		if(participants >= eduBookingView.MaxParticipants && eduBookingView.MaxParticipants >= 0) {
 			return false;
 		}
@@ -54,7 +54,7 @@ var eduBookingView = {
 			}
 		}
 
-		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem').length - 2 + contact;
+		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template)').length - 1 + contact;
 
 		var priceObject = document.getElementById('sumValue');
 		if(priceObject && pricePerParticipant && currency != '') {
