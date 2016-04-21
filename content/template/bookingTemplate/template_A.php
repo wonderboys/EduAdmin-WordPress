@@ -360,7 +360,7 @@ else
 
 			$_SESSION['eduadmin-printJS'] = true;
 
-			die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
+			//die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
 		}
 	}
 
