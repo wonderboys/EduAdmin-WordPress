@@ -293,7 +293,7 @@ else
 				$bi->CustomerContactID = $contact->CustomerContactID;
 				$bi->SubEventPersons = $pArr;
 				$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : $contact->ContactName);
-				$api->debug = true;
+				//$api->debug = true;
 				$eventCustomerLnkID = $api->CreateSubEventBooking(
 					$token,
 					$bi
@@ -355,9 +355,9 @@ else
 				{
 					$api->SendConfirmationEmail($token, $eventCustomerLnkID, $senderEmail, $personEmail);
 				}
-				$api->debug = false;
+				//$api->debug = false;
 				$_SESSION['eduadmin-printJS'] = true;
-				//die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
+				die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "';</script>");
 			}
 		}
 	}
