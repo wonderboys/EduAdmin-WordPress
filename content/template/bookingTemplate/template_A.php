@@ -742,65 +742,46 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			}
 		}
 
-		$depth = 0;
-
 		$lineage = array();
-		$lineage[] = $cat;
+		$lineage[] = $cat->CategoryID;
 		$cat = $flatList[$cat->ParentID];
-		/*echo "<xmp>";
-		print_r($cat);
-		echo "</xmp>";*/
+
 		while(true)
 		{
-			//print_r($cat);
-			$lineage[] = $cat;
+			$lineage[] = $cat->CategoryID;
 
 			if($cat->ParentID == 0)
 				break;
+
 			$cat = $flatList[$cat->ParentID];
 		}
-		echo "<xmp>";
-		print_r($lineage);
-		echo "</xmp>";
-
-		function edu_writeOptions($g, $array, $depth, $startCategory)
-		{
-			/*echo ($startCategory == $g->CategoryID ? '<b>' : '') .
-			str_repeat('&nbsp;', $depth * 4) .
-				$g->CategoryID . ": " . $g->CategoryName . ($startCategory == $g->CategoryID ? '</b>' : '') .
-			"<br />\n";*/
-			if(array_key_exists($g->CategoryID, $array))
-			{
-				$depth++;
-				foreach($array[$g->CategoryID] as $ng)
-				{
-					edu_writeOptions($ng, $array, $depth, $startCategory);
-				}
-				$depth--;
-			}
-		}
-
-		$root = $levelStack['0'];
-		foreach($root as $g)
-		{
-			edu_writeOptions($g, $levelStack, $depth, $startCategory);
-		}
-
-		//echo "<xmp>" . print_r($levelStack, true) . "</xmp>";
 
 		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
 		$ft->AddItem($f);
-		/*$f = new XFilter("CategoryID", "=", $selectedCourse->CategoryID);
-		$ft->AddItem($f);*/
+		$f = new XFilter("CategoryID", "in", join(",", $lineage));
+		$ft->AddItem($f);
 		$st = new XSorting();
 		$s = new XSort('SortIndex', 'ASC');
 		$st->AddItem($s);
 		$objCatQuestion = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
 
+		$ft = new XFiltering();
+		$f = new XFilter("ShowExternal", "=", 'true');
+		$ft->AddItem($f);
+		$st = new XSorting();
+		$s = new XSort('SortIndex', 'ASC');
+		$st->AddItem($s);
+		$objCatQuestion2 = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
+
 		$groupedQuestions = array();
 
 		foreach($objCatQuestion as $q)
+		{
+			$groupedQuestions[$q->QuestionID][] = $q;
+		}
+
+		foreach($objCatQuestion2 as $q)
 		{
 			$groupedQuestions[$q->QuestionID][] = $q;
 		}
