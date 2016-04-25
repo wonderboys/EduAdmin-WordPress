@@ -713,6 +713,60 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<div class="questionPanel">
 		<?php
 		$ft = new XFiltering();
+		$f = new XFilter("ShowOnWeb", "=", 'true');
+		$ft->AddItem($f);
+
+		$categories = $api->GetCategory($token, '', $ft->ToString());
+
+		$startCategory = $selectedCourse->CategoryID;
+		$targetCategory = 0;
+		$parent = Array();
+
+		foreach($categories as $i => $v)
+		{
+			$parent[$i] = $v->ParentID;
+		}
+
+		array_multisort($parent, SORT_ASC, $categories);
+
+		$levelStack = Array();
+		foreach($categories as $g)
+		{
+			$levelStack[$g->ParentID][] = $g;
+		}
+
+		$depth = 0;
+
+		$lineage = array();
+		$startCat = $levelStack[$startCategory];
+		print_r($startCat);
+
+		function edu_writeOptions($g, $array, $depth, $startCategory)
+		{
+			echo ($startCategory == $g->CategoryID ? '<b>' : '') .
+			str_repeat('&nbsp;', $depth * 4) .
+				$g->CategoryID . ": " . $g->CategoryName . ($startCategory == $g->CategoryID ? '</b>' : '') .
+			"<br />\n";
+			if(array_key_exists($g->CategoryID, $array))
+			{
+				$depth++;
+				foreach($array[$g->CategoryID] as $ng)
+				{
+					edu_writeOptions($ng, $array, $depth, $startCategory);
+				}
+				$depth--;
+			}
+		}
+
+		$root = $levelStack['0'];
+		foreach($root as $g)
+		{
+			edu_writeOptions($g, $levelStack, $depth, $startCategory);
+		}
+
+		echo "<xmp>" . print_r($levelStack, true) . "</xmp>";
+
+		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
 		$ft->AddItem($f);
 		/*$f = new XFilter("CategoryID", "=", $selectedCourse->CategoryID);
