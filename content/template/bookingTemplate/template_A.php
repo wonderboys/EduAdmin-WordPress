@@ -552,8 +552,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Contact name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" style="width: 49%; display: inline-block;" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
-					<input type="text" style="width: 49%; display: inline-block; float: right;" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
+					<input type="text" style="width: 49%; display: inline-block;" id="edu-contactFirstName" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
+					<input type="text" style="width: 49%; display: inline-block; float: right;" id="edu-contactLastName" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
 				</div>
 			</label>
 			<label>
@@ -561,7 +561,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("E-mail address"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="email" name="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
+					<input type="email" id="edu-contactEmail" name="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
 				</div>
 			</label>
 			<label>
@@ -569,7 +569,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Phone number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" name="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
+					<input type="tel" id="edu-contactPhone" name="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
 				</div>
 			</label>
 			<label>
@@ -577,7 +577,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Mobile number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" name="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
+					<input type="tel" id="edu-contactMobile" name="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
 				</div>
 			</label>
 			<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
@@ -586,7 +586,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Civic Registration Number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" required name="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
+					<input type="text" id="edu-contactCivReg" required name="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
 				</div>
 			</label>
 			<?php } ?>
@@ -603,7 +603,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<div class="participantView">
 			<h2><?php edu_e("Participant information"); ?></h2>
 			<div class="participantHolder" id="edu-participantHolder">
-				<div class="participantItem contactPerson" style="display: none;">
+				<div id="contactPersonParticipant" class="participantItem contactPerson" style="display: none;">
 					<h3>
 						<?php edu_e("Participant"); ?>
 					</h3>
@@ -756,6 +756,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		$st->AddItem($s);
 		$objCatQuestion2 = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
 
+		print_r($objCatQuestion2);
+
 		$groupedQuestions = array();
 
 		foreach($objCatQuestion as $q)
@@ -767,8 +769,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		{
 			$groupedQuestions[$q->QuestionID][] = $q;
 		}
-
-		print_r($groupedQuestions);
 
 		if(count($groupedQuestions) > 0)
 		{
@@ -783,7 +783,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 				$lastQuestionId = $question[0]->QuestionID;
 			}
 		}
-
 
 		?>
 		</div>
