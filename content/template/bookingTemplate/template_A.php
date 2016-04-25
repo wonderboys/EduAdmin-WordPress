@@ -717,29 +717,11 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		$ft->AddItem($f);
 
 		$categories = $api->GetCategory($token, '', $ft->ToString());
-
-		$startCategory = $selectedCourse->CategoryID;
-		$targetCategory = 0;
-		$parent = Array();
-
 		$flatList = Array();
 
 		foreach($categories as $i => $v)
 		{
-			$parent[$i] = $v->ParentID;
 			$flatList[$v->CategoryID] = $v;
-		}
-
-		array_multisort($parent, SORT_ASC, $categories);
-
-		$levelStack = Array();
-		foreach($categories as $g)
-		{
-			$levelStack[$g->ParentID][] = $g;
-			if($g->CategoryID == $startCategory)
-			{
-				$cat = $g;
-			}
 		}
 
 		$lineage = array();
@@ -785,6 +767,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		{
 			$groupedQuestions[$q->QuestionID][] = $q;
 		}
+
+		print_r($groupedQuestions);
 
 		if(count($groupedQuestions) > 0)
 		{
