@@ -722,9 +722,12 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		$targetCategory = 0;
 		$parent = Array();
 
+		$flatList = Array();
+
 		foreach($categories as $i => $v)
 		{
 			$parent[$i] = $v->ParentID;
+			$flatList[$v->CategoryID] = $v;
 		}
 
 		array_multisort($parent, SORT_ASC, $categories);
@@ -733,20 +736,39 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		foreach($categories as $g)
 		{
 			$levelStack[$g->ParentID][] = $g;
+			if($g->CategoryID == $startCategory)
+			{
+				$cat = $g;
+			}
 		}
 
 		$depth = 0;
 
 		$lineage = array();
-		$startCat = $levelStack[$startCategory];
-		print_r($startCat);
+		$lineage[] = $cat;
+		$cat = $flatList[$cat->ParentID];
+		/*echo "<xmp>";
+		print_r($cat);
+		echo "</xmp>";*/
+		while(true)
+		{
+			//print_r($cat);
+			$lineage[] = $cat;
+
+			if($cat->ParentID == 0)
+				break;
+			$cat = $flatList[$cat->ParentID];
+		}
+		echo "<xmp>";
+		print_r($lineage);
+		echo "</xmp>";
 
 		function edu_writeOptions($g, $array, $depth, $startCategory)
 		{
-			echo ($startCategory == $g->CategoryID ? '<b>' : '') .
+			/*echo ($startCategory == $g->CategoryID ? '<b>' : '') .
 			str_repeat('&nbsp;', $depth * 4) .
 				$g->CategoryID . ": " . $g->CategoryName . ($startCategory == $g->CategoryID ? '</b>' : '') .
-			"<br />\n";
+			"<br />\n";*/
 			if(array_key_exists($g->CategoryID, $array))
 			{
 				$depth++;
@@ -764,7 +786,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			edu_writeOptions($g, $levelStack, $depth, $startCategory);
 		}
 
-		echo "<xmp>" . print_r($levelStack, true) . "</xmp>";
+		//echo "<xmp>" . print_r($levelStack, true) . "</xmp>";
 
 		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
