@@ -112,12 +112,12 @@ function renderNumberQuestion($question)
 	echo "<label>";
 	echo "<div class=\"inputLabel noHide\">";
 	echo $question[0]->QuestionText;
-	if($question[0]->Price > 0) {
-		echo " <i>(" . sprintf(edu__('%1$s / pcs'), convertToMoney($question[0]->Price)) . ")</i>";
-	}
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
 	echo "<input type=\"number\" class=\"questionText\" data-price=\"" . $question[0]->Price . "\" min=\"0\" name=\"question_" . $question[0]->AnswerID . "_number\" placeholder=\"" . edu__("Quantity") . "\" />";
+	if($question[0]->Price > 0) {
+		echo " <i>(" . sprintf(edu__('%1$s / pcs'), convertToMoney($question[0]->Price)) . ")</i>";
+	}
 	echo "</div>";
 	echo "</label>";
 }

@@ -756,8 +756,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		$st->AddItem($s);
 		$objCatQuestion2 = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
 
-		print_r($objCatQuestion2);
-
 		$groupedQuestions = array();
 
 		foreach($objCatQuestion as $q)

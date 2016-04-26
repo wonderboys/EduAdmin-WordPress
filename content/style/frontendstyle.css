@@ -382,12 +382,14 @@
 .eduadmin .inputHolder textarea
 {
 	width: 100%;
+	display: inline-block;
 }
 
 .eduadmin .inputHolder input[type="number"]
 {
 	max-width: 8em;
 	text-align: right;
+	display: inline-block;
 }
 
 .eduadmin .edu-modal
