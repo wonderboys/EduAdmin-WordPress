@@ -552,8 +552,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Contact name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" style="width: 49%; display: inline-block;" id="edu-contactFirstName" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
-					<input type="text" style="width: 49%; display: inline-block; float: right;" id="edu-contactLastName" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
+					<input type="text" style="width: 49%; display: inline-block;" onchange="eduBookingView.ContactAsParticipant();" id="edu-contactFirstName" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
+					<input type="text" style="width: 49%; display: inline-block; float: right;" onchange="eduBookingView.ContactAsParticipant();" id="edu-contactLastName" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
 				</div>
 			</label>
 			<label>
@@ -561,7 +561,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("E-mail address"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="email" id="edu-contactEmail" name="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
+					<input type="email" id="edu-contactEmail" name="contactEmail" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
 				</div>
 			</label>
 			<label>
@@ -569,7 +569,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Phone number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" id="edu-contactPhone" name="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
+					<input type="tel" id="edu-contactPhone" name="contactPhone" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
 				</div>
 			</label>
 			<label>
@@ -577,7 +577,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Mobile number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" id="edu-contactMobile" name="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
+					<input type="tel" id="edu-contactMobile" name="contactMobile" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
 				</div>
 			</label>
 			<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
@@ -586,7 +586,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					<?php edu_e("Civic Registration Number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" id="edu-contactCivReg" required name="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
+					<input type="text" id="edu-contactCivReg" required name="contactCivReg" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
 				</div>
 			</label>
 			<?php } ?>
@@ -612,8 +612,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							<?php edu_e("Participant name"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="text" readonly style="width: 49%; display: inline-block;" class="contactFirstName" name="participantFirstName[]" placeholder="<?php edu_e("Participant first name"); ?>" />
-							<input type="text" readonly style="width: 49%; display: inline-block; float: right;" class="contactLastName" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
+							<input type="text" readonly style="width: 49%; display: inline-block;" class="contactFirstName" placeholder="<?php edu_e("Participant first name"); ?>" />
+							<input type="text" readonly style="width: 49%; display: inline-block; float: right;" class="contactLastName" placeholder="<?php edu_e("Participant surname"); ?>" />
 						</div>
 					</label>
 					<label>
@@ -621,7 +621,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							<?php edu_e("E-mail address"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="email" readonly class="contactEmail" name="participantEmail[]" placeholder="<?php edu_e("E-mail address"); ?>" />
+							<input type="email" readonly class="contactEmail" placeholder="<?php edu_e("E-mail address"); ?>" />
 						</div>
 					</label>
 					<label>
@@ -629,7 +629,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							<?php edu_e("Phone number"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="tel" readonly class="contactPhone" name="participantPhone[]" placeholder="<?php edu_e("Phone number"); ?>" />
+							<input type="tel" readonly class="contactPhone" placeholder="<?php edu_e("Phone number"); ?>" />
 						</div>
 					</label>
 					<label>
@@ -637,7 +637,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							<?php edu_e("Mobile number"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="tel" readonly class="contactMobile" name="participantMobile[]" placeholder="<?php edu_e("Mobile number"); ?>" />
+							<input type="tel" readonly class="contactMobile" placeholder="<?php edu_e("Mobile number"); ?>" />
 						</div>
 					</label>
 					<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
@@ -646,7 +646,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							<?php edu_e("Civic Registration Number"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="text" readonly class="contactCivReg" name="participantCivReg[]" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
+							<input type="text" readonly class="contactCivReg" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
 						</div>
 					</label>
 					<?php } ?>

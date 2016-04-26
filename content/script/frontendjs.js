@@ -85,8 +85,20 @@ var eduBookingView = {
 
 			var cFirstName = document.getElementById('edu-contactFirstName').value;
 			var cLastName = document.getElementById('edu-contactLastName').value;
+			var cEmail = document.getElementById('edu-contactEmail').value;
+			var cPhone = document.getElementById('edu-contactPhone').value;
+			var cMobile = document.getElementById('edu-contactMobile').value;
 
-			var tFirstName = document.querySelector('.contactFirstName').value = cFirstName;
+			document.querySelector('.contactFirstName').value = cFirstName;
+			document.querySelector('.contactLastName').value = cLastName;
+			document.querySelector('.contactEmail').value = cEmail;
+			document.querySelector('.contactPhone').value = cPhone;
+			document.querySelector('.contactMobile').value = cMobile;
+			var tCivReg = document.querySelector('.contactCivReg')
+			if(tCivReg) {
+				var cCivReg = document.getElementById('edu-contactCivReg').value;
+				tCivReg.value = cLastName;
+			}
 		}
 	},
 	CheckValidation: function() {
