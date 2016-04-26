@@ -120,7 +120,7 @@ else
 						$cat = get_option('eduadmin-rewriteBaseUrl');
 
 						$baseUrl = $surl . '/' . $cat;
-						echo("<script>location.href = '" . $baseUrl. "/profile/myprofile/';</script>");
+						echo("<script>location.href = '" . $baseUrl. "/profile/myprofile/" . edu_getQueryString() . "';</script>");
 					}
 					else
 					{

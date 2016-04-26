@@ -1,5 +1,11 @@
 <?php
 
+function edu_getQueryString($prepend = "?")
+{
+	if(!empty($_SERVER['QUERY_STRING'])) { return $prepend . $_SERVER['QUERY_STRING']; }
+	return "";
+}
+
 function getSpotsLeft($freeSpots, $maxSpots)
 {
 	$spotOption = get_option('eduadmin-spotsLeft', 'exactNumbers');

@@ -282,7 +282,7 @@ else
 			<?php
 			if($ev->MaxParticipantNr == 0 ||$spotsLeft > 0) {
 			?>
-				<a class="book-link" href="./book/?eid=<?php echo $ev->EventID; ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
+				<a class="book-link" href="./book/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
 			<?php
 			} else {
 			?>
