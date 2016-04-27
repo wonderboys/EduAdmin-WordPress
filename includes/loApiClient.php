@@ -1,5 +1,5 @@
 <?php
-  const ServiceUrl = 'https://api.legaonline.se/api.asmx?WSDL'; // WSDL
+  const ServiceUrl = 'http://api.legaonline.se/api.asmx?WSDL'; // WSDL
 
   class EduAdminClient
   {
@@ -11,7 +11,7 @@
       $this->__server = new SoapClient(
         ServiceUrl,
         array(
-          'trace' => 0,
+          'trace' => 1,
           'cache_wsdl' => WSDL_CACHE_BOTH
         )
       );
@@ -231,6 +231,24 @@
       return $this->__callServer($param);
     }
 
+    public function DeletePerson($authToken, array $personIDs) {
+      $param = array(
+        'authToken' => $authToken,
+        'personIDs' => $personIDs
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function DeleteUnavailablePersonnelDate($authToken, $unavailableDateID) {
+      $param = array(
+        'authToken' => $authToken,
+        'unavailableDateID' => $unavailableDateID
+      );
+
+      return $this->__callServer($param);
+    }
+
     public function GetAccountInfo($authToken) {
       $param = array(
         'authToken' => $authToken
@@ -274,6 +292,16 @@
       );
 
       return $this->__callServer($param);
+    }
+
+    public function GetBookedEventAccessory($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('BookedEventAccessory', $this->__callServer($param))->BookedEventAccessory;
     }
 
     public function GetCategory($authToken, $sort, $filter) {
@@ -491,6 +519,36 @@
       return $this->__callServer($param);
     }
 
+    public function GetCustomerEventPrice($authToken, $customerID, $eventID) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'eventID' => $eventID
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetCustomerEventPriceXml($authToken, $customerID, $eventID) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'eventID' => $eventID
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetCustomerExtraInfo($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('ExtraInfo', $this->__callServer($param))->ExtraInfo;
+    }
+
     public function GetCustomerGroup($authToken, $sort, $filter) {
       $param = array(
         'authToken' => $authToken,
@@ -506,6 +564,46 @@
         'authToken' => $authToken,
         'sort' => $sort,
         'filter' => $filter
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetCustomerObjectPrices($authToken, $customerID, array $objectIds) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'objectIds' => $objectIds
+      );
+
+      return $this->__getArray('CustomerPrice', $this->__callServer($param))->CustomerPrice;
+    }
+
+    public function GetCustomerObjectPricesXml($authToken, $customerID, array $objectIds) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'objectIds' => $objectIds
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetCustomerPrice($authToken, $customerID, $objectID) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'objectID' => $objectID
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetCustomerPriceXml($authToken, $customerID, $objectID) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerID' => $customerID,
+        'objectID' => $objectID
       );
 
       return $this->__callServer($param);
@@ -691,6 +789,16 @@
       return $this->__getArray('EventBooking', $this->__callServer($param))->EventBooking;
     }
 
+    public function GetEventBookingExtraInfo($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('ExtraInfo', $this->__callServer($param))->ExtraInfo;
+    }
+
     public function GetEventBookingPriceName($authToken, $sort, $filter) {
       $param = array(
         'authToken' => $authToken,
@@ -706,6 +814,24 @@
         'authToken' => $authToken,
         'sort' => $sort,
         'filter' => $filter
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function GetEventBookingQuestion($authToken, $eventID) {
+      $param = array(
+        'authToken' => $authToken,
+        'eventID' => $eventID
+      );
+
+      return $this->__getArray('EventBookingQuestion', $this->__callServer($param))->EventBookingQuestion;
+    }
+
+    public function GetEventBookingQuestionXml($authToken, $eventID) {
+      $param = array(
+        'authToken' => $authToken,
+        'eventID' => $eventID
       );
 
       return $this->__callServer($param);
@@ -779,6 +905,16 @@
       );
 
       return $this->__callServer($param);
+    }
+
+    public function GetEventExtraInfo($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('ExtraInfo', $this->__callServer($param))->ExtraInfo;
     }
 
     public function GetEventParticipant($authToken, $sort, $filter) {
@@ -1411,6 +1547,26 @@
       return $this->__callServer($param);
     }
 
+    public function GetUnavailablePersonnelDate($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('UnavailablePersonnelDate', $this->__callServer($param))->UnavailablePersonnelDate;
+    }
+
+    public function GetUnavailablePersonnelDateXml($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__callServer($param);
+    }
+
     public function GetUnnamedParticipant($authToken, $sort, $filter) {
       $param = array(
         'authToken' => $authToken,
@@ -1498,6 +1654,16 @@
     }
 
     public function SendCustomerContactPassword($authToken, $customerContactID, $strSenderDescription) {
+      $param = array(
+        'authToken' => $authToken,
+        'customerContactID' => $customerContactID,
+        'strSenderDescription' => $strSenderDescription
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function SendCustomerContactPasswordEnglish($authToken, $customerContactID, $strSenderDescription) {
       $param = array(
         'authToken' => $authToken,
         'customerContactID' => $customerContactID,
@@ -1884,6 +2050,26 @@
       return $this->__getArray('int', $this->__callServer($param))->int;
     }
 
+    public function SetUnavailablePersonnelDate($authToken, $personnelID, array $unavailableDates) {
+      $param = array(
+        'authToken' => $authToken,
+        'personnelID' => $personnelID,
+        'unavailableDates' => $unavailableDates
+      );
+
+      return $this->__callServer($param);
+    }
+
+    public function SetUnavailablePersonnelDateXml($authToken, $personnelID, $unavailableDates) {
+      $param = array(
+        'authToken' => $authToken,
+        'personnelID' => $personnelID,
+        'unavailableDates' => $unavailableDates
+      );
+
+      return $this->__callServer($param);
+    }
+
     public function SetValidPayment($authToken, $eclID) {
       $param = array(
         'authToken' => $authToken,
@@ -2022,6 +2208,34 @@ class AttributeAlternative {
   }
 }
 
+class BookedEventAccessory {
+    var $EventCustomerLnkID;
+    var $BookedQuantity;
+    var $ObjectName;
+    var $ObjectID;
+    var $StartDate;
+    var $EndDate;
+    var $EventID;
+    var $Cost;
+    var $Quantity;
+    var $ObjectPrice;
+    var $PublicName;
+    var $VatPercent;
+
+  function __construct() {
+      $this->EventCustomerLnkID = 0;
+      $this->BookedQuantity = 0;
+      $this->ObjectID = 0;
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
+      $this->EventID = 0;
+      $this->Cost = null;
+      $this->Quantity = 0;
+      $this->ObjectPrice = null;
+      $this->VatPercent = null;
+  }
+}
+
 class BookingInfo {
     var $EventID;
     var $CustomerID;
@@ -2139,6 +2353,7 @@ class Category {
 
 class Certificate {
     var $CertificateID;
+    var $CertificateNumber;
     var $CertificateName;
     var $Created;
     var $ValidMonthCount;
@@ -2164,7 +2379,9 @@ class CertificatePerson {
     var $PersonLastName;
     var $PersonCivicRegistrationNumber;
     var $PersonEmail;
+    var $CustomerID;
     var $CertificateID;
+    var $CertificateNumber;
     var $CertificateName;
     var $CertificateDate;
     var $ValidFrom;
@@ -2173,6 +2390,7 @@ class CertificatePerson {
 
   function __construct() {
       $this->PersonID = 0;
+      $this->CustomerID = 0;
       $this->CertificateID = 0;
       $this->CertificateDate = date('c');
       $this->ValidFrom = null;
@@ -2402,6 +2620,18 @@ class CustomerContactV2 {
   }
 }
 
+class CustomerEventPrice {
+    var $EventID;
+    var $CustomerPrice;
+    var $CustomerSubEventPrices;
+
+  function __construct() {
+      $this->EventID = 0;
+      $this->CustomerPrice = null;
+      $this->CustomerSubEventPrices = array();
+  }
+}
+
 class CustomerGroup {
     var $CustomerGroupID;
     var $CustomerGroupName;
@@ -2419,6 +2649,22 @@ class CustomerGroup {
   }
 }
 
+class CustomerPrice {
+    var $CustomerID;
+    var $Price;
+    var $CancelationFee;
+    var $ObjectID;
+    var $ObjectCategoryID;
+
+  function __construct() {
+      $this->CustomerID = 0;
+      $this->Price = null;
+      $this->CancelationFee = null;
+      $this->ObjectID = 0;
+      $this->ObjectCategoryID = 0;
+  }
+}
+
 class CustomerStatistics {
     var $CustomerID;
     var $Value;
@@ -2426,6 +2672,16 @@ class CustomerStatistics {
   function __construct() {
       $this->CustomerID = 0;
       $this->Value = null;
+  }
+}
+
+class CustomerSubEventPrice {
+    var $SubEventID;
+    var $CustomerPrice;
+
+  function __construct() {
+      $this->SubEventID = 0;
+      $this->CustomerPrice = null;
   }
 }
 
@@ -2626,6 +2882,25 @@ class EventBooking {
   }
 }
 
+class EventBookingAnswer {
+    var $AnswerID;
+    var $AnswerText;
+    var $SortIndex;
+    var $Price;
+    var $VatPercent;
+    var $DefaultAnswerText;
+    var $DefaultAnswerTime;
+    var $DefaultAlternative;
+
+  function __construct() {
+      $this->AnswerID = 0;
+      $this->SortIndex = 0;
+      $this->Price = null;
+      $this->VatPercent = null;
+      $this->DefaultAlternative = null;
+  }
+}
+
 class EventBookingPostponedBillingDate {
     var $EventCustomerLnkID;
     var $BillingDate;
@@ -2662,6 +2937,32 @@ class EventBookingPriceNameInfo {
   function __construct() {
       $this->occationPriceNameLnkID = 0;
       $this->participantNr = 0;
+  }
+}
+
+class EventBookingQuestion {
+    var $QuestionID;
+    var $QuestionText;
+    var $QuestionTypeID;
+    var $QuestionTypeText;
+    var $ShowExternal;
+    var $MetaType;
+    var $AddNumberField;
+    var $Time;
+    var $SortIndex;
+    var $CategoryID;
+    var $CategoryName;
+    var $Answers;
+
+  function __construct() {
+      $this->QuestionID = 0;
+      $this->QuestionTypeID = 0;
+      $this->ShowExternal = null;
+      $this->AddNumberField = null;
+      $this->Time = null;
+      $this->SortIndex = 0;
+      $this->CategoryID = null;
+      $this->Answers = array();
   }
 }
 
@@ -2864,6 +3165,15 @@ class EventSeat {
       $this->Locked = null;
       $this->Dead = null;
       $this->TicketID = null;
+  }
+}
+
+class ExtraInfo {
+    var $Key;
+    var $Value;
+
+  function __construct() {
+      $this->Value = null;
   }
 }
 
@@ -3504,6 +3814,41 @@ class SubEventSeatPerson {
       $this->CustomerID = 0;
       $this->CustomerContactID = null;
       $this->Attribute = array();
+  }
+}
+
+class UnavailableDate {
+    var $Description;
+    var $StartDate;
+    var $EndDate;
+
+  function __construct() {
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
+  }
+}
+
+class UnavailableDateResponse {
+    var $Success;
+    var $ErrorMessage;
+
+  function __construct() {
+      $this->Success = null;
+  }
+}
+
+class UnavailablePersonnelDate {
+    var $PersonnelID;
+    var $UnavailableDateID;
+    var $Description;
+    var $StartDate;
+    var $EndDate;
+
+  function __construct() {
+      $this->PersonnelID = 0;
+      $this->UnavailableDateID = 0;
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
   }
 }
 
