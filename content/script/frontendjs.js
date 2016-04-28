@@ -136,7 +136,17 @@ var eduBookingView = {
 			'participantFirstName[]'
 		];
 
-		if(participants.length == 0) {
+		var contactParticipant = document.getElementById('contactIsAlsoParticipant');
+		var contact = 0;
+		if(contactParticipant) {
+			if(contactParticipant.checked) {
+				contact = 1;
+			} else {
+				contact = 0;
+			}
+		}
+
+		if(participants.length + contact == 0) {
 			var noPartWarning = document.getElementById('edu-warning-no-participants');
 			if(noPartWarning) {
 				noPartWarning.style.display = 'block';
