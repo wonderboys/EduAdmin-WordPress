@@ -13,6 +13,10 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	{
 		include_once("bookings.php");
 	}
+	else if(isset($q['edu-limiteddiscount']))
+	{
+		include_once("limitedDiscount.php");
+	}
 	else if(isset($q['edu-certificates']))
 	{
 		include_once("certificates.php");

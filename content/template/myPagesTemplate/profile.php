@@ -52,6 +52,10 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 ?>
 
 <div class="eduadmin">
+<?php
+$tab = "profile";
+include_once("login_tab_header.php");
+?>
 	<h2><?php edu_e("My profile"); ?></h2>
 	<form action="" method="POST">
 		<input type="hidden" name="eduaction" value="saveInfo" />
@@ -132,4 +136,5 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 		</div>
 		<button class="profileSaveButton"><?php edu_e("Save"); ?></button>
 	</form>
+<?php include_once("login_tab_footer.php"); ?>
 </div>

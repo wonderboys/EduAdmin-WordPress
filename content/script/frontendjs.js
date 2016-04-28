@@ -53,7 +53,7 @@ var eduBookingView = {
 			}
 		}
 		eduBookingView.ContactAsParticipant();
-		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length - 1 + contact;
+		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact;
 
 		var priceObject = document.getElementById('sumValue');
 		if(priceObject && pricePerParticipant && currency != '') {

@@ -27,6 +27,10 @@ else
 }
 ?>
 <div class="eduadmin">
+<?php
+$tab = "bookings";
+include_once("login_tab_header.php");
+?>
 	<h2><?php edu_e("Reservations"); ?></h2>
 	<?php
 	$filtering = new XFiltering();
@@ -37,7 +41,7 @@ else
 	$s = new XSort('Created', 'DESC');
 	$sorting->AddItem($s);
 	$bookings = $api->GetEventBooking($token, $sorting->ToString(), $filtering->ToString());
-	#echo "<xmp>" . print_r($bookings, true) . "</xmp>";
+
 	?>
 	<table class="myReservationsTable">
 		<tr>
@@ -65,4 +69,5 @@ else
 		<?php }
 		} ?>
 	</table>
+<?php include_once("login_tab_footer.php"); ?>
 </div>

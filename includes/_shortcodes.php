@@ -487,8 +487,6 @@ function eduadmin_get_login_widget($attributes)
 		echo
 		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString() . "\" class=\"eduadminMyProfileLink\">" .
 		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
-		"</a> - <a href=\"" . $baseUrl . "/profile/bookings" . edu_getQueryString() . "\" class=\"eduadminBookingsLink\">" .
-		edu__("Reservations") .
 		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString() . "\" class=\"eduadminLogoutButton\">" .
 		$attributes['logouttext'] .
 		"</a>" .
