@@ -55,9 +55,61 @@ var eduBookingView = {
 		eduBookingView.ContactAsParticipant();
 		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact;
 
+		var questions = document.querySelectorAll('[data-price]');
+		var questionPrice = 0.0;
+		for(var qi = 0; qi < questions.length; qi++) {
+			var question = questions[qi];
+			var price = parseFloat(question.dataset.price);
+			var qtype = question.dataset.type;
+			console.log(qtype);
+			console.log(price);
+			switch(qtype) {
+				case "number":
+					questionPrice += (price * parseInt(question.value));
+					break;
+				case "text":
+					if(question.value != '') {
+						questionPrice += price;
+					}
+					break;
+				case "note":
+					if(question.value != '') {
+						questionPrice += price;
+					}
+					break;
+				case "radio":
+					if(question.checked) {
+						questionPrice += price;
+					}
+					break;
+				case "check":
+					if(question.checked) {
+						questionPrice += price;
+					}
+					break;
+				case "dropdown":
+					if(question.selected) {
+						questionPrice += price;
+					}
+					break;
+				case "infotext":
+					questionPrice += price;
+					break;
+				case "date":
+					if(question.value != '') {
+						questionPrice += price;
+					}
+					break;
+			}
+		}
+		console.log(questionPrice);
+
 		var priceObject = document.getElementById('sumValue');
 		if(priceObject && pricePerParticipant && currency != '') {
-			var newPrice = eduBookingView.CurrentParticipants * pricePerParticipant;
+			var newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
+			if(!isNaN(questionPrice)) {
+				newPrice += questionPrice;
+			}
 			priceObject.innerText = numberWithSeparator(newPrice, ' ') + ' ' + currency;
 			priceObject.textContent = numberWithSeparator(newPrice, ' ') + ' ' + currency;
 		}
