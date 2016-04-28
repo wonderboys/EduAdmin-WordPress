@@ -61,11 +61,13 @@ var eduBookingView = {
 			var question = questions[qi];
 			var price = parseFloat(question.dataset.price);
 			var qtype = question.dataset.type;
-			console.log(qtype);
-			console.log(price);
 			switch(qtype) {
 				case "number":
-					questionPrice += (price * parseInt(question.value));
+					if(question.value != '' && parseInt(question.value) > 0) {
+						questionPrice += questionPrice + (price * parseInt(question.value));
+					} else {
+						question.value = '';
+					}
 					break;
 				case "text":
 					if(question.value != '') {
@@ -102,7 +104,6 @@ var eduBookingView = {
 					break;
 			}
 		}
-		console.log(questionPrice);
 
 		var priceObject = document.getElementById('sumValue');
 		if(priceObject && pricePerParticipant && currency != '') {
