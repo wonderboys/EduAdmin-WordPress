@@ -99,6 +99,20 @@ var eduBookingView = {
 				var cCivReg = document.getElementById('edu-contactCivReg').value;
 				tCivReg.value = cLastName;
 			}
+
+			if(contact == 1) {
+				var freeParticipant = document.querySelector('.eduadmin .participantItem:not(.template):not(.contactPerson)');
+				if(freeParticipant) {
+					var freeFirstName = freeParticipant.querySelector('.participantFirstName');
+					if(freeFirstName) {
+						if(freeFirstName.value === '') {
+							var removeButton = freeParticipant.querySelector('.removeParticipant');
+							var participantHolder = document.getElementById('edu-participantHolder');
+							participantHolder.removeChild(removeButton.parentNode.parentNode);
+						}
+					}
+				}
+			}
 		}
 	},
 	CheckValidation: function() {

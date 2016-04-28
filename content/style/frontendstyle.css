@@ -10,6 +10,40 @@
 	width: 100%;
 }
 
+.eduadmin .tab_container.tabhead
+{
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+.eduadmin .tab_container .tab_item:first-child
+{
+	margin-left: 1em;
+}
+
+.eduadmin .tab_container.tabhead .tab_item:hover
+{
+	background-color: #EEE;
+}
+
+.eduadmin .tab_container.tabhead .tab_item.active
+{
+	background-color: #EEE;
+}
+
+.eduadmin .tab_container.tabhead .tab_item
+{
+	border: 1px solid #ccc;
+	background-color: #FFF;
+	display: inline-block;
+	margin-bottom: -1px;
+	padding: 0.4em 0.8em;
+	border-radius: 1em;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
 .eduadmin .title {
 	display: table-row;
 }
