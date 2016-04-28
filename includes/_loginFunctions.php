@@ -70,7 +70,7 @@ function logoutUser()
 	$baseUrl = $surl . '/' . $cat;
 
 	unset($_SESSION['eduadmin-loginUser']);
-	echo("<script>location.href = '" . $baseUrl. "';</script>");
+	echo("<script>location.href = '" . $baseUrl . edu_getQueryString() . "';</script>");
 }
 
 $apiKey = get_option('eduadmin-api-key');
