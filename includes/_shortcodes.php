@@ -27,7 +27,7 @@ function eduadmin_get_list_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
 	);
-	include_once(plugin_dir_path(__FILE__) . "../content/template/listTemplate/" . $attributes['template'] . ".php");
+	include(plugin_dir_path(__FILE__) . "../content/template/listTemplate/" . $attributes['template'] . ".php");
 }
 
 function eduadmin_get_detail_view($attributes)

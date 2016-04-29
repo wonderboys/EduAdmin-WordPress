@@ -255,39 +255,38 @@ if(stripos($descrField, "attr_") !== FALSE)
 	$ft->AddItem($f);
 	$objectAttributes = $api->GetObjectAttribute($token, '', $ft->ToString());
 }
-
-foreach($edo as $object)
+if(count($edo) > 0)
 {
-	$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
-	$events = array_filter($ede, function($ev) use (&$object) {
-
-		return $ev->ObjectID == $object->ObjectID;
-	});
-
-	$prices = array();
-	$sortedEvents = array();
-	$eventCities = array();
-	$pricenames = get_transient('eduadmin-publicpricenames');
-	//print_r($pricenames);
-
-	foreach($events as $ev)
+	foreach($edo as $object)
 	{
-		$sortedEvents[$ev->PeriodStart] = $ev;
-		$eventCities[$ev->City] = $ev;
-	}
+		$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
+		$events = array_filter($ede, function($ev) use (&$object) {
 
-	foreach($pricenames as $pr)
-	{
-		if($object->ObjectID == $pr->ObjectID)
+			return $ev->ObjectID == $object->ObjectID;
+		});
+
+		$prices = array();
+		$sortedEvents = array();
+		$eventCities = array();
+		$pricenames = get_transient('eduadmin-publicpricenames');
+
+		foreach($events as $ev)
 		{
-			$prices[$pr->Price] = $pr;
+			$sortedEvents[$ev->PeriodStart] = $ev;
+			$eventCities[$ev->City] = $ev;
 		}
-	}
 
-	ksort($sortedEvents);
-	ksort($eventCities);
+		foreach($pricenames as $pr)
+		{
+			if($object->ObjectID == $pr->ObjectID)
+			{
+				$prices[$pr->Price] = $pr;
+			}
+		}
 
-	#echo "<xmp>" . print_r($sortedEvents, true) . "</xmp>";
+		ksort($sortedEvents);
+		ksort($eventCities);
+
 ?>
 	<div class="objectItem">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
@@ -307,27 +306,12 @@ foreach($edo as $object)
 						return $oa->ObjectID == $object->ObjectID;
 					});
 
-					//$descr = strip_tags(str_replace(Array('<br />', '<br>', '<br/>', "\n", "\r"), " ", htmlspecialchars_decode(current($objectDescription)->AttributeValue)));
 					$descr = htmlspecialchars_decode(current($objectDescription)->AttributeValue);
 				}
 				else
 				{
-					//$descr = strip_tags(str_replace(Array('<br />', '<br>', '<br/>', "\n", "\r"), " ", $object->{$descrField}));
 					$descr = $object->{$descrField};
 				}
-
-				/*if(strlen($descr) > 100)
-				{
-					$spaceI = stripos($descr, ' ', 80);
-					if($spaceI <= 100)
-					{
-						$descr = substr($descr, 0, $spaceI) . " ...";
-					}
-					else
-					{
-						$descr = htmlspecialchars(substr(htmlspecialchars_decode($descr), 0, 100)) . " ...";
-					}
-				}*/
 
 				$showNextEventDate = get_option('eduadmin-showNextEventDate', false);
 				$showCourseLocations = get_option('eduadmin-showCourseLocations', false);
@@ -374,6 +358,13 @@ foreach($edo as $object)
 			</div>
 		</div>
 	</div>
+<?php
+	}
+}
+else
+{
+?>
+	<div class="noResults"><?php edu_e("Your search returned zero results"); ?></div>
 <?php
 }
 ?>
