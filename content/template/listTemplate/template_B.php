@@ -205,11 +205,11 @@ else
 
 	if($showEvents)
 	{
-		include_once("template_B_listEvents.php");
+		include("template_B_listEvents.php");
 	}
 	else
 	{
-		include_once("template_B_listCourses.php");
+		include("template_B_listCourses.php");
 	}
 ?>
 	</div>

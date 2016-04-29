@@ -185,6 +185,7 @@ else
 	{
 		foreach($eds as $subject)
 		{
+
 			if($subject->SubjectName == $attributes['subject'])
 			{
 				if(!in_array($subject->ObjectID, $filterCourses))
@@ -205,11 +206,11 @@ else
 
 	if($showEvents)
 	{
-		include_once("template_A_listEvents.php");
+		include("template_A_listEvents.php");
 	}
 	else
 	{
-		include_once("template_A_listCourses.php");
+		include("template_A_listCourses.php");
 	}
 ?>
 </div>
