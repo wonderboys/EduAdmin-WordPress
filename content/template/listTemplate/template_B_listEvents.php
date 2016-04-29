@@ -1,4 +1,5 @@
 <?php
+ob_start();
 #$edo = get_transient('eduadmin-listCourses');
 #if(!$edo || count($filterCourses) > 0)
 {
@@ -269,4 +270,6 @@ foreach($ede as $object)
 	</div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>

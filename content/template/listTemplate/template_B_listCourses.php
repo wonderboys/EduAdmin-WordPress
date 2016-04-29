@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $filtering = new XFiltering();
 $f = new XFilter('ShowOnWeb','=','true');
 $filtering->AddItem($f);
@@ -357,4 +358,6 @@ foreach($edo as $object)
 	</div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>

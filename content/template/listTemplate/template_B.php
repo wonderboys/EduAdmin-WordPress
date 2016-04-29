@@ -1,4 +1,5 @@
 <?php
+ob_start();
 global $wp_query;
 $apiKey = get_option('eduadmin-api-key');
 
@@ -216,4 +217,6 @@ else
 </div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>
