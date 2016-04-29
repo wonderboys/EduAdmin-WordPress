@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $filtering = new XFiltering();
 $f = new XFilter('ShowOnWeb','=','true');
 $filtering->AddItem($f);
@@ -367,4 +368,6 @@ else
 	<div class="noResults"><?php edu_e("Your search returned zero results"); ?></div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 global $wp_query;
 $apiKey = get_option('eduadmin-api-key');
 
@@ -206,14 +207,18 @@ else
 
 	if($showEvents)
 	{
-		include("template_A_listEvents.php");
+		$str = include("template_A_listEvents.php");
+		echo $str;
 	}
 	else
 	{
-		include("template_A_listCourses.php");
+		$str = include("template_A_listCourses.php");
+		echo $str;
 	}
 ?>
 </div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>
