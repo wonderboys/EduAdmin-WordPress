@@ -28,7 +28,7 @@ function eduadmin_get_list_view($attributes)
 		'eduadmin-listview'
 	);
 	$str = include(plugin_dir_path(__FILE__) . "../content/template/listTemplate/" . $attributes['template'] . ".php");
-	echo $str;
+	return $str;
 }
 
 function eduadmin_get_detail_view($attributes)
@@ -45,7 +45,8 @@ function eduadmin_get_detail_view($attributes)
 	);
 	if(!isset($attributes['customtemplate']) || $attributes['customtemplate'] != 1)
 	{
-		include_once(plugin_dir_path(__FILE__) . "../content/template/detailTemplate/" . $attributes['template'] . ".php");
+		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/detailTemplate/" . $attributes['template'] . ".php");
+		return $str;
 	}
 }
 
@@ -60,7 +61,8 @@ function eduadmin_get_booking_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-bookingview'
 	);
-	include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
+	$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
+	return $str;
 }
 
 function eduadmin_get_detailinfo($attributes)
@@ -119,7 +121,7 @@ function eduadmin_get_detailinfo($attributes)
 
 	if(!$apiKey || empty($apiKey))
 	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
+		return 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
 	}
 	else
 	{
@@ -127,8 +129,7 @@ function eduadmin_get_detailinfo($attributes)
 		$key = DecryptApiKey($apiKey);
 		if(!$key)
 		{
-			echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-			return;
+			return 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
 		}
 		$token = get_transient('eduadmin-token');
 		if(!$token)
@@ -485,7 +486,7 @@ function eduadmin_get_login_widget($attributes)
 
 	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']))
 	{
-		echo
+		return
 		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString() . "\" class=\"eduadminMyProfileLink\">" .
 		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
 		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString() . "\" class=\"eduadminLogoutButton\">" .
@@ -495,7 +496,7 @@ function eduadmin_get_login_widget($attributes)
 	}
 	else
 	{
-		echo
+		return
 		"<div class=\"eduadminLogin\"><i>" .
 		$attributes['guesttext'] .
 		"</i> - " .

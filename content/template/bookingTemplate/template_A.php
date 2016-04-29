@@ -1,4 +1,5 @@
 <?php
+ob_start();
 global $wp_query;
 $apiKey = get_option('eduadmin-api-key');
 
@@ -252,4 +253,6 @@ var currency = '<?php echo get_option('eduadmin-currency', 'SEK'); ?>';
 </script>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>

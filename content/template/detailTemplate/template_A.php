@@ -1,4 +1,5 @@
 <?php
+ob_start();
 global $wp_query;
 $apiKey = get_option('eduadmin-api-key');
 
@@ -319,4 +320,6 @@ $newTitle = $name . " | " . $originalTitle;
 </script>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>
