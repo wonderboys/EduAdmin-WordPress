@@ -63,8 +63,8 @@ var eduBookingView = {
 			var qtype = question.dataset.type;
 			switch(qtype) {
 				case "number":
-					if(question.value != '' && parseInt(question.value) > 0) {
-						questionPrice += questionPrice + (price * parseInt(question.value));
+					if(question.value != '' && !isNaN(question.value) && parseInt(question.value) > 0) {
+						questionPrice += (price * parseInt(question.value));
 					} else {
 						question.value = '';
 					}
