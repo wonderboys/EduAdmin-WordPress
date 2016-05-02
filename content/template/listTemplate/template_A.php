@@ -93,6 +93,7 @@ else
 		set_transient('eduadmin-courseLevels', $courseLevels, DAY_IN_SECONDS);
 	}
 ?>
+<!-- mfunc -->
 <div class="eduadmin">
 	<?php if($attributes['hidesearch'] == false) { ?>
 	<form method="POST" class="search-form">
@@ -217,6 +218,7 @@ else
 	}
 ?>
 </div>
+<!-- /mfunc -->
 <?php
 }
 $out = ob_get_clean();
