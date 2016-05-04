@@ -115,6 +115,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 ?>
 <!-- mfunc -->
 <div class="eduadmin">
+	<form action="" method="post">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
 	<div class="title">
 		<img src="<?php echo $selectedCourse->ImageUrl; ?>" style="max-width: 8em; max-height: 8em; margin-right: 2em; float: left;" />
@@ -176,7 +177,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			}
 ?>
 	</div>
-	<form action="" method="post">
+
 		<input type="hidden" name="act" value="bookCourse" />
 		<?php include_once("contactView.php"); ?>
 		<?php include_once("customerView.php"); ?>
