@@ -87,16 +87,12 @@ else
 	$s = new XSort('PeriodStart', 'ASC');
 	$st->AddItem($s);
 
-	$events = get_transient('eduadmin-events-object' . $selectedCourse->ObjectID);
-	if(!$events)
-	{
-		$events = $api->GetEvent(
-			$token,
-			$st->ToString(),
-			$ft->ToString()
-		);
-		set_transient('eduadmin-events-object' . $selectedCourse->ObjectID, $events, 6 * HOUR_IN_SECONDS);
-	}
+
+	$events = $api->GetEvent(
+		$token,
+		$st->ToString(),
+		$ft->ToString()
+	);
 
 	$ft = new XFiltering();
 	$f = new XFilter('PublicPriceName', '=', 'true');
