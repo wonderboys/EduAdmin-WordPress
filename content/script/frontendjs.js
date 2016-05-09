@@ -153,7 +153,7 @@ var eduBookingView = {
 				tCivReg.value = cLastName;
 			}
 
-			if(contact == 1) {
+			if(contact == 1 && !this.AddedContactPerson) {
 				var freeParticipant = document.querySelector('.eduadmin .participantItem:not(.template):not(.contactPerson)');
 				if(freeParticipant) {
 					var freeFirstName = freeParticipant.querySelector('.participantFirstName');
@@ -165,9 +165,11 @@ var eduBookingView = {
 						}
 					}
 				}
+				this.AddedContactPerson = true;
 			}
 		}
 	},
+	AddedContactPerson: false,
 	CheckValidation: function() {
 		var terms = document.getElementById('confirmTerms');
 		if(terms) {
