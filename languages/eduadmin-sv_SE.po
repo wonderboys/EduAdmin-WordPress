@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-04-04 10:55+0200\n"
-"PO-Revision-Date: 2016-04-04 10:57+0200\n"
+"POT-Creation-Date: 2016-05-09 15:54+0200\n"
+"PO-Revision-Date: 2016-05-09 15:54+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -109,153 +109,161 @@ msgstr ""
 
 #: includes/_metaBox.php:72
 msgid ""
+"This will include a Javascript-snippet that replaces the page title with the "
+"current course name"
+msgstr ""
+"Det här kommer att inkludera ett Javaskript för att ersätta sid-titeln med "
+"det aktuella kursnamnet"
+
+#: includes/_metaBox.php:75
+msgid ""
 "This attribute is only required if you do full custom pages for your courses."
 msgstr ""
 "Det här attributet är enbart ett krav om du gör helt skräddarsydda sidor för "
 "dina kurser."
 
-#: includes/_metaBox.php:75
+#: includes/_metaBox.php:78
 msgid "Fetches the name of the course"
 msgstr "Hämtar namnet på kursen"
 
-#: includes/_metaBox.php:78
+#: includes/_metaBox.php:81
 msgid "Fetches the public name of the course"
 msgstr "Hämtar det publika namnet på kursen"
 
-#: includes/_metaBox.php:81
+#: includes/_metaBox.php:84
 msgid "Fetches what level this course is"
 msgstr "Hämtar vilken nivå denna kurs är för"
 
-#: includes/_metaBox.php:84
+#: includes/_metaBox.php:87
 msgid "Fetches the URL of the course image"
 msgstr "Hämtar bild-URLen för kursbilden"
 
-#: includes/_metaBox.php:87
+#: includes/_metaBox.php:90
 msgid "Fetches the image text of the course image"
 msgstr "Hämtar bildtexten för kursbilden"
 
-#: includes/_metaBox.php:90
+#: includes/_metaBox.php:93
 msgid "Fetches the number of days the course usually has"
 msgstr "Hämtar antalet dagar som kursen vanligtvis har"
 
-#: includes/_metaBox.php:93
+#: includes/_metaBox.php:96
 msgid "Fetches the start time of the course"
 msgstr "Hämtar starttiden för kursen"
 
-#: includes/_metaBox.php:96
+#: includes/_metaBox.php:99
 msgid "Fetches the end time of the course"
 msgstr "Hämtar sluttiden för kursen"
 
-#: includes/_metaBox.php:99
+#: includes/_metaBox.php:102
 msgid "Fetches the price of the course"
 msgstr "Hämtar priset på kursen"
 
-#: includes/_metaBox.php:102
+#: includes/_metaBox.php:105
 msgid "Fetches the short description of the course"
 msgstr "Hämtar den korta beskrivningen av kursen"
 
-#: includes/_metaBox.php:105
+#: includes/_metaBox.php:108
 msgid "Fetches the description of the course"
 msgstr "Hämtar en beskrivning av kursen"
 
-#: includes/_metaBox.php:108
+#: includes/_metaBox.php:111
 msgid "Fetches the goal of the course"
 msgstr "Hämtar målet med kursen"
 
-#: includes/_metaBox.php:111
+#: includes/_metaBox.php:114
 msgid "Fetches the target group of the course"
 msgstr "Hämtar målgruppen för kursen"
 
-#: includes/_metaBox.php:114
+#: includes/_metaBox.php:117
 msgid "Fetches the prerequisites of the course"
 msgstr "Hämtar förutsättningarna för kursen"
 
-#: includes/_metaBox.php:117
+#: includes/_metaBox.php:120
 msgid "Fetches what to do after the course"
 msgstr "Hämtar \"efter kursen\"-fältet"
 
-#: includes/_metaBox.php:120
+#: includes/_metaBox.php:123
 msgid "Fetches all the quotes from the course"
 msgstr "Hämtar alla citat från kursen"
 
-#: includes/_metaBox.php:123
+#: includes/_metaBox.php:126
 msgid "Fetches a list of events for the course"
 msgstr "Hämtar en lista över tillfällen för kursen"
 
-#: includes/_metaBox.php:126
+#: includes/_metaBox.php:129
 msgid ""
 "Filters the courseeventlist to show the specified amount of courses (Number)"
 msgstr ""
 "Filtrerar courseeventlist att enbart visa angivet antal kurser (Nummer)"
 
-#: includes/_metaBox.php:129
+#: includes/_metaBox.php:132
 msgid "Filters the courseeventlist to show only the specified city (Text)"
 msgstr ""
 "Filtrerar courseeventlist att enbart visa den specificerade orten (Text)"
 
-#: includes/_metaBox.php:132
+#: includes/_metaBox.php:135
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:101
+#: includes/_options.php:102
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:101 includes/generalSettings.php:8
+#: includes/_options.php:102 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:102
+#: includes/_options.php:103
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:102 includes/listSettings.php:36
+#: includes/_options.php:103 includes/listSettings.php:36
 #: includes/listSettings.php:50
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:103
+#: includes/_options.php:104
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:103 includes/detailSettings.php:2
+#: includes/_options.php:104 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:104
+#: includes/_options.php:105
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:104 includes/bookingSettings.php:2
+#: includes/_options.php:105 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:105
+#: includes/_options.php:106
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:105 includes/textSettings.php:2
+#: includes/_options.php:106 includes/textSettings.php:2
 #: includes/textSettings.php:11
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:106
+#: includes/_options.php:107
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:106
+#: includes/_options.php:107
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:107
+#: includes/_options.php:108
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:107
+#: includes/_options.php:108
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:147
+#: includes/_options.php:148
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
@@ -275,31 +283,48 @@ msgstr "Förvald kundgrupp"
 msgid "Use login"
 msgstr "Använd inloggning"
 
-#: includes/bookingSettings.php:105
+#: includes/bookingSettings.php:107
+msgid "Customer matching"
+msgstr "Kundmatchning"
+
+#: includes/bookingSettings.php:109
+msgid "No matching (Creates new customers every time)"
+msgstr "Ingen matchning (Skapa nya kunder för varje bokning)"
+
+#: includes/bookingSettings.php:110
+msgid "Match on customer name and zip code (and use previous info)"
+msgstr "Matcha på kundnamn och postnummer (och använd info från EduAdmin)"
+
+#: includes/bookingSettings.php:111
+msgid "Match on customer name and zip code (and overwrite with provided info)"
+msgstr ""
+"Matcha på kundnamn och postnummer (och skriv över information i EduAdmin)"
+
+#: includes/bookingSettings.php:118
 msgid "Currency"
 msgstr "Valuta"
 
-#: includes/bookingSettings.php:266
+#: includes/bookingSettings.php:279
 msgid "Booking terms"
 msgstr "Bokningsvillkor"
 
-#: includes/bookingSettings.php:267 includes/bookingSettings.php:268
+#: includes/bookingSettings.php:280 includes/bookingSettings.php:281
 msgid "Booking terms link"
 msgstr "Länk till bokningsvillkor"
 
-#: includes/bookingSettings.php:271
+#: includes/bookingSettings.php:284
 msgid "Use booking terms"
 msgstr "Använd bokningsvillkor"
 
-#: includes/bookingSettings.php:273
+#: includes/bookingSettings.php:286
 msgid "Javascript to run when a booking is completed"
 msgstr "Javaskript att köra när en bokning har genomförts"
 
-#: includes/bookingSettings.php:274
+#: includes/bookingSettings.php:287
 msgid "You do not need to include &lt;script&gt;-tags"
 msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
 
-#: includes/bookingSettings.php:278 includes/detailSettings.php:28
+#: includes/bookingSettings.php:291 includes/detailSettings.php:28
 #: includes/generalSettings.php:34 includes/generalSettings.php:173
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
 #: includes/textSettings.php:40

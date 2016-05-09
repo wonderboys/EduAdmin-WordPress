@@ -99,6 +99,19 @@ else
 				<input type="checkbox" name="eduadmin-useLogin" <?php echo (get_option("eduadmin-useLogin", false) ? " checked=\"checked\"" : ""); ?> />
 				<?php _e("Use login", "eduadmin"); ?>
 			</label>
+			<br />
+			<br />
+			<?php
+				$selectedMatch = get_option('eduadmin-customerMatching', 'name-zip-match');
+			?>
+			<h3><?php _e("Customer matching", "eduadmin"); ?></h3>
+			<select name="eduadmin-customerMatching">
+				<option<?php echo ($selectedMatch == "no-match" ? " selected=\"selected\"" : ""); ?> value="no-match"><?php _e("No matching (Creates new customers every time)", "eduadmin"); ?></option>
+				<option<?php echo ($selectedMatch == "name-zip-match" ? " selected=\"selected\"" : ""); ?> value="name-zip-match"><?php _e("Match on customer name and zip code (and use previous info)", "eduadmin"); ?></option>
+				<option<?php echo ($selectedMatch == "name-zip-match-overwrite" ? " selected=\"selected\"" : ""); ?> value="name-zip-match-overwrite"><?php _e("Match on customer name and zip code (and overwrite with provided info)", "eduadmin"); ?></option>
+			</select>
+			<br />
+			<br />
 			<?php
 				$selectedCurrency = get_option('eduadmin-currency', 'SEK');
 			?>
