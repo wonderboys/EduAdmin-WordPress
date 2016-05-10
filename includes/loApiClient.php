@@ -11,7 +11,7 @@
       $this->__server = new SoapClient(
         ServiceUrl,
         array(
-          'trace' => 1,
+          'trace' => 0,
           'cache_wsdl' => WSDL_CACHE_BOTH
         )
       );
