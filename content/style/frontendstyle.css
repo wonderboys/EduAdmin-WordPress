@@ -10,6 +10,14 @@
 	width: 100%;
 }
 
+.eduadmin .checkEmailForm {
+	margin-top: 1em;
+}
+
+.eduadmin .bookingLoginButton {
+	margin-top: 1em;
+}
+
 .eduadmin .tab_container.tabhead
 {
 	width: 100%;

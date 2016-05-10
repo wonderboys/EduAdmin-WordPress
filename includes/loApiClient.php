@@ -12,7 +12,16 @@
         ServiceUrl,
         array(
           'trace' => 0,
-          'cache_wsdl' => WSDL_CACHE_BOTH
+          'cache_wsdl' => WSDL_CACHE_BOTH,
+          'connection_timeout' => 5,
+          'stream_context'=>stream_context_create(
+			array('http'=>
+            	array(
+                	'protocol_version'=>'1.0'
+                    	, 'header' => 'Connection: Close'
+				)
+			)
+			)
         )
       );
       }
