@@ -506,8 +506,10 @@ function eduadmin_get_login_widget($attributes)
 	$cat = get_option('eduadmin-rewriteBaseUrl');
 
 	$baseUrl = $surl . '/' . $cat;
+	if(isset($_SESSION['eduadmin-loginUser']))
+		$user = $_SESSION['eduadmin-loginUser'];
 
-	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']))
+	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 	{
 		return
 		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString() . "\" class=\"eduadminMyProfileLink\">" .
