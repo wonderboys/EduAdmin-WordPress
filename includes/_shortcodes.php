@@ -70,7 +70,15 @@ function eduadmin_get_booking_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-bookingview'
 	);
-	$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
+	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser'])))
+	{
+		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
+	}
+	else
+	{
+		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/loginView.php");
+	}
+
 	return $str;
 }
 
