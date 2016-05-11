@@ -49,10 +49,15 @@ function edu_load_language()
 }
 function edu_check_for_updates()
 {
-	require_once("includes/auto_update.php");
-	$current_version = '0.0.89';
-	$slug = plugin_basename(__FILE__);
-	new wp_auto_update($current_version, $slug);
+	$lastCheck = get_transient('eduadmin-updateCheck');
+	if($lastCheck === false)
+	{
+		require_once("includes/auto_update.php");
+		$current_version = '0.0.89';
+		$slug = plugin_basename(__FILE__);
+		new wp_auto_update($current_version, $slug);
+		set_transient('eduadmin-updateCheck', true, WEEK_IN_SECONDS);
+	}
 }
 function edu_new_theme()
 {

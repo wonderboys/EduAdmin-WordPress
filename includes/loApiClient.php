@@ -2136,7 +2136,7 @@
     {
       $result = null;
       try {
-        $d = debug_backtrace()[1]['function'];
+        $d = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
         $result = $this->__server->__soapCall(
           $d,
           array($params)

@@ -12,8 +12,6 @@ function eduadmin_settings_init()
 {
 	/* Credential settings */
 	register_setting('eduadmin-credentials', 'eduadmin-api-key');
-	/*register_setting('eduadmin-credentials', 'eduadmin-api_user_id');
-	register_setting('eduadmin-credentials', 'eduadmin-api_hash');*/
 	register_setting('eduadmin-credentials', 'eduadmin-credentials_have_changed');
 
 	/* Rewrite settings */
@@ -155,7 +153,7 @@ function eduadmin_create_metabox()
 
 function eduadmin_printJavascript()
 {
-	if(get_option('eduadmin-javascript') != '' && isset($_SESSION['eduadmin-printJS']))
+	if(get_option('eduadmin-javascript', '') != '' && isset($_SESSION['eduadmin-printJS']))
 	{
 		echo "<script type=\"text/javascript\">\n";
 		echo get_option('eduadmin-javascript');
