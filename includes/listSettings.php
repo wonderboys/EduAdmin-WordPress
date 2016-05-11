@@ -1,4 +1,5 @@
 <?php
+global $api;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -7,7 +8,7 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	$api = new EduAdminClient();
+	//$api = new EduAdminClient();
 	$key = DecryptApiKey($apiKey);
 	if(!$key)
 	{

@@ -8,7 +8,6 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		$ft->AddItem($f);
 
 		$matchingContacts = $api->GetCustomerContact($token, '', $ft->ToString(), true);
-		print_r($matchingContacts);
 		$_SESSION['checkEmail'] = true;
 		if(count($matchingContacts) > 0)
 		{

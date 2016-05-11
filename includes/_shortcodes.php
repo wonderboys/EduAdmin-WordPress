@@ -88,6 +88,7 @@ function eduadmin_get_detailinfo($attributes)
 		define('DONOTCACHEPAGE',true);
 	}
 	global $wp_query;
+	global $api;
 	$attributes = shortcode_atts(
 		array(
 			'courseid' => null,
@@ -145,7 +146,7 @@ function eduadmin_get_detailinfo($attributes)
 	}
 	else
 	{
-		$api = new EduAdminClient();
+		//$api = new EduAdminClient();
 		$key = DecryptApiKey($apiKey);
 		if(!$key)
 		{
@@ -159,11 +160,15 @@ function eduadmin_get_detailinfo($attributes)
 		}
 		else
 		{
-			$valid = $api->ValidateAuthToken($token);
-			if(!$valid)
+			if(get_transient('eduadmin-validatedToken_' . $token) === false)
 			{
-				$token = $api->GetAuthToken($key->UserId, $key->Hash);
-				set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+				$valid = $api->ValidateAuthToken($token);
+				if(!$valid)
+				{
+					$token = $api->GetAuthToken($key->UserId, $key->Hash);
+					set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+				}
+				set_transient('eduadmin-validatedToken_' . $token, true, 10 * MINUTE_IN_SECONDS);
 			}
 		}
 
@@ -174,7 +179,12 @@ function eduadmin_get_detailinfo($attributes)
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+		$edo = get_transient('eduadmin-object_' . $courseId);
+		if(!$edo)
+		{
+			$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+			set_transient('eduadmin-object_' . $courseId, $edo, 10);
+		}
 
 		$selectedCourse = false;
 		$name = "";

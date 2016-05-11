@@ -98,11 +98,15 @@ else
 	}
 	else
 	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
+		if(get_transient('eduadmin-validatedToken_' . $token) === false)
 		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+			$valid = $api->ValidateAuthToken($token);
+			if(!$valid)
+			{
+				$token = $api->GetAuthToken($key->UserId, $key->Hash);
+				set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+			}
+			set_transient('eduadmin-validatedToken_' . $token, true, 10 * MINUTE_IN_SECONDS);
 		}
 	}
 

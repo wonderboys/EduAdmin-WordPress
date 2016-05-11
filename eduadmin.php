@@ -56,7 +56,7 @@ function edu_check_for_updates()
 		$current_version = '0.0.89';
 		$slug = plugin_basename(__FILE__);
 		new wp_auto_update($current_version, $slug);
-		set_transient('eduadmin-updateCheck', true, WEEK_IN_SECONDS);
+		set_transient('eduadmin-updateCheck', true, MINUTE_IN_SECONDS);
 	}
 }
 function edu_new_theme()
