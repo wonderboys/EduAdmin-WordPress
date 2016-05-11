@@ -20,7 +20,7 @@
 		{
 			$lineage[] = $cat->CategoryID;
 
-			if($cat->ParentID == 0)
+			if($cat->ParentID === 0)
 				break;
 
 			$cat = $flatList[$cat->ParentID];
@@ -56,7 +56,7 @@
 			$groupedQuestions[$q->QuestionID][] = $q;
 		}
 
-		if(count($groupedQuestions) > 0)
+		if(!empty($groupedQuestions))
 		{
 			$lastQuestionId = -1;
 			foreach($groupedQuestions as $question)

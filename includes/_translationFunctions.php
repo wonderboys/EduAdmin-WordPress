@@ -29,6 +29,6 @@ function edu_e($key)
 
 function edu_n($single, $plural, $number)
 {
-	return $number == 1 ? edu__($single) : edu__($plural);
+	return $number === 1 ? edu__($single) : edu__($plural);
 }
 ?>

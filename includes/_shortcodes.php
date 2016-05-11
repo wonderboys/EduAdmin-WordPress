@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPress.' );
 if (!function_exists('normalize_empty_atts')) {
     function normalize_empty_atts ($atts) {
-    	if($atts == "")
+    	if(empty($atts))
 			return $atts;
         foreach ($atts as $attribute => $value) {
             if (is_int($attribute)) {
@@ -89,6 +89,7 @@ function eduadmin_get_detailinfo($attributes)
 	}
 	global $wp_query;
 	global $api;
+	global $token;
 	$attributes = shortcode_atts(
 		array(
 			'courseid' => null,
@@ -146,32 +147,6 @@ function eduadmin_get_detailinfo($attributes)
 	}
 	else
 	{
-		//$api = new EduAdminClient();
-		$key = DecryptApiKey($apiKey);
-		if(!$key)
-		{
-			return 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		}
-		$token = get_transient('eduadmin-token');
-		if(!$token)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-		else
-		{
-			if(get_transient('eduadmin-validatedToken_' . $token) === false)
-			{
-				$valid = $api->ValidateAuthToken($token);
-				if(!$valid)
-				{
-					$token = $api->GetAuthToken($key->UserId, $key->Hash);
-					set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-				}
-				set_transient('eduadmin-validatedToken_' . $token, true, 10 * MINUTE_IN_SECONDS);
-			}
-		}
-
 		$filtering = new XFiltering();
 		$f = new XFilter('ObjectID','=',$courseId);
 		$filtering->AddItem($f);
@@ -273,7 +248,7 @@ function eduadmin_get_detailinfo($attributes)
 				$ft->AddItem($f);
 				$courseLevel = $api->GetEducationLevelObject($token, '', $ft->ToString());
 
-				if(count($courseLevel) > 0)
+				if(!empty($courseLevel))
 				{
 			 		$retStr .= $courseLevel[0]->Name;
 				}
@@ -287,7 +262,7 @@ function eduadmin_get_detailinfo($attributes)
 				$f = new XFilter('AttributeID', '=', $attrid);
 				$ft->AddItem($f);
 				$objAttr = $api->GetObjectAttribute($token, '', $ft->ToString());
-				if(count($objAttr) > 0)
+				if(!empty($objAttr))
 				{
 					$attr = $objAttr[0];
 					switch($attr->AttributeTypeID)
@@ -398,7 +373,7 @@ function eduadmin_get_detailinfo($attributes)
 				$pricenames = $api->GetPriceName($token,'',$ft->ToString());
 				set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
-				if(count($pricenames) > 0)
+				if(!empty($pricenames))
 				{
 					$events = array_filter($events, function($object) {
 						$pn = get_transient('eduadmin-publicpricenames');
@@ -482,7 +457,7 @@ function eduadmin_get_detailinfo($attributes)
 					$lastCity = $ev->City;
 					$i++;
 				}
-				if(count($events) == 0)
+				if(empty($events))
 				{
 					$retStr.= '<div class="noDatesAvailable"><i>' . edu__("No available dates for the selected course") . '</i></div>';
 				}

@@ -2,6 +2,7 @@
 ob_start();
 global $wp_query;
 global $api;
+global $token;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -10,29 +11,6 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	//$api = new EduAdminClient();
-	$key = DecryptApiKey($apiKey);
-	if(!$key)
-	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		return;
-	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-	else
-	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-	}
-
 	$allowLocationSearch = get_option('eduadmin-allowLocationSearch',true);
 	$allowSubjectSearch = get_option('eduadmin-allowSubjectSearch',false);
 	$allowCategorySearch = get_option('eduadmin-allowCategorySearch',false);
@@ -99,7 +77,7 @@ else
 	<form method="POST" class="search-form">
 		<table style="width: 100%;">
 			<tr>
-				<?php if($allowLocationSearch && count($addresses) > 0 && $showEvents) { ?>
+				<?php if($allowLocationSearch && !empty($addresses) && $showEvents) { ?>
 				<td style="width: 15%;">
 					<select name="eduadmin-city">
 						<option value=""><?php edu_e("Choose city"); ?></option>
@@ -117,7 +95,7 @@ else
 					</select>
 				</td>
 				<?php } ?>
-				<?php if($allowSubjectSearch && count($distinctSubjects) > 0) { ?>
+				<?php if($allowSubjectSearch && !empty($distinctSubjects)) { ?>
 				<td style="width: 15%;">
 					<select name="eduadmin-subject">
 						<option value=""><?php edu_e("Choose subject"); ?></option>
@@ -130,7 +108,7 @@ else
 					</select>
 				</td>
 				<?php } ?>
-				<?php if($allowCategorySearch && count($categories) > 0) { ?>
+				<?php if($allowCategorySearch && !empty($categories)) { ?>
 				<td style="width: 15%;">
 					<select name="eduadmin-category">
 						<option value=""><?php edu_e("Choose category"); ?></option>
@@ -143,7 +121,7 @@ else
 					</select>
 				</td>
 				<?php } ?>
-				<?php if($allowLevelSearch && count($levels) > 0) { ?>
+				<?php if($allowLevelSearch && !empty($levels)) { ?>
 				<td style="width: 15%;">
 					<select name="eduadmin-level">
 						<option value=""><?php edu_e("Choose course level"); ?></option>

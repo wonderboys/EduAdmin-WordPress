@@ -11,10 +11,10 @@
 				$spotLeft = get_option('eduadmin-spotsLeft', 'exactNumbers');
 			?>
 			<select class="eduadmin-spotsLeft" name="eduadmin-spotsLeft" onchange="EduAdmin.SpotExampleText();">
-				<option<?php echo ($spotLeft == "exactNumbers" ? " selected=\"selected\"" : ""); ?> value="exactNumbers"><?php _e("Exact numbers", "eduadmin"); ?></option>
-				<option<?php echo ($spotLeft == "onlyText" ? " selected=\"selected\"" : ""); ?> value="onlyText"><?php _e("Only text (Spots left/ Few spots / No spots left)", "eduadmin"); ?></option>
-				<option<?php echo ($spotLeft == "intervals" ? " selected=\"selected\"" : ""); ?> value="intervals"><?php _e("Interval (Please specify below)", "eduadmin"); ?></option>
-				<option<?php echo ($spotLeft == "alwaysFewSpots" ? " selected=\"selected\"" : ""); ?> value="alwaysFewSpots"><?php _e("Always few spots", "eduadmin"); ?></option>
+				<option<?php echo ($spotLeft === "exactNumbers" ? " selected=\"selected\"" : ""); ?> value="exactNumbers"><?php _e("Exact numbers", "eduadmin"); ?></option>
+				<option<?php echo ($spotLeft === "onlyText" ? " selected=\"selected\"" : ""); ?> value="onlyText"><?php _e("Only text (Spots left/ Few spots / No spots left)", "eduadmin"); ?></option>
+				<option<?php echo ($spotLeft === "intervals" ? " selected=\"selected\"" : ""); ?> value="intervals"><?php _e("Interval (Please specify below)", "eduadmin"); ?></option>
+				<option<?php echo ($spotLeft === "alwaysFewSpots" ? " selected=\"selected\"" : ""); ?> value="alwaysFewSpots"><?php _e("Always few spots", "eduadmin"); ?></option>
 			</select> <span id="eduadmin-spotExampleText"></span>
 			<br />
 			<div class="eduadmin-spotsSettings">
@@ -43,7 +43,7 @@
 	$eduPages = array();
 	foreach($pages as $p)
 	{
-		if(stristr($p->post_content, '[eduadmin'))
+		if(strstr($p->post_content, '[eduadmin'))
 		{
 			$eduPages[] = $p;
 		}
@@ -56,6 +56,7 @@
 						<select class="form-control" style="width: 300px;" name="eduadmin-listViewPage" id="eduadmin-listViewPage">
 							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
 <?php
+$listPage = get_option('eduadmin-listViewPage');
 foreach($eduPages as $p)
 {
 	$suggested = false;
@@ -63,7 +64,7 @@ foreach($eduPages as $p)
 	{
 		$suggested = true;
 	}
-	echo "\t\t\t\t\t\t\t<option" . (get_option('eduadmin-listViewPage') == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+	echo "\t\t\t\t\t\t\t<option" . ($listPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
 		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
 		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
 	"</option>\n";
@@ -81,6 +82,7 @@ foreach($eduPages as $p)
 						<select class="form-control" style="width: 300px;" name="eduadmin-detailViewPage" id="eduadmin-detailViewPage">
 							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
 <?php
+$detailPage = get_option('eduadmin-detailViewPage');
 foreach($eduPages as $p)
 {
 	$suggested = false;
@@ -88,7 +90,7 @@ foreach($eduPages as $p)
 	{
 		$suggested = true;
 	}
-	echo "\t\t\t\t\t\t\t<option" . (get_option('eduadmin-detailViewPage') == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+	echo "\t\t\t\t\t\t\t<option" . ($detailPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
 		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
 		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
 	"</option>\n";
@@ -106,6 +108,7 @@ foreach($eduPages as $p)
 						<select class="form-control" style="width: 300px;" name="eduadmin-bookingViewPage" id="eduadmin-bookingViewPage">
 							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
 <?php
+$bookingPage = get_option('eduadmin-bookingViewPage');
 foreach($eduPages as $p)
 {
 	$suggested = false;
@@ -113,7 +116,7 @@ foreach($eduPages as $p)
 	{
 		$suggested = true;
 	}
-	echo "\t\t\t\t\t\t\t<option" . (get_option('eduadmin-bookingViewPage') == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+	echo "\t\t\t\t\t\t\t<option" . ($bookingPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
 		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
 		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
 	"</option>\n";
@@ -131,9 +134,10 @@ foreach($eduPages as $p)
 						<select class="form-control" style="width: 300px;" name="eduadmin-thankYouPage" id="eduadmin-thankYouPage">
 							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
 <?php
+$thankPage = get_option('eduadmin-thankYouPage');
 foreach($pages as $p)
 {
-	echo "\t\t\t\t\t\t\t<option" . (get_option('eduadmin-thankYouPage') == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+	echo "\t\t\t\t\t\t\t<option" . ($thankPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
 		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
 	"</option>\n";
 }
@@ -148,6 +152,7 @@ foreach($pages as $p)
 						<select class="form-control" style="width: 300px;" name="eduadmin-loginViewPage" id="eduadmin-loginViewPage">
 							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
 <?php
+$loginPage = get_option('eduadmin-loginViewPage');
 foreach($eduPages as $p)
 {
 	$suggested = false;
@@ -155,7 +160,7 @@ foreach($eduPages as $p)
 	{
 		$suggested = true;
 	}
-	echo "\t\t\t\t\t\t\t<option" . (get_option('eduadmin-loginViewPage') == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+	echo "\t\t\t\t\t\t\t<option" . ($loginPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
 		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
 		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
 	"</option>\n";

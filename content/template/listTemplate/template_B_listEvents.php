@@ -13,7 +13,7 @@ ob_start();
 		$filtering->AddItem($f);
 	}
 
-	if(count($filterCourses) > 0)
+	if(!empty($filterCourses))
 	{
 		$f = new XFilter('ObjectID', 'IN', join(',', $filterCourses));
 		$filtering->AddItem($f);
@@ -111,7 +111,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
 	$filtering->AddItem($f);
 
-	if(count($filterCourses) > 0)
+	if(!empty($filterCourses))
 	{
 		$f = new XFilter('ObjectID', 'IN', join(',', $filterCourses));
 		$filtering->AddItem($f);
@@ -183,7 +183,7 @@ $ft->AddItem($f);
 $pricenames = $api->GetPriceName($token,'',$ft->ToString());
 set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
-if(count($pricenames) > 0)
+if(!empty($pricenames))
 {
 	$ede = array_filter($ede, function($object) {
 		$pn = get_transient('eduadmin-publicpricenames');

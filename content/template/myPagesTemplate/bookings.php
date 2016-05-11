@@ -4,27 +4,7 @@ $contact = $user->Contact;
 $customer = $user->Customer;
 
 global $api;
-$key = DecryptApiKey($apiKey);
-if(!$key)
-{
-	echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-	return;
-}
-$token = get_transient('eduadmin-token');
-if(!$token)
-{
-	$token = $api->GetAuthToken($key->UserId, $key->Hash);
-	set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-}
-else
-{
-	$valid = $api->ValidateAuthToken($token);
-	if(!$valid)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-}
+global $token;
 ?>
 <div class="eduadmin">
 <?php
@@ -52,7 +32,7 @@ include_once("login_tab_header.php");
 			<th align="right"><?php edu_e("Price"); ?></th>
 		</tr>
 		<?php
-		if(count($bookings) == 0) {
+		if(empty($bookings)) {
 		?>
 		<tr><td colspan="5" align="center"><i><?php edu_e("No courses booked"); ?></i></td></tr>
 		<?php

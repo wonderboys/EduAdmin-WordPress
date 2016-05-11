@@ -48,7 +48,7 @@ else
 	}
 
 	$selectedMatch = get_option('eduadmin-customerMatching', 'name-zip-match');
-	if($selectedMatch == "name-zip-match")
+	if($selectedMatch === "name-zip-match")
 	{
 		if(empty($customer->InvoiceOrgnr))
 		{
@@ -65,7 +65,7 @@ else
 		$f = new XFilter('Zip', '=', $customer->Zip);
 		$ft->AddItem($f);
 		$matchingCustomer = $api->GetCustomer($token, '', $ft->ToString(), false);
-		if(count($matchingCustomer) == 0)
+		if(empty($matchingCustomer))
 		{
 			$cres = $api->SetCustomer($token, array($customer));
 			$customer->CustomerID = $cres[0];
@@ -75,7 +75,7 @@ else
 			$customer = $matchingCustomer[0];
 		}
 	}
-	else if($selectedMatch == "name-zip-match-overwrite")
+	else if($selectedMatch === "name-zip-match-overwrite")
 	{
 		if(empty($customer->InvoiceOrgnr))
 		{
@@ -92,7 +92,7 @@ else
 		$f = new XFilter('Zip', '=', $customer->Zip);
 		$ft->AddItem($f);
 		$matchingCustomer = $api->GetCustomer($token, '', $ft->ToString(), false);
-		if(count($matchingCustomer) == 0)
+		if(empty($matchingCustomer))
 		{
 			$cres = $api->SetCustomer($token, array($customer));
 			$customer->CustomerID = $cres[0];
@@ -103,7 +103,7 @@ else
 			$api->SetCustomer($token, array($customer));
 		}
 	}
-	else if($selectedMatch == "no-match")
+	else if($selectedMatch === "no-match")
 	{
 		$cres = $api->SetCustomer($token, array($customer));
 		$customer->CustomerID = $cres[0];
@@ -136,13 +136,13 @@ else
 		$f = new XFilter('Email', '=', $contact->Email);
 		$ft->AddItem($f);
 		$matchingContacts = $api->GetCustomerContact($token, '', $ft->ToString(), false);
-		if(count($matchingContacts) == 0)
+		if(empty($matchingContacts))
 		{
 			$contact->CustomerContactID = $api->SetCustomerContact($token, array($contact))[0];
 		}
 		else
 		{
-			if($selectedMatch == "name-zip-match-overwrite")
+			if($selectedMatch === "name-zip-match-overwrite")
 			{
 				$contact->CustomerContactID = $matchingContacts[0]->CustomerContactID;
 				$api->SetCustomerContact($token, array($contact));
@@ -192,7 +192,7 @@ else
 			$f = new XFilter('PersonEmail', '=', $person->PersonEmail);
 			$ft->AddItem($f);
 			$matchingPersons = $api->GetPerson($token, '', $ft->ToString(), false);
-			if(count($matchingPersons) > 0)
+			if(!empty($matchingPersons))
 			{
 				$person = $matchingPersons[0];
 			}
@@ -230,14 +230,14 @@ else
 		$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
 		$ft->AddItem($f);
 		$matchingPersons = $api->GetPerson($token, '', $ft->ToString(), false);
-		if(count($matchingPersons) > 0)
+		if(!empty($matchingPersons))
 		{
 			$person = $matchingPersons[0];
 		}
 		$pArr[] = $person;
 	}
 
-	if(count($pArr) > 0)
+	if(!empty($pArr))
 	{
 		// Deltagare saknas, avbryt
 		//$persons = $api->SetPerson($token, $pArr);
@@ -258,7 +258,7 @@ else
 		// TODO: Add loop to push in all Answers from Questions
 		foreach($_POST as $input => $value)
 		{
-			if(stripos($input, "question_") !== FALSE)
+			if(strpos($input, "question_") !== FALSE)
 			{
 				$question = explode('_', $input);
 				$answerID = $question[1];
@@ -272,7 +272,7 @@ else
 						$answerID = $value;
 						break;
 				}
-				if($type == "time")
+				if($type === "time")
 				{
 					$answers[$answerID]['AnswerTime'] = trim($value);
 				}
@@ -290,7 +290,7 @@ else
 		}
 
 		// Spara alla frågor till eventcustomeranswerv2
-		if(count($answers) > 0)
+		if(!empty($answers))
 		{
 			$sanswers = array();
 			foreach($answers as $answer)

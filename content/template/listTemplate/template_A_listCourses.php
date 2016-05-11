@@ -28,7 +28,7 @@ if(isset($_REQUEST['eduadmin-subject']))
 	$filtering->AddItem($f);
 }
 
-if(count($filterCourses) > 0)
+if(!empty($filterCourses))
 {
 	$f = new XFilter('ObjectID', 'IN', join(',', $filterCourses));
 	$filtering->AddItem($f);
@@ -138,7 +138,7 @@ $filtering->AddItem($f);
 $f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
 $filtering->AddItem($f);
 
-if(count($objIds) > 0)
+if(!empty($objIds))
 {
 	$f = new XFilter('ObjectID', 'IN', join(',', $objIds));
 	$filtering->AddItem($f);
@@ -204,7 +204,7 @@ $ft->AddItem($f);
 $pricenames = $api->GetObjectPriceName($token,'',$ft->ToString());
 set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
-if(count($pricenames) > 0)
+if(!empty($pricenames))
 {
 	$ede = array_filter($ede, function($object) {
 		$pn = get_transient('eduadmin-publicpricenames');
@@ -254,7 +254,7 @@ if(stripos($descrField, "attr_") !== FALSE)
 	$ft->AddItem($f);
 	$objectAttributes = $api->GetObjectAttribute($token, '', $ft->ToString());
 }
-if(count($edo) > 0)
+if(!empty($edo))
 {
 	foreach($edo as $object)
 	{
@@ -299,7 +299,7 @@ if(count($edo) > 0)
 			</div>
 			<div class="objectDescription"><?php
 
-				if(stripos($descrField, "attr_") !== FALSE && count($objectAttributes) > 0)
+				if(stripos($descrField, "attr_") !== FALSE && !empty($objectAttributes))
 				{
 					$objectDescription = array_filter($objectAttributes, function($oa) use(&$object) {
 						return $oa->ObjectID == $object->ObjectID;
@@ -324,18 +324,18 @@ if(count($edo) > 0)
 				if($showDescr)
 					echo "<div class=\"courseDescription\">" . $descr . "</div>";
 
-				if($showCourseLocations && count($eventCities) > 0)
+				if($showCourseLocations && !empty($eventCities))
 				{
 					$cities = join(", ", array_keys($eventCities));
 					echo "<div class=\"locationInfo\">" . $cities . "</div> ";
 				}
 
-				if($showNextEventDate && count($sortedEvents) > 0)
+				if($showNextEventDate && !empty($sortedEvents))
 				{
 					echo "<div class=\"nextEventDate\">" . sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City . "</div> ";
 				}
 
-				if($showEventPrice && count($prices) > 0)
+				if($showEventPrice && !empty($prices))
 				{
 					ksort($prices);
 					$cheapest = current($prices);

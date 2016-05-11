@@ -5,27 +5,7 @@ $customer = $user->Customer;
 
 if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 	global $api;
-	$key = DecryptApiKey($apiKey);
-	if(!$key)
-	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		return;
-	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-	else
-	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-	}
+	global $token;
 
 	$customer->CustomerName = trim($_POST['customerName']);
 	$customer->Address1 = trim($_POST['customerAddress']);

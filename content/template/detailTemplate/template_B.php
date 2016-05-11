@@ -1,6 +1,8 @@
 <?php
+ob_start();
 global $wp_query;
 global $api;
+global $token;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -9,30 +11,6 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	//$api = new EduAdminClient();
-	$key = DecryptApiKey($apiKey);
-	if(!$key)
-	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		return;
-	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-	else
-	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-	}
-
-
 	$filtering = new XFiltering();
 	$f = new XFilter('ShowOnWeb','=','true');
 	$filtering->AddItem($f);
@@ -195,7 +173,7 @@ else
 			$uniquePrices[$price->Description] = $price;
 		}
 
-		if(count($prices) > 0) {
+		if(!empty($prices)) {
 		?>
 		<h3><?php edu_e("Price"); ?></h3>
 		<?php
@@ -269,7 +247,7 @@ else
 		$i++;
 	}
 
-	if(count($events) == 0)
+	if(empty($events))
 	{
 	?>
 	<div class="noDatesAvailable">
@@ -292,4 +270,7 @@ $newTitle = $name . " | " . $originalTitle;
 })();
 </script>
 <!-- /mfunc -->
-<?php } ?>
+<?php }
+$out = ob_get_clean();
+return $out;
+?>

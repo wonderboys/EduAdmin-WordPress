@@ -1,37 +1,15 @@
 <?php
 global $api;
+global $token;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
 {
 	echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
+	return;
 }
 else
 {
-	//$api = new EduAdminClient();
-	$key = DecryptApiKey($apiKey);
-	if(!$key)
-	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		return;
-	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-	else
-	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-	}
-	$api->debug = false;
-}
 ?>
 <div class="eduadmin wrap">
 	<h2><?php echo sprintf(__("EduAdmin settings - %s", "eduadmin"), __("List settings", "eduadmin")); ?></h2>
@@ -184,3 +162,4 @@ else
 		</p>
 	</form>
 </div>
+<?php } ?>

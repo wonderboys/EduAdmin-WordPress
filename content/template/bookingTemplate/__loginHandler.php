@@ -1,7 +1,7 @@
 <?php
 if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginAction']))
 {
-	if($_REQUEST['bookingLoginAction'] == "checkEmail" && !empty($_REQUEST['eduadminloginEmail']))
+	if($_REQUEST['bookingLoginAction'] === "checkEmail" && !empty($_REQUEST['eduadminloginEmail']))
 	{
 		$ft = new XFiltering();
 		$f = new XFilter('Email', '=', trim($_REQUEST['eduadminloginEmail']));
@@ -9,7 +9,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 
 		$matchingContacts = $api->GetCustomerContact($token, '', $ft->ToString(), true);
 		$_SESSION['checkEmail'] = true;
-		if(count($matchingContacts) > 0)
+		if(!empty($matchingContacts))
 		{
 			foreach($matchingContacts as $con)
 			{
@@ -48,7 +48,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 			}
 		}
 
-		if(count($matchingContacts) == 0)
+		if(empty($matchingContacts))
 		{
 			$contact = new stdClass;
 			$contact->Email = $_REQUEST['eduadminloginEmail'];

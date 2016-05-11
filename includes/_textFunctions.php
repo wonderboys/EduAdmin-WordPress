@@ -9,10 +9,10 @@ function edu_getQueryString($prepend = "?")
 function getSpotsLeft($freeSpots, $maxSpots)
 {
 	$spotOption = get_option('eduadmin-spotsLeft', 'exactNumbers');
-	if($maxSpots == 0)
+	if($maxSpots === 0)
 		return edu__('Spots left');
 
-	if($freeSpots == 0)
+	if($freeSpots === 0)
 		return edu__('No spots left');
 
 	switch($spotOption)
@@ -26,11 +26,11 @@ function getSpotsLeft($freeSpots, $maxSpots)
 			if(empty($interval)) {
 				return sprintf(edu_n('%1$s spot left', '%1$s spots left', $freeSpots), $freeSpots);
 			} else {
-				$lines = split("\n", $interval);
+				$lines = explode("\n", $interval);
 				foreach($lines as $line)
 				{
 					if(stripos($line, '-') > -1) {
-						$range = split("-", $line);
+						$range = explode("-", $line);
 						$min = $range[0];
 						$max = $range[1];
 						if($freeSpots <= $max && $freeSpots >= $min) {
@@ -55,7 +55,7 @@ function getSpotsLeft($freeSpots, $maxSpots)
 function getUTF8($input)
 {
    	$order = array('utf-8', 'iso-8859-1', 'iso-8859-15', 'windows-1251');
-	if(mb_detect_encoding($input, $order, TRUE) == "UTF-8")
+	if(mb_detect_encoding($input, $order, TRUE) === "UTF-8")
 		return $input;
    	return mb_convert_encoding($input, 'utf-8', $order);
 }
@@ -68,7 +68,7 @@ function dateVersion($date)
 function convertToMoney($value, $currency = "SEK", $decimal = ',', $thousand = ' ')
 {
 	$d = $value;
-	if($d == "")
+	if(empty($d))
 		$d = 0;
 	$d = sprintf('%1$s %2$s', number_format($d, 0, $decimal, $thousand), $currency);
 	return $d;
@@ -122,9 +122,9 @@ function GetStartEndDisplayDate($startDate, $endDate, $short = false)
 	$str .= date('d', strtotime($startDate));
 	if(date('Y-m-d', strtotime($startDate)) != date('Y-m-d', strtotime($endDate)))
 	{
-		if($startYear == $endYear)
+		if($startYear === $endYear)
 		{
-			if($startMonth == $endMonth)
+			if($startMonth === $endMonth)
 			{
 				$str .= ' - ' . date('d', strtotime($endDate));
 				$str .= ' ';
@@ -169,7 +169,7 @@ function DateComparer($a, $b)
 {
 	$aDate = date("Y-m-d H:i:s", strtotime($a->PeriodStart));
 	$bDate = date("Y-m-d H:i:s", strtotime($b->PeriodStart));
-	if($aDate == $bDate) {
+	if($aDate === $bDate) {
 		return 0;
 	}
 
@@ -179,8 +179,7 @@ function DateComparer($a, $b)
 function KeySort($key)
 {
 	return function ($a, $b) use ($key) {
-		#echo $a->{$key} . " != " . $b->{$key} . " = " . ($a->{$key} == $b->{$key} ? "true" : "false");
-		return strcasecmp($a->{$key},$b->{$key});
+		return strcmp($a->{$key},$b->{$key});
 	};
 }
 
@@ -236,13 +235,13 @@ function makeSlugs($string, $maxlen=0)
 		{
 			$newStringTab[] = $letter;
  		}
-		elseif($letter == " ")
+		elseif($letter === " ")
 		{
 			$newStringTab[] = "-";
 		}
 	}
 
-	if(count($newStringTab))
+	if(!empty($newStringTab))
 	{
 		$newString = implode($newStringTab);
 		if($maxlen > 0)
