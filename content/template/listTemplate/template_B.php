@@ -168,19 +168,9 @@ else
 	<?php } ?>
 	<div class="courseContainer">
 <?php
-	$eds = get_transient('eduadmin-courseSubject');
-	if(!$eds)
-	{
-		$eds = $api->GetEducationSubject($token, '', '');
-		set_transient('eduadmin-courseSubject', $eds, DAY_IN_SECONDS);
-	}
+	$eds = $subjects;
 
-	$edl = get_transient('eduadmin-courseLevel');
-	if(!$edl)
-	{
-		$edl = $api->GetEducationLevel($token, '', '');
-		set_transient('eduadmin-courseLevel', $edl, DAY_IN_SECONDS);
-	}
+	$edl = $levels;
 
 	$filterCourses = array();
 
