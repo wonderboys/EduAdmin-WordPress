@@ -90,7 +90,7 @@ else
 										<option value="CourseAfter"<?php if($selectedDescriptionField === "CourseAfter") { echo " selected=\"selected\""; } ?>><?php _e("After the course", "eduadmin"); ?></option>
 										<option value="CourseQuote"<?php if($selectedDescriptionField === "CourseQuote") { echo " selected=\"selected\""; } ?>><?php _e("Quote", "eduadmin"); ?></option>
 										</optgroup>
-										<?php if(count($attributes) > 0) { ?>
+										<?php if(!empty($attributes)) { ?>
 										<optgroup label="<?php _e("Course attributes", "eduadmin"); ?>">
 										<?php foreach($attributes as $attr) { ?>
 											<option value="attr_<?php echo $attr->AttributeID; ?>"<?php echo ($selectedDescriptionField === "attr_" . $attr->AttributeID ? " selected=\"selected\"":""); ?>><?php echo $attr->AttributeDescription; ?></option>
