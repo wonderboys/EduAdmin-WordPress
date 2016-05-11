@@ -1,20 +1,17 @@
 <?php
   const ServiceUrl = 'https://api.legaonline.se/api.asmx?WSDL'; // WSDL
+  static $timers = array();
 
   class EduAdminClient
   {
     protected $__server;
     public $debug = false;
-    public $timers = array();
+
 	public $debugTimers = true;
 
       public function __construct()
       {
-      	if($this->timers == null)
-		{
-      		$this->timers = array();
-		}
-      $this->timers['InitSoapClient'] = microtime(true);
+      $timers['InitSoapClient'] = microtime(true);
       $this->__server = new SoapClient(
         ServiceUrl,
         array(
@@ -22,10 +19,10 @@
           'cache_wsdl' => WSDL_CACHE_BOTH
         )
       );
-      $this->timers['InitSoapClient'] = microtime(true) - $this->timers['InitSoapClient'];
+      $timers['InitSoapClient'] = microtime(true) - $timers['InitSoapClient'];
 	  if($this->debugTimers)
 	  {
-	  	echo "<!-- InitSoapClient: " . round($this->timers['InitSoapClient'] * 1000) . "ms -->\n";
+	  	echo "<!-- InitSoapClient: " . round($timers['InitSoapClient'] * 1000) . "ms -->\n";
 	  }
       }
 
@@ -2111,15 +2108,15 @@
 
     private function __getArray($objName, $res)
     {
-      $this->timers[$objName . '__getArray'] = microtime(true);
+      $timers[$objName . '__getArray'] = microtime(true);
       if(!empty($res->{$objName}))
       {
         if(is_array($res->{$objName}))
         {
-          $this->timers[$objName . '__getArray'] = microtime(true) - $this->timers[$objName . '__getArray'];
+          $timers[$objName . '__getArray'] = microtime(true) - $timers[$objName . '__getArray'];
 		  if($this->debugTimers)
 		  {
-		  	echo "<!-- " . $objName . '__getArray' . ": " . ($this->timers[$objName . '__getArray'] * 1000) . "ms -->\n";
+		  	echo "<!-- " . $objName . '__getArray' . ": " . ($timers[$objName . '__getArray'] * 1000) . "ms -->\n";
 		  }
           return $res;
         }
@@ -2128,10 +2125,10 @@
           $nRes = new stdClass;
           $nRes->{$objName} = array();
           $nRes->{$objName}[] = $res->{$objName};
-          $this->timers[$objName . '__getArray'] = microtime(true) - $this->timers[$objName . '__getArray'];
+          $timers[$objName . '__getArray'] = microtime(true) - $timers[$objName . '__getArray'];
 		  if($this->debugTimers)
 		  {
-		  	echo "<!-- " . $objName . '__getArray' . ": " . ($this->timers[$objName . '__getArray'] * 1000) . "ms -->\n";
+		  	echo "<!-- " . $objName . '__getArray' . ": " . ($timers[$objName . '__getArray'] * 1000) . "ms -->\n";
 		  }
           return $nRes;
         }
@@ -2140,10 +2137,10 @@
       {
         $nRes = new stdClass;
         $nRes->{$objName} = array();
-        $this->timers[$objName . '__getArray'] = microtime(true) - $this->timers[$objName . '__getArray'];
+        $timers[$objName . '__getArray'] = microtime(true) - $timers[$objName . '__getArray'];
 		if($this->debugTimers)
 		  {
-		  	echo "<!-- " . $objName . '__getArray' . ": " . ($this->timers[$objName . '__getArray'] * 1000) . "ms -->\n";
+		  	echo "<!-- " . $objName . '__getArray' . ": " . ($timers[$objName . '__getArray'] * 1000) . "ms -->\n";
 		  }
         return $nRes;
       }
@@ -2151,7 +2148,7 @@
 
     private function __callServer($params, $methodName)
     {
-      $this->timers[$methodName . '__callServer'] = microtime(true);
+      $timers[$methodName . '__callServer'] = microtime(true);
       $result = null;
       try {
         //$d = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
@@ -2169,10 +2166,10 @@
       }
       if($this->debug)
         $this->__debug();
-      $this->timers[$methodName . '__callServer'] = microtime(true) - $this->timers[$methodName . '__callServer'];
+      $timers[$methodName . '__callServer'] = microtime(true) - $timers[$methodName . '__callServer'];
 	  if($this->debugTimers)
 	  {
-	  	echo "<!-- " . $methodName . '__callServer' . ": " . round($this->timers[$methodName . '__callServer'] * 1000) . "ms -->\n";
+	  	echo "<!-- " . $methodName . '__callServer' . ": " . round($timers[$methodName . '__callServer'] * 1000) . "ms -->\n";
 	  }
       return $result->{$methodName/*$d*/ . 'Result'};
     }
