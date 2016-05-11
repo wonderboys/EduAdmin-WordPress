@@ -11,7 +11,6 @@ else
 {
 	$api = new EduAdminClient();
 	$key = DecryptApiKey($apiKey);
-
 	if(!$key)
 	{
 		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';

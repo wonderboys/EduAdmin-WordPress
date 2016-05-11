@@ -39,9 +39,7 @@ $sortOrder = get_option('eduadmin-listSortOrder', 'SortIndex');
 $sort = new XSorting();
 $s = new XSort($sortOrder, 'ASC');
 $sort->AddItem($s);
-
 $edo = $api->GetEducationObject($token, $sort->ToString(), $filtering->ToString());
-
 if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 {
 	$edo = array_filter($edo, function($object) {
