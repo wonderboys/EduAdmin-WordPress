@@ -25,7 +25,7 @@ ob_start();
 		$filtering->AddItem($f);
 	}
 
-	$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+	$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 	#if(count($filterCourses) == 0)
 	{
 		#set_transient('eduadmin-listCourses', $edo, 6 * HOUR_IN_SECONDS);
@@ -53,7 +53,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 		$sorting = new XSorting();
 		$s = new XSort('SubjectName', 'ASC');
 		$sorting->AddItem($s);
-		$subjects = $api->GetEducationSubject($token, $sorting->ToString(), '');
+		$subjects = $eduapi->GetEducationSubject($edutoken, $sorting->ToString(), '');
 		set_transient('eduadmin-subjects', $subjects, DAY_IN_SECONDS);
 	}
 
@@ -121,7 +121,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$s = new XSort('PeriodStart', 'ASC');
 	$sorting->AddItem($s);
 
-	$ede = $api->GetEvent($token, $sorting->ToString(), $filtering->ToString());
+	$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 	#if(count($filterCourses) == 0)
 	{
 		#set_transient('eduadmin-listEvents', $ede, HOUR_IN_SECONDS);
@@ -136,7 +136,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 		$sorting = new XSorting();
 		$s = new XSort('SubjectName', 'ASC');
 		$sorting->AddItem($s);
-		$subjects = $api->GetEducationSubject($token, $sorting->ToString(), '');
+		$subjects = $eduapi->GetEducationSubject($edutoken, $sorting->ToString(), '');
 		set_transient('eduadmin-subjects', $subjects, DAY_IN_SECONDS);
 	}
 
@@ -180,7 +180,7 @@ $f = new XFilter('PublicPriceName', '=', 'true');
 $ft->AddItem($f);
 $f = new XFilter('OccationID', 'IN', join(",", $occIds));
 $ft->AddItem($f);
-$pricenames = $api->GetPriceName($token,'',$ft->ToString());
+$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
 set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 if(!empty($pricenames))

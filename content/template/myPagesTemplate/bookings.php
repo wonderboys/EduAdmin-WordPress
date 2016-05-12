@@ -3,8 +3,8 @@ $user = $_SESSION['eduadmin-loginUser'];
 $contact = $user->Contact;
 $customer = $user->Customer;
 
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 ?>
 <div class="eduadmin">
 <?php
@@ -20,7 +20,7 @@ include_once("login_tab_header.php");
 	$sorting = new XSorting();
 	$s = new XSort('Created', 'DESC');
 	$sorting->AddItem($s);
-	$bookings = $api->GetEventBooking($token, $sorting->ToString(), $filtering->ToString());
+	$bookings = $eduapi->GetEventBooking($edutoken, $sorting->ToString(), $filtering->ToString());
 
 	?>
 	<table class="myReservationsTable">

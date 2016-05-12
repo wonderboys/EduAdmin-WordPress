@@ -1,8 +1,8 @@
 <?php
 ob_start();
 global $wp_query;
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -22,7 +22,7 @@ else
 		$sorting = new XSorting();
 		$s = new XSort('SubjectName', 'ASC');
 		$sorting->AddItem($s);
-		$subjects = $api->GetEducationSubject($token, $sorting->ToString(), '');
+		$subjects = $eduapi->GetEducationSubject($edutoken, $sorting->ToString(), '');
 		set_transient('eduadmin-subjects', $subjects, DAY_IN_SECONDS);
 	}
 
@@ -41,7 +41,7 @@ else
 		$ft = new XFiltering();
 		$f = new XFilter('PublicLocation', '=', 'true');
 		$ft->AddItem($f);
-		$addresses = $api->GetLocation($token, '', $ft->ToString());
+		$addresses = $eduapi->GetLocation($edutoken, '', $ft->ToString());
 		set_transient('eduadmin-locations', $addresses, DAY_IN_SECONDS);
 	}
 
@@ -53,21 +53,21 @@ else
 		$ft = new XFiltering();
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
-		$categories = $api->GetCategory($token, '', $ft->ToString());
+		$categories = $eduapi->GetCategory($edutoken, '', $ft->ToString());
 		set_transient('eduadmin-categories', $categories, DAY_IN_SECONDS);
 	}
 
 	$levels = get_transient('eduadmin-levels');
 	if(!$levels)
 	{
-		$levels = $api->GetEducationLevel($token, '', '');
+		$levels = $eduapi->GetEducationLevel($edutoken, '', '');
 		set_transient('eduadmin-levels', $levels, DAY_IN_SECONDS);
 	}
 
 	$courseLevels = get_transient('eduadmin-courseLevels');
 	if(!$courseLevels)
 	{
-		$courseLevels = $api->GetEducationLevelObject($token, '', '');
+		$courseLevels = $eduapi->GetEducationLevelObject($edutoken, '', '');
 		set_transient('eduadmin-courseLevels', $courseLevels, DAY_IN_SECONDS);
 	}
 ?>

@@ -1,8 +1,8 @@
 <?php
 ob_start();
 global $wp_query;
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -18,7 +18,7 @@ else
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 		set_transient('eduadmin-listCourses', $edo, 6 * HOUR_IN_SECONDS);
 	}
 
@@ -61,8 +61,8 @@ else
 	$s = new XSort('PeriodStart', 'ASC');
 	$st->AddItem($s);
 
-	$events = $api->GetEvent(
-		$token,
+	$events = $eduapi->GetEvent(
+		$edutoken,
 		$st->ToString(),
 		$ft->ToString()
 	);
@@ -113,7 +113,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 							$ft = new XFiltering();
 							$f = new XFilter('LocationAddressID', '=', $ev->LocationAddressID);
 							$ft->AddItem($f);
-							$addresses = $api->GetLocationAddress($token, '', $ft->ToString());
+							$addresses = $eduapi->GetLocationAddress($edutoken, '', $ft->ToString());
 							set_transient('eduadmin-location-' . $ev->LocationAddressID, $addresses, DAY_IN_SECONDS);
 						}
 
@@ -140,7 +140,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 					$ft = new XFiltering();
 					$f = new XFilter('LocationAddressID', '=', $event->LocationAddressID);
 					$ft->AddItem($f);
-					$addresses = $api->GetLocationAddress($token, '', $ft->ToString());
+					$addresses = $eduapi->GetLocationAddress($edutoken, '', $ft->ToString());
 					set_transient('eduadmin-location-' . $event->LocationAddressID, $addresses, HOUR_IN_SECONDS);
 				}
 
@@ -211,7 +211,7 @@ $ft->AddItem($f);
 $f = new XFilter('OccationID', 'IN', join(',', $occIds));
 $ft->AddItem($f);
 
-$prices = $api->GetPriceName($token, '', $ft->ToString());
+$prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
 $uniquePrices = Array();
 foreach($prices as $price)
 {

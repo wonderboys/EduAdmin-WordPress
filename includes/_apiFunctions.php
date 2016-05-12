@@ -14,12 +14,12 @@ function DecryptApiKey($key) {
 }
 
 function edu_getTimers() {
-	global $api;
-	if($api->debugTimers)
+	global $eduapi;
+	if($eduapi->debugTimers)
 	{
 		echo "<!-- EduAdmin Booking - Timers -->\n";
 		$totalValue = 0;
-		foreach($api->timers as $timer => $value)
+		foreach($eduapi->timers as $timer => $value)
 		{
 			echo "<!-- " . $timer . ": " . round($value * 1000, 2) . "ms -->\n";
 			$totalValue += $value;

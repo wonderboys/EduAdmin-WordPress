@@ -4,8 +4,8 @@ $contact = $user->Contact;
 $customer = $user->Customer;
 
 if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
-	global $api;
-	global $token;
+	global $eduapi;
+	global $edutoken;
 
 	$customer->CustomerName = trim($_POST['customerName']);
 	$customer->Address1 = trim($_POST['customerAddress']);
@@ -26,8 +26,8 @@ if(isset($_POST['eduaction']) && $_POST['eduaction'] == "saveInfo") {
 	$contact->Mobile = trim($_POST['contactMobile']);
 	$contact->Email = trim($_POST['contactEmail']);
 
-	$api->SetCustomer($token, array($customer));
-	$api->SetCustomerContact($token, array($contact));
+	$eduapi->SetCustomer($edutoken, array($customer));
+	$eduapi->SetCustomerContact($edutoken, array($contact));
 }
 ?>
 

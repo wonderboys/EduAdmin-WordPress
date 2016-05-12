@@ -70,7 +70,7 @@ function eduadmin_get_booking_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-bookingview'
 	);
-	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser'])))
+	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0))
 	{
 		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
 	}
@@ -88,8 +88,8 @@ function eduadmin_get_detailinfo($attributes)
 		define('DONOTCACHEPAGE',true);
 	}
 	global $wp_query;
-	global $api;
-	global $token;
+	global $eduapi;
+	global $edutoken;
 	$attributes = shortcode_atts(
 		array(
 			'courseid' => null,
@@ -157,7 +157,7 @@ function eduadmin_get_detailinfo($attributes)
 		$edo = get_transient('eduadmin-object_' . $courseId);
 		if(!$edo)
 		{
-			$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+			$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 			set_transient('eduadmin-object_' . $courseId, $edo, 10);
 		}
 
@@ -237,7 +237,7 @@ function eduadmin_get_detailinfo($attributes)
 			 	$ft = new XFiltering();
 				$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 				$ft->AddItem($f);
-			 	$courseSubject = $api->GetEducationSubject($token, '', $ft->ToString());
+			 	$courseSubject = $eduapi->GetEducationSubject($edutoken, '', $ft->ToString());
 				$retStr .= print_r($courseSubject, true);
 			 }
 			 if(isset($attributes['courselevel']))
@@ -246,7 +246,7 @@ function eduadmin_get_detailinfo($attributes)
 				$ft = new XFiltering();
 				$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 				$ft->AddItem($f);
-				$courseLevel = $api->GetEducationLevelObject($token, '', $ft->ToString());
+				$courseLevel = $eduapi->GetEducationLevelObject($edutoken, '', $ft->ToString());
 
 				if(!empty($courseLevel))
 				{
@@ -261,7 +261,7 @@ function eduadmin_get_detailinfo($attributes)
 				$ft->AddItem($f);
 				$f = new XFilter('AttributeID', '=', $attrid);
 				$ft->AddItem($f);
-				$objAttr = $api->GetObjectAttribute($token, '', $ft->ToString());
+				$objAttr = $eduapi->GetObjectAttribute($edutoken, '', $ft->ToString());
 				if(!empty($objAttr))
 				{
 					$attr = $objAttr[0];
@@ -286,7 +286,7 @@ function eduadmin_get_detailinfo($attributes)
 				$ft->AddItem($f);
 				$f = new XFilter('ObjectID', 'IN', $selectedCourse->ObjectID);
 				$ft->AddItem($f);
-				$prices = $api->GetObjectPriceName($token, '', $ft->ToString());
+				$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
 				$uniquePrices = Array();
 				foreach($prices as $price)
 				{
@@ -352,8 +352,8 @@ function eduadmin_get_detailinfo($attributes)
 				$s = new XSort('PeriodStart', 'ASC');
 				$st->AddItem($s);
 
-				$events = $api->GetEvent(
-					$token,
+				$events = $eduapi->GetEvent(
+					$edutoken,
 					$st->ToString(),
 					$ft->ToString()
 				);
@@ -370,7 +370,7 @@ function eduadmin_get_detailinfo($attributes)
 				$ft->AddItem($f);
 				$f = new XFilter('OccationID', 'IN', join(",", $occIds));
 				$ft->AddItem($f);
-				$pricenames = $api->GetPriceName($token,'',$ft->ToString());
+				$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
 				set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 				if(!empty($pricenames))

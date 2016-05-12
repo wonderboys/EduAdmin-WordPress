@@ -4,7 +4,7 @@
 		$f = new XFilter("ShowOnWeb", "=", 'true');
 		$ft->AddItem($f);
 
-		$categories = $api->GetCategory($token, '', $ft->ToString());
+		$categories = $eduapi->GetCategory($edutoken, '', $ft->ToString());
 		$flatList = Array();
 
 		foreach($categories as $i => $v)
@@ -20,7 +20,7 @@
 		{
 			$lineage[] = $cat->CategoryID;
 
-			if($cat->ParentID === 0)
+			if($cat->ParentID == 0)
 				break;
 
 			$cat = $flatList[$cat->ParentID];
@@ -34,7 +34,7 @@
 		$st = new XSorting();
 		$s = new XSort('SortIndex', 'ASC');
 		$st->AddItem($s);
-		$objCatQuestion = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
+		$objCatQuestion = $eduapi->GetObjectCategoryQuestion($edutoken, $st->ToString(), $ft->ToString());
 
 		$ft = new XFiltering();
 		$f = new XFilter("ShowExternal", "=", 'true');
@@ -42,7 +42,7 @@
 		$st = new XSorting();
 		$s = new XSort('SortIndex', 'ASC');
 		$st->AddItem($s);
-		$objCatQuestion2 = $api->GetObjectCategoryQuestion($token, $st->ToString(), $ft->ToString());
+		$objCatQuestion2 = $eduapi->GetObjectCategoryQuestion($edutoken, $st->ToString(), $ft->ToString());
 
 		$groupedQuestions = array();
 

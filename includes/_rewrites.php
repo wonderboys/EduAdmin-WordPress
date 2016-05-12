@@ -20,7 +20,7 @@ function eduadmin_rewrite_init()
 	$courseFolder = get_option('eduadmin-rewriteBaseUrl');
 	if($courseFolder != false && !empty(trim($courseFolder)))
 	{
-		if($loginView != false)
+		//if($loginView != false)
 		{
 			add_rewrite_rule($courseFolder . '/profile/login/?', 'index.php?page_id=' . $loginView . '&edu-login=1', 'top');
 			add_rewrite_rule($courseFolder . '/profile/myprofile/?', 'index.php?page_id=' . $loginView . '&edu-profile=1', 'top');

@@ -1,8 +1,8 @@
 <?php
 ob_start();
 global $wp_query;
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -15,7 +15,7 @@ else
 	$f = new XFilter('ShowOnWeb','=','true');
 	$filtering->AddItem($f);
 
-	$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+	$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 
 
 	$selectedCourse = false;
@@ -63,8 +63,8 @@ else
 	$st->AddItem($s);
 
 
-	$events = $api->GetEvent(
-		$token,
+	$events = $eduapi->GetEvent(
+		$edutoken,
 		$st->ToString(),
 		$ft->ToString()
 	);
@@ -166,7 +166,7 @@ else
 		$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 		$ft->AddItem($f);
 
-		$prices = $api->GetObjectPriceName($token, '', $ft->ToString());
+		$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
 		$uniquePrices = Array();
 		foreach($prices as $price)
 		{

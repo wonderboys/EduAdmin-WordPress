@@ -4,7 +4,7 @@ global $wp_query;
 $q = $wp_query->query;
 $apiKey = get_option('eduadmin-api-key');
 
-if(isset($_SESSION['eduadmin-loginUser']))
+if(isset($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 {
 	if(isset($q['edu-login']) || isset($q['edu-profile']))
 	{

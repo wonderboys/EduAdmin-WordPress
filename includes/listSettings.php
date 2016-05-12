@@ -1,6 +1,6 @@
 <?php
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -78,7 +78,7 @@ else
 									$filter->AddItem($f);
 									$f = new XFilter('AttributeOwnerTypeID', '=', '1');
 									$filter->AddItem($f);
-									$attributes = $api->GetAttribute($token, '', $filter->ToString());
+									$attributes = $eduapi->GetAttribute($edutoken, '', $filter->ToString());
 									?>
 									<select name="eduadmin-layout-descriptionfield">
 										<optgroup label="<?php _e("Course fields", "eduadmin"); ?>">

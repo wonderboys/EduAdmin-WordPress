@@ -1,8 +1,8 @@
 <?php
 ob_start();
 global $wp_query;
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -18,7 +18,7 @@ else
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 		set_transient('eduadmin-listCourses', $edo, 6 * HOUR_IN_SECONDS);
 	}
 
@@ -67,7 +67,7 @@ else
 	$st->AddItem($s);
 
 
-	$events = $api->GetEvent(
+	$events = $eduapi->GetEvent(
 		$token,
 		$st->ToString(),
 		$ft->ToString()
@@ -76,7 +76,7 @@ else
 	$ft = new XFiltering();
 	$f = new XFilter('PublicPriceName', '=', 'true');
 	$ft->AddItem($f);
-	$pricenames = $api->GetPriceName($token,'',$ft->ToString());
+	$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
 	set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 	if(!empty($pricenames))
@@ -100,7 +100,7 @@ else
 		$ft = new XFiltering();
 		$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 		$ft->AddItem($f);
-		$courseLevel = $api->GetEducationLevelObject($token, '', $ft->ToString());
+		$courseLevel = $eduapi->GetEducationLevelObject($edutoken, '', $ft->ToString());
 		set_transient('eduadmin-courseLevel-' . $selectedCourse->ObjectID, $courseLevel, HOUR_IN_SECONDS);
 	}
 
@@ -200,7 +200,7 @@ else
 		$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 		$ft->AddItem($f);
 
-		$prices = $api->GetObjectPriceName($token, '', $ft->ToString());
+		$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
 		$uniquePrices = Array();
 		foreach($prices as $price)
 		{

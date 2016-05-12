@@ -5,8 +5,8 @@
 		<?php do_settings_sections('eduadmin-booking'); ?>
 		<div class="block">
 <?php
-global $api;
-global $token;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -26,7 +26,7 @@ else
 			$s = new XSort('ParentCustomerGroupID', 'ASC');
 			$st->AddItem($s);
 
-			$cg = $api->GetCustomerGroup($token, $st->ToString(), $ft->ToString());
+			$cg = $eduapi->GetCustomerGroup($edutoken, $st->ToString(), $ft->ToString());
 
 			foreach($cg as $i => $v)
 			{
@@ -86,6 +86,7 @@ else
 			<h3><?php _e("Customer matching", "eduadmin"); ?></h3>
 			<select name="eduadmin-customerMatching">
 				<option<?php echo ($selectedMatch === "no-match" ? " selected=\"selected\"" : ""); ?> value="no-match"><?php _e("No matching (Creates new customers every time)", "eduadmin"); ?></option>
+				<option<?php echo ($selectedMatch === "no-match-new-overwrite" ? " selected=\"selected\"" : ""); ?> value="no-match-new-overwrite"><?php _e("No matching for new customers, matches and overwrites old", "eduadmin"); ?></option>
 				<option<?php echo ($selectedMatch === "name-zip-match" ? " selected=\"selected\"" : ""); ?> value="name-zip-match"><?php _e("Match on customer name and zip code (and use previous info)", "eduadmin"); ?></option>
 				<option<?php echo ($selectedMatch === "name-zip-match-overwrite" ? " selected=\"selected\"" : ""); ?> value="name-zip-match-overwrite"><?php _e("Match on customer name and zip code (and overwrite with provided info)", "eduadmin"); ?></option>
 			</select>

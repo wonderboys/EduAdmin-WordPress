@@ -6,10 +6,14 @@
     protected $__server;
     public $debug = false;
     public $timers = array();
-	public $debugTimers = true;
+	public $debugTimers = false;
 
       public function __construct()
       {
+      	if(isset($_REQUEST['showEduTimers']))
+		{
+			$this->debugTimers = true;
+		}
       	if($this->timers == null)
 		{
       		$this->timers = array();

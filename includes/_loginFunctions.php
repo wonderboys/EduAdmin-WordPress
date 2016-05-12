@@ -2,8 +2,8 @@
 
 function loginContactPerson($email, $password)
 {
-	global $api;
-	global $token;
+	global $eduapi;
+	global $edutoken;
 	$filter = new XFiltering();
 	$f = new XFilter('Email', '=', $email);
 	$filter->AddItem($f);
@@ -11,14 +11,14 @@ function loginContactPerson($email, $password)
 	$filter->AddItem($f);
 	$f = new XFilter('CanLogin', '=', true);
 	$filter->AddItem($f);
-	$cc = $api->GetCustomerContact($token, '', $filter->ToString(), true);
+	$cc = $eduapi->GetCustomerContact($edutoken, '', $filter->ToString(), true);
 	if(count($cc) == 1)
 	{
 		$contact = $cc[0];
 		$filter = new XFiltering();
 		$f = new XFilter('CustomerID', '=', $contact->CustomerID);
 		$filter->AddItem($f);
-		$customers = $api->GetCustomer($token, '', $filter->ToString(), true);
+		$customers = $eduapi->GetCustomer($edutoken, '', $filter->ToString(), true);
 		if(count($customers) == 1)
 		{
 			$customer = $customers[0];
@@ -41,8 +41,8 @@ function loginContactPerson($email, $password)
 }
 
 function sendForgottenPassword($email) {
-	global $api;
-	global $token;
+	global $eduapi;
+	global $edutoken;
 	$ccId = 0;
 
 	$filter = new XFiltering();
@@ -50,12 +50,12 @@ function sendForgottenPassword($email) {
 	$filter->AddItem($f);
 	$f = new XFilter('CanLogin', '=', true);
 	$filter->AddItem($f);
-	$cc = $api->GetCustomerContact($token, '', $filter->ToString(), false);
+	$cc = $eduapi->GetCustomerContact($edutoken, '', $filter->ToString(), false);
 	if(count($cc) == 1)
 		$ccId = current($cc)->CustomerContactID;
 
 	if($ccId > 0) {
-		$sent = $api->SendCustomerContactPassword($token, $ccId, get_bloginfo( 'name' ));
+		$sent = $eduapi->SendCustomerContactPassword($edutoken, $ccId, get_bloginfo( 'name' ));
 		return $sent;
 	}
 
@@ -83,30 +83,30 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	$api = new EduAdminClient();
+	$eduapi = new EduAdminClient();
 	$key = DecryptApiKey($apiKey);
 	if(!$key)
 	{
 		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
 		return;
 	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
+	$edutoken = get_transient('eduadmin-token');
+	if(!$edutoken)
 	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+		$edutoken = $eduapi->GetAuthToken($key->UserId, $key->Hash);
+		set_transient('eduadmin-token', $edutoken, HOUR_IN_SECONDS);
 	}
 	else
 	{
-		if(get_transient('eduadmin-validatedToken_' . $token) === false)
+		if(get_transient('eduadmin-validatedToken_' . $edutoken) === false)
 		{
-			$valid = $api->ValidateAuthToken($token);
+			$valid = $eduapi->ValidateAuthToken($edutoken);
 			if(!$valid)
 			{
-				$token = $api->GetAuthToken($key->UserId, $key->Hash);
-				set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
+				$edutoken = $eduapi->GetAuthToken($key->UserId, $key->Hash);
+				set_transient('eduadmin-token', $edutoken, HOUR_IN_SECONDS);
 			}
-			set_transient('eduadmin-validatedToken_' . $token, true, 10 * MINUTE_IN_SECONDS);
+			set_transient('eduadmin-validatedToken_' . $edutoken, true, 10 * MINUTE_IN_SECONDS);
 		}
 	}
 

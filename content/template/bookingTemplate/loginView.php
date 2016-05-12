@@ -1,7 +1,8 @@
 <?php
 ob_start();
 global $wp_query;
-global $api;
+global $eduapi;
+global $edutoken;
 $apiKey = get_option('eduadmin-api-key');
 
 if(!$apiKey || empty($apiKey))
@@ -10,29 +11,6 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	//$api = new EduAdminClient();
-	$key = DecryptApiKey($apiKey);
-	if(!$key)
-	{
-		echo 'Please complete the configuration: <a href="' . admin_url() . 'admin.php?page=eduadmin-settings">EduAdmin - Api Authentication</a>';
-		return;
-	}
-	$token = get_transient('eduadmin-token');
-	if(!$token)
-	{
-		$token = $api->GetAuthToken($key->UserId, $key->Hash);
-		set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-	}
-	else
-	{
-		$valid = $api->ValidateAuthToken($token);
-		if(!$valid)
-		{
-			$token = $api->GetAuthToken($key->UserId, $key->Hash);
-			set_transient('eduadmin-token', $token, HOUR_IN_SECONDS);
-		}
-	}
-
 	$edo = get_transient('eduadmin-listCourses');
 	if(!$edo)
 	{
@@ -40,7 +18,7 @@ else
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$edo = $api->GetEducationObject($token, '', $filtering->ToString());
+		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 		set_transient('eduadmin-listCourses', $edo, 6 * HOUR_IN_SECONDS);
 	}
 
@@ -83,8 +61,8 @@ else
 	$s = new XSort('PeriodStart', 'ASC');
 	$st->AddItem($s);
 
-	$events = $api->GetEvent(
-		$token,
+	$events = $eduapi->GetEvent(
+		$edutoken,
 		$st->ToString(),
 		$ft->ToString()
 	);
@@ -122,7 +100,7 @@ else
 							$ft = new XFiltering();
 							$f = new XFilter('LocationAddressID', '=', $ev->LocationAddressID);
 							$ft->AddItem($f);
-							$addresses = $api->GetLocationAddress($token, '', $ft->ToString());
+							$addresses = $eduapi->GetLocationAddress($edutoken, '', $ft->ToString());
 							set_transient('eduadmin-location-' . $ev->LocationAddressID, $addresses, DAY_IN_SECONDS);
 						}
 
@@ -149,7 +127,7 @@ else
 					$ft = new XFiltering();
 					$f = new XFilter('LocationAddressID', '=', $event->LocationAddressID);
 					$ft->AddItem($f);
-					$addresses = $api->GetLocationAddress($token, '', $ft->ToString());
+					$addresses = $eduapi->GetLocationAddress($edutoken, '', $ft->ToString());
 					set_transient('eduadmin-location-' . $event->LocationAddressID, $addresses, HOUR_IN_SECONDS);
 				}
 
