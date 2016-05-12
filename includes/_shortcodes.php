@@ -49,6 +49,8 @@ function eduadmin_get_detail_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-detailview'
 	);
+	unset($_SESSION['checkEmail']);
+	unset($_SESSION['eduadmin-loginUser']->NewCustomer);
 	if(!isset($attributes['customtemplate']) || $attributes['customtemplate'] != 1)
 	{
 		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/detailTemplate/" . $attributes['template'] . ".php");
@@ -70,7 +72,7 @@ function eduadmin_get_booking_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-bookingview'
 	);
-	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0))
+	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && ($_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0 || isset($_SESSION['eduadmin-loginUser']->NewCustomer))))
 	{
 		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
 	}

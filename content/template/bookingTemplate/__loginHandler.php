@@ -7,7 +7,8 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		$f = new XFilter('Email', '=', trim($_REQUEST['eduadminloginEmail']));
 		$ft->AddItem($f);
 
-		$matchingContacts = $eduapi->GetCustomerContact($token, '', $ft->ToString(), true);
+		$matchingContacts = $eduapi->GetCustomerContact($edutoken, '', $ft->ToString(), true);
+		$_SESSION['needsLogin'] = false;
 		$_SESSION['checkEmail'] = true;
 		if(!empty($matchingContacts))
 		{
@@ -33,7 +34,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 			$filter = new XFiltering();
 			$f = new XFilter('CustomerID', '=', $con->CustomerID);
 			$filter->AddItem($f);
-			$customers = $eduapi->GetCustomer($token, '', $filter->ToString(), true);
+			$customers = $eduapi->GetCustomer($edutoken, '', $filter->ToString(), true);
 			if(count($customers) == 1)
 			{
 				$customer = $customers[0];
@@ -55,6 +56,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 			$customer = new stdClass;
 
 			$user = new stdClass;
+			$user->NewCustomer = true;
 			$user->Contact = $contact;
 			$user->Customer = $customer;
 			$_SESSION['eduadmin-loginUser'] = $user;
