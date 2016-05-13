@@ -43,7 +43,7 @@ function renderQuestion($question)
 // QuestionTypeID 5
 function renderNoteQuestion ($question)
 {
-	echo "<h3>" . $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i>(" . convertToMoney($question[0]->Price) . ")</i>" : "") . "</h3>";
+	echo "<h3>" . $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question[0]->Price) . ")</i>" : "") . "</h3>";
 	echo "<div class=\"inputHolder\">";
 	echo "<textarea name=\"question_" . $question[0]->AnswerID . "_note\" data-type=\"note\" onchange=\"eduBookingView.UpdatePrice();\" data-price=\"" . $question[0]->Price . "\" resizable=\"resizable\" class=\"questionNoteField\" rows=\"3\"></textarea>";
 	echo "</div>";
@@ -60,7 +60,7 @@ function renderCheckBoxQuestion($question)
 		echo "<input type=\"checkbox\" class=\"questionCheck\" data-type=\"check\" data-price=\"" . $q->Price . "\" name=\"question_" . $q->QuestionID . "_check\"" . ($q->DefaultAlternative == 1 ? " checked=\"checked\"" : "") . " value=\"" . $q->AnswerID . "\" /> ";
 		echo $q->AnswerText;
 		if($q->Price > 0) {
-			echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+			echo " <i class=\"priceLabel\">(" . convertToMoney($q->Price) . ")</i>";
 		}
 		echo "</div>";
 		echo "</label>";
@@ -72,7 +72,7 @@ function renderDateQuestion($question)
 {
 	echo "<label>";
 	echo "<div class=\"inputLabel noHide\">";
-	echo $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i>(" . convertToMoney($question[0]->Price) . ")</i>" : "");
+	echo $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question[0]->Price) . ")</i>" : "");
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
 	echo "<input type=\"date\" class=\"questionDate\" data-type=\"date\" onchange=\"eduBookingView.UpdatePrice();\" data-price=\"" . $question[0]->Price . "\" name=\"question_" . $question[0]->AnswerID . "_date\" />";
@@ -116,7 +116,7 @@ function renderNumberQuestion($question)
 	echo "<div class=\"inputHolder\">";
 	echo "<input type=\"number\" class=\"questionText\" onchange=\"eduBookingView.UpdatePrice();\" data-price=\"" . $question[0]->Price . "\" min=\"0\" data-type=\"number\" name=\"question_" . $question[0]->AnswerID . "_number\" placeholder=\"" . edu__("Quantity") . "\" />";
 	if($question[0]->Price > 0) {
-		echo " <i>(" . sprintf(edu__('%1$s / pcs'), convertToMoney($question[0]->Price)) . ")</i>";
+		echo " <i class=\"priceLabel\">(" . sprintf(edu__('%1$s / pcs'), convertToMoney($question[0]->Price)) . ")</i>";
 	}
 	echo "</div>";
 	echo "</label>";
@@ -126,7 +126,7 @@ function renderInfoText($question)
 {
 	if(trim($question[0]->AnswerText) != "")
 	{
-		echo "<h3>" . $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i>(" . convertToMoney($question[0]->Price) . ")</i>" : "") . "</h3>";
+		echo "<h3>" . $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question[0]->Price) . ")</i>" : "") . "</h3>";
 		echo "<div class=\"questionInfoText\" data-type=\"infotext\" data-price=\"" . $question[0]->Price . "\">";
 		echo $question[0]->AnswerText;
 		echo "</div>";
@@ -146,7 +146,7 @@ function renderRadioQuestion($question, $display)
 			echo "<input type=\"radio\" class=\"questionRadio\" data-type=\"radio\" data-price=\"" . $q->Price . "\" name=\"question_" . $question[0]->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
 			echo $q->AnswerText;
 			if($q->Price > 0) {
-				echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+				echo " <i class=\"priceLabel\">(" . convertToMoney($q->Price) . ")</i>";
 			}
 			echo "</div>";
 			echo "</label>";
@@ -161,7 +161,7 @@ function renderRadioQuestion($question, $display)
 			echo "<input type=\"radio\" class=\"questionRadio\" data-type=\"radio\" data-price=\"" . $q->Price . "\" name=\"question_" . $question[0]->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
 			echo $q->AnswerText;
 			if($q->Price > 0) {
-				echo " <i>(" . convertToMoney($q->Price) . ")</i>";
+				echo " <i class=\"priceLabel\">(" . convertToMoney($q->Price) . ")</i>";
 			}
 			echo "</div>";
 			echo "</label>";
@@ -178,7 +178,7 @@ function renderTextQuestion($question)
 {
 	echo "<label>";
 	echo "<div class=\"inputLabel noHide\">";
-	echo $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i>(" . convertToMoney($question[0]->Price) . ")</i>" : "");
+	echo $question[0]->QuestionText . ($question[0]->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question[0]->Price) . ")</i>" : "");
 	echo "</div>";
 	echo "<div class=\"inputHolder\">";
 	echo "<input type=\"text\" data-price=\"" . $question[0]->Price . "\" onchange=\"eduBookingView.UpdatePrice();\" data-type=\"text\" class=\"questionText\" name=\"question_" . $question[0]->AnswerID . "_text\" />";
