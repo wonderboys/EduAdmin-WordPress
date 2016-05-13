@@ -97,7 +97,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
 	$f->AddItem($ft);
 	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-	print_r($extraInfo);
+	#print_r($extraInfo);
 	foreach($extraInfo as $info)
 	{
 		if($info->Key == "DiscountPercent" && isset($info->Value))
@@ -120,6 +120,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<img src="<?php echo $selectedCourse->ImageUrl; ?>" style="max-width: 8em; max-height: 8em; margin-right: 2em; float: left;" />
 		<h1 style="float: left; clear: right;"><?php echo $name; ?></h1>
 			<?php if(count($events) > 1) { ?>
+				<div class="dateSelectLabel"><?php edu_e("Select the event you want to book"); ?></div>
 <select name="eid" class="dateInfo">
 <?php
 				foreach($events as $ev)
