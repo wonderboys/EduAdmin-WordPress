@@ -85,6 +85,9 @@ else
 $contact = new CustomerContact();
 $customer = new Customer();
 
+$discountPercent = 0.0;
+$participantDiscountPercent = 0.0;
+
 if(isset($_SESSION['eduadmin-loginUser']))
 {
 	$user = $_SESSION['eduadmin-loginUser'];
@@ -94,8 +97,20 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
 	$f->AddItem($ft);
 	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-	#print_r($extraInfo);
+	print_r($extraInfo);
+	foreach($extraInfo as $info)
+	{
+		if($info->Key == "DiscountPercent" && isset($info->Value))
+		{
+			$discountPercent = (double)$info->Value;
+		}
+		else if($info->Key == "ParticipantDiscountPercent" && isset($info->Value))
+		{
+			$participantDiscountPercent = (double)$info->Value;
+		}
+	}
 }
+
 ?>
 <!-- mfunc -->
 <div class="eduadmin">
