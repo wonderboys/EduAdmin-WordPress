@@ -94,7 +94,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
 	$f->AddItem($ft);
 	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-	print_r($extraInfo);
+	#print_r($extraInfo);
 }
 ?>
 <!-- mfunc -->
