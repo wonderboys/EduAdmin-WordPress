@@ -67,6 +67,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		$user = loginContactPerson($_REQUEST['eduadminloginEmail'], $_REQUEST['eduadminpassword']);
 		if($user != null)
 		{
+			die("<script type=\"text/javascript\">location.href = location.href;</script>");
 		}
 		else
 		{

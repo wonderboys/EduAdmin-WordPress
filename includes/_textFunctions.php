@@ -1,8 +1,12 @@
 <?php
 
-function edu_getQueryString($prepend = "?")
+function edu_getQueryString($prepend = "?", $removeParameters = array())
 {
-	if(!empty($_SERVER['QUERY_STRING'])) { return $prepend . $_SERVER['QUERY_STRING']; }
+	foreach($removeParameters as $par)
+	{
+		unset($_GET[$par]);
+	}
+	if(!empty($_GET)) { return $prepend . http_build_query($_GET); }
 	return "";
 }
 

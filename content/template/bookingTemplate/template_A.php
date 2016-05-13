@@ -90,6 +90,13 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$user = $_SESSION['eduadmin-loginUser'];
 	$contact = $user->Contact;
 	$customer = $user->Customer;
+	#print_r($customer);
+	$f = new XFiltering();
+	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
+	$f->AddItem($ft);
+
+	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
+	#print_r($extraInfo);
 }
 ?>
 <!-- mfunc -->

@@ -67,6 +67,7 @@ else
 		$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 		if(empty($matchingCustomer))
 		{
+			$customer->CustomerID = 0;
 			$cres = $eduapi->SetCustomer($token, array($customer));
 			$customer->CustomerID = $cres[0];
 		}
@@ -94,6 +95,7 @@ else
 		$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 		if(empty($matchingCustomer))
 		{
+			$customer->CustomerID = 0;
 			$cres = $eduapi->SetCustomer($edutoken, array($customer));
 			$customer->CustomerID = $cres[0];
 		}
@@ -105,6 +107,7 @@ else
 	}
 	else if($selectedMatch === "no-match")
 	{
+		$customer->CustomerID = 0;
 		$cres = $eduapi->SetCustomer($edutoken, array($customer));
 		$customer->CustomerID = $cres[0];
 	}
@@ -118,6 +121,7 @@ else
 
 			if($contact->CustomerContactID == 0)
 			{
+				$customer->CustomerID = 0;
 				$cres = $eduapi->SetCustomer($edutoken, array($customer));
 				$customer->CustomerID = $cres[0];
 			}
@@ -140,6 +144,7 @@ else
 				$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 				if(empty($matchingCustomer))
 				{
+					$customer->CustomerID = 0;
 					$cres = $eduapi->SetCustomer($edutoken, array($customer));
 					$customer->CustomerID = $cres[0];
 				}
@@ -190,6 +195,7 @@ else
 		$matchingContacts = $eduapi->GetCustomerContact($edutoken, '', $ft->ToString(), false);
 		if(empty($matchingContacts))
 		{
+			$contact->CustomerContactID = 0;
 			$contact->CustomerContactID = $eduapi->SetCustomerContact($edutoken, array($contact))[0];
 		}
 		else
@@ -223,7 +229,7 @@ else
 	$pArr = array();
 	foreach($_POST['participantFirstName'] as $key => $value)
 	{
-		if($key === "0")
+		if($key == "0")
 		{
 			continue;
 		}
