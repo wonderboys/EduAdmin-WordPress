@@ -450,7 +450,7 @@ function eduadmin_get_detailinfo($attributes)
 					<div class="eventBook' . $groupByCityClass . '">
 					' . ($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
 
-						'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/?eid=' . $ev->EventID . edu_getQueryString("&") . '" style="text-align: center;">' . edu__("Book") . '</a>'
+						'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", array('eid')) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 					:
 						'<i class="fullBooked">' . edu__("Full") . '</i>'
 					) . '
@@ -499,9 +499,9 @@ function eduadmin_get_login_widget($attributes)
 	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 	{
 		return
-		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString() . "\" class=\"eduadminMyProfileLink\">" .
+		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
 		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
-		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString() . "\" class=\"eduadminLogoutButton\">" .
+		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLogoutButton\">" .
 		$attributes['logouttext'] .
 		"</a>" .
 		"</div>";
@@ -512,7 +512,7 @@ function eduadmin_get_login_widget($attributes)
 		"<div class=\"eduadminLogin\"><i>" .
 		$attributes['guesttext'] .
 		"</i> - " .
-		"<a href=\"" . $baseUrl . "/profile/login" . edu_getQueryString() . "\" class=\"eduadminLoginButton\">" .
+		"<a href=\"" . $baseUrl . "/profile/login" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLoginButton\">" .
 		$attributes['logintext'] .
 		"</a>" .
 		"</div>";
