@@ -117,8 +117,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	<form action="" method="post">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
 	<div class="title">
-		<img src="<?php echo $selectedCourse->ImageUrl; ?>" style="max-width: 8em; max-height: 8em; margin-right: 2em; float: left;" />
-		<h1 style="float: left; clear: right;"><?php echo $name; ?></h1>
+		<img class="courseImage" src="<?php echo $selectedCourse->ImageUrl; ?>" />
+		<h1 class="courseTitle"><?php echo $name; ?></h1>
 			<?php if(count($events) > 1) { ?>
 				<div class="dateSelectLabel"><?php edu_e("Select the event you want to book"); ?></div>
 <select name="eid" class="dateInfo">

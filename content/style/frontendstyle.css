@@ -10,6 +10,14 @@
 	width: 100%;
 }
 
+.eduadmin .courseImage {
+	max-width: 8em; max-height: 8em; margin-right: 2em; float: left;
+}
+
+.eduadmin .courseTitle {
+	display: inline-block;
+}
+
 .eduadmin .dateSelectLabel {
 	clear: both;
 }

@@ -76,8 +76,8 @@ else
 <div class="eduadmin">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
 	<div class="title">
-		<img src="<?php echo $selectedCourse->ImageUrl; ?>" style="max-width: 8em; max-height: 8em; margin-right: 2em;" />
-		<h1 style="display: inline-block;"><?php echo $name; ?></h1>
+		<img class="courseImage" src="<?php echo $selectedCourse->ImageUrl; ?>" />
+		<h1 class="courseTitle"><?php echo $name; ?></h1>
 	</div>
 	<hr />
 	<div class="textblock leftBlock">
