@@ -209,6 +209,8 @@ else
 				}
 			}
 		}
+
+		$contact->ContactName = str_replace(";", " ", $contact->ContactName);
 	}
 
 	$persons = array();
