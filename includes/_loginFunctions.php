@@ -72,7 +72,6 @@ function logoutUser()
 	unset($_SESSION['eduadmin-loginUser']);
 	unset($_SESSION['needsLogin']);
 	unset($_SESSION['checkEmail']);
-
 	die("<script>location.href = '" . $baseUrl . edu_getQueryString() . "';</script>");
 }
 
