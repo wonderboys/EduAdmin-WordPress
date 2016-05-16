@@ -72,7 +72,8 @@ function logoutUser()
 	unset($_SESSION['eduadmin-loginUser']);
 	unset($_SESSION['needsLogin']);
 	unset($_SESSION['checkEmail']);
-	echo("<script>location.href = '" . $baseUrl . edu_getQueryString() . "';</script>");
+
+	die("<script>location.href = '" . $baseUrl . edu_getQueryString() . "';</script>");
 }
 
 $apiKey = get_option('eduadmin-api-key');
@@ -126,7 +127,14 @@ else
 						$cat = get_option('eduadmin-rewriteBaseUrl');
 
 						$baseUrl = $surl . '/' . $cat;
-						echo("<script>location.href = '" . $baseUrl. "/profile/myprofile/" . edu_getQueryString() . "';</script>");
+						if(isset($_REQUEST['eduReturnUrl']) && !empty($_REQUEST['eduReturnUrl']))
+						{
+							echo("<script>location.href = '" . $_REQUEST['eduReturnUrl'] . "';</script>");
+						}
+						else
+						{
+							echo("<script>location.href = '" . $baseUrl. "/profile/myprofile/" . edu_getQueryString() . "';</script>");
+						}
 					}
 					else
 					{

@@ -6,7 +6,7 @@ class EduAdminClient
     protected $__server;
     public $debug = false;
     public $timers = array();
-    public $debugTimers = true;
+    public $debugTimers = false;
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class EduAdminClient
         }
         $this->timers['InitSoapClient'] = microtime(true);
         $this->__server                 = new SoapClient(ServiceUrl, array(
-            'trace' => 1,
+            'trace' => 0,
             'cache_wsdl' => WSDL_CACHE_BOTH
         ));
         $this->timers['InitSoapClient'] = microtime(true) - $this->timers['InitSoapClient'];

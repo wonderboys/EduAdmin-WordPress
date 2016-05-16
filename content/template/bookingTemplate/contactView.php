@@ -49,7 +49,7 @@
 					<?php edu_e("Password"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="password" required name="contactPass" placeholder="<?php edu_e("Password"); ?>" />
+					<input type="password" required name="contactPass" placeholder="<?php edu_e("Please enter a password"); ?>" />
 				</div>
 			</label>
 			<?php } ?>

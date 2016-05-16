@@ -249,10 +249,10 @@ if($participantDiscountPercent != 0)
 <script type="text/javascript">
 var pricePerParticipant = <?php echo round($firstPrice->Price - $discountValue, 2); ?>;
 var totalPriceDiscountPercent = <?php echo $discountPercent; ?>;
-var currency = '<?php echo get_option('eduadmin-currency', 'SEK'); ?>';
+var currency = '<?php echo esc_attr(get_option('eduadmin-currency', 'SEK')); ?>';
 (function() {
 	var title = document.title;
-	title = title.replace('<?php echo $originalTitle; ?>', '<?php echo $newTitle; ?>');
+	title = title.replace('<?php echo esc_attr($originalTitle); ?>', '<?php echo esc_attr($newTitle); ?>');
 	document.title = title;
 	eduBookingView.MaxParticipants = <?php echo ($event->MaxParticipantNr == 0 ? -1 : ($event->MaxParticipantNr - $event->TotalParticipantNr)); ?>;
 
