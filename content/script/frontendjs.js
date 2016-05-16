@@ -106,11 +106,17 @@ var eduBookingView = {
 		}
 
 		var priceObject = document.getElementById('sumValue');
-		if(priceObject && pricePerParticipant && currency != '') {
+		if(priceObject && pricePerParticipant !== undefined && currency != '') {
 			var newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
 			if(!isNaN(questionPrice)) {
 				newPrice += questionPrice;
 			}
+
+			if(totalPriceDiscountPercent != 0) {
+				var disc = (totalPriceDiscountPercent / 100) * newPrice;
+				newPrice = newPrice - disc;
+			}
+
 			priceObject.innerText = numberWithSeparator(newPrice, ' ') + ' ' + currency;
 			priceObject.textContent = numberWithSeparator(newPrice, ' ') + ' ' + currency;
 		}

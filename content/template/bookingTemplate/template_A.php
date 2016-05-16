@@ -240,15 +240,15 @@ foreach($prices as $price)
 }
 $firstPrice = current($uniquePrices);
 
-$discountDecimal = 1.0;
+$discountValue = 0.0;
 if($participantDiscountPercent != 0)
 {
-	$discountDecimal = $participantDiscountPercent / 100;
-	echo $discountDecimal;
+	$discountValue = ($participantDiscountPercent / 100) * $firstPrice->Price;
 }
 ?>
 <script type="text/javascript">
-var pricePerParticipant = <?php echo round($firstPrice->Price * $discountDecimal, 2); ?>;
+var pricePerParticipant = <?php echo round($firstPrice->Price - $discountValue, 2); ?>;
+var totalPriceDiscountPercent = <?php echo $discountPercent; ?>;
 var currency = '<?php echo get_option('eduadmin-currency', 'SEK'); ?>';
 (function() {
 	var title = document.title;
