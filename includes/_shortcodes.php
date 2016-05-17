@@ -476,9 +476,9 @@ function eduadmin_get_detailinfo($attributes)
 
 function eduadmin_get_login_widget($attributes)
 {
-	/*if ( !defined('DONOTCACHEPAGE') ){
+	if ( !defined('DONOTCACHEPAGE') ){
 		define('DONOTCACHEPAGE',true);
-	}*/
+	}
 	$attributes = shortcode_atts(
 		array(
 			'logintext' => edu__("Log in"),

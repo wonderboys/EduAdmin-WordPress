@@ -6,6 +6,8 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		$ft = new XFiltering();
 		$f = new XFilter('Email', '=', trim($_REQUEST['eduadminloginEmail']));
 		$ft->AddItem($f);
+		$f = new XFilter('Disabled', '=', false);
+		$ft->AddItem($f);
 
 		$matchingContacts = $eduapi->GetCustomerContact($edutoken, '', $ft->ToString(), true);
 		$_SESSION['needsLogin'] = false;

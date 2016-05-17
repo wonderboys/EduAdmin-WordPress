@@ -11,6 +11,8 @@ function loginContactPerson($email, $password)
 	$filter->AddItem($f);
 	$f = new XFilter('CanLogin', '=', true);
 	$filter->AddItem($f);
+	$f = new XFilter('Disabled', '=', false);
+	$filter->AddItem($f);
 	$cc = $eduapi->GetCustomerContact($edutoken, '', $filter->ToString(), true);
 	if(count($cc) == 1)
 	{
