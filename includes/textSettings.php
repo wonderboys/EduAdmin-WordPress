@@ -46,6 +46,7 @@
 	var loadedPhrases;
 	(function() {
 		loadedPhrases = <?php echo $phrasestr; ?>;
+		document.getElementById('eduadmin-phrases').value = JSON.stringify(loadedPhrases);
 	})();
 
 	function update_phrase(item)
