@@ -60,6 +60,6 @@ function edu_new_theme()
 }
 
 add_action('plugins_loaded', 'edu_load_language');
-add_action('init', 'edu_check_for_updates');
+//add_action('init', 'edu_check_for_updates');
 add_action('after_switch_theme', 'edu_new_theme');
 ?>

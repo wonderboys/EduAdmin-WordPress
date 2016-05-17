@@ -47,7 +47,7 @@ function eduadmin_rewrite_init()
 	}
 }
 
-add_action('init', 'eduadmin_rewrite_init');
-add_action('admin_init', 'eduadmin_rewrite_init');
-//add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
+//add_action('init', 'eduadmin_rewrite_init');
+//add_action('admin_init', 'eduadmin_rewrite_init');
+add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
 ?>

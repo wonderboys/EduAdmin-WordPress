@@ -134,7 +134,7 @@ else
 				</td>
 				<?php } ?>
 				<td>
-					<input type="search" name="searchCourses" results="10" autosave="edu-course-search_<?php echo $apiKey; ?>" placeholder="<?php edu_e("Search courses"); ?>"<?php if(isset($_REQUEST['searchCourses'])) { echo " value=\"" . $_REQUEST['searchCourses'] . "\""; }?> />
+					<input type="search" name="searchCourses" results="10" autosave="edu-course-search_<?php echo session_id(); ?>" placeholder="<?php edu_e("Search courses"); ?>"<?php if(isset($_REQUEST['searchCourses'])) { echo " value=\"" . $_REQUEST['searchCourses'] . "\""; }?> />
 				</td>
 				<td style="width: 10%;">
 					<input type="submit" class="searchButton" style="width: 100%;" value="<?php edu_e("Search"); ?>" />
