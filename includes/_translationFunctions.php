@@ -2,15 +2,24 @@
 function edu__($key)
 {
 	$phrases = get_option('eduadmin-phrases');
+	$file = file_get_contents(( dirname( __FILE__ ) ) . '/defaultPhrases.json');
+	$originalPhrases = json_decode($file, true);
+
 	if(!$phrases)
 	{
-		$file = file_get_contents(( dirname( __FILE__ ) ) . '/defaultPhrases.json');
-		$phrases = json_decode($file, true);
+		$phrases = $originalPhrases;
 		update_option('eduadmin-phrases', json_encode($phrases));
 	}
 	else
 	{
 		$phrases = json_decode($phrases, true);
+		foreach($originalPhrases as $ph => $val)
+		{
+			if(!isset($phrases[$ph]))
+			{
+				$phrases[$ph] = $val;
+			}
+		}
 	}
 
 	if(!array_key_exists($key, $phrases))

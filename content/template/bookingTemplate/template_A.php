@@ -112,7 +112,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 }
 
 ?>
-<!-- mfunc -->
 <div class="eduadmin">
 	<form action="" method="post">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
@@ -260,7 +259,6 @@ var currency = '<?php echo esc_attr(get_option('eduadmin-currency', 'SEK')); ?>'
 	eduBookingView.UpdatePrice();
 })();
 </script>
-<!-- /mfunc -->
 <?php
 }
 $out = ob_get_clean();

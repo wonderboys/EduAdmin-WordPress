@@ -72,7 +72,6 @@ else
 
 	$showHeaders = get_option('eduadmin-showDetailHeaders', true);
 ?>
-<!-- mfunc -->
 <div class="eduadmin">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
 	<div class="title">
@@ -269,7 +268,6 @@ $newTitle = $name . " | " . $originalTitle;
 	document.title = title;
 })();
 </script>
-<!-- /mfunc -->
 <?php }
 $out = ob_get_clean();
 return $out;

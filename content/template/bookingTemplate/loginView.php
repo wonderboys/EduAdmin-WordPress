@@ -79,7 +79,6 @@ else
 
 	include_once("__loginHandler.php");
 ?>
-<!-- mfunc -->
 <div class="eduadmin loginForm">
 	<form action="" method="post">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
@@ -165,7 +164,6 @@ else
 	</div>
 </form>
 </div>
-<!-- /mfunc -->
 <?php
 }
 $out = ob_get_clean();
