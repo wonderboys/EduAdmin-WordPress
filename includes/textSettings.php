@@ -1,3 +1,9 @@
+<?php
+if(isset($_POST['resetTranslation']))
+{
+	delete_option('eduadmin-phrases');
+}
+?>
 <div class="eduadmin wrap">
 	<h2><?php echo sprintf(__("EduAdmin settings - %s", "eduadmin"), __("Translation", "eduadmin")); ?></h2>
 
@@ -25,6 +31,13 @@
 	else
 	{
 		$phrases = json_decode($phrases, true);
+		foreach($originalPhrases as $ph => $val)
+		{
+			if(!isset($phrases[$ph]))
+			{
+				$phrases[$ph] = $val;
+			}
+		}
 	}
 
 	ksort($phrases, SORT_NATURAL | SORT_FLAG_CASE);
@@ -37,7 +50,10 @@
 	}
 ?>
 			</table>
-			<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__("Save settings", "eduadmin"); ?>" />
+			<p class="submit">
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__("Save settings", "eduadmin"); ?>" />
+				<input type="button" onclick="var c = confirm('<?php _e("Are you sure you want to reset the translation?", "eduadmin"); ?>'); if (c) { var f = document.getElementById('resetForm').submit(); } else { return false; }" class="button button-secondary" value="<?php echo esc_attr__("Reset translations", "eduadmin"); ?>" />
+			</p>
 		</div>
 		<input type="hidden" id="eduadmin-phrases" name="eduadmin-phrases" value='' />
 
@@ -62,4 +78,7 @@
 		document.getElementById('eduadmin-phrases').value = JSON.stringify(loadedPhrases);
 	}
 	</script>
+	<form method="post" action="" id="resetForm">
+		<input type="hidden" name="resetTranslation" value="1" />
+	</form>
 </div>
