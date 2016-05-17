@@ -196,13 +196,16 @@ foreach($ede as $e)
 	$occIds[] = $e->OccationID;
 }
 
-$ft = new XFiltering();
-$f = new XFilter('PublicPriceName', '=', 'true');
-$ft->AddItem($f);
-//$f = new XFilter('OccationID', 'IN', join(",", $occIds));
-//$ft->AddItem($f);
-$pricenames = $eduapi->GetObjectPriceName($edutoken,'',$ft->ToString());
-set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
+$pricenames = get_transient('eduadmin-publicpricenames');
+if(!$pricenames)
+{
+	$ft = new XFiltering();
+	$f = new XFilter('PublicPriceName', '=', 'true');
+	$ft->AddItem($f);
+
+	$pricenames = $eduapi->GetObjectPriceName($edutoken,'',$ft->ToString());
+	set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
+}
 
 if(!empty($pricenames))
 {
