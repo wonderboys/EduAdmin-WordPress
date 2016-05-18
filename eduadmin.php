@@ -37,6 +37,7 @@ if(!session_id())
     along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+include_once("backend/edu.api.backend.php");
 include_once("includes/functions.php");
 include_once("includes/_rewrites.php");
 include_once("includes/_options.php");

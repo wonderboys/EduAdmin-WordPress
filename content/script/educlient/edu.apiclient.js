@@ -1,7 +1,11 @@
 var edu = edu ? edu : {};
 
 edu.apiclient = {
+	baseUrl: null,
 	parseDocument: function(doc) {
+		if(wp_edu != undefined) {
+			this.baseUrl = wp_edu.BaseUrl + '/wp-json/';
+		}
 		var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
 		if(lw) {
 			this.getLoginWidget(lw);
