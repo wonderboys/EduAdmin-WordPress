@@ -197,7 +197,7 @@ foreach($ede as $e)
 }
 
 $pricenames = get_transient('eduadmin-publicpricenames');
-if(!$pricenames)
+//if(!$pricenames)
 {
 	$ft = new XFiltering();
 	$f = new XFilter('PublicPriceName', '=', 'true');
@@ -209,8 +209,9 @@ if(!$pricenames)
 
 if(!empty($pricenames))
 {
-	$ede = array_filter($ede, function($object) {
-		$pn = get_transient('eduadmin-publicpricenames');
+	$ede = array_filter($ede, function($object) use (&$pricenames) {
+		$pn = $pricenames;
+		print_r($pn);
 		foreach($pn as $subj)
 		{
 			if($object->ObjectID == $subj->ObjectID)

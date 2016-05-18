@@ -120,10 +120,6 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$sorting->AddItem($s);
 
 	$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
-	#if(count($filterCourses) == 0 && !isset($_POST['eduadmin-city']))
-	{
-		#set_transient('eduadmin-listEvents', $ede, HOUR_IN_SECONDS);
-	}
 }
 
 if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject']))
