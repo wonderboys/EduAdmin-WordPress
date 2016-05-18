@@ -1,32 +1,6 @@
 <?php
 defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPress.' );
 
-if(function_exists('opcache_compile_file'))
-{
-	$filesToCache = array();
-	$filesToCache[] = "/includes/loApiClient.php";
-	$filesToCache[] = "/includes/functions.php";
-	$filesToCache[] = "/includes/_apiFunctions.php";
-	$filesToCache[] = "/includes/_loginFunctions.php";
-	$filesToCache[] = "/includes/_questionFunctions.php";
-	$filesToCache[] = "/includes/_textFunctions.php";
-	$filesToCache[] = "/includes/_translationFunctions.php";
-	$filesToCache[] = "/includes/_rewrites.php";
-	$filesToCache[] = "/includes/_options.php";
-	$filesToCache[] = "/includes/_shortcodes.php";
-	$filesToCache[] = "/includes/auto_update.php";
-
-	foreach($filesToCache as $f)
-	{
-		if(!opcache_is_script_cached(__DIR__ . $f))
-		{
-			opcache_compile_file(__DIR__ . $f);
-		}
-	}
-
-	//print_r(opcache_get_configuration());
-}
-
 include_once("includes/loApiClient.php");
 if(!session_id())
 	session_start();

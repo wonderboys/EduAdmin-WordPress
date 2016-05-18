@@ -299,7 +299,7 @@ if(!empty($edo))
 		ksort($eventCities);
 
 ?>
-	<div class="objectItem">
+	<div class="objectItem" data-objectid="<?php echo $object->ObjectID; ?>">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
 		<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 		<?php } ?>

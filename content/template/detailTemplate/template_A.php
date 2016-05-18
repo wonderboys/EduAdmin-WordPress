@@ -218,7 +218,7 @@ else
 			}
 		} ?>
 	</div>
-	<div class="eventDays">
+	<div class="eventDays" data-objectid="<?php echo esc_attr($selectedCourse->ObjectID); ?>">
 	<?php
 	$i = 0;
 	foreach($events as $ev)
