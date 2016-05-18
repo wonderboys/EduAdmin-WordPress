@@ -484,7 +484,7 @@ function eduadmin_get_login_widget($attributes)
 	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 	{
 		return
-		"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
 		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
 		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLogoutButton\">" .
 		$attributes['logouttext'] .
@@ -494,7 +494,7 @@ function eduadmin_get_login_widget($attributes)
 	else
 	{
 		return
-		"<div class=\"eduadminLogin\"><i>" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"><i>" .
 		$attributes['guesttext'] .
 		"</i> - " .
 		"<a href=\"" . $baseUrl . "/profile/login" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLoginButton\">" .

@@ -78,6 +78,10 @@ function eduadmin_frontend_content()
 	wp_enqueue_style('eduadmin_frontend_style');
 	wp_add_inline_style('eduadmin_frontend_style', $customcss);
 
+	$scriptVersion = filemtime(dirname(__DIR__) . '/content/script/educlient/edu.apiclient.js');
+	wp_register_script('eduadmin_apiclient_script', plugins_url('content/script/educlient/edu.apiclient.js', dirname(__FILE__)), false, dateVersion($scriptVersion));
+	wp_enqueue_script('eduadmin_apiclient_script');
+
 	$scriptVersion = filemtime(dirname(__DIR__) . '/content/script/frontendjs.js');
 	wp_register_script('eduadmin_frontend_script', plugins_url('content/script/frontendjs.js', dirname(__FILE__)), false, dateVersion($scriptVersion));
 	wp_enqueue_script('eduadmin_frontend_script');
