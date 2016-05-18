@@ -16,9 +16,6 @@ if (!function_exists('normalize_empty_atts')) {
 
 function eduadmin_get_list_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$selectedTemplate = get_option('eduadmin-listTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -36,9 +33,6 @@ function eduadmin_get_list_view($attributes)
 
 function eduadmin_get_detail_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$selectedTemplate = get_option('eduadmin-detailTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -60,9 +54,6 @@ function eduadmin_get_detail_view($attributes)
 
 function eduadmin_get_booking_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$selectedTemplate = get_option('eduadmin-bookingTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -86,9 +77,6 @@ function eduadmin_get_booking_view($attributes)
 
 function eduadmin_get_detailinfo($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	global $wp_query;
 	global $eduapi;
 	global $edutoken;
@@ -476,9 +464,6 @@ function eduadmin_get_detailinfo($attributes)
 
 function eduadmin_get_login_widget($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$attributes = shortcode_atts(
 		array(
 			'logintext' => edu__("Log in"),
@@ -521,9 +506,6 @@ function eduadmin_get_login_widget($attributes)
 
 function eduadmin_get_login_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$attributes = shortcode_atts(
 		array(
 			'logintext' => edu__("Log in"),
