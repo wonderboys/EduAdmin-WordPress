@@ -4,7 +4,7 @@ edu.apiclient = {
 	baseUrl: null,
 	parseDocument: function(doc) {
 		if(wp_edu != undefined) {
-			this.baseUrl = wp_edu.BaseUrl + '/wp-json/';
+			this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
 		}
 		var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
 		if(lw) {
@@ -16,7 +16,17 @@ edu.apiclient = {
 	getNextEvent: function(target, objectid) {
 	},
 	getLoginWidget: function(target) {
-		console.log(target);
+		jQuery.ajax({
+			url: this.baseUrl + 'login/widget',
+			data: {
+				logintext: 'Log in',
+				logouttext: 'Log out',
+				guesttext: 'Guest'
+			},
+			success: function(d) {
+				jQuery(target).replaceWith(d);
+			}
+		});
 	}
 };
 
