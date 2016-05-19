@@ -1,3 +1,10 @@
 <?php
-wp_localize_script('eduadmin_client_script', 'wp_edu', array( 'BaseUrl' => get_option('siteurl') ));
+$modules = scandir(__DIR__ . '/modules');
+foreach($modules as $module)
+{
+	if(strpos($module, '.php') !== FALSE)
+	{
+		include_once(__DIR__ . '/modules/' . $module);
+	}
+}
 ?>
