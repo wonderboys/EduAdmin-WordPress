@@ -1,8 +1,8 @@
 <?php
 function edu_api_loginwidget($request)
 {
-	$surl = get_site_url();
-	$cat = get_option('eduadmin-rewriteBaseUrl');
+	$surl = $request['baseUrl'];
+	$cat = $request['courseFolder'];
 
 	$baseUrl = $surl . '/' . $cat;
 	if(isset($_SESSION['eduadmin-loginUser']))

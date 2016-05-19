@@ -39,6 +39,7 @@ edu.apiclient = {
 			type: 'POST',
 			data: {
 				baseUrl: wp_edu.BaseUrl,
+				courseFolder: wp_edu.CourseFolder,
 				logintext: loginText,
 				logouttext: logoutText,
 				guesttext: guestText
