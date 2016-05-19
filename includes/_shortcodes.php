@@ -16,6 +16,9 @@ if (!function_exists('normalize_empty_atts')) {
 
 function eduadmin_get_list_view($attributes)
 {
+	if ( !defined('DONOTCACHEPAGE') ){
+		define('DONOTCACHEPAGE',true);
+	}
 	$selectedTemplate = get_option('eduadmin-listTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -33,6 +36,9 @@ function eduadmin_get_list_view($attributes)
 
 function eduadmin_get_detail_view($attributes)
 {
+	if ( !defined('DONOTCACHEPAGE') ){
+		define('DONOTCACHEPAGE',true);
+	}
 	$selectedTemplate = get_option('eduadmin-detailTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -54,6 +60,9 @@ function eduadmin_get_detail_view($attributes)
 
 function eduadmin_get_booking_view($attributes)
 {
+	if ( !defined('DONOTCACHEPAGE') ){
+		define('DONOTCACHEPAGE',true);
+	}
 	$selectedTemplate = get_option('eduadmin-bookingTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -77,6 +86,9 @@ function eduadmin_get_booking_view($attributes)
 
 function eduadmin_get_detailinfo($attributes)
 {
+	if ( !defined('DONOTCACHEPAGE') ){
+		define('DONOTCACHEPAGE',true);
+	}
 	global $wp_query;
 	global $eduapi;
 	global $edutoken;
@@ -484,28 +496,39 @@ function eduadmin_get_login_widget($attributes)
 	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 	{
 		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\" data-logintext=\"" .
+		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
+		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
+		esc_attr($attributes['guesttext']) . "\">" .
+		/*"<a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
 		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
 		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLogoutButton\">" .
 		$attributes['logouttext'] .
-		"</a>" .
+		"</a>" .*/
 		"</div>";
 	}
 	else
 	{
 		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"><i>" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\" data-logintext=\"" .
+		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
+		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
+		esc_attr($attributes['guesttext']) . "\">" .
+		/*"<i>" .
 		$attributes['guesttext'] .
 		"</i> - " .
 		"<a href=\"" . $baseUrl . "/profile/login" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLoginButton\">" .
 		$attributes['logintext'] .
-		"</a>" .
+		"</a>" .*/
 		"</div>";
 	}
 }
 
 function eduadmin_get_login_view($attributes)
 {
+	if ( !defined('DONOTCACHEPAGE') ){
+		define('DONOTCACHEPAGE',true);
+	}
 	$attributes = shortcode_atts(
 		array(
 			'logintext' => edu__("Log in"),

@@ -1,5 +1,5 @@
 <?php
-function edu_api_loginwidget(WP_REST_Request $request)
+function edu_api_loginwidget($request)
 {
 	$surl = get_site_url();
 	$cat = get_option('eduadmin-rewriteBaseUrl');
@@ -31,14 +31,19 @@ function edu_api_loginwidget(WP_REST_Request $request)
 	}
 }
 
-add_action('rest_api_init', function() {
+if(isset($_REQUEST['module']) && $_REQUEST['module'] == "login_widget")
+{
+	echo edu_api_loginwidget($_REQUEST);
+}
+
+/*add_action('rest_api_init', function() {
 	register_rest_route(
 		'eduadmin/v1',
 		'/login/widget',
 		array(
-			'methods' => 'GET',
+			'methods' => 'POST',
 			'callback' => 'edu_api_loginwidget'
 		)
 	);
-});
+});*/
 ?>
