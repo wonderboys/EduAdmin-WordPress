@@ -17,28 +17,7 @@ if(isset($_POST['resetTranslation']))
 					<td><h3><?php _e("Translation", "eduadmin"); ?></h3></td>
 				</tr>
 <?php
-	$phrases = get_option('eduadmin-phrases');
-	$phrasestr = $phrases;
-	$file = file_get_contents(( dirname( __FILE__ ) ) . '/defaultPhrases.json');
-	$originalPhrases = json_decode($file, true);
-
-	if(!$phrases || $phrases == "{}" || $phrases == "null")
-	{
-		$phrasestr = $file;
-		$phrases = json_decode($file, true);
-		update_option('eduadmin-phrases', json_encode($phrases));
-	}
-	else
-	{
-		$phrases = json_decode($phrases, true);
-		foreach($originalPhrases as $ph => $val)
-		{
-			if(!isset($phrases[$ph]))
-			{
-				$phrases[$ph] = $val;
-			}
-		}
-	}
+	$phrases = edu_LoadPhrases();
 
 	ksort($phrases, SORT_NATURAL | SORT_FLAG_CASE);
 

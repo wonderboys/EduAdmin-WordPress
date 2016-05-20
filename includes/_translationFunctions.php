@@ -1,5 +1,5 @@
 <?php
-function edu__($key)
+function edu_LoadPhrases()
 {
 	$phrases = get_option('eduadmin-phrases');
 	$file = file_get_contents(( dirname( __FILE__ ) ) . '/defaultPhrases.json');
@@ -21,6 +21,13 @@ function edu__($key)
 			}
 		}
 	}
+
+	return $phrases;
+}
+
+function edu__($key)
+{
+	$phrases = edu_LoadPhrases();
 
 	if(!array_key_exists($key, $phrases))
 	{
