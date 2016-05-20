@@ -17,6 +17,7 @@ if(isset($_POST['resetTranslation']))
 					<td><h3><?php _e("Translation", "eduadmin"); ?></h3></td>
 				</tr>
 <?php
+	delete_transient('eduadmin-phrases');
 	$phrases = edu_LoadPhrases();
 
 	ksort($phrases, SORT_NATURAL | SORT_FLAG_CASE);
