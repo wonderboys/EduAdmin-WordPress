@@ -400,7 +400,13 @@ function eduadmin_get_detailinfo($attributes)
 
 				$baseUrl = $surl . '/' . $cat;
 				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
-				$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
+				$retStr .= '<div class="eduadmin"><div class="event-table eventDays" data-eduwidget="eventlist" data-spotsleft="' .
+				$spotLeftOption . '" data-showmore="' .
+				$showMore . '" data-groupbycity="' .
+				$groupByCity . '"' .
+				(!empty($attributes['courseeventlistfiltercity']) ? ' data-city="' . $attributes['courseeventlistfiltercity'] . '"' : '') .
+				(isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : '') .
+				'>';
 				$i = 0;
 				$hasHiddenDates = false;
 
