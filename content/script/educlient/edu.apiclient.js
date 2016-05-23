@@ -3,8 +3,10 @@ var edu = edu ? edu : {};
 edu.apiclient = {
 	baseUrl: null,
 	courseFolder: null,
+	authToken: null,
 	parseDocument: function(doc) {
 		if(wp_edu != undefined) {
+			this.authToken = this.authJS(wp_edu.ApiKey);
 			//this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
 			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
 			this.courseFolder = wp_edu.CourseFolder;
@@ -14,10 +16,22 @@ edu.apiclient = {
 			this.getLoginWidget(lw);
 		}
 	},
+	authJS: function(apiKey) {
+		jQuery.ajax({
+			url: this.baseUrl + '?authenticate',
+			async: false,
+			data: {
+				key: apiKey
+			},
+			success: function(d) {
+				console.log(d);
+			}
+		});
+	},
 	getEventList: function(target) {
 
 	},
-	getNextEvent: function(target, objectid) {
+	getNextEvent: function(target) {
 	},
 	getLoginWidget: function(target) {
 		var loginText = wp_edu.Phrases['Log in'];

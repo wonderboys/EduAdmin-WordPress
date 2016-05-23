@@ -9,6 +9,21 @@ function edu_getQueryString($prepend = "?", $removeParameters = array())
 	return "";
 }
 
+if(!function_exists('edu_DecryptApiKey'))
+{
+	function edu_DecryptApiKey($key) {
+		$decrypted = explode('|', base64_decode($key));
+		if(count($decrypted) == 2)
+		{
+			$apiKey = new stdClass();
+			$apiKey->UserId = $decrypted[0];
+			$apiKey->Hash = $decrypted[1];
+			return $apiKey;
+		}
+		return false;
+	}
+}
+
 function edu_getSpotsLeft($freeSpots, $maxSpots)
 {
 	$spotOption = get_option('eduadmin-spotsLeft', 'exactNumbers');
