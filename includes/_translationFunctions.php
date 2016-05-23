@@ -28,6 +28,8 @@ function edu_LoadPhrases()
 		set_transient('eduadmin-phrases', $phrases, DAY_IN_SECONDS);
 	}
 
+	$_SESSION['eduadmin-phrases'] = $phrases;
+
 	return $phrases;
 }
 

@@ -14,14 +14,15 @@ edu.apiclient = {
 			this.getLoginWidget(lw);
 		}
 	},
-	getEventList: function(target, objectid) {
+	getEventList: function(target) {
+
 	},
 	getNextEvent: function(target, objectid) {
 	},
 	getLoginWidget: function(target) {
-		var loginText = 'Log in';
-		var logoutText = 'Log out';
-		var guestText = 'Guest';
+		var loginText = wp_edu.Phrases['Log in'];
+		var logoutText = wp_edu.Phrases['Log out'];
+		var guestText = wp_edu.Phrases['Guest'];
 		if(jQuery(target).data('logintext')) {
 			loginText = jQuery(target).data('logintext');
 		}

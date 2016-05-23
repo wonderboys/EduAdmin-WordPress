@@ -1,14 +1,5 @@
 <?php
-function edu_getQueryString($prepend = "?", $removeParameters = array())
-{
-	foreach($removeParameters as $par)
-	{
-		unset($_GET[$par]);
-	}
-	if(!empty($_GET)) { return $prepend . http_build_query($_GET); }
-	return "";
-}
-
+include_once("edu.api.functions.php");
 
 $modules = scandir(__DIR__ . '/modules');
 foreach($modules as $module)
