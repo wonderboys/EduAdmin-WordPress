@@ -40,9 +40,8 @@ if(!function_exists('edu_DecryptApiKey'))
 	}
 }
 
-function edu_getSpotsLeft($freeSpots, $maxSpots)
+function edu_getSpotsLeft($freeSpots, $maxSpots, $spotOption = 'exactNumbers', $spotSettings = "1-5\n5-10\n10+", $alwaysFewSpots = 3)
 {
-	$spotOption = get_option('eduadmin-spotsLeft', 'exactNumbers');
 	if($maxSpots === 0)
 		return edu__('Spots left');
 
@@ -56,7 +55,7 @@ function edu_getSpotsLeft($freeSpots, $maxSpots)
 		case "onlyText":
 			return ($freeSpots > 0 ? ($freeSpots > 5 ? edu__('Spots left') : edu__('Few spots left')) : edu__('No spots left'));
 		case "intervals":
-			$interval = get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+");
+			$interval = $spotSettings;
 			if(empty($interval)) {
 				return sprintf(edu_n('%1$s spot left', '%1$s spots left', $freeSpots), $freeSpots);
 			} else {
@@ -78,8 +77,7 @@ function edu_getSpotsLeft($freeSpots, $maxSpots)
 			}
 
 		case "alwaysFewSpots":
-			$minParticipants = get_option('eduadmin-alwaysFewSpots');
-			#echo $maxSpots . " - " . $freeSpots . " (" . ($maxSpots - $freeSpots) . ") >= " . $minParticipants . " == " . (($maxSpots - $freeSpots) >= $minParticipants) . "<br />";
+			$minParticipants = $alwaysFewSpots;
 			if(($maxSpots - $freeSpots) >= $minParticipants)
 				return edu__('Few spots left');
 			return edu__('Spots left');
@@ -197,6 +195,7 @@ function edu_KeySort($key)
 
 function edu__($key)
 {
+	global $_SESSION;
 	$phrases = $_SESSION['eduadmin-phrases'];
 
 	if(!array_key_exists($key, $phrases))

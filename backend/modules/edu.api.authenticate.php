@@ -1,10 +1,9 @@
 <?php
 include_once(__DIR__ . "/../../includes/loApiClient.php");
+$eduapi = new EduAdminClient();
 
 if(isset($_GET['authenticate']) && isset($_GET['key']))
 {
-	$eduapi = new EduAdminClient();
-
 	$info = edu_DecryptApiKey($_GET['key']);
 
 	if(!isset($_SESSION['edu-usertoken']))
@@ -13,7 +12,7 @@ if(isset($_GET['authenticate']) && isset($_GET['key']))
 	}
 	else
 	{
-		$valid = $eduapi->ValidateAuthToken($edutoken);
+		$valid = $eduapi->ValidateAuthToken($_SESSION['edu-usertoken']);
 		if(!$valid)
 		{
 			$_SESSION['edu-usertoken'] = $eduapi->GetAuthToken($info->UserId, $info->Hash);

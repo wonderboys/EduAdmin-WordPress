@@ -3,7 +3,34 @@ if(!function_exists('edu_api_eventlist'))
 {
 	function edu_api_eventlist($request)
 	{
+		$retStr = '';
+		global $eduapi;
+
+		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-AuthToken"]);
+
+		$_SESSION['eduadmin-phrases'] = $request['phrases'];
+
 		$objectId = $request['objectid'];
+
+		$filtering = new XFiltering();
+		$f = new XFilter('ShowOnWeb','=','true');
+		$filtering->AddItem($f);
+		$f = new XFilter('ObjectID', '=', $objectId);
+
+		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
+
+		$selectedCourse = false;
+		$name = "";
+		foreach($edo as $object)
+		{
+			$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
+			$id = $object->ObjectID;
+			if($id == $objectId)
+			{
+				$selectedCourse = $object;
+				break;
+			}
+		}
 
 		$ft = new XFiltering();
 		$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
@@ -77,6 +104,8 @@ if(!function_exists('edu_api_eventlist'))
 
 		$showMore = isset($request['showmore']) && !empty($request['showmore']) ? $request['showmore'] : -1;
 		$spotLeftOption = $request['spotsleft'];
+		$alwaysFewSpots = $request['fewspots'];
+		$spotSettings = $request['spotsettings'];
 
 		$baseUrl = $surl . '/' . $cat;
 		$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
@@ -112,6 +141,20 @@ if(!function_exists('edu_api_eventlist'))
 				$hasHiddenDates = true;
 			}
 
+			$removeItems = array(
+				'eid',
+				'phrases',
+				'module',
+				'baseUrl',
+				'courseFolder',
+				'showmore',
+				'spotsleft',
+				'objectid',
+				'groupbycity',
+				'fewspots',
+				'spotsettings'
+			);
+
 			$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
 			$retStr .= '
 			<div class="eventDate' . $groupByCityClass . '">
@@ -124,13 +167,13 @@ if(!function_exists('edu_api_eventlist'))
 			</div>' : '') .
 			'<div class="eventStatus' . $groupByCityClass . '">
 			' .
-				edu_getSpotsLeft($spotsLeft, $ev->MaxParticipantNr)
+				edu_getSpotsLeft($spotsLeft, $ev->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots)
 			 . '
 			</div>
 			<div class="eventBook' . $groupByCityClass . '">
 			' . ($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
 
-				'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", array('eid')) . '" style="text-align: center;">' . edu__("Book") . '</a>'
+				'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", $removeItems) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 			:
 				'<i class="fullBooked">' . edu__("Full") . '</i>'
 			) . '
@@ -148,6 +191,13 @@ if(!function_exists('edu_api_eventlist'))
 			$retStr .= "<div class=\"eventShowMore\"><a href=\"javascript://\" onclick=\"eduDetailView.ShowAllEvents('eduev" . ($groupByCity ? "-" . $ev->City : "") . "', this);\">" . edu__("Show all events") . "</a></div>";
 		}
 		$retStr .= '</div></div>';
+
+		return $retStr;
 	}
+}
+
+if(isset($_REQUEST['module']) && $_REQUEST['module'] == "detailinfo_eventlist")
+{
+	echo edu_api_eventlist($_REQUEST);
 }
 ?>

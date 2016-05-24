@@ -1,4 +1,5 @@
 <?php
+@session_start();
 include_once("edu.api.functions.php");
 
 $modules = scandir(__DIR__ . '/modules');

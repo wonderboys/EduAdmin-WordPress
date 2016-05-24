@@ -36,9 +36,6 @@ function eduadmin_get_list_view($attributes)
 
 function eduadmin_get_detail_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$selectedTemplate = get_option('eduadmin-detailTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(
@@ -86,9 +83,6 @@ function eduadmin_get_booking_view($attributes)
 
 function eduadmin_get_detailinfo($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	global $wp_query;
 	global $eduapi;
 	global $edutoken;
@@ -404,6 +398,8 @@ function eduadmin_get_detailinfo($attributes)
 				'" data-spotsleft="' . $spotLeftOption .
 				'" data-showmore="' . $showMore .
 				'" data-groupbycity="' . $groupByCity . '"' .
+				'" data-spotsettings="' . get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+") . '"' .
+				'" data-fewspots="' . get_option('eduadmin-alwaysFewSpots', "3") . '"' .
 				(!empty($attributes['courseeventlistfiltercity']) ? ' data-city="' . $attributes['courseeventlistfiltercity'] . '"' : '') .
 				(isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : '') .
 				'>';

@@ -218,7 +218,13 @@ else
 			}
 		} ?>
 	</div>
-	<div class="eventDays" data-objectid="<?php echo esc_attr($selectedCourse->ObjectID); ?>">
+	<div class="event-table eventDays" data-objectid="<?php echo esc_attr($selectedCourse->ObjectID); ?>"
+		data-spotsleft="<?php echo get_option('eduadmin-spotsLeft', 'exactNumbers'); ?>"
+		data-spotsettings="<?php echo get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+"); ?>"
+		data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
+		data-showmore="0"
+		data-groupbycity="<?php echo $groupByCity; ?>"
+		<?php echo (isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : ''); ?>>
 	<?php
 	$i = 0;
 	foreach($events as $ev)

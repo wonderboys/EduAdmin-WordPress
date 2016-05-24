@@ -16,6 +16,11 @@ edu.apiclient = {
 		if(lw) {
 			this.getLoginWidget(lw);
 		}
+
+		var evLists = document.querySelectorAll('[data-eduwidget="eventlist"]');
+		for(var i = 0, len = evLists.length; i < len; i++) {
+			this.getEventList(evLists[i]);
+		}
 	},
 	authJS: function(apiKey) {
 		if(this.GetCookie('apiToken') == null) {
@@ -37,21 +42,26 @@ edu.apiclient = {
 	},
 	getEventList: function(target) {
 		jQuery.ajax({
-			this.baseUrl + '?module=detailinfo_eventlist',
+			url: this.baseUrl + '?module=detailinfo_eventlist',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Edu-AuthToken', edu.apiclient.authToken);
-			}
+			},
+			type: 'POST',
 			data: {
-				objectid: null,
-				city: null,
-				groupbycity: false,
-				baseUrl: null,
-				courseFolder: null,
-				showmore: null,
-				spotsleft: null,
-				eid: null
+				objectid: jQuery(target).data('objectid'),
+				city: jQuery(target).data('city'),
+				groupbycity: jQuery(target).data('groupbycity'),
+				baseUrl: wp_edu.BaseUrl,
+				courseFolder: wp_edu.CourseFolder,
+				showmore: jQuery(target).data('showmore'),
+				spotsleft: jQuery(target).data('spotsleft'),
+				fewspots: jQuery(target).data('fewspots'),
+				spotsettings: jQuery(target).data('spotsettings'),
+				eid: jQuery(target).data('eid'),
+				phrases: wp_edu.Phrases
 			},
 			success: function(d) {
+				jQuery(target).replaceWith(d);
 			}
 		});
 	},
