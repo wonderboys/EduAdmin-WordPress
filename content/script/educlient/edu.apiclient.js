@@ -7,23 +7,22 @@ edu.apiclient = {
 	CookieBase: 'edu_',
 	parseDocument: function(doc) {
 		if(wp_edu != undefined) {
-			//this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
 			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
-			this.authToken = this.authJS(wp_edu.ApiKey);
-			console.log(this.authToken);
 			this.courseFolder = wp_edu.CourseFolder;
-		}
-		var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
-		if(lw) {
-			this.getLoginWidget(lw);
-		}
+			this.authJS(wp_edu.ApiKey, function() {
+				var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
+				if(lw) {
+					edu.apiclient.getLoginWidget(lw);
+				}
 
-		var evLists = document.querySelectorAll('[data-eduwidget="eventlist"]');
-		for(var i = 0, len = evLists.length; i < len; i++) {
-			this.getEventList(evLists[i]);
+				var evLists = document.querySelectorAll('[data-eduwidget="eventlist"]');
+				for(var i = 0, len = evLists.length; i < len; i++) {
+					edu.apiclient.getEventList(evLists[i]);
+				}
+			});
 		}
 	},
-	authJS: function(apiKey) {
+	authJS: function(apiKey, next) {
 		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {
 			jQuery.ajax({
 				url: this.baseUrl + '?authenticate',
@@ -34,12 +33,14 @@ edu.apiclient = {
 				},
 				success: function(d) {
 					edu.apiclient.SetCookie('apiToken', d, 1000 * 60 * 30);
-					return d;
+					edu.apiclient.authToken = d;
+					next();
 				}
 			});
 		} else {
 			var t = this.GetCookie('apiToken');
-			return t;
+			edu.apiclient.authToken = t;
+			next();
 		}
 	},
 	getEventList: function(target) {
