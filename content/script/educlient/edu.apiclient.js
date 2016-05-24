@@ -10,6 +10,7 @@ edu.apiclient = {
 			//this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
 			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
 			this.authToken = this.authJS(wp_edu.ApiKey);
+			console.log(this.authToken);
 			this.courseFolder = wp_edu.CourseFolder;
 		}
 		var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
@@ -23,16 +24,17 @@ edu.apiclient = {
 		}
 	},
 	authJS: function(apiKey) {
-		if(this.GetCookie('apiToken') == null) {
+		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {
 			jQuery.ajax({
 				url: this.baseUrl + '?authenticate',
 				async: false,
+				type: 'POST',
 				data: {
 					key: apiKey
 				},
 				success: function(d) {
 					edu.apiclient.SetCookie('apiToken', d, 1000 * 60 * 30);
-					return t;
+					return d;
 				}
 			});
 		} else {

@@ -2,9 +2,9 @@
 include_once(__DIR__ . "/../../includes/loApiClient.php");
 $eduapi = new EduAdminClient();
 
-if(isset($_GET['authenticate']) && isset($_GET['key']))
+if(isset($_REQUEST['authenticate']) && isset($_REQUEST['key']))
 {
-	$info = edu_DecryptApiKey($_GET['key']);
+	$info = edu_DecryptApiKey($_REQUEST['key']);
 
 	if(!isset($_SESSION['edu-usertoken']))
 	{
