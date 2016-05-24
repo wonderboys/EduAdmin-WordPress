@@ -68,6 +68,8 @@ if(!function_exists('edu_api_eventlist'))
 			$ft->ToString()
 		);
 
+
+
 		$occIds = array();
 
 		foreach($events as $e)
