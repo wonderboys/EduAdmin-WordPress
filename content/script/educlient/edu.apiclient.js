@@ -6,9 +6,9 @@ edu.apiclient = {
 	authToken: null,
 	parseDocument: function(doc) {
 		if(wp_edu != undefined) {
-			this.authToken = this.authJS(wp_edu.ApiKey);
 			//this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
 			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
+			this.authToken = this.authJS(wp_edu.ApiKey);
 			this.courseFolder = wp_edu.CourseFolder;
 		}
 		var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
