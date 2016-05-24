@@ -9,6 +9,22 @@ function edu_getQueryString($prepend = "?", $removeParameters = array())
 	return "";
 }
 
+if(!function_exists('edu_encrypt'))
+{
+	function edu_encrypt($key, $toEncrypt)
+	{
+	    return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $toEncrypt, MCRYPT_MODE_CBC, md5(md5($key))));
+	}
+}
+
+if(!function_exists('edu_decrypt'))
+{
+	function edu_decrypt($key, $toDecrypt)
+	{
+	    return rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($toDecrypt), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+	}
+}
+
 if(!function_exists('edu_DecryptApiKey'))
 {
 	function edu_DecryptApiKey($key) {

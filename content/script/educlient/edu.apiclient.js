@@ -4,6 +4,7 @@ edu.apiclient = {
 	baseUrl: null,
 	courseFolder: null,
 	authToken: null,
+	CookieBase: 'edu_',
 	parseDocument: function(doc) {
 		if(wp_edu != undefined) {
 			//this.baseUrl = wp_edu.BaseUrl + '/wp-json/eduadmin/v1/';
@@ -17,19 +18,42 @@ edu.apiclient = {
 		}
 	},
 	authJS: function(apiKey) {
-		jQuery.ajax({
-			url: this.baseUrl + '?authenticate',
-			async: false,
-			data: {
-				key: apiKey
-			},
-			success: function(d) {
-				console.log(d);
-			}
-		});
+		if(this.GetCookie('apiToken') == null) {
+			jQuery.ajax({
+				url: this.baseUrl + '?authenticate',
+				async: false,
+				data: {
+					key: apiKey
+				},
+				success: function(d) {
+					edu.apiclient.SetCookie('apiToken', d, 1000 * 60 * 30);
+					return t;
+				}
+			});
+		} else {
+			var t = this.GetCookie('apiToken');
+			return t;
+		}
 	},
 	getEventList: function(target) {
-
+		jQuery.ajax({
+			this.baseUrl + '?module=detailinfo_eventlist',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Edu-AuthToken', edu.apiclient.authToken);
+			}
+			data: {
+				objectid: null,
+				city: null,
+				groupbycity: false,
+				baseUrl: null,
+				courseFolder: null,
+				showmore: null,
+				spotsleft: null,
+				eid: null
+			},
+			success: function(d) {
+			}
+		});
 	},
 	getNextEvent: function(target) {
 	},
@@ -63,7 +87,38 @@ edu.apiclient = {
 				jQuery(target).replaceWith(d);
 			}
 		});
-	}
+	},
+	GetCookie: function (name) {
+        try {
+            var cookie = document.cookie;
+            name = this.CookieBase + name;
+            var valueStart = cookie.indexOf(name + "=") + 1;
+            if (valueStart === 0) {
+                return null;
+            }
+            valueStart += name.length;
+            var valueEnd = cookie.indexOf(";", valueStart);
+            if (valueEnd == -1)
+                valueEnd = cookie.length;
+            return decodeURIComponent(cookie.substring(valueStart, valueEnd));
+        } catch (e) {
+            ;
+        }
+        return null;
+    },
+    SetCookie: function (name, value, expire) {
+        var temp = this.CookieBase + name + "=" + escape(value) + (expire !== 0 ? "; path=/; expires=" + ((new Date((new Date()).getTime() + expire)).toUTCString()) + ";" : "; path=/;");
+        document.cookie = temp;
+    },
+    CanSetCookies: function () {
+        SetCookie('_eduCookieTest', 'true', 0);
+        var can = GetCookie('_eduCookieTest') != null;
+        DelCookie('_eduCookieTest');
+        return can;
+    },
+    DelCookie: function (name) {
+        document.cookie = this.CookieBase + name + '=0; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
 };
 
 (function() {
