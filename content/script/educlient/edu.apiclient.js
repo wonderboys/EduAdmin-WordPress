@@ -5,21 +5,26 @@ edu.apiclient = {
 	courseFolder: null,
 	authToken: null,
 	CookieBase: 'edu_',
-	parseDocument: function(doc) {
+	parseDocument: function() {
 		if(wp_edu != undefined) {
 			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
 			this.courseFolder = wp_edu.CourseFolder;
 			this.authJS(wp_edu.ApiKey, function() {
-				var lw = doc.querySelector('[data-eduwidget="loginwidget"]');
-				if(lw) {
-					edu.apiclient.getLoginWidget(lw);
-				}
-
-				var evLists = document.querySelectorAll('[data-eduwidget="eventlist"]');
-				for(var i = 0, len = evLists.length; i < len; i++) {
-					edu.apiclient.getEventList(evLists[i]);
-				}
+				edu.apiclient.replaceLoginWidget();
+				edu.apiclient.replaceEventListWidget();
 			});
+		}
+	},
+	replaceLoginWidget: function() {
+		var lw = document.querySelector('[data-eduwidget="loginwidget"]');
+		if(lw) {
+			edu.apiclient.getLoginWidget(lw);
+		}
+	},
+	replaceEventListWidget: function() {
+		var evLists = document.querySelectorAll('[data-eduwidget="eventlist"]');
+		for(var i = 0, len = evLists.length; i < len; i++) {
+			edu.apiclient.getEventList(evLists[i]);
 		}
 	},
 	authJS: function(apiKey, next) {
@@ -136,9 +141,9 @@ edu.apiclient = {
 (function() {
 	if(jQuery != undefined) {
 		jQuery('document').ready(function() {
-			edu.apiclient.parseDocument(document);
+			edu.apiclient.parseDocument();
 		});
 	} else {
-		edu.apiclient.parseDocument(document);
+		edu.apiclient.parseDocument();
 	}
 })();
