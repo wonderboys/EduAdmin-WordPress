@@ -34,7 +34,9 @@ edu.apiclient = {
 		for(var i = 0, len = courseDateObjects.length; i < len; i++) {
 			objectIds.push(courseDateObjects[i].attributes['data-objectid'].value);
 		}
-		edu.apiclient.getCourseListDates(objectIds);
+		if(objectIds.length > 0) {
+			edu.apiclient.getCourseListDates(objectIds);
+		}
 	},
 	authJS: function(apiKey, next) {
 		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {

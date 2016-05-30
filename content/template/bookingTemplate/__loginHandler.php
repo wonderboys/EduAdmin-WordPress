@@ -76,5 +76,10 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 			$_SESSION['eduadminLoginError'] = edu__("Wrong email or password.");
 		}
 	}
+	else if($_REQUEST['bookingLoginAction'] == "forgot")
+	{
+		$success = sendForgottenPassword($_POST['eduadminloginEmail']);
+		$_SESSION['eduadmin-forgotPassSent'] = $success;
+	}
 }
 ?>

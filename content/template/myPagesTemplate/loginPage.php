@@ -32,5 +32,11 @@
 	<div class="edu-modal warning" style="display: block; clear: both;">
 		<?php edu_e("A new password has been sent by email."); ?>
 	</div>
+	<?php } else if(isset($_SESSION['eduadmin-forgotPassSent']) && $_SESSION['eduadmin-forgotPassSent'] == false) {
+		unset($_SESSION['eduadmin-forgotPassSent']);
+	?>
+	<div class="edu-modal warning" style="display: block; clear: both;">
+		<?php edu_e("Could not send a new password by email."); ?>
+	</div>
 	<?php } ?>
 </div>
