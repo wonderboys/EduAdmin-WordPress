@@ -175,11 +175,13 @@ else
 
 	if($showEvents)
 	{
-		include("template_B_listEvents.php");
+		$str = include("template_B_listEvents.php");
+		echo $str;
 	}
 	else
 	{
-		include("template_B_listCourses.php");
+		$str = include("template_B_listCourses.php");
+		echo $str;
 	}
 ?>
 	</div>

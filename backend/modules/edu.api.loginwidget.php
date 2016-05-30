@@ -1,9 +1,10 @@
 <?php
-header("Content-type: text/html; charset=UTF-8");
+
 if(!function_exists('edu_api_loginwidget'))
 {
 	function edu_api_loginwidget($request)
 	{
+		header("Content-type: text/html; charset=UTF-8");
 		$surl = $request['baseUrl'];
 		$cat = $request['courseFolder'];
 

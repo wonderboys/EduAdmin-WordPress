@@ -1,9 +1,9 @@
 <?php
-header("Content-type: text/html; charset=UTF-8");
 if(!function_exists('edu_api_eventlist'))
 {
 	function edu_api_eventlist($request)
 	{
+		header("Content-type: text/html; charset=UTF-8");
 		$retStr = '';
 		global $eduapi;
 

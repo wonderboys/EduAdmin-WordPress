@@ -1,9 +1,10 @@
 <?php
-header("Content-type: application/json; charset=UTF-8");
+
 if(!function_exists('edu_api_listview_courselist'))
 {
 	function edu_api_listview_courselist($request)
 	{
+		header("Content-type: application/json; charset=UTF-8");
 		global $eduapi;
 
 		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-AuthToken"]);
