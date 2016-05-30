@@ -36,7 +36,16 @@ if(!function_exists('edu_api_listview_courselist'))
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 
-		print_r($ede);
+		$returnValue = array();
+		foreach($ede as $event)
+		{
+			if(!isset($returnValue[$event->ObjectID]))
+			{
+				$returnValue[$event->ObjectID] = sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime($event->PeriodStart))) . " " . $event->City;
+			}
+		}
+
+		return json_encode($returnValue);
 	}
 }
 
