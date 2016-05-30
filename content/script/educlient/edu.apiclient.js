@@ -26,7 +26,6 @@ edu.apiclient = {
 		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {
 			jQuery.ajax({
 				url: this.baseUrl + '?authenticate',
-				async: false,
 				type: 'POST',
 				data: {
 					key: apiKey
