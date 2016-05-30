@@ -68,7 +68,15 @@ edu.apiclient = {
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {
-				console.log(d);
+				var o = JSON.parse(d);
+				for(var k in o) {
+					if(o.hasOwnProperty(k)) {
+						var target = document.querySelector('[data-eduwidget="courseitem-date"][data-objectid="' + k + '"]');
+						if(target) {
+							target.innerHTML = o[k];
+						}
+					}
+				}
 			}
 		});
 	},
