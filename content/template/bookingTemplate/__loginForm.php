@@ -13,8 +13,7 @@
 			<input type="password" name="eduadminpassword" required title="<?php echo esc_attr(edu__("Please enter your password here")); ?>" placeholder="<?php echo esc_attr(edu__("Password")); ?>" />
 		</div>
 	</label>
-	<!--<input type="submit" class="bookingLoginButton" value="<?php echo esc_attr(edu__("Log in")); ?>" />-->
-	<button class="bookingLoginButton" onclick="this.form.bookingLoginAction.value = 'login';"><?php edu_e("Log in"); ?></button>
+	<button class="bookingLoginButton"><?php edu_e("Log in"); ?></button>
 	<button class="bookingforgotPasswordButton" onclick="this.form.eduadminpassword.value = '-'; this.form.bookingLoginAction.value = 'forgot';"><?php edu_e("Forgot password"); ?></button>
 </div>
 	<?php if(isset($_SESSION['eduadminLoginError'])) { ?>

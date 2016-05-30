@@ -1,5 +1,6 @@
 <?php
 ob_start();
+echo "hej";
 $filtering = new XFiltering();
 $f = new XFilter('ShowOnWeb','=','true');
 $filtering->AddItem($f);
@@ -40,7 +41,10 @@ $sort = new XSorting();
 $s = new XSort($sortOrder, 'ASC');
 $sort->AddItem($s);
 
+
 $edo = $eduapi->GetEducationObject($edutoken, $sort->ToString(), $filtering->ToString());
+
+print_r($edo);
 
 if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 {

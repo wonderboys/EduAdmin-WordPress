@@ -115,5 +115,6 @@
 "You have to provide your e-mail adress.": "You have to provide your e-mail adress.",
 "You must accept Terms and Conditions to continue.": "You must accept Terms and Conditions to continue.",
 "You must add some participants.": "You must add some participants.",
-"Your search returned zero results": "Your search returned zero results"
+"Your search returned zero results": "Your search returned zero results",
+"Could not send a new password by email.": "Could not send a new password by email."
 }
