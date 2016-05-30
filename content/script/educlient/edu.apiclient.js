@@ -12,6 +12,7 @@ edu.apiclient = {
 			this.authJS(wp_edu.ApiKey, function() {
 				edu.apiclient.replaceLoginWidget();
 				edu.apiclient.replaceEventListWidget();
+				edu.apiclient.replaceCourseListDates();
 			});
 		}
 	},
@@ -26,6 +27,14 @@ edu.apiclient = {
 		for(var i = 0, len = evLists.length; i < len; i++) {
 			edu.apiclient.getEventList(evLists[i]);
 		}
+	},
+	replaceCourseListDates: function() {
+		var courseDateObjects = document.querySelectorAll('[data-eduwidget="courseitem-date"]');
+		var objectIds = [];
+		for(var i = 0, len = courseDateObjects.length; i < len; i++) {
+			objectIds.push(courseDateObjects[i].attributes['data-objectid'].value);
+		}
+		edu.apiclient.getCourseListDates(objectIds);
 	},
 	authJS: function(apiKey, next) {
 		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {
@@ -46,6 +55,22 @@ edu.apiclient = {
 			edu.apiclient.authToken = t;
 			next();
 		}
+	},
+	getCourseListDates: function(objectIds) {
+		jQuery.ajax({
+			url: this.baseUrl + '?module=listview_courselist',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Edu-AuthToken', edu.apiclient.authToken);
+			},
+			type: 'POST',
+			data: {
+				objectIds: objectIds,
+				phrases: wp_edu.Phrases
+			},
+			success: function(d) {
+				console.log(d);
+			}
+		});
 	},
 	getEventList: function(target) {
 		jQuery.ajax({

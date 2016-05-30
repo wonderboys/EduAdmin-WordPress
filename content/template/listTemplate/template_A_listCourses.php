@@ -333,9 +333,14 @@ if(!empty($edo))
 					echo "<div class=\"locationInfo\">" . $cities . "</div> ";
 				}
 
-				if($showNextEventDate && !empty($sortedEvents))
+				if($showNextEventDate)
 				{
-					echo "<div class=\"nextEventDate\">" . sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City . "</div> ";
+					echo "<div class=\"nextEventDate\" data-eduwidget=\"courseitem-date\" data-objectid=\"" . $object->ObjectID . "\">";
+					if(!empty($sortedEvents))
+					{
+						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+					}
+					echo "</div> ";
 				}
 
 				if($showEventPrice && !empty($prices))
