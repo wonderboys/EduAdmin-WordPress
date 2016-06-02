@@ -130,7 +130,7 @@ if(isset($_REQUEST['eduadmin-subject']))
 
 $f = new XFilter('PeriodStart','>',date("Y-m-d 00:00:00", strtotime("now +1 day")));
 $filtering->AddItem($f);
-$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +1 year")));
+$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +6 months")));
 $filtering->AddItem($f);
 $f = new XFilter('StatusID','=','1');
 $filtering->AddItem($f);

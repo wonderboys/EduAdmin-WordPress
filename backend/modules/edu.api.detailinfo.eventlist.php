@@ -36,6 +36,8 @@ if(!function_exists('edu_api_eventlist'))
 		$ft = new XFiltering();
 		$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 		$ft->AddItem($f);
+		$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+		$ft->AddItem($f);
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
 		$f = new XFilter('StatusID', '=', '1');
