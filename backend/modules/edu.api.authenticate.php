@@ -20,5 +20,6 @@ if(isset($_REQUEST['authenticate']) && isset($_REQUEST['key']))
 	}
 
 	echo edu_encrypt("edu_js_token_crypto", $_SESSION['edu-usertoken']);
+	unset($_SESSION['edu-usertoken']);
 }
 ?>

@@ -17,9 +17,9 @@ if(!function_exists('edu_api_eventlist'))
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 		$f = new XFilter('ObjectID', '=', $objectId);
+		$filtering->AddItem($f);
 
 		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
-
 		$selectedCourse = false;
 		$name = "";
 		foreach($edo as $object)
@@ -109,7 +109,6 @@ if(!function_exists('edu_api_eventlist'))
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
-
 		$baseUrl = $surl . '/' . $cat;
 		$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
