@@ -36,8 +36,6 @@ if(!function_exists('edu_api_eventlist'))
 		$ft = new XFiltering();
 		$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 		$ft->AddItem($f);
-		$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
-		$ft->AddItem($f);
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
 		$f = new XFilter('StatusID', '=', '1');
@@ -117,77 +115,79 @@ if(!function_exists('edu_api_eventlist'))
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
 		$i = 0;
 		$hasHiddenDates = false;
-
-		foreach($events as $ev)
+		if(!empty($pricenames))
 		{
-			$spotsLeft = ($ev->MaxParticipantNr - $ev->TotalParticipantNr);
-
-			if(isset($request['eid']))
+			foreach($events as $ev)
 			{
-				if($ev->EventID != $request['eid'])
+				$spotsLeft = ($ev->MaxParticipantNr - $ev->TotalParticipantNr);
+
+				if(isset($request['eid']))
 				{
-					continue;
+					if($ev->EventID != $request['eid'])
+					{
+						continue;
+					}
 				}
-			}
 
-			if($groupByCity && $lastCity != $ev->City)
-			{
-				$i = 0;
-				if($hasHiddenDates)
+				if($groupByCity && $lastCity != $ev->City)
 				{
-					$retStr .= "<div class=\"eventShowMore\"><a href=\"javascript://\" onclick=\"eduDetailView.ShowAllEvents('eduev-" . $lastCity . "', this);\">" . edu__("Show all events") . "</a></div>";
+					$i = 0;
+					if($hasHiddenDates)
+					{
+						$retStr .= "<div class=\"eventShowMore\"><a href=\"javascript://\" onclick=\"eduDetailView.ShowAllEvents('eduev-" . $lastCity . "', this);\">" . edu__("Show all events") . "</a></div>";
+					}
+					$hasHiddenDates = false;
+					$retStr .= '<div class="eventSeparator">' . $ev->City . '</div>';
 				}
-				$hasHiddenDates = false;
-				$retStr .= '<div class="eventSeparator">' . $ev->City . '</div>';
+
+				if($showMore > 0 && $i >= $showMore)
+				{
+					$hasHiddenDates = true;
+				}
+
+				$removeItems = array(
+					'eid',
+					'phrases',
+					'module',
+					'baseUrl',
+					'courseFolder',
+					'showmore',
+					'spotsleft',
+					'objectid',
+					'groupbycity',
+					'fewspots',
+					'spotsettings'
+				);
+
+				$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
+				$retStr .= '
+				<div class="eventDate' . $groupByCityClass . '">
+					' . edu_GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true) . ',
+					' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
+				</div>
+				'. (!$groupByCity ?
+				'<div class="eventCity">
+					' . $ev->City . '
+				</div>' : '') .
+				'<div class="eventStatus' . $groupByCityClass . '">
+				' .
+					edu_getSpotsLeft($spotsLeft, $ev->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots)
+				 . '
+				</div>
+				<div class="eventBook' . $groupByCityClass . '">
+				' . ($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
+
+					'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", $removeItems) . '" style="text-align: center;">' . edu__("Book") . '</a>'
+				:
+					'<i class="fullBooked">' . edu__("Full") . '</i>'
+				) . '
+				</div>';
+				$retStr .= '</div><!-- /eventitem -->';
+				$lastCity = $ev->City;
+				$i++;
 			}
-
-			if($showMore > 0 && $i >= $showMore)
-			{
-				$hasHiddenDates = true;
-			}
-
-			$removeItems = array(
-				'eid',
-				'phrases',
-				'module',
-				'baseUrl',
-				'courseFolder',
-				'showmore',
-				'spotsleft',
-				'objectid',
-				'groupbycity',
-				'fewspots',
-				'spotsettings'
-			);
-
-			$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
-			$retStr .= '
-			<div class="eventDate' . $groupByCityClass . '">
-				' . edu_GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true) . ',
-				' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
-			</div>
-			'. (!$groupByCity ?
-			'<div class="eventCity">
-				' . $ev->City . '
-			</div>' : '') .
-			'<div class="eventStatus' . $groupByCityClass . '">
-			' .
-				edu_getSpotsLeft($spotsLeft, $ev->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots)
-			 . '
-			</div>
-			<div class="eventBook' . $groupByCityClass . '">
-			' . ($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
-
-				'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", $removeItems) . '" style="text-align: center;">' . edu__("Book") . '</a>'
-			:
-				'<i class="fullBooked">' . edu__("Full") . '</i>'
-			) . '
-			</div>';
-			$retStr .= '</div><!-- /eventitem -->';
-			$lastCity = $ev->City;
-			$i++;
 		}
-		if(empty($events))
+		if(empty($pricenames) || empty($events))
 		{
 			$retStr.= '<div class="noDatesAvailable"><i>' . edu__("No available dates for the selected course") . '</i></div>';
 		}

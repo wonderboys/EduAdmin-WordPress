@@ -198,11 +198,12 @@ else
 		$ft = new XFiltering();
 		$f = new XFilter('PublicPriceName', '=', 'true');
 		$ft->AddItem($f);
-		$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
+		$f = new XFilter('OccationID', 'IN', join(',', $occIds));
 		$ft->AddItem($f);
 
-		$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
+		$prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
 		$uniquePrices = Array();
+
 		foreach($prices as $price)
 		{
 			$uniquePrices[$price->Description] = $price;
@@ -229,57 +230,59 @@ else
 		<?php echo (isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : ''); ?>>
 	<?php
 	$i = 0;
-	foreach($events as $ev)
+	if(!empty($prices))
 	{
-		if($groupByCity && $lastCity != $ev->City)
+		foreach($events as $ev)
 		{
-			$i = 0;
-			echo '<div class="eventSeparator">' . $ev->City . '</div>';
-		}
-		if(isset($_REQUEST['eid']))
-		{
-			if($ev->EventID != $_REQUEST['eid'])
+			if($groupByCity && $lastCity != $ev->City)
 			{
-				continue;
+				$i = 0;
+				echo '<div class="eventSeparator">' . $ev->City . '</div>';
 			}
-		}
-	?>
-		<div class="eventItem">
-			<div class="eventDate<?php echo $groupByCityClass; ?>">
-				<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
-				<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
-			</div>
-			<?php if(!$groupByCity) { ?>
-			<div class="eventCity">
+			if(isset($_REQUEST['eid']))
+			{
+				if($ev->EventID != $_REQUEST['eid'])
+				{
+					continue;
+				}
+			}
+		?>
+			<div class="eventItem">
+				<div class="eventDate<?php echo $groupByCityClass; ?>">
+					<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
+					<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
+				</div>
+				<?php if(!$groupByCity) { ?>
+				<div class="eventCity">
+					<?php
+					echo $ev->City;
+					?>
+				</div>
+				<?php } ?>
+				<div class="eventStatus<?php echo $groupByCityClass; ?>">
 				<?php
-				echo $ev->City;
+					$spotsLeft = ($ev->MaxParticipantNr - $ev->TotalParticipantNr);
+					echo getSpotsLeft($spotsLeft, $ev->MaxParticipantNr);
 				?>
+				</div>
+				<div class="eventBook<?php echo $groupByCityClass; ?>">
+				<?php
+				if($ev->MaxParticipantNr == 0 ||$spotsLeft > 0) {
+				?>
+					<a class="book-link" href="./book/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
+				<?php
+				} else {
+				?>
+					<i class="fullBooked"><?php edu_e("Full"); ?></i>
+				<?php } ?>
+				</div>
 			</div>
-			<?php } ?>
-			<div class="eventStatus<?php echo $groupByCityClass; ?>">
-			<?php
-				$spotsLeft = ($ev->MaxParticipantNr - $ev->TotalParticipantNr);
-				echo getSpotsLeft($spotsLeft, $ev->MaxParticipantNr);
-			?>
-			</div>
-			<div class="eventBook<?php echo $groupByCityClass; ?>">
-			<?php
-			if($ev->MaxParticipantNr == 0 ||$spotsLeft > 0) {
-			?>
-				<a class="book-link" href="./book/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
-			<?php
-			} else {
-			?>
-				<i class="fullBooked"><?php edu_e("Full"); ?></i>
-			<?php } ?>
-			</div>
-		</div>
-	<?php
-		$lastCity = $ev->City;
-		$i++;
+		<?php
+			$lastCity = $ev->City;
+			$i++;
+		}
 	}
-
-	if(empty($events))
+	if(empty($prices) || empty($events))
 	{
 	?>
 	<div class="noDatesAvailable">

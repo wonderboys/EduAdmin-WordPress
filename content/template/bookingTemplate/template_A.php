@@ -218,6 +218,12 @@ if(isset($_SESSION['eduadmin-loginUser']))
 $originalTitle = get_the_title();
 $newTitle = $name . " | " . $originalTitle;
 
+$ft = new XFiltering();
+$f = new XFilter('EventCustomerLnkID', '=', '1217153');
+$ft->AddItem($f);
+$evb = $eduapi->GetEventBooking($edutoken, '', $ft->ToString());
+print_r($evb);
+
 $occIds = Array();
 $occIds[] = -1;
 foreach($events as $ev)
@@ -233,7 +239,6 @@ $ft->AddItem($f);
 
 $prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
 
-print_r($ft);
 $uniquePrices = Array();
 foreach($prices as $price)
 {
