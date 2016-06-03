@@ -232,6 +232,8 @@ $f = new XFilter('OccationID', 'IN', join(',', $occIds));
 $ft->AddItem($f);
 
 $prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
+
+print_r($ft);
 $uniquePrices = Array();
 foreach($prices as $price)
 {
