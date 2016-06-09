@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-05-12 14:10+0200\n"
-"PO-Revision-Date: 2016-05-12 14:10+0200\n"
+"POT-Creation-Date: 2016-06-09 14:29+0200\n"
+"PO-Revision-Date: 2016-06-09 14:29+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: eduadmin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -205,72 +205,72 @@ msgstr ""
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:100
+#: includes/_options.php:111
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:100 includes/generalSettings.php:8
+#: includes/_options.php:111 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:101
+#: includes/_options.php:112
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:101 includes/listSettings.php:15
+#: includes/_options.php:112 includes/listSettings.php:15
 #: includes/listSettings.php:29
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:102
+#: includes/_options.php:113
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:102 includes/detailSettings.php:2
+#: includes/_options.php:113 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:103
+#: includes/_options.php:114
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:103 includes/bookingSettings.php:2
+#: includes/_options.php:114 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:104
+#: includes/_options.php:115
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:104 includes/textSettings.php:2
-#: includes/textSettings.php:11
+#: includes/_options.php:115 includes/textSettings.php:8
+#: includes/textSettings.php:17
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:105
+#: includes/_options.php:116
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:105
+#: includes/_options.php:116
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:106
+#: includes/_options.php:117
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:106
+#: includes/_options.php:117
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:146
+#: includes/_options.php:157
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
 #: includes/bookingSettings.php:2 includes/detailSettings.php:2
 #: includes/generalSettings.php:2 includes/listSettings.php:15
 #: includes/settingsPage.php:19 includes/styleSettings.php:8
-#: includes/textSettings.php:2
+#: includes/textSettings.php:8
 #, php-format
 msgid "EduAdmin settings - %s"
 msgstr "EduAdmin inställningar - %s"
@@ -331,7 +331,7 @@ msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
 #: includes/bookingSettings.php:271 includes/detailSettings.php:28
 #: includes/generalSettings.php:34 includes/generalSettings.php:178
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
-#: includes/textSettings.php:40
+#: includes/textSettings.php:34
 msgid "Save settings"
 msgstr "Spara inställningar"
 
@@ -624,9 +624,17 @@ msgstr "Är du säker på att du vill återställa stilinställningarna?"
 msgid "Reset styles"
 msgstr "Återställ stilar"
 
-#: includes/textSettings.php:10
+#: includes/textSettings.php:16
 msgid "Key text"
 msgstr "Nyckelfras"
+
+#: includes/textSettings.php:35
+msgid "Are you sure you want to reset the translation?"
+msgstr "Är du säker du vill återställa översättningen?"
+
+#: includes/textSettings.php:35
+msgid "Reset translations"
+msgstr "Återställ översättningar"
 
 #. Plugin Name of the plugin/theme
 msgid "EduAdmin Booking"
