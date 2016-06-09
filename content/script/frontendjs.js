@@ -34,6 +34,12 @@ var eduBookingView = {
 		participantHolder.removeChild(obj.parentNode.parentNode);
 		eduBookingView.UpdatePrice();
 	},
+	SelectEvent: function(obj) {
+		var eventid = obj.value;
+		if(eventid !== "-1") {
+			location.href = '?eid=' + eventid;
+		}
+	},
 	CheckParticipantCount: function()
 	{
 		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length - 1;

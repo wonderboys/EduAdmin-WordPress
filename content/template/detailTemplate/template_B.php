@@ -167,7 +167,11 @@ else
 		$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 		$ft->AddItem($f);
 
-		$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
+		$st = new XSorting();
+		$s = new XSort('Price', 'ASC');
+		$st->AddItem($s);
+
+		$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
 		$uniquePrices = Array();
 		foreach($prices as $price)
 		{

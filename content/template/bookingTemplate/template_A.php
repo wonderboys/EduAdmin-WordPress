@@ -97,7 +97,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
 	$f->AddItem($ft);
 	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-	#print_r($extraInfo);
+
 	foreach($extraInfo as $info)
 	{
 		if($info->Key == "DiscountPercent" && isset($info->Value))
@@ -120,7 +120,8 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<h1 class="courseTitle"><?php echo $name; ?></h1>
 			<?php if(count($events) > 1) { ?>
 				<div class="dateSelectLabel"><?php edu_e("Select the event you want to book"); ?></div>
-<select name="eid" class="dateInfo">
+<select name="eid" class="dateInfo" onchange="eduBookingView.SelectEvent(this);">
+	<option value="-1"><?php edu_e("Select event"); ?></option>
 <?php
 				foreach($events as $ev)
 				{
@@ -238,8 +239,12 @@ $ft->AddItem($f);
 $f = new XFilter('OccationID', 'IN', join(',', $occIds));
 $ft->AddItem($f);
 
-$prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
-print_r($prices);
+$st = new XSorting();
+$s = new XSort('Price', 'ASC');
+$st->AddItem($s);
+
+$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
+
 $uniquePrices = Array();
 foreach($prices as $price)
 {

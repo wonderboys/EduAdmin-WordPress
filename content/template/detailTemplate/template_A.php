@@ -68,15 +68,23 @@ else
 	$s = new XSort('PeriodStart', 'ASC');
 	$st->AddItem($s);
 
-
 	$events = $eduapi->GetEvent(
-		$token,
+		$edutoken,
 		$st->ToString(),
 		$ft->ToString()
 	);
 
+	$occIds = array();
+	$occIds[] = -1;
+	foreach($events as $e)
+	{
+		$occIds[] = $e->OccationID;
+	}
+
 	$ft = new XFiltering();
 	$f = new XFilter('PublicPriceName', '=', 'true');
+	$ft->AddItem($f);
+	$f = new XFilter('OccationID', 'IN', join(",", $occIds));
 	$ft->AddItem($f);
 	$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
 	set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
@@ -201,7 +209,11 @@ else
 		$f = new XFilter('OccationID', 'IN', join(',', $occIds));
 		$ft->AddItem($f);
 
-		$prices = $eduapi->GetPriceName($edutoken, '', $ft->ToString());
+		$st = new XSorting();
+		$s = new XSort('Price', 'ASC');
+		$st->AddItem($s);
+
+		$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
 		$uniquePrices = Array();
 
 		foreach($prices as $price)

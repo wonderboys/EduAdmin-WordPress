@@ -36,6 +36,8 @@ if(!function_exists('edu_api_eventlist'))
 		$ft = new XFiltering();
 		$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 		$ft->AddItem($f);
+		$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+		$ft->AddItem($f);
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
 		$f = new XFilter('StatusID', '=', '1');
@@ -69,8 +71,6 @@ if(!function_exists('edu_api_eventlist'))
 			$ft->ToString()
 		);
 
-
-
 		$occIds = array();
 
 		foreach($events as $e)
@@ -83,7 +83,12 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 		$f = new XFilter('OccationID', 'IN', join(",", $occIds));
 		$ft->AddItem($f);
-		$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
+
+		$st = new XSorting();
+		$s = new XSort('Price', 'ASC');
+		$st->AddItem($s);
+
+		$pricenames = $eduapi->GetPriceName($edutoken,$st->ToString(),$ft->ToString());
 
 		if(!empty($pricenames))
 		{
@@ -114,7 +119,6 @@ if(!function_exists('edu_api_eventlist'))
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
 		$i = 0;
 		$hasHiddenDates = false;
-		$retStr .= print_r($pricenames, true);
 		if(!empty($pricenames))
 		{
 			foreach($events as $ev)
