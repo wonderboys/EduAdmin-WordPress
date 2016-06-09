@@ -277,12 +277,66 @@ function eduadmin_get_detailinfo($attributes)
 
 			 if(isset($attributes['courseprice']))
 			 {
+			 	$ft = new XFiltering();
+				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
+				$ft->AddItem($f);
+				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+				$ft->AddItem($f);
+				$f = new XFilter('ShowOnWeb', '=', 'true');
+				$ft->AddItem($f);
+				$f = new XFilter('StatusID', '=', '1');
+				$ft->AddItem($f);
+				$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
+				$ft->AddItem($f);
+				$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d H:i:s"));
+				$ft->AddItem($f);
+
+				if(!empty($attributes['courseeventlistfiltercity']))
+				{
+					$f = new XFilter('City', '=', $attributes['courseeventlistfiltercity']);
+					$ft->AddItem($f);
+				}
+
+				$st = new XSorting();
+				$groupByCity = get_option('eduadmin-groupEventsByCity', FALSE);
+				$groupByCityClass = "";
+				if($groupByCity)
+				{
+					$s = new XSort('City', 'ASC');
+					$st->AddItem($s);
+					$groupByCityClass = " noCity";
+				}
+				$s = new XSort('PeriodStart', 'ASC');
+				$st->AddItem($s);
+
+				$events = $eduapi->GetEvent(
+					$edutoken,
+					$st->ToString(),
+					$ft->ToString()
+				);
+
+				$occIds = array();
+
+				$occIds[] = -1;
+
+				foreach($events as $e)
+				{
+					$occIds[] = $e->OccationID;
+				}
+
 				$ft = new XFiltering();
 				$f = new XFilter('PublicPriceName', '=', 'true');
 				$ft->AddItem($f);
 				$f = new XFilter('ObjectID', 'IN', $selectedCourse->ObjectID);
 				$ft->AddItem($f);
-				$prices = $eduapi->GetObjectPriceName($edutoken, '', $ft->ToString());
+				$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+				$ft->AddItem($f);
+
+				$st = new XSorting();
+				$s = new XSort('Price', 'ASC');
+				$st->AddItem($s);
+
+				$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
 				$uniquePrices = Array();
 				foreach($prices as $price)
 				{
@@ -321,6 +375,8 @@ function eduadmin_get_detailinfo($attributes)
 			 	$ft = new XFiltering();
 				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 				$ft->AddItem($f);
+				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+				$ft->AddItem($f);
 				$f = new XFilter('ShowOnWeb', '=', 'true');
 				$ft->AddItem($f);
 				$f = new XFilter('StatusID', '=', '1');
@@ -356,6 +412,8 @@ function eduadmin_get_detailinfo($attributes)
 
 				$occIds = array();
 
+				$occIds[] = -1;
+
 				foreach($events as $e)
 				{
 					$occIds[] = $e->OccationID;
@@ -366,7 +424,12 @@ function eduadmin_get_detailinfo($attributes)
 				$ft->AddItem($f);
 				$f = new XFilter('OccationID', 'IN', join(",", $occIds));
 				$ft->AddItem($f);
-				$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
+
+				$st = new XSorting();
+				$s = new XSort('Price', 'ASC');
+				$st->AddItem($s);
+
+				$pricenames = $eduapi->GetPriceName($edutoken,$st->ToString(),$ft->ToString());
 				set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 				if(!empty($pricenames))
@@ -502,11 +565,6 @@ function eduadmin_get_login_widget($attributes)
 		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
 		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
 		esc_attr($attributes['guesttext']) . "\">" .
-		/*"<a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminMyProfileLink\">" .
-		$_SESSION['eduadmin-loginUser']->Contact->ContactName .
-		"</a> - <a href=\"" . $baseUrl . "/profile/logout" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLogoutButton\">" .
-		$attributes['logouttext'] .
-		"</a>" .*/
 		"</div>";
 	}
 	else
@@ -516,12 +574,6 @@ function eduadmin_get_login_widget($attributes)
 		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
 		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
 		esc_attr($attributes['guesttext']) . "\">" .
-		/*"<i>" .
-		$attributes['guesttext'] .
-		"</i> - " .
-		"<a href=\"" . $baseUrl . "/profile/login" . edu_getQueryString("?", array('eid')) . "\" class=\"eduadminLoginButton\">" .
-		$attributes['logintext'] .
-		"</a>" .*/
 		"</div>";
 	}
 }
