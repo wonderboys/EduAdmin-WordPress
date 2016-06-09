@@ -114,6 +114,7 @@ if(!function_exists('edu_api_eventlist'))
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
 		$i = 0;
 		$hasHiddenDates = false;
+		$retStr .= print_r($pricenames, true);
 		if(!empty($pricenames))
 		{
 			foreach($events as $ev)
