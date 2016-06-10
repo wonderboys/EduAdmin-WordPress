@@ -18,6 +18,7 @@ if(isset($_POST['resetTranslation']))
 				</tr>
 <?php
 	delete_transient('eduadmin-phrases');
+	$phrasesstr = get_option('eduadmin-phrases');
 	$phrases = edu_LoadPhrases();
 
 	ksort($phrases, SORT_NATURAL | SORT_FLAG_CASE);
@@ -41,7 +42,7 @@ if(isset($_POST['resetTranslation']))
 	<script type="text/javascript">
 	var loadedPhrases;
 	(function() {
-		loadedPhrases = <?php echo $phrasestr; ?>;
+		loadedPhrases = <?php echo $phrasesstr; ?>;
 		document.getElementById('eduadmin-phrases').value = JSON.stringify(loadedPhrases);
 	})();
 
