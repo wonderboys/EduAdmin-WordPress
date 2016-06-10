@@ -70,7 +70,9 @@ edu.apiclient = {
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {
-				var o = JSON.parse(d);
+				var o = d;
+				if(typeof d !== "object")
+					o = JSON.parse(d);
 				for(var k in o) {
 					if(o.hasOwnProperty(k)) {
 						var target = document.querySelector('[data-eduwidget="courseitem-date"][data-objectid="' + k + '"]');
