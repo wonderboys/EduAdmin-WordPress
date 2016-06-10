@@ -7,7 +7,7 @@ if(!function_exists('edu_api_eventlist'))
 		$retStr = '';
 		global $eduapi;
 
-		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-AuthToken"]);
+		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
 
 		$_SESSION['eduadmin-phrases'] = $request['phrases'];
 

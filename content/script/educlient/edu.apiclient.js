@@ -62,7 +62,7 @@ edu.apiclient = {
 		jQuery.ajax({
 			url: this.baseUrl + '?module=listview_courselist',
 			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-AuthToken', edu.apiclient.authToken);
+				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
 			},
 			type: 'POST',
 			data: {
@@ -88,7 +88,7 @@ edu.apiclient = {
 		jQuery.ajax({
 			url: this.baseUrl + '?module=detailinfo_eventlist',
 			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-AuthToken', edu.apiclient.authToken);
+				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
 			},
 			type: 'POST',
 			data: {
