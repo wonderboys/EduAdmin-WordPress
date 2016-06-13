@@ -13,13 +13,17 @@ edu.apiclient = {
 				edu.apiclient.replaceLoginWidget();
 				edu.apiclient.replaceEventListWidget();
 				edu.apiclient.replaceCourseListDates();
+				edu.apiclient.replaceCourseEventList();
 			});
 		}
 	},
 	replaceLoginWidget: function() {
-		var lw = document.querySelector('[data-eduwidget="loginwidget"]');
+		var lw = document.querySelectorAll('[data-eduwidget="loginwidget"]');
 		if(lw) {
-			edu.apiclient.getLoginWidget(lw);
+			var widgets = lw.length;
+			for(var i = 0; i < widgets; i++) {
+				edu.apiclient.getLoginWidget(lw[i]);
+			}
 		}
 	},
 	replaceEventListWidget: function() {
@@ -36,6 +40,13 @@ edu.apiclient = {
 		}
 		if(objectIds.length > 0) {
 			edu.apiclient.getCourseListDates(objectIds);
+		}
+	},
+	replaceCourseEventList: function() {
+		var eventList = document.querySelectorAll('[data-eduwidget="listview-eventlist"]');
+		var eventLength = eventList.length;
+		for(var i = 0; i < eventLength; i++) {
+			edu.apiclient.getCourseEventList(eventList[i]);
 		}
 	},
 	authJS: function(apiKey, next) {
@@ -84,6 +95,21 @@ edu.apiclient = {
 			}
 		});
 	},
+	getCourseEventList: function(target) {
+		jQuery.ajax({
+			url: this.baseUrl + '?module=listview_eventlist',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
+			},
+			type: 'POST',
+			data: {
+				phrases: wp_edu.Phrases
+			},
+			success: function(d) {
+				edu.apiclient.renderEventListTemplate(jQuery(target).data('template'), d);
+			}
+		});
+	},
 	getEventList: function(target) {
 		jQuery.ajax({
 			url: this.baseUrl + '?module=detailinfo_eventlist',
@@ -108,6 +134,10 @@ edu.apiclient = {
 				jQuery(target).replaceWith(d);
 			}
 		});
+	},
+	renderEventListTemplate: function(template, data) {
+		console.log(template);
+		console.log(data);
 	},
 	getNextEvent: function(target) {
 	},

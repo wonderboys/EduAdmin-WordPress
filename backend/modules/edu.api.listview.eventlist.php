@@ -97,6 +97,30 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$sorting->AddItem($s);
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
+
+		foreach($ede as $object)
+		{
+			foreach($edo as $course)
+			{
+				$id = $course->ObjectID;
+				if($id == $object->ObjectID)
+				{
+					$object->Days = $course->Days;
+					$object->StartTime = $course->StartTime;
+					$object->EndTime = $course->EndTime;
+					$object->CategoryID = $course->CategoryID;
+					$object->PublicName = $course->PublicName;
+					break;
+				}
+			}
+		}
+
+		echo json_encode($ede);
 	}
+}
+
+if(isset($_REQUEST['module']) && $_REQUEST['module'] == "listview_eventlist")
+{
+	echo edu_api_listview_eventlist($_REQUEST);
 }
 ?>
