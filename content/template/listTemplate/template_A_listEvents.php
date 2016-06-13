@@ -192,7 +192,15 @@ set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 			return false;
 		});
 	}
-
+?>
+<div class="eventListTable"
+	data-eduwidget="listview-eventlist"
+	data-template="A"
+	data-subject="<?php echo esc_attr($attributes['subject']); ?>"
+	data-category="<?php echo esc_attr($attributes['category']); ?>"
+	data-city="<?php echo esc_attr($attributes['city']); ?>"
+>
+<?php
 foreach($ede as $object)
 {
 	foreach($edo as $course)
@@ -276,6 +284,9 @@ foreach($ede as $object)
 	</div>
 <?php
 }
+?>
+</div><!-- /eventlist -->
+<?php
 $out = ob_get_clean();
 return $out;
 ?>
