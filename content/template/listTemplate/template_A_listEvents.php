@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 {
 	$filtering = new XFiltering();
 	$f = new XFilter('ShowOnWeb','=','true');
@@ -276,4 +276,6 @@ foreach($ede as $object)
 	</div>
 <?php
 }
+$out = ob_get_clean();
+return $out;
 ?>
