@@ -103,10 +103,23 @@ edu.apiclient = {
 			},
 			type: 'POST',
 			data: {
+				baseUrl: wp_edu.BaseUrl,
+				courseFolder: wp_edu.CourseFolder,
+				showcoursedays: 	jQuery(target).data('showcoursedays'),
+				spotsleft: 			jQuery(target).data('spotsleft'),
+				fewspots: 			jQuery(target).data('fewspots'),
+				spotsettings: 		jQuery(target).data('spotsettings'),
+				city: 				jQuery(target).data('city'),
+				category: 			jQuery(target).data('category'),
+				subject: 			jQuery(target).data('subject'),
+				showcoursetimes: 	jQuery(target).data('showcoursetimes'),
+				search: 			jQuery(target).data('search'),
+				showimages: 		jQuery(target).data('showimages'),
+				template: 			jQuery(target).data('template'),
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {
-				edu.apiclient.renderEventListTemplate(jQuery(target).data('template'), d);
+				jQuery(target).html(d);
 			}
 		});
 	},
@@ -134,10 +147,6 @@ edu.apiclient = {
 				jQuery(target).replaceWith(d);
 			}
 		});
-	},
-	renderEventListTemplate: function(template, data) {
-		console.log(template);
-		console.log(data);
 	},
 	getNextEvent: function(target) {
 	},

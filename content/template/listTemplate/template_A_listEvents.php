@@ -192,15 +192,10 @@ set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 			return false;
 		});
 	}
-?>
-<div class="eventListTable"
-	data-eduwidget="listview-eventlist"
-	data-template="A"
-	data-subject="<?php echo esc_attr($attributes['subject']); ?>"
-	data-category="<?php echo esc_attr($attributes['category']); ?>"
-	data-city="<?php echo esc_attr($attributes['city']); ?>"
->
-<?php
+
+$showCourseDays = get_option('eduadmin-showCourseDays', true);
+$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
+
 foreach($ede as $object)
 {
 	foreach($edo as $course)
@@ -227,9 +222,22 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 		return $nameMatch;
 	});
 }
-
-$showCourseDays = get_option('eduadmin-showCourseDays', true);
-$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
+?>
+<div class="eventListTable"
+	data-eduwidget="listview-eventlist"
+	data-template="A"
+	data-subject="<?php echo esc_attr($attributes['subject']); ?>"
+	data-category="<?php echo esc_attr($attributes['category']); ?>"
+	data-city="<?php echo esc_attr($attributes['city']); ?>"
+	data-spotsleft="<?php echo get_option('eduadmin-spotsLeft', 'exactNumbers'); ?>"
+	data-spotsettings="<?php echo get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+"); ?>"
+	data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
+	data-showcoursedays="<?php echo esc_attr($showCourseDays); ?>"
+	data-showcoursetimes="<?php echo esc_attr($showCourseTimes); ?>"
+	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
+	data-showimages="<?php echo esc_attr($showImages); ?>"
+>
+<?php
 
 foreach($ede as $object)
 {
