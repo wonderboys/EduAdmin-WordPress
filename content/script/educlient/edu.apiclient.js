@@ -77,8 +77,8 @@ edu.apiclient = {
 			},
 			type: 'POST',
 			data: {
-				objectIds: objectIds,
-				phrases: wp_edu.Phrases
+				objectIds: 	objectIds,
+				phrases: 	wp_edu.Phrases
 			},
 			success: function(d) {
 				var o = d;
@@ -103,8 +103,8 @@ edu.apiclient = {
 			},
 			type: 'POST',
 			data: {
-				baseUrl: wp_edu.BaseUrl,
-				courseFolder: wp_edu.CourseFolder,
+				baseUrl: 			wp_edu.BaseUrl,
+				courseFolder: 		wp_edu.CourseFolder,
 				showcoursedays: 	jQuery(target).data('showcoursedays'),
 				spotsleft: 			jQuery(target).data('spotsleft'),
 				fewspots: 			jQuery(target).data('fewspots'),
@@ -131,17 +131,17 @@ edu.apiclient = {
 			},
 			type: 'POST',
 			data: {
-				objectid: jQuery(target).data('objectid'),
-				city: jQuery(target).data('city'),
-				groupbycity: jQuery(target).data('groupbycity'),
-				baseUrl: wp_edu.BaseUrl,
-				courseFolder: wp_edu.CourseFolder,
-				showmore: jQuery(target).data('showmore'),
-				spotsleft: jQuery(target).data('spotsleft'),
-				fewspots: jQuery(target).data('fewspots'),
-				spotsettings: jQuery(target).data('spotsettings'),
-				eid: jQuery(target).data('eid'),
-				phrases: wp_edu.Phrases
+				objectid: 		jQuery(target).data('objectid'),
+				city: 			jQuery(target).data('city'),
+				groupbycity: 	jQuery(target).data('groupbycity'),
+				baseUrl: 		wp_edu.BaseUrl,
+				courseFolder: 	wp_edu.CourseFolder,
+				showmore: 		jQuery(target).data('showmore'),
+				spotsleft: 		jQuery(target).data('spotsleft'),
+				fewspots: 		jQuery(target).data('fewspots'),
+				spotsettings: 	jQuery(target).data('spotsettings'),
+				eid: 			jQuery(target).data('eid'),
+				phrases: 		wp_edu.Phrases
 			},
 			success: function(d) {
 				jQuery(target).replaceWith(d);
@@ -151,9 +151,9 @@ edu.apiclient = {
 	getNextEvent: function(target) {
 	},
 	getLoginWidget: function(target) {
-		var loginText = wp_edu.Phrases['Log in'];
-		var logoutText = wp_edu.Phrases['Log out'];
-		var guestText = wp_edu.Phrases['Guest'];
+		var loginText = 	wp_edu.Phrases['Log in'];
+		var logoutText = 	wp_edu.Phrases['Log out'];
+		var guestText = 	wp_edu.Phrases['Guest'];
 		if(jQuery(target).data('logintext')) {
 			loginText = jQuery(target).data('logintext');
 		}
@@ -170,11 +170,11 @@ edu.apiclient = {
 			url: this.baseUrl + '?module=login_widget',
 			type: 'POST',
 			data: {
-				baseUrl: wp_edu.BaseUrl,
-				courseFolder: wp_edu.CourseFolder,
-				logintext: loginText,
-				logouttext: logoutText,
-				guesttext: guestText
+				baseUrl: 		wp_edu.BaseUrl,
+				courseFolder: 	wp_edu.CourseFolder,
+				logintext: 		loginText,
+				logouttext: 	logoutText,
+				guesttext: 		guestText
 			},
 			success: function(d) {
 				jQuery(target).replaceWith(d);
@@ -200,7 +200,11 @@ edu.apiclient = {
         return null;
     },
     SetCookie: function (name, value, expire) {
-        var temp = this.CookieBase + name + "=" + escape(value) + (expire !== 0 ? "; path=/; expires=" + ((new Date((new Date()).getTime() + expire)).toUTCString()) + ";" : "; path=/;");
+        var temp = this.CookieBase + name + "=" + escape(value) +
+        (expire !== 0 ?
+        	"; path=/; expires=" + ((new Date((new Date()).getTime() + expire)).toUTCString()) + ";" :
+        	"; path=/;"
+        );
         document.cookie = temp;
     },
     CanSetCookies: function () {
@@ -216,9 +220,7 @@ edu.apiclient = {
 
 (function() {
 	if(jQuery != undefined) {
-		jQuery('document').ready(function() {
-			edu.apiclient.parseDocument();
-		});
+		jQuery('document').ready(function() { edu.apiclient.parseDocument(); });
 	} else {
 		edu.apiclient.parseDocument();
 	}

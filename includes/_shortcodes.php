@@ -540,9 +540,9 @@ function eduadmin_get_login_widget($attributes)
 {
 	$attributes = shortcode_atts(
 		array(
-			'logintext' => edu__("Log in"),
+			'logintext' => 	edu__("Log in"),
 			'logouttext' => edu__("Log out"),
-			'guesttext' => edu__("Guest")
+			'guesttext' => 	edu__("Guest")
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-loginwidget'
@@ -558,19 +558,19 @@ function eduadmin_get_login_widget($attributes)
 	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 	{
 		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\" data-logintext=\"" .
-		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
-		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
-		esc_attr($attributes['guesttext']) . "\">" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"
+		data-logintext=\"" . esc_attr($attributes['logintext']) . "\"
+		data-logouttext=\"" . esc_attr($attributes['logouttext']) . "\"
+		data-guesttext=\"" . esc_attr($attributes['guesttext']) . "\">" .
 		"</div>";
 	}
 	else
 	{
 		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\" data-logintext=\"" .
-		esc_attr($attributes['logintext']) . "\" data-logouttext=\"" .
-		esc_attr($attributes['logouttext']) . "\" data-guesttext=\"" .
-		esc_attr($attributes['guesttext']) . "\">" .
+		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"
+		data-logintext=\"" . esc_attr($attributes['logintext']) . "\"
+		data-logouttext=\"" . esc_attr($attributes['logouttext']) . "\"
+		data-guesttext=\"" . esc_attr($attributes['guesttext']) . "\">" .
 		"</div>";
 	}
 }
@@ -582,9 +582,9 @@ function eduadmin_get_login_view($attributes)
 	}
 	$attributes = shortcode_atts(
 		array(
-			'logintext' => edu__("Log in"),
+			'logintext' => 	edu__("Log in"),
 			'logouttext' => edu__("Log out"),
-			'guesttext' => edu__("Guest")
+			'guesttext' => 	edu__("Guest")
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-loginview'
