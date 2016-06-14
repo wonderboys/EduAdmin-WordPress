@@ -108,7 +108,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('StatusID','=','1');
 	$filtering->AddItem($f);
 
-	$f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
+	$f = new XFilter('LastApplicationDate','>',date("Y-m-d 23:59:59"));
 	$filtering->AddItem($f);
 
 	if(!empty($filterCourses))
@@ -225,7 +225,24 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	});
 }
 
+$showCourseDays = get_option('eduadmin-showCourseDays', true);
+$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
 
+?>
+<div class="eventListTable"
+	data-eduwidget="listview-eventlist"
+	data-template="B"
+	data-subject="<?php echo esc_attr($attributes['subject']); ?>"
+	data-category="<?php echo esc_attr($attributes['category']); ?>"
+	data-city="<?php echo esc_attr($attributes['city']); ?>"
+	data-spotsleft="<?php echo get_option('eduadmin-spotsLeft', 'exactNumbers'); ?>"
+	data-spotsettings="<?php echo get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+"); ?>"
+	data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
+	data-showcoursedays="<?php echo esc_attr($showCourseDays); ?>"
+	data-showcoursetimes="<?php echo esc_attr($showCourseTimes); ?>"
+	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
+	data-showimages="<?php echo esc_attr($showImages); ?>"
+><?php
 foreach($ede as $object)
 {
 	$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
@@ -249,10 +266,6 @@ foreach($ede as $object)
 			echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
 		}
 
-		$showCourseDays = get_option('eduadmin-showCourseDays', true);
-		$showCourseTimes = get_option('eduadmin-showCourseTimes', true);
-
-
 		if($object->Days > 0) {
 			echo
 			"<div class=\"dayInfo\">" .
@@ -270,6 +283,8 @@ foreach($ede as $object)
 	</div>
 <?php
 }
+?>
+</div><?php
 $out = ob_get_clean();
 return $out;
 ?>

@@ -16,9 +16,6 @@ if (!function_exists('normalize_empty_atts')) {
 
 function eduadmin_get_list_view($attributes)
 {
-	if ( !defined('DONOTCACHEPAGE') ){
-		define('DONOTCACHEPAGE',true);
-	}
 	$selectedTemplate = get_option('eduadmin-listTemplate', 'template_A');
 	$attributes = shortcode_atts(
 		array(

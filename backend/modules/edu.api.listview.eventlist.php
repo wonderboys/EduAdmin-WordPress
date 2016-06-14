@@ -3,7 +3,7 @@ if(!function_exists('edu_api_listview_eventlist'))
 {
 	function edu_api_listview_eventlist($request)
 	{
-		header("Content-type: application/json; charset=UTF-8");
+		header("Content-type: text/html; charset=UTF-8");
 		global $eduapi;
 
 		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
@@ -65,7 +65,7 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);
 
-		$f = new XFilter('LastApplicationDate','>=',date("Y-m-d 00:00:00"));
+		$f = new XFilter('LastApplicationDate','>=',date("Y-m-d 23:59:59"));
 		$filtering->AddItem($f);
 
 		if(!empty($filterCourses))
@@ -98,6 +98,35 @@ if(!function_exists('edu_api_listview_eventlist'))
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 
+		$occIds = array();
+
+		foreach($ede as $e)
+		{
+			$occIds[] = $e->OccationID;
+		}
+
+		$ft = new XFiltering();
+		$f = new XFilter('PublicPriceName', '=', 'true');
+		$ft->AddItem($f);
+		$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+		$ft->AddItem($f);
+		$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
+
+		if(!empty($pricenames))
+		{
+			$ede = array_filter($ede, function($object) use (&$pricenames) {
+				$pn = $pricenames;
+				foreach($pn as $subj)
+				{
+					if($object->OccationID == $subj->OccationID)
+					{
+						return true;
+					}
+				}
+				return false;
+			});
+		}
+
 		foreach($ede as $object)
 		{
 			foreach($edo as $course)
@@ -115,7 +144,181 @@ if(!function_exists('edu_api_listview_eventlist'))
 			}
 		}
 
-		echo json_encode($ede);
+		if($request['template'] == "A")
+		{
+			echo edu_api_listview_eventlist_template_A($ede, $request);
+		}
+		else if($request['template'] == "B")
+		{
+			echo edu_api_listview_eventlist_template_B($ede, $request);
+		}
+
+		#echo json_encode($ede);
+	}
+}
+
+if(!function_exists('edu_api_listview_eventlist_template_A'))
+{
+	function edu_api_listview_eventlist_template_A($data, $request)
+	{
+		$spotLeftOption = $request['spotsleft'];
+		$alwaysFewSpots = $request['fewspots'];
+		$spotSettings = $request['spotsettings'];
+		$showImages = $request['showimages'];
+
+		$showCourseDays = $request['showcoursedays'];
+		$showCourseTimes = $request['showcoursetimes'];
+
+		$surl = $request['baseUrl'];
+		$cat = $request['courseFolder'];
+		$baseUrl = $surl . '/' . $cat;
+
+		$removeItems = array(
+					'eid',
+					'phrases',
+					'module',
+					'baseUrl',
+					'courseFolder',
+					'showmore',
+					'spotsleft',
+					'objectid',
+					'groupbycity',
+					'fewspots',
+					'spotsettings'
+				);
+
+		ob_start();
+		foreach($data as $object)
+		{
+			$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
+		?>
+			<div class="objectItem">
+				<?php if($showImages && !empty($object->ImageUrl)) { ?>
+				<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+				<?php } ?>
+				<div class="objectInfoHolder">
+					<div class="objectName">
+						<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
+							echo htmlentities($name);
+						?></a>
+					</div>
+					<div class="objectDescription"><?php
+
+				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
+				echo edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+
+				if(!empty($object->City))
+				{
+					echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+				}
+
+				if($object->Days > 0) {
+					echo
+					"<div class=\"dayInfo\">" .
+						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
+						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
+						' - ' .
+						date("H:i", strtotime($object->EndTime)) : '') .
+					"</div>";
+				}
+				echo edu_getSpotsLeft($spotsLeft, $object->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots);
+
+
+		?></div>
+					<div class="objectBook">
+						<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a><br />
+							<?php
+						if($spotsLeft > 0) {
+						?>
+							<a class="bookButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Book"); ?></a>
+						<?php
+						} else {
+						?>
+							<i class="fullBooked"><?php edu_e("Full"); ?></i>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		<?php
+		}
+		$out = ob_get_clean();
+		return $out;
+	}
+}
+
+if(!function_exists('edu_api_listview_eventlist_template_B'))
+{
+	function edu_api_listview_eventlist_template_B($data, $request)
+	{
+		$spotLeftOption = $request['spotsleft'];
+		$alwaysFewSpots = $request['fewspots'];
+		$spotSettings = $request['spotsettings'];
+		$showImages = $request['showimages'];
+
+		$showCourseDays = $request['showcoursedays'];
+		$showCourseTimes = $request['showcoursetimes'];
+
+		$surl = $request['baseUrl'];
+		$cat = $request['courseFolder'];
+		$baseUrl = $surl . '/' . $cat;
+
+		$removeItems = array(
+					'eid',
+					'phrases',
+					'module',
+					'baseUrl',
+					'courseFolder',
+					'showmore',
+					'spotsleft',
+					'objectid',
+					'groupbycity',
+					'fewspots',
+					'spotsettings'
+				);
+		ob_start();
+
+		foreach($data as $object)
+		{
+			$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
+		?>
+			<div class="objectBlock brick">
+				<?php if($showImages && !empty($object->ImageUrl)) { ?>
+				<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+				<?php } ?>
+				<div class="objectName">
+					<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
+						echo htmlentities($name);
+					?></a>
+				</div>
+				<div class="objectDescription"><?php
+
+				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
+				echo edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+
+				if(!empty($object->City))
+				{
+					echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+				}
+
+				if($object->Days > 0) {
+					echo
+					"<div class=\"dayInfo\">" .
+						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
+						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
+						' - ' .
+						date("H:i", strtotime($object->EndTime)) : '') .
+					"</div>";
+				}
+				echo '<br />' . edu_getSpotsLeft($spotsLeft, $object->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots);
+		?></div>
+				<div class="objectBook">
+					<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a>
+				</div>
+			</div>
+		<?php
+		}
+		$out = ob_get_clean();
+		return $out;
 	}
 }
 

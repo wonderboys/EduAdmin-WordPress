@@ -44,7 +44,7 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 		$f = new XFilter('ObjectID', '=', $objectId);
 		$ft->AddItem($f);
-		$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d H:i:s"));
+		$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 23:59:59"));
 		$ft->AddItem($f);
 
 		if(!empty($request['city']))
