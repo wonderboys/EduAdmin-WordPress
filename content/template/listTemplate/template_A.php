@@ -84,7 +84,8 @@ else
 						$addedCities = array();
 						foreach($addresses as $address)
 						{
-							if(!in_array($address->LocationID, $addedCities) && !empty(trim($address->City)))
+							$city = trim($address->City);
+							if(!in_array($address->LocationID, $addedCities) && !empty($city))
 							{
 								echo '<option value="' . $address->LocationID . '"' . (isset($_REQUEST['eduadmin-city']) && $_REQUEST['eduadmin-city'] == $address->LocationID ? " selected=\"selected\"" : "") . '>' . trim($address->City) . '</option>';
 								$addedCities[] = $address->LocationID;
