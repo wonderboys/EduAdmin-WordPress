@@ -18,7 +18,8 @@ function eduadmin_rewrite_init()
 	$bookingView = get_option('eduadmin-bookingViewPage');
 
 	$courseFolder = get_option('eduadmin-rewriteBaseUrl');
-	if($courseFolder != false && !empty(trim($courseFolder)))
+	$courseFolder = trim($courseFolder)
+	if($courseFolder != false && !empty($courseFolder))
 	{
 		//if($loginView != false)
 		{
