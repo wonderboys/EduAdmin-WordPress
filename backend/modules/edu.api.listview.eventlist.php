@@ -142,6 +142,17 @@ if(!function_exists('edu_api_listview_eventlist'))
 					break;
 				}
 			}
+
+			foreach($pricenames as $pn)
+			{
+				$id = $pn->OccationID;
+				if($id == $object->OccationID)
+				{
+					$object->Price = $pn->Price;
+					$object->PriceNameVat = $pn->PriceNameVat;
+					break;
+				}
+			}
 		}
 
 		if($request['template'] == "A")
@@ -161,6 +172,8 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 {
 	function edu_api_listview_eventlist_template_A($data, $request)
 	{
+		global $eduapi;
+		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
@@ -168,6 +181,8 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 		$showCourseDays = $request['showcoursedays'];
 		$showCourseTimes = $request['showcoursetimes'];
+
+		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 		$surl = $request['baseUrl'];
 		$cat = $request['courseFolder'];
@@ -221,6 +236,10 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 						date("H:i", strtotime($object->EndTime)) : '') .
 					"</div>";
 				}
+
+				if($request['showcourseprices']) {
+					echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), edu_ConvertToMoney($object->Price, $request['currency'])) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
+				}
 				echo edu_getSpotsLeft($spotsLeft, $object->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots);
 
 
@@ -250,6 +269,9 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 {
 	function edu_api_listview_eventlist_template_B($data, $request)
 	{
+		global $eduapi;
+		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
+
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
@@ -257,6 +279,8 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 
 		$showCourseDays = $request['showcoursedays'];
 		$showCourseTimes = $request['showcoursetimes'];
+
+		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 		$surl = $request['baseUrl'];
 		$cat = $request['courseFolder'];
@@ -308,6 +332,10 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 						' - ' .
 						date("H:i", strtotime($object->EndTime)) : '') .
 					"</div>";
+				}
+
+				if($request['showcourseprices']) {
+					echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), edu_ConvertToMoney($object->Price, $request['currency'])) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 				}
 				echo '<br />' . edu_getSpotsLeft($spotsLeft, $object->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots);
 		?></div>

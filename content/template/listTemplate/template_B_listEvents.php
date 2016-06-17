@@ -256,6 +256,8 @@ $currency = get_option('eduadmin-currency', 'SEK');
 	data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
 	data-showcoursedays="<?php echo esc_attr($showCourseDays); ?>"
 	data-showcoursetimes="<?php echo esc_attr($showCourseTimes); ?>"
+	data-showcourseprices="<?php echo esc_attr($showEventPrice); ?>"
+	data-currency="<?php echo esc_attr($currency); ?>"
 	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
 	data-showimages="<?php echo esc_attr($showImages); ?>"
 ><?php

@@ -113,6 +113,8 @@ edu.apiclient = {
 				category: 			jQuery(target).data('category'),
 				subject: 			jQuery(target).data('subject'),
 				showcoursetimes: 	jQuery(target).data('showcoursetimes'),
+				showcourseprices: 	jQuery(target).data('showcourseprices'),
+				currency: 			jQuery(target).data('currency'),
 				search: 			jQuery(target).data('search'),
 				showimages: 		jQuery(target).data('showimages'),
 				template: 			jQuery(target).data('template'),

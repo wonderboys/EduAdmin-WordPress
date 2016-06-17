@@ -270,9 +270,6 @@ if(!empty($edo))
 	$showDescr = get_option('eduadmin-showCourseDescription', true);
 	$currency = get_option('eduadmin-currency', 'SEK');
 
-
-
-
 	foreach($edo as $object)
 	{
 		$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);

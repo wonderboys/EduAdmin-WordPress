@@ -9,6 +9,18 @@ function edu_getQueryString($prepend = "?", $removeParameters = array())
 	return "";
 }
 
+if(!function_exists('edu_ConvertToMoney'))
+{
+	function edu_ConvertToMoney($value, $currency = "SEK", $decimal = ',', $thousand = ' ')
+	{
+		$d = $value;
+		if(empty($d))
+			$d = 0;
+		$d = sprintf('%1$s %2$s', number_format($d, 0, $decimal, $thousand), $currency);
+		return $d;
+	}
+}
+
 if(!function_exists('edu_encrypt'))
 {
 	function edu_encrypt($key, $toEncrypt)

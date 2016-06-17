@@ -163,10 +163,12 @@ if(isset($_REQUEST['eduadmin-level']) && !empty($_REQUEST['eduadmin-level']))
 }
 
 $occIds = array();
+$evIds = array();
 
 foreach($ede as $e)
 {
 	$occIds[] = $e->OccationID;
+	$evIds[] = $e->EventID;
 }
 
 $ft = new XFiltering();
@@ -201,12 +203,8 @@ $showEventPrice = get_option('eduadmin-showEventPrice', false);
 $currency = get_option('eduadmin-currency', 'SEK');
 
 $ft = new XFiltering();
-$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+$f = new XFilter('EventID', 'IN', join(",", $evIds));
 $ft->AddItem($f);
-
-$eventExtra = $eduapi->GetEventExtraInfo($edutoken, '', $ft->ToString());
-
-print_r($eventExtra);
 
 foreach($ede as $object)
 {
@@ -258,6 +256,7 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	data-showcoursedays="<?php echo esc_attr($showCourseDays); ?>"
 	data-showcoursetimes="<?php echo esc_attr($showCourseTimes); ?>"
 	data-showcourseprices="<?php echo esc_attr($showEventPrice); ?>"
+	data-currency="<?php echo esc_attr($currency); ?>"
 	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
 	data-showimages="<?php echo esc_attr($showImages); ?>"
 >

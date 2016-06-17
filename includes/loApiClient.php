@@ -2195,13 +2195,18 @@
 				if ($this->debugTimers) {
 					echo "<!-- " . $objName. '__getArray' . ": " . round($this->timers[$objName. '__getArray'] * 1000, 2) . "ms -->\n";
 				}
-				if($objName == "ExtraInfo")
+
+				if(isset($res->{"ArrayOf" . $objName}[0]->{$objName}))
 				{
-					if(isset($res->{"ArrayOf" . $objName}[0]->{$objName}))
+					$arRes = new stdClass;
+					$arRes->{$objName} = array();
+					foreach($res->{"ArrayOf" . $objName} as $item)
 					{
-						echo "<pre>" . print_r($res->{"ArrayOf" . $objName}[0]->{$objName}, true) . "</pre>";
+						$arRes->{$objName}[] = $item->{$objName};
 					}
+					return $arRes;
 				}
+
 				return $res;
 			} else {
 				$nRes = new stdClass;
@@ -2241,7 +2246,7 @@
       if($this->debug)
         $this->__debug();
       $this->timers[$methodName . '__callServer'] = microtime(true) - $this->timers[$methodName . '__callServer'];
-      return $result->{$methodName/*$d*/ . 'Result'};
+      return $result->{$methodName . 'Result'};
     }
 
     private function __debug($result = null)
