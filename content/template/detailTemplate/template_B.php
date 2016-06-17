@@ -71,7 +71,7 @@ else
 		$ft->ToString()
 	);
 
-
+	$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 	$showHeaders = get_option('eduadmin-showDetailHeaders', true);
 ?>
 <div class="eduadmin">
@@ -193,7 +193,7 @@ else
 				foreach($uniquePrices as $up)
 				{
 		?>
-		<?php echo sprintf('%1$s %2$s', $up->Description, convertToMoney($up->Price, $currency)); ?><br />
+		<?php echo sprintf('%1$s %2$s', $up->Description, convertToMoney($up->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?><br />
 		<?php
 				}
 			}
