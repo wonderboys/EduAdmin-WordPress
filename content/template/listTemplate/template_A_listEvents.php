@@ -196,6 +196,12 @@ set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
 
+$eduapi->debug = true;
+$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat');
+$eduapi->debug = false;
+print_r($incVat);
+$showEventPrice = get_option('eduadmin-showEventPrice', false);
+
 foreach($ede as $object)
 {
 	foreach($edo as $course)

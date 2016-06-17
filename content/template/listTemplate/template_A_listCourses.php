@@ -261,6 +261,7 @@ if(!empty($edo))
 {
 	$showNextEventDate = get_option('eduadmin-showNextEventDate', false);
 	$showCourseLocations = get_option('eduadmin-showCourseLocations', false);
+	$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat');
 	$showEventPrice = get_option('eduadmin-showEventPrice', false);
 
 	$showCourseDays = get_option('eduadmin-showCourseDays', true);
@@ -268,6 +269,9 @@ if(!empty($edo))
 
 	$showDescr = get_option('eduadmin-showCourseDescription', true);
 	$currency = get_option('eduadmin-currency', 'SEK');
+
+
+
 
 	foreach($edo as $object)
 	{
