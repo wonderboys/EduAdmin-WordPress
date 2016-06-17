@@ -195,12 +195,10 @@ set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
+$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
-$eduapi->debug = true;
-$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat');
-$eduapi->debug = false;
-print_r($incVat);
 $showEventPrice = get_option('eduadmin-showEventPrice', false);
+$currency = get_option('eduadmin-currency', 'SEK');
 
 foreach($ede as $object)
 {
@@ -214,6 +212,17 @@ foreach($ede as $object)
 			$object->EndTime = $course->EndTime;
 			$object->CategoryID = $course->CategoryID;
 			$object->PublicName = $course->PublicName;
+			break;
+		}
+	}
+
+	foreach($pricenames as $pn)
+	{
+		$id = $pn->OccationID;
+		if($id == $object->OccationID)
+		{
+			$object->Price = $pn->Price;
+			$object->PriceNameVat = $pn->PriceNameVat;
 			break;
 		}
 	}
@@ -240,6 +249,7 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
 	data-showcoursedays="<?php echo esc_attr($showCourseDays); ?>"
 	data-showcoursetimes="<?php echo esc_attr($showCourseTimes); ?>"
+	data-showcourseprices="<?php echo esc_attr($showEventPrice); ?>"
 	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
 	data-showimages="<?php echo esc_attr($showImages); ?>"
 >
@@ -277,6 +287,10 @@ foreach($ede as $object)
 				' - ' .
 				date("H:i", strtotime($object->EndTime)) : '') .
 			"</div>";
+		}
+
+		if($showEventPrice) {
+			echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($object->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 		}
 		echo getSpotsLeft($spotsLeft, $object->MaxParticipantNr)
 

@@ -261,6 +261,7 @@ if(stripos($descrField, "attr_") !== FALSE)
 $showNextEventDate = get_option('eduadmin-showNextEventDate', false);
 $showCourseLocations = get_option('eduadmin-showCourseLocations', false);
 $showEventPrice = get_option('eduadmin-showEventPrice', false);
+$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
@@ -347,7 +348,7 @@ foreach($edo as $object)
 				{
 					ksort($prices);
 					$cheapest = current($prices);
-					echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($cheapest->Price, get_option('eduadmin-currency', 'SEK'))) . "</div> ";
+					echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($cheapest->Price, get_option('eduadmin-currency', 'SEK'))) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 				}
 
 				if($object->Days > 0) {
