@@ -87,6 +87,7 @@ $customer = new Customer();
 
 $discountPercent = 0.0;
 $participantDiscountPercent = 0.0;
+$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 if(isset($_SESSION['eduadmin-loginUser']))
 {
@@ -262,6 +263,7 @@ if($participantDiscountPercent != 0)
 var pricePerParticipant = <?php echo round($firstPrice->Price - $discountValue, 2); ?>;
 var totalPriceDiscountPercent = <?php echo $discountPercent; ?>;
 var currency = '<?php echo esc_attr(get_option('eduadmin-currency', 'SEK')); ?>';
+var vatText = '<?php echo esc_attr(edu__($incVat ? "inc vat" : "ex vat")); ?>';
 (function() {
 	var title = document.title;
 	title = title.replace('<?php echo esc_attr($originalTitle); ?>', '<?php echo esc_attr($newTitle); ?>');

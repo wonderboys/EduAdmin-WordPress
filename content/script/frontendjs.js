@@ -123,8 +123,8 @@ var eduBookingView = {
 				newPrice = newPrice - disc;
 			}
 
-			priceObject.innerText = numberWithSeparator(newPrice, ' ') + ' ' + currency;
-			priceObject.textContent = numberWithSeparator(newPrice, ' ') + ' ' + currency;
+			priceObject.innerText = numberWithSeparator(newPrice, ' ') + ' ' + currency + ' ' + vatText;
+			priceObject.textContent = numberWithSeparator(newPrice, ' ') + ' ' + currency + ' ' + vatText;
 		}
 
 	},
