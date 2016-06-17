@@ -213,6 +213,18 @@ foreach($ede as $object)
 			break;
 		}
 	}
+
+
+	foreach($pricenames as $pn)
+	{
+		$id = $pn->OccationID;
+		if($id == $object->OccationID)
+		{
+			$object->Price = $pn->Price;
+			$object->PriceNameVat = $pn->PriceNameVat;
+			break;
+		}
+	}
 }
 
 if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
@@ -227,6 +239,10 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 
 $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
+$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
+
+$showEventPrice = get_option('eduadmin-showEventPrice', false);
+$currency = get_option('eduadmin-currency', 'SEK');
 
 ?>
 <div class="eventListTable"
@@ -274,6 +290,9 @@ foreach($ede as $object)
 				' - ' .
 				date("H:i", strtotime($object->EndTime)) : '') .
 			"</div>";
+		}
+		if($showEventPrice) {
+			echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($object->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 		}
 		echo '<br />' . getSpotsLeft($spotsLeft, $object->MaxParticipantNr);
 ?></div>
