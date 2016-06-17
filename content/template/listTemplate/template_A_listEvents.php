@@ -200,6 +200,14 @@ $incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 $showEventPrice = get_option('eduadmin-showEventPrice', false);
 $currency = get_option('eduadmin-currency', 'SEK');
 
+$ft = new XFiltering();
+$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+$ft->AddItem($f);
+
+$eventExtra = $eduapi->GetEventExtraInfo($edutoken, '', $ft->ToString());
+
+print_r($eventExtra);
+
 foreach($ede as $object)
 {
 	foreach($edo as $course)

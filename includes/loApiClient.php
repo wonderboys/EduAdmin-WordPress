@@ -2189,22 +2189,30 @@
       else
       {
         if (!empty($res->{"ArrayOf" . $objName})) {
-                  if (is_array($res->{ "ArrayOf". $objName})) {
-                      $this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
-                      if ($this->debugTimers) {
-                          echo "<!-- " . $objName. '__getArray' . ": " . round($this->timers[$objName. '__getArray'] * 1000, 2) . "ms -->\n";
-                      }
-            return $res;
-          } else {
-            $nRes = new stdClass;
-            $nRes->{$objName}                      = $res->{ "ArrayOf". $objName}->{$objName};
-            $this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
-            if ($this->debugTimers) {
-              echo "<!-- ". $objName. '__getArray'. ": ".round($this->timers[$objName. '__getArray'] * 1000, 2). "ms -->\n";
-            }
-            return $nRes;
-          }
-              }
+
+			if (is_array($res->{"ArrayOf" . $objName})) {
+				$this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
+				if ($this->debugTimers) {
+					echo "<!-- " . $objName. '__getArray' . ": " . round($this->timers[$objName. '__getArray'] * 1000, 2) . "ms -->\n";
+				}
+				if($objName == "ExtraInfo")
+				{
+					if(isset($res->{"ArrayOf" . $objName}[0]->{$objName}))
+					{
+						echo "<pre>" . print_r($res->{"ArrayOf" . $objName}[0]->{$objName}, true) . "</pre>";
+					}
+				}
+				return $res;
+			} else {
+				$nRes = new stdClass;
+				$nRes->{$objName}                      = $res->{ "ArrayOf". $objName}->{$objName};
+				$this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
+				if ($this->debugTimers) {
+					echo "<!-- ". $objName. '__getArray'. ": ".round($this->timers[$objName. '__getArray'] * 1000, 2). "ms -->\n";
+				}
+				return $nRes;
+			}
+        }
         $nRes = new stdClass;
         $nRes->{$objName} = array();
         $this->timers[$objName . '__getArray'] = microtime(true) - $this->timers[$objName . '__getArray'];
