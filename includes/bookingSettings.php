@@ -79,7 +79,24 @@ else
 				<?php _e("Use login", "eduadmin"); ?>
 			</label>
 			<br />
+			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
+			<?php
+			$priceNameSetting = get_option('eduadmin-selectPricename', 'firstPublic');
+			?>
+			<label>
+				<input type="radio" name="eduadmin-selectPricename"<?php echo ($priceNameSetting === "firstPublic" ? " checked=\"checked\"" : ""); ?> value="firstPublic" />
+				<?php _e("EduAdmin chooses the appropriate price name for the event and participants", "eduadmin"); ?>
+			</label>
 			<br />
+			<label>
+				<input type="radio" name="eduadmin-selectPricename"<?php echo ($priceNameSetting === "selectWholeEvent" ? " checked=\"checked\"" : ""); ?> value="selectWholeEvent" />
+				<?php _e("Can choose between public price names", "eduadmin"); ?>
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="eduadmin-selectPricename"<?php echo ($priceNameSetting === "selectParticipant" ? " checked=\"checked\"" : ""); ?> value="selectParticipant" />
+				<?php _e("Can choose per participant", "eduadmin"); ?>
+			</label>
 			<?php
 				$selectedMatch = get_option('eduadmin-customerMatching', 'name-zip-match');
 			?>

@@ -184,6 +184,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<?php include_once("customerView.php"); ?>
 		<?php include_once("participantView.php"); ?>
 		<br />
+
 		<?php include_once("questionView.php"); ?>
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 
@@ -259,8 +260,12 @@ if($participantDiscountPercent != 0)
 	$discountValue = ($participantDiscountPercent / 100) * $firstPrice->Price;
 }
 ?>
+<?php
+print_r($prices);
+?>
 <script type="text/javascript">
 var pricePerParticipant = <?php echo round($firstPrice->Price - $discountValue, 2); ?>;
+var discountPerParticipant = <?php echo round($participantDiscountPercent / 100, 2); ?>;
 var totalPriceDiscountPercent = <?php echo $discountPercent; ?>;
 var currency = '<?php echo esc_attr(get_option('eduadmin-currency', 'SEK')); ?>';
 var vatText = '<?php echo esc_attr(edu__($incVat ? "inc vat" : "ex vat")); ?>';
