@@ -377,7 +377,7 @@ else
 		$user->Contact = $contact;
 		$user->Customer = $customer;
 		$_SESSION['eduadmin-loginUser'] = $user;
-		die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=1';</script>");
+		die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=" . $eventCustomerLnkID . "';</script>");
 	}
 }
 ?>
