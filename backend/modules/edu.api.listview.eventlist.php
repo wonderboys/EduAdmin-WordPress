@@ -247,7 +247,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					<div class="objectBook">
 						<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a><br />
 							<?php
-						if($spotsLeft > 0) {
+						if($spotsLeft > 0 || $object->MaxParticipantNr == 0) {
 						?>
 							<a class="bookButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Book"); ?></a>
 						<?php

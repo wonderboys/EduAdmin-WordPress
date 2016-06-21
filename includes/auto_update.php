@@ -34,7 +34,7 @@ class wp_auto_update
     {
         // Set the class public variables
         $this->current_version = $current_version;
-        $this->update_path = 'http://ws10.multinet.se/edu-plugin/update.php';
+        $this->update_path = 'http://ws10.multinet.se/edu-plugin/update.php?oldv=' . $this->current_version;
         $this->plugin_slug = $plugin_slug;
         list ($t1, $t2) = explode('/', $plugin_slug);
         $this->slug = str_replace('.php', '', $t2);

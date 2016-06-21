@@ -333,6 +333,8 @@ function eduadmin_get_detailinfo($attributes)
 				$s = new XSort('Price', 'ASC');
 				$st->AddItem($s);
 
+				$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
+
 				$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
 				$uniquePrices = Array();
 				foreach($prices as $price)
@@ -341,7 +343,14 @@ function eduadmin_get_detailinfo($attributes)
 				}
 
 				$currency = get_option('eduadmin-currency', 'SEK');
-			 	$retStr .= convertToMoney(current($uniquePrices)->Price, $currency);
+				if(count($uniquePrices) == 1) {
+					$retStr .= convertToMoney(current($uniquePrices)->Price, $currency) . " " . edu__($incVat ? "inc vat" : "ex vat") . "\n";
+				} else {
+					foreach($uniquePrices as $price)
+					{
+				 		$retStr .= sprintf('%1$s: %2$s', $price->Description, convertToMoney($price->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat") . "<br />\n";
+					}
+				}
 			 }
 
 			 if(isset($attributes['pagetitlejs']))

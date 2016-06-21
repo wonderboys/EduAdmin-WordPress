@@ -306,7 +306,7 @@ foreach($ede as $object)
 			<div class="objectBook">
 				<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a><br />
 					<?php
-				if($spotsLeft > 0) {
+				if($spotsLeft > 0 || $object->MaxParticipantNr == 0) {
 				?>
 					<a class="bookButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Book"); ?></a>
 				<?php

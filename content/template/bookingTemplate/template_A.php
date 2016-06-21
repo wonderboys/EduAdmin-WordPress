@@ -264,8 +264,6 @@ $firstPrice = current($uniquePrices);
 $originalTitle = get_the_title();
 $newTitle = $name . " | " . $originalTitle;
 
-
-
 $discountValue = 0.0;
 if($participantDiscountPercent != 0)
 {
