@@ -103,7 +103,7 @@
 							<?php edu_e("Price name"); ?>
 						</div>
 						<div class="inputHolder">
-							<select name="participantPriceName[]" class="edudropdown" onchange="eduBookingView.UpdatePrice();">
+							<select name="participantPriceName[]" class="edudropdown participantPriceName" onchange="eduBookingView.UpdatePrice();">
 								<?php foreach($prices as $price) { ?>
 								<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo trim($price->Description); ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
 								<?php } ?>

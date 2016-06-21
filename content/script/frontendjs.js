@@ -117,15 +117,23 @@ var eduBookingView = {
 		if(priceDdl !== null) {
 			var selected = priceDdl.selectedOptions[0];
 			if(selected !== null) {
-				pricePerParticipant = selected.attributes["data-price"].value;
+				pricePerParticipant = parseFloat(selected.attributes["data-price"].value);
 			}
 		}
 
 		if(priceObject && pricePerParticipant !== undefined && currency != '') {
 
 			var newPrice = 0.0;
-			var participantPriceNames = document.querySelectorAll('
-			var newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
+			var participantPriceNames = document.querySelectorAll('.participantItem:not(.template) .participantPriceName');
+			if(participantPriceNames.length > 0) {
+				var participants = eduBookingView.CurrentParticipants;
+				console.log(participants);
+				for(var i = 0; i < participants; i++) {
+					newPrice += parseFloat(participantPriceNames[i].selectedOptions[0].attributes['data-price'].value);
+				}
+			} else {
+				newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
+			}
 			if(!isNaN(questionPrice)) {
 				newPrice += questionPrice;
 			}
