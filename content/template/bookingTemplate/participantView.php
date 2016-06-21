@@ -1,6 +1,3 @@
-<?php
-print_r($prices);
-?>
 		<div class="participantView">
 			<h2><?php edu_e("Participant information"); ?></h2>
 			<div class="participantHolder" id="edu-participantHolder">
@@ -97,6 +94,20 @@ print_r($prices);
 						</div>
 						<div class="inputHolder">
 							<input type="text" required name="participantCivReg[]" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
+						</div>
+					</label>
+					<?php } ?>
+					<?php if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectParticipant") { ?>
+					<label>
+						<div class="inputLabel">
+							<?php edu_e("Price name"); ?>
+						</div>
+						<div class="inputHolder">
+							<select name="participantPriceName[]" class="edudropdown" onchange="eduBookingView.UpdatePrice();">
+								<?php foreach($prices as $price) { ?>
+								<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo trim($price->Description); ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
+								<?php } ?>
+							</select>
 						</div>
 					</label>
 					<?php } ?>

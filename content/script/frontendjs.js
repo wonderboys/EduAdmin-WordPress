@@ -61,7 +61,7 @@ var eduBookingView = {
 		eduBookingView.ContactAsParticipant();
 		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact;
 
-		var questions = document.querySelectorAll('[data-price]');
+		var questions = document.querySelectorAll('.questionPanel [data-price]');
 		var questionPrice = 0.0;
 		for(var qi = 0; qi < questions.length; qi++) {
 			var question = questions[qi];
@@ -122,6 +122,9 @@ var eduBookingView = {
 		}
 
 		if(priceObject && pricePerParticipant !== undefined && currency != '') {
+
+			var newPrice = 0.0;
+			var participantPriceNames = document.querySelectorAll('
 			var newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
 			if(!isNaN(questionPrice)) {
 				newPrice += questionPrice;

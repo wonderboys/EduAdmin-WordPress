@@ -265,6 +265,12 @@ else
 			{
 				$person->PersonCivicRegistrationNumber = trim($_POST['participantCivReg'][$key]);
 			}
+
+			if(isset($_POST['participantPriceName'][$key]))
+			{
+				$person->OccasionPriceNameLnkID = trim($_POST['participantPriceName'][$key]);
+			}
+
 			$pArr[] = $person;
 
 			if(!empty($person->PersonEmail) && !in_array($person->PersonEmail, $personEmail))

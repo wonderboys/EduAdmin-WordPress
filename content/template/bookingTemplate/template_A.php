@@ -219,7 +219,7 @@ $firstPrice = current($uniquePrices);
 		<?php
 		if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectWholeEvent") {
 		?>
-		<?php edu_e("Select price name:"); ?>
+		<?php edu_e("Price name"); ?>
 		<select id="edu-pricename" name="edu-pricename" class="edudropdown" onchange="eduBookingView.UpdatePrice();">
 			<?php foreach($prices as $price) { ?>
 			<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo trim($price->Description); ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
