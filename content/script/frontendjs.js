@@ -112,6 +112,15 @@ var eduBookingView = {
 		}
 
 		var priceObject = document.getElementById('sumValue');
+
+		var priceDdl = document.getElementById('edu-pricename');
+		if(priceDdl !== null) {
+			var selected = priceDdl.selectedOptions[0];
+			if(selected !== null) {
+				pricePerParticipant = selected.attributes["data-price"].value;
+			}
+		}
+
 		if(priceObject && pricePerParticipant !== undefined && currency != '') {
 			var newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
 			if(!isNaN(questionPrice)) {

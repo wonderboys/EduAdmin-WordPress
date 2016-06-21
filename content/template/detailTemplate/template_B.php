@@ -185,7 +185,7 @@ else
 			$currency = get_option('eduadmin-currency', 'SEK');
 			if(count($uniquePrices) == 1) {
 		?>
-		<?php echo sprintf('%1$s %2$s', current($uniquePrices)->Description, convertToMoney(current($uniquePrices)->Price, $currency)); ?>
+		<?php echo sprintf('%1$s %2$s', current($uniquePrices)->Description, convertToMoney(current($uniquePrices)->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>
 		<?php
 			}
 			else

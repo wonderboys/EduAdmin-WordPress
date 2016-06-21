@@ -228,9 +228,9 @@ else
 		<h3><?php edu_e("Price"); ?></h3>
 		<?php
 			$currency = get_option('eduadmin-currency', 'SEK');
-			if(count($uniquePrices) >= 1) {
+			foreach($uniquePrices as $price) {
 		?>
-		<?php echo sprintf('%1$s %2$s', current($uniquePrices)->Description, convertToMoney(current($uniquePrices)->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>
+		<?php echo sprintf('%1$s: %2$s', $price->Description, convertToMoney($price->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?><br />
 		<?php
 			}
 		} ?>

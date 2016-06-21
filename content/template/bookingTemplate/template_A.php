@@ -220,9 +220,9 @@ $firstPrice = current($uniquePrices);
 		if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectWholeEvent") {
 		?>
 		<?php edu_e("Select price name:"); ?>
-		<select name="edu-pricename" class="edudropdown">
+		<select id="edu-pricename" name="edu-pricename" class="edudropdown" onchange="eduBookingView.UpdatePrice();">
 			<?php foreach($prices as $price) { ?>
-			<option value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo $price->Description; ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
+			<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo trim($price->Description); ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
 			<?php } ?>
 		</select>
 		<?php
@@ -271,9 +271,6 @@ if($participantDiscountPercent != 0)
 {
 	$discountValue = ($participantDiscountPercent / 100) * $firstPrice->Price;
 }
-?>
-<?php
-print_r($prices);
 ?>
 <script type="text/javascript">
 var pricePerParticipant = <?php echo round($firstPrice->Price - $discountValue, 2); ?>;

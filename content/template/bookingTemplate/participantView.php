@@ -1,3 +1,6 @@
+<?php
+print_r($prices);
+?>
 		<div class="participantView">
 			<h2><?php edu_e("Participant information"); ?></h2>
 			<div class="participantHolder" id="edu-participantHolder">
