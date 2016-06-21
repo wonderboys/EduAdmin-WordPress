@@ -116,8 +116,15 @@ var eduBookingView = {
 		var priceDdl = document.getElementById('edu-pricename');
 		if(priceDdl !== null) {
 			var selected = priceDdl.selectedOptions[0];
+			var ppp = 0.0;
 			if(selected !== null) {
-				pricePerParticipant = parseFloat(selected.attributes["data-price"].value);
+				ppp = parseFloat(selected.attributes["data-price"].value);
+			}
+			if(discountPerParticipant !== undefined && discountPerParticipant > 0) {
+				var disc = discountPerParticipant * ppp;
+				pricePerParticipant = ppp - disc;
+			} else {
+				pricePerParticipant = ppp;
 			}
 		}
 
@@ -127,9 +134,14 @@ var eduBookingView = {
 			var participantPriceNames = document.querySelectorAll('.participantItem:not(.template) .participantPriceName');
 			if(participantPriceNames.length > 0) {
 				var participants = eduBookingView.CurrentParticipants;
-				console.log(participants);
 				for(var i = 0; i < participants; i++) {
-					newPrice += parseFloat(participantPriceNames[i].selectedOptions[0].attributes['data-price'].value);
+					if(discountPerParticipant !== undefined && discountPerParticipant > 0) {
+						var lpr = parseFloat(participantPriceNames[i].selectedOptions[0].attributes['data-price'].value);
+						var disc = discountPerParticipant * lpr;
+						newPrice += lpr - disc;
+					} else {
+						newPrice += parseFloat(participantPriceNames[i].selectedOptions[0].attributes['data-price'].value);
+					}
 				}
 			} else {
 				newPrice = (eduBookingView.CurrentParticipants * pricePerParticipant);
