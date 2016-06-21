@@ -112,6 +112,38 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	}
 }
 
+$occIds = Array();
+$occIds[] = -1;
+if(isset($_REQUEST['eid']))
+{
+	foreach($events as $ev)
+	{
+		$occIds[] = $ev->OccationID;
+	}
+}
+else
+{
+	$occIds[] = $event->OccationID;
+}
+
+$ft = new XFiltering();
+$f = new XFilter('PublicPriceName', '=', 'true');
+$ft->AddItem($f);
+$f = new XFilter('OccationID', 'IN', join(',', $occIds));
+$ft->AddItem($f);
+
+$st = new XSorting();
+$s = new XSort('Price', 'ASC');
+$st->AddItem($s);
+
+$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
+
+$uniquePrices = Array();
+foreach($prices as $price)
+{
+	$uniquePrices[$price->Description] = $price;
+}
+$firstPrice = current($uniquePrices);
 ?>
 <div class="eduadmin">
 	<form action="" method="post">
@@ -184,7 +216,18 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		<?php include_once("customerView.php"); ?>
 		<?php include_once("participantView.php"); ?>
 		<br />
-
+		<?php
+		if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectWholeEvent") {
+		?>
+		<?php edu_e("Select price name:"); ?>
+		<select name="edu-pricename" class="edudropdown">
+			<?php foreach($prices as $price) { ?>
+			<option value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo $price->Description; ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
+			<?php } ?>
+		</select>
+		<?php
+		}
+		?>
 		<?php include_once("questionView.php"); ?>
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 
@@ -221,38 +264,7 @@ if(isset($_SESSION['eduadmin-loginUser']))
 $originalTitle = get_the_title();
 $newTitle = $name . " | " . $originalTitle;
 
-$occIds = Array();
-$occIds[] = -1;
-if(isset($_REQUEST['eid']))
-{
-	foreach($events as $ev)
-	{
-		$occIds[] = $ev->OccationID;
-	}
-}
-else
-{
-	$occIds[] = $event->OccationID;
-}
 
-$ft = new XFiltering();
-$f = new XFilter('PublicPriceName', '=', 'true');
-$ft->AddItem($f);
-$f = new XFilter('OccationID', 'IN', join(',', $occIds));
-$ft->AddItem($f);
-
-$st = new XSorting();
-$s = new XSort('Price', 'ASC');
-$st->AddItem($s);
-
-$prices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
-
-$uniquePrices = Array();
-foreach($prices as $price)
-{
-	$uniquePrices[$price->Description] = $price;
-}
-$firstPrice = current($uniquePrices);
 
 $discountValue = 0.0;
 if($participantDiscountPercent != 0)

@@ -307,6 +307,10 @@ else
 		$bi->CustomerID = $customer->CustomerID;
 		$bi->CustomerContactID = $contact->CustomerContactID;
 		$bi->SubEventPersons = $pArr;
+		if(isset($_POST['edu-pricename']))
+		{
+			$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
+		}
 		$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : trim(str_replace(';', ' ', $contact->ContactName)));
 		//$api->debug = true;
 		$eventCustomerLnkID = $eduapi->CreateSubEventBooking(
