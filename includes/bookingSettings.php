@@ -282,7 +282,35 @@ else
 			</label>
 			<h3><?php _e("Javascript to run when a booking is completed", "eduadmin"); ?></h3>
 			<i><?php _e("You do not need to include &lt;script&gt;-tags", "eduadmin"); ?></i><br />
-			<textarea class="form-control" rows="10" cols="60" name="eduadmin-javascript"><?php echo get_option('eduadmin-javascript'); ?></textarea>
+			<table>
+				<tr>
+					<td style="vertical-align: top;">
+						<textarea class="form-control" rows="10" cols="60" name="eduadmin-javascript"><?php echo get_option('eduadmin-javascript'); ?></textarea>
+					</td>
+					<td style="vertical-align: top;">
+						<b><?php _e("Keywords for JavaScript", "eduadmin"); ?></b><br />
+						<hr noshade="noshade" />
+						<table>
+							<tr>
+								<td><b>$bookingno$</b></td>
+								<td><?php _e("The booking number", "eduadmin"); ?></td>
+							</tr>
+							<tr>
+								<td><b>$productname$</b></td>
+								<td><?php _e("Inserts the product name", "eduadmin"); ?></td>
+							</tr>
+							<tr>
+								<td><b>$totalsum$</b></td>
+								<td><?php _e("Inserts the total sum", "eduadmin"); ?></td>
+							</tr>
+							<tr>
+								<td><b>$participants$</b></td>
+								<td><?php _e("Inserts the number participants", "eduadmin"); ?></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
 			<br />
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
