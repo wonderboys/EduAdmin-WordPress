@@ -163,14 +163,52 @@ function eduadmin_create_metabox()
 	include_once("_metaBox.php");
 }
 
+function eduadmin_RewriteJavaScript($script)
+{
+	global $eduapi;
+	global $edutoken;
+
+	if(isset($_REQUEST['edu-thankyou']))
+	{
+		if(stripos($script, "$") !== FALSE)
+		{
+			$ft = new XFiltering();
+			$f = new XFilter('EventCustomerLnkID', '=', $_REQUEST['edu-thankyou']);
+			$ft->AddItem($f);
+			$bookingInfo = $eduapi->GetEventBooking($edutoken, '', $ft->ToString());
+
+			$script = str_replace(
+				array(
+					'$bookingno$',
+					'$productname$',
+					'$totalsum$',
+					'$participants$'
+				),
+				array(
+					esc_js($bookingInfo[0]->EventCustomerLnkID), // $bookingno$
+					esc_js($bookingInfo[0]->ObjectName), // $productname$
+					esc_js($bookingInfo[0]->TotalPrice), // $totalsum$
+					esc_js($bookingInfo[0]->ParticipantNr) // $participants$
+				),
+				$script
+			);
+		}
+
+		return $script;
+	}
+	return '';
+}
+
 function eduadmin_printJavascript()
 {
-	if(get_option('eduadmin-javascript', '') != '' && isset($_SESSION['eduadmin-printJS']))
+	if(trim(get_option('eduadmin-javascript', '')) != '' && isset($_SESSION['eduadmin-printJS']))
 	{
-		echo "<script type=\"text/javascript\">\n";
-		echo get_option('eduadmin-javascript');
-		echo "\n</script>";
+		$str = "<script type=\"text/javascript\">\n";
+		$script = get_option('eduadmin-javascript');
+		$str .= eduadmin_RewriteJavaScript($script);
+		$str .= "\n</script>";
 		unset($_SESSION['eduadmin-printJS']);
+		echo $str;
 	}
 }
 ?>

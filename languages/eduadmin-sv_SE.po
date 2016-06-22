@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-06-21 14:53+0200\n"
-"PO-Revision-Date: 2016-06-21 14:54+0200\n"
+"POT-Creation-Date: 2016-06-22 10:57+0200\n"
+"PO-Revision-Date: 2016-06-22 10:58+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -346,7 +346,27 @@ msgstr "Javaskript att köra när en bokning har genomförts"
 msgid "You do not need to include &lt;script&gt;-tags"
 msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
 
-#: includes/bookingSettings.php:288 includes/detailSettings.php:28
+#: includes/bookingSettings.php:291
+msgid "Keywords for JavaScript"
+msgstr "Nyckelord för JavaScript"
+
+#: includes/bookingSettings.php:296
+msgid "The booking number"
+msgstr "Bokningsnumret"
+
+#: includes/bookingSettings.php:300
+msgid "Inserts the product name"
+msgstr "Infogar produktnamnet"
+
+#: includes/bookingSettings.php:304
+msgid "Inserts the total sum"
+msgstr "Infogar totalsumman"
+
+#: includes/bookingSettings.php:308
+msgid "Inserts the number participants"
+msgstr "Infogar antal deltagare"
+
+#: includes/bookingSettings.php:316 includes/detailSettings.php:28
 #: includes/generalSettings.php:34 includes/generalSettings.php:178
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
 #: includes/textSettings.php:35
