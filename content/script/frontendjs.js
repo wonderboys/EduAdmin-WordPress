@@ -62,52 +62,55 @@ var eduBookingView = {
 		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact;
 
 		var questions = document.querySelectorAll('.questionPanel [data-price]');
+
 		var questionPrice = 0.0;
 		for(var qi = 0; qi < questions.length; qi++) {
 			var question = questions[qi];
 			var price = parseFloat(question.dataset.price);
 			var qtype = question.dataset.type;
-			switch(qtype) {
-				case "number":
-					if(question.value != '' && !isNaN(question.value) && parseInt(question.value) > 0) {
-						questionPrice += (price * parseInt(question.value));
-					} else {
-						question.value = '';
-					}
-					break;
-				case "text":
-					if(question.value != '') {
+			if(!isNaN(price)) {
+				switch(qtype) {
+					case "number":
+						if(question.value != '' && !isNaN(question.value) && parseInt(question.value) > 0) {
+							questionPrice += (price * parseInt(question.value));
+						} else {
+							question.value = '';
+						}
+						break;
+					case "text":
+						if(question.value != '') {
+							questionPrice += price;
+						}
+						break;
+					case "note":
+						if(question.value != '') {
+							questionPrice += price;
+						}
+						break;
+					case "radio":
+						if(question.checked) {
+							questionPrice += price;
+						}
+						break;
+					case "check":
+						if(question.checked) {
+							questionPrice += price;
+						}
+						break;
+					case "dropdown":
+						if(question.selected) {
+							questionPrice += price;
+						}
+						break;
+					case "infotext":
 						questionPrice += price;
-					}
-					break;
-				case "note":
-					if(question.value != '') {
-						questionPrice += price;
-					}
-					break;
-				case "radio":
-					if(question.checked) {
-						questionPrice += price;
-					}
-					break;
-				case "check":
-					if(question.checked) {
-						questionPrice += price;
-					}
-					break;
-				case "dropdown":
-					if(question.selected) {
-						questionPrice += price;
-					}
-					break;
-				case "infotext":
-					questionPrice += price;
-					break;
-				case "date":
-					if(question.value != '') {
-						questionPrice += price;
-					}
-					break;
+						break;
+					case "date":
+						if(question.value != '') {
+							questionPrice += price;
+						}
+						break;
+				}
 			}
 		}
 
