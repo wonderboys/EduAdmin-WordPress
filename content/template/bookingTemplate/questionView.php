@@ -16,7 +16,7 @@
 			}
 
 			array_multisort($qCategories, SORT_ASC, $qSortIndex, SORT_ASC, $questions);
-			echo "<pre>" . print_r($questions, true) . "</pre>";
+			#echo "<pre>" . print_r($questions, true) . "</pre>";
 			foreach($questions as $q)
 			{
 				if($q->ShowExternal) {
