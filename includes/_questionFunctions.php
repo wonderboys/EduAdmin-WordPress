@@ -22,6 +22,8 @@ function renderQuestion($question)
 		case 6: // Infotext - hel rad
 			renderInfoText($question);
 			break;
+		case 7: // Radbrytning
+			break;
 		case 8: // Datum-fråga
 			renderDateQuestion($question);
 			break;
@@ -139,11 +141,11 @@ function renderRadioQuestion($question, $display)
 	echo "<h3>" . $question[0]->QuestionText . "</h3>";
 	if($display == 'vertical')
 	{
-		foreach($question as $q)
+		foreach($question->Answers as $q)
 		{
 			echo "<label class=\"questionRadioVertical\">";
 			echo "<div class=\"inputHolder\">";
-			echo "<input type=\"radio\" class=\"questionRadio\" data-type=\"radio\" data-price=\"" . $q->Price . "\" name=\"question_" . $question[0]->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
+			echo "<input type=\"radio\" class=\"questionRadio\" data-type=\"radio\" data-price=\"" . $q->Price . "\" name=\"question_" . $question->QuestionID . "_radio\" value=\"" . $q->AnswerID . "\" /> ";
 			echo $q->AnswerText;
 			if($q->Price > 0) {
 				echo " <i class=\"priceLabel\">(" . convertToMoney($q->Price) . ")</i>";
