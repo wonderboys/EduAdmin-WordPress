@@ -12,7 +12,7 @@ if(!function_exists('edu_api_loginwidget'))
 		if(isset($_SESSION['eduadmin-loginUser']))
 			$user = $_SESSION['eduadmin-loginUser'];
 
-		if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
+		if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && isset($_SESSION['eduadmin-loginUser']->Contact->CustomerContactID) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
 		{
 			return
 			"<div class=\"eduadminLogin\"><a href=\"" . $baseUrl . "/profile/myprofile" . edu_getQueryString("?", array('eid', 'module')) . "\" class=\"eduadminMyProfileLink\">" .

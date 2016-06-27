@@ -232,7 +232,7 @@ $firstPrice = current($uniquePrices);
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 
 		<?php
-		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink')))
+		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink', '')))
 		{
 			?>
 			<div class="confirmTermsHolder">

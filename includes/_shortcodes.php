@@ -27,7 +27,7 @@ function eduadmin_get_list_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
 	);
-	$str = include(plugin_dir_path(__FILE__) . "../content/template/listTemplate/" . $attributes['template'] . ".php");
+	$str = include(plugin_dir_path(__DIR__) . "content/template/listTemplate/" . $attributes['template'] . ".php");
 	return $str;
 }
 
@@ -47,7 +47,7 @@ function eduadmin_get_detail_view($attributes)
 	unset($_SESSION['eduadmin-loginUser']->NewCustomer);
 	if(!isset($attributes['customtemplate']) || $attributes['customtemplate'] != 1)
 	{
-		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/detailTemplate/" . $attributes['template'] . ".php");
+		$str = include_once(plugin_dir_path(__DIR__) . "content/template/detailTemplate/" . $attributes['template'] . ".php");
 		return $str;
 	}
 }
@@ -66,13 +66,13 @@ function eduadmin_get_booking_view($attributes)
 		normalize_empty_atts($attributes),
 		'eduadmin-bookingview'
 	);
-	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && ($_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0 || isset($_SESSION['eduadmin-loginUser']->NewCustomer))))
+	if(get_option('eduadmin-useLogin', false) == false || (isset($_SESSION['eduadmin-loginUser']) && ((isset($_SESSION['eduadmin-loginUser']->Contact->CustomerContactID) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0) || isset($_SESSION['eduadmin-loginUser']->NewCustomer))))
 	{
-		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/" . $attributes['template'] . ".php");
+		$str = include_once(plugin_dir_path(__DIR__) . "content/template/bookingTemplate/" . $attributes['template'] . ".php");
 	}
 	else
 	{
-		$str = include_once(plugin_dir_path(__FILE__) . "../content/template/bookingTemplate/loginView.php");
+		$str = include_once(plugin_dir_path(__DIR__) . "content/template/bookingTemplate/loginView.php");
 	}
 
 	return $str;
@@ -599,7 +599,7 @@ function eduadmin_get_login_view($attributes)
 		'eduadmin-loginview'
 	);
 
-	return include_once(plugin_dir_path(__FILE__) . "../content/template/myPagesTemplate/login.php");
+	return include_once(plugin_dir_path(__DIR__) . "content/template/myPagesTemplate/login.php");
 }
 
 add_shortcode("eduadmin-listview", "eduadmin_get_list_view");
