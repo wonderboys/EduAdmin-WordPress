@@ -26,7 +26,7 @@
 		<?php echo $_SESSION['eduadminLoginError']; ?>
 	</div>
 	<?php unset($_SESSION['eduadminLoginError']); } ?>
-	<?php if(isset($_SESSION['eduadmin-forgotPassSent'])) {
+	<?php if(isset($_SESSION['eduadmin-forgotPassSent']) && $_SESSION['eduadmin-forgotPassSent'] == true) {
 		unset($_SESSION['eduadmin-forgotPassSent']);
 	?>
 	<div class="edu-modal warning" style="display: block; clear: both;">
