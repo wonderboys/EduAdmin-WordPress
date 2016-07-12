@@ -232,13 +232,14 @@ $firstPrice = current($uniquePrices);
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 
 		<?php
-		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty(get_option('eduadmin-bookingTermsLink', '')))
+		$link = get_option('eduadmin-bookingTermsLink', '');
+		if(get_option('eduadmin-useBookingTermsCheckbox', false) && !empty($link))
 		{
 			?>
 			<div class="confirmTermsHolder">
 			<label>
 				<input type="checkbox" id="confirmTerms" name="confirmTerms" value="agree" />
-				<?php echo sprintf(edu__('I agree to the %sTerms and Conditions%s'), '<a href="' . get_option('eduadmin-bookingTermsLink') . '" target="_blank">', '</a>'); ?>
+				<?php echo sprintf(edu__('I agree to the %sTerms and Conditions%s'), '<a href="' . $link . '" target="_blank">', '</a>'); ?>
 			</label>
 			</div>
 			<?php
