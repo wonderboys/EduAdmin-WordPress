@@ -120,5 +120,10 @@
 "You have to provide your e-mail adress.": "You have to provide your e-mail adress.",
 "You must accept Terms and Conditions to continue.": "You must accept Terms and Conditions to continue.",
 "You must add some participants.": "You must add some participants.",
-"Your search returned zero results": "Your search returned zero results"
+"Your search returned zero results": "Your search returned zero results",
+"Discount Cards": "Discount Cards"
+"Card name": "Card name",
+"Valid": "Valid",
+"Credits": "Credits",
+"You don't have any discount cards registered.": "You don't have any discount cards registered."
 }
