@@ -564,24 +564,12 @@ function eduadmin_get_login_widget($attributes)
 	if(isset($_SESSION['eduadmin-loginUser']))
 		$user = $_SESSION['eduadmin-loginUser'];
 
-	if(isset($_SESSION['eduadmin-loginUser']) && !empty($_SESSION['eduadmin-loginUser']) && $_SESSION['eduadmin-loginUser']->Contact->CustomerContactID != 0)
-	{
-		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"
-		data-logintext=\"" . esc_attr($attributes['logintext']) . "\"
-		data-logouttext=\"" . esc_attr($attributes['logouttext']) . "\"
-		data-guesttext=\"" . esc_attr($attributes['guesttext']) . "\">" .
-		"</div>";
-	}
-	else
-	{
-		return
-		"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"
-		data-logintext=\"" . esc_attr($attributes['logintext']) . "\"
-		data-logouttext=\"" . esc_attr($attributes['logouttext']) . "\"
-		data-guesttext=\"" . esc_attr($attributes['guesttext']) . "\">" .
-		"</div>";
-	}
+	return
+	"<div class=\"eduadminLogin\" data-eduwidget=\"loginwidget\"
+	data-logintext=\"" . esc_attr($attributes['logintext']) . "\"
+	data-logouttext=\"" . esc_attr($attributes['logouttext']) . "\"
+	data-guesttext=\"" . esc_attr($attributes['guesttext']) . "\">" .
+	"</div>";
 }
 
 function eduadmin_get_login_view($attributes)

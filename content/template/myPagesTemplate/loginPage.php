@@ -7,7 +7,7 @@
 			<label>
 				<div class="loginLabel"><?php edu_e("E-mail address"); ?></div>
 				<div class="loginInput">
-					<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
+					<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
 				</div>
 			</label>
 			<label>

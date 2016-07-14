@@ -124,7 +124,7 @@ else
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
 	<div class="title">
 		<img src="<?php echo $selectedCourse->ImageUrl; ?>" class="courseImage" />
-		<h1 class="courseTitle"><?php echo $name; ?> <small><?php echo $courseLevel[0]->Name; ?></small></h1>
+		<h1 class="courseTitle"><?php echo $name; ?> <small><?php echo (!empty($courseLevel) ? $courseLevel[0]->Name : ""); ?></small></h1>
 	</div>
 	<hr />
 	<div class="textblock">

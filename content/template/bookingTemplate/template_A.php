@@ -94,20 +94,23 @@ if(isset($_SESSION['eduadmin-loginUser']))
 	$user = $_SESSION['eduadmin-loginUser'];
 	$contact = $user->Contact;
 	$customer = $user->Customer;
-	$f = new XFiltering();
-	$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
-	$f->AddItem($ft);
-	$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-
-	foreach($extraInfo as $info)
+	if(isset($customer->CustomerID))
 	{
-		if($info->Key == "DiscountPercent" && isset($info->Value))
+		$f = new XFiltering();
+		$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
+		$f->AddItem($ft);
+		$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
+		echo "<pre>" . print_r($extraInfo, true) . "</pre>";
+		foreach($extraInfo as $info)
 		{
-			$discountPercent = (double)$info->Value;
-		}
-		else if($info->Key == "ParticipantDiscountPercent" && isset($info->Value))
-		{
-			$participantDiscountPercent = (double)$info->Value;
+			if($info->Key == "DiscountPercent" && isset($info->Value))
+			{
+				$discountPercent = (double)$info->Value;
+			}
+			else if($info->Key == "ParticipantDiscountPercent" && isset($info->Value))
+			{
+				$participantDiscountPercent = (double)$info->Value;
+			}
 		}
 	}
 }

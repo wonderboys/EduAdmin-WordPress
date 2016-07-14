@@ -2192,7 +2192,7 @@
 
 			if (is_array($res->{"ArrayOf" . $objName})) {
 				$this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
-				if ($this->debugTimers) {
+				if ($this->debug) {
 					echo "<!-- " . $objName. '__getArray' . ": " . round($this->timers[$objName. '__getArray'] * 1000, 2) . "ms -->\n";
 				}
 
@@ -2212,7 +2212,7 @@
 				$nRes = new stdClass;
 				$nRes->{$objName}                      = $res->{ "ArrayOf". $objName}->{$objName};
 				$this->timers[$objName. '__getArray'] = microtime(true) - $this->timers[$objName. '__getArray'];
-				if ($this->debugTimers) {
+				if ($this->debug) {
 					echo "<!-- ". $objName. '__getArray'. ": ".round($this->timers[$objName. '__getArray'] * 1000, 2). "ms -->\n";
 				}
 				return $nRes;

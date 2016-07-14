@@ -5,8 +5,8 @@
 					<?php edu_e("Contact name"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" style="width: 49%; display: inline-block;" required onchange="eduBookingView.ContactAsParticipant();" id="edu-contactFirstName" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo esc_attr(split(' ', $contact->ContactName)[0]); ?>" />
-					<input type="text" style="width: 49%; display: inline-block; float: right;" required onchange="eduBookingView.ContactAsParticipant();" id="edu-contactLastName" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo esc_attr(str_replace(split(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
+					<input type="text" style="width: 49%; display: inline-block;" required onchange="eduBookingView.ContactAsParticipant();" id="edu-contactFirstName" name="contactFirstName" placeholder="<?php edu_e("Contact first name"); ?>" value="<?php echo @esc_attr(explode(' ', $contact->ContactName)[0]); ?>" />
+					<input type="text" style="width: 49%; display: inline-block; float: right;" required onchange="eduBookingView.ContactAsParticipant();" id="edu-contactLastName" name="contactLastName" placeholder="<?php edu_e("Contact surname"); ?>" value="<?php echo @esc_attr(str_replace(explode(' ', $contact->ContactName)[0], '', $contact->ContactName)); ?>" />
 				</div>
 			</label>
 			<label>
@@ -14,7 +14,7 @@
 					<?php edu_e("E-mail address"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="email" id="edu-contactEmail" required name="contactEmail" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo esc_attr($contact->Email); ?>" />
+					<input type="email" id="edu-contactEmail" required name="contactEmail" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo @esc_attr($contact->Email); ?>" />
 				</div>
 			</label>
 			<label>
@@ -22,7 +22,7 @@
 					<?php edu_e("Phone number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" id="edu-contactPhone" name="contactPhone" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo esc_attr($contact->Phone); ?>" />
+					<input type="tel" id="edu-contactPhone" name="contactPhone" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Phone number"); ?>" value="<?php echo @esc_attr($contact->Phone); ?>" />
 				</div>
 			</label>
 			<label>
@@ -30,7 +30,7 @@
 					<?php edu_e("Mobile number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="tel" id="edu-contactMobile" name="contactMobile" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo esc_attr($contact->Mobile); ?>" />
+					<input type="tel" id="edu-contactMobile" name="contactMobile" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo @esc_attr($contact->Mobile); ?>" />
 				</div>
 			</label>
 			<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
@@ -39,7 +39,7 @@
 					<?php edu_e("Civic Registration Number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" id="edu-contactCivReg" required name="contactCivReg" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo esc_attr($contact->CivicRegistrationNumber); ?>" />
+					<input type="text" id="edu-contactCivReg" required name="contactCivReg" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo @esc_attr($contact->CivicRegistrationNumber); ?>" />
 				</div>
 			</label>
 			<?php } ?>

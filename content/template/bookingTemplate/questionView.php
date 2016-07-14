@@ -8,10 +8,11 @@
 
 			$qCategories = array();
 			$qSortIndex = array();
-
+			/*print_r($questions);*/
 			foreach($questions as $q => $row)
 			{
-				$qCategories[$q] = $row->CategoryName;
+
+				$qCategories[$q] = $row->CategoryID;
 				$qSortIndex[$q] = $row->SortIndex;
 			}
 
