@@ -21,7 +21,7 @@ include_once("login_tab_header.php");
 	$s = new XSort('Created', 'DESC');
 	$sorting->AddItem($s);
 	$bookings = $eduapi->GetEventBooking($edutoken, $sorting->ToString(), $filtering->ToString());
-
+	$currency = get_option('eduadmin-currency', 'SEK');
 	?>
 	<table class="myReservationsTable">
 		<tr>
@@ -44,7 +44,7 @@ include_once("login_tab_header.php");
 			<td><?php echo $book->EventDescription; ?></td>
 			<td><?php echo GetStartEndDisplayDate($book->PeriodStart, $book->PeriodEnd, true); ?></td>
 			<td align="right"><?php echo $book->ParticipantNr; ?></td>
-			<td align="right"><?php echo convertToMoney($book->TotalPrice); ?></td>
+			<td align="right"><?php echo convertToMoney($book->TotalPrice, $currency); ?></td>
 		</tr>
 		<?php }
 		} ?>
