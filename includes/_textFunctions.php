@@ -49,7 +49,6 @@ function getSpotsLeft($freeSpots, $maxSpots)
 
 		case "alwaysFewSpots":
 			$minParticipants = get_option('eduadmin-alwaysFewSpots');
-			#echo $maxSpots . " - " . $freeSpots . " (" . ($maxSpots - $freeSpots) . ") >= " . $minParticipants . " == " . (($maxSpots - $freeSpots) >= $minParticipants) . "<br />";
 			if(($maxSpots - $freeSpots) >= $minParticipants)
 				return edu__('Few spots left');
 			return edu__('Spots left');
