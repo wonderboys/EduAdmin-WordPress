@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-06-22 10:57+0200\n"
-"PO-Revision-Date: 2016-06-22 10:58+0200\n"
+"POT-Creation-Date: 2016-07-20 09:21+0200\n"
+"PO-Revision-Date: 2016-07-20 09:22+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -44,7 +44,15 @@ msgstr "Filtrerar kurslistan på ämne (Text)"
 msgid "Hides the search box from the list"
 msgstr "Gömmer sökrutan på söksidan"
 
-#: includes/_metaBox.php:19
+#: includes/_metaBox.php:17
+msgid "Only shows courses that have events"
+msgstr "Visar enbart kurser där det finns tillfällen"
+
+#: includes/_metaBox.php:20
+msgid "Only shows courses that do not have events"
+msgstr "Visar enbart kurser där det inte finns några tillfällen"
+
+#: includes/_metaBox.php:25
 msgid ""
 "Shortcode to display the course detail view.\n"
 "(Click to view attributes)"
@@ -52,30 +60,30 @@ msgstr ""
 "Shortcode för att visa kursdetaljsidan.\n"
 "(Klicka för att visa attribut)"
 
-#: includes/_metaBox.php:24
+#: includes/_metaBox.php:30
 msgid ""
 "For custom pages, you must provide courseid in all detail-info attributes."
 msgstr ""
 "För helt skräddarsydda sidor, så måste du ange courseid för all "
 "detaljinformation."
 
-#: includes/_metaBox.php:27
+#: includes/_metaBox.php:33
 msgid ""
 "By using this attribute, you will tell the plugin not to load any templates."
 msgstr ""
 "Genom att ange detta attributet, så säger du åt pluginet att inte ladda in "
 "någon av standardmallarna."
 
-#: includes/_metaBox.php:32
+#: includes/_metaBox.php:38
 msgid "Shortcode to display the booking form view."
 msgstr "Shortcode för att visa bokningsformuläret."
 
-#: includes/_metaBox.php:37
+#: includes/_metaBox.php:43
 msgid "To build custom booking view pages, you can provide a course id"
 msgstr ""
 "För att bygga en skräddarsydd bokningssida, så måste du ange ett kursid"
 
-#: includes/_metaBox.php:42
+#: includes/_metaBox.php:48
 msgid ""
 "Shortcode to display the login view\n"
 "(My Pages, Profile, Bookings, etc.)"
@@ -83,23 +91,23 @@ msgstr ""
 "Shortcode för att visa inloggningssidan\n"
 "(Mina sidor, Profil, Bokningar, m.m.)"
 
-#: includes/_metaBox.php:47
+#: includes/_metaBox.php:53
 msgid "Widgets"
 msgstr "Widgets"
 
-#: includes/_metaBox.php:49
+#: includes/_metaBox.php:55
 msgid "Shortcode to inject the login widget."
 msgstr "Shortcode för att injicera inloggnings-widgeten."
 
-#: includes/_metaBox.php:54 includes/_metaBox.php:57 includes/_metaBox.php:60
+#: includes/_metaBox.php:60 includes/_metaBox.php:63 includes/_metaBox.php:66
 msgid "Text to show instead of standard"
 msgstr "Text att visa istället för standard"
 
-#: includes/_metaBox.php:65
+#: includes/_metaBox.php:71
 msgid "Detail shortcodes"
 msgstr "Detalj-shortcodes"
 
-#: includes/_metaBox.php:67
+#: includes/_metaBox.php:73
 msgid ""
 "Shortcode to display detailed information from provided attributes.\n"
 "(Click to view attributes)"
@@ -107,7 +115,7 @@ msgstr ""
 "Shortcode för att visa detaljerad information från angivna attribut.\n"
 "(Klicka för att visa attribut)"
 
-#: includes/_metaBox.php:72
+#: includes/_metaBox.php:78
 msgid ""
 "This will include a Javascript-snippet that replaces the page title with the "
 "current course name"
@@ -115,93 +123,93 @@ msgstr ""
 "Det här kommer att inkludera ett Javaskript för att ersätta sid-titeln med "
 "det aktuella kursnamnet"
 
-#: includes/_metaBox.php:75
+#: includes/_metaBox.php:81
 msgid ""
 "This attribute is only required if you do full custom pages for your courses."
 msgstr ""
 "Det här attributet är enbart ett krav om du gör helt skräddarsydda sidor för "
 "dina kurser."
 
-#: includes/_metaBox.php:78
+#: includes/_metaBox.php:84
 msgid "Fetches the name of the course"
 msgstr "Hämtar namnet på kursen"
 
-#: includes/_metaBox.php:81
+#: includes/_metaBox.php:87
 msgid "Fetches the public name of the course"
 msgstr "Hämtar det publika namnet på kursen"
 
-#: includes/_metaBox.php:84
+#: includes/_metaBox.php:90
 msgid "Fetches what level this course is"
 msgstr "Hämtar vilken nivå denna kurs är för"
 
-#: includes/_metaBox.php:87
+#: includes/_metaBox.php:93
 msgid "Fetches the URL of the course image"
 msgstr "Hämtar bild-URLen för kursbilden"
 
-#: includes/_metaBox.php:90
+#: includes/_metaBox.php:96
 msgid "Fetches the image text of the course image"
 msgstr "Hämtar bildtexten för kursbilden"
 
-#: includes/_metaBox.php:93
+#: includes/_metaBox.php:99
 msgid "Fetches the number of days the course usually has"
 msgstr "Hämtar antalet dagar som kursen vanligtvis har"
 
-#: includes/_metaBox.php:96
+#: includes/_metaBox.php:102
 msgid "Fetches the start time of the course"
 msgstr "Hämtar starttiden för kursen"
 
-#: includes/_metaBox.php:99
+#: includes/_metaBox.php:105
 msgid "Fetches the end time of the course"
 msgstr "Hämtar sluttiden för kursen"
 
-#: includes/_metaBox.php:102
+#: includes/_metaBox.php:108
 msgid "Fetches the price of the course"
 msgstr "Hämtar priset på kursen"
 
-#: includes/_metaBox.php:105
+#: includes/_metaBox.php:111
 msgid "Fetches the short description of the course"
 msgstr "Hämtar den korta beskrivningen av kursen"
 
-#: includes/_metaBox.php:108
+#: includes/_metaBox.php:114
 msgid "Fetches the description of the course"
 msgstr "Hämtar en beskrivning av kursen"
 
-#: includes/_metaBox.php:111
+#: includes/_metaBox.php:117
 msgid "Fetches the goal of the course"
 msgstr "Hämtar målet med kursen"
 
-#: includes/_metaBox.php:114
+#: includes/_metaBox.php:120
 msgid "Fetches the target group of the course"
 msgstr "Hämtar målgruppen för kursen"
 
-#: includes/_metaBox.php:117
+#: includes/_metaBox.php:123
 msgid "Fetches the prerequisites of the course"
 msgstr "Hämtar förutsättningarna för kursen"
 
-#: includes/_metaBox.php:120
+#: includes/_metaBox.php:126
 msgid "Fetches what to do after the course"
 msgstr "Hämtar \"efter kursen\"-fältet"
 
-#: includes/_metaBox.php:123
+#: includes/_metaBox.php:129
 msgid "Fetches all the quotes from the course"
 msgstr "Hämtar alla citat från kursen"
 
-#: includes/_metaBox.php:126
+#: includes/_metaBox.php:132
 msgid "Fetches a list of events for the course"
 msgstr "Hämtar en lista över tillfällen för kursen"
 
-#: includes/_metaBox.php:129
+#: includes/_metaBox.php:135
 msgid ""
 "Filters the courseeventlist to show the specified amount of courses (Number)"
 msgstr ""
 "Filtrerar courseeventlist att enbart visa angivet antal kurser (Nummer)"
 
-#: includes/_metaBox.php:132
+#: includes/_metaBox.php:138
 msgid "Filters the courseeventlist to show only the specified city (Text)"
 msgstr ""
 "Filtrerar courseeventlist att enbart visa den specificerade orten (Text)"
 
-#: includes/_metaBox.php:135
+#: includes/_metaBox.php:141
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 

@@ -13,6 +13,12 @@
 		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("Hides the search box from the list", "eduadmin"); ?>">hidesearch</span>
 		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Only shows courses that have events", "eduadmin"); ?>">onlyevents</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Only shows courses that do not have events", "eduadmin"); ?>">onlyempty</span>
+		</div>
 	</div>
 </div>
 <div class="eduadmin-shortcode" onclick="EduAdmin.ToggleAttributeList(this);">

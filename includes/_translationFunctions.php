@@ -1,14 +1,12 @@
 <?php
 function edu_LoadPhrases()
 {
-	//$phrases = get_transient('eduadmin-phrases');
+	$phrases = get_transient('eduadmin-phrases');
 	if(!$phrases)
 	{
 		$phrases = get_option('eduadmin-phrases');
 		$file = file_get_contents(( dirname( __FILE__ ) ) . '/defaultPhrases.json');
-		echo $file;
 		$originalPhrases = json_decode($file);
-		var_dump($originalPhrases);
 		if(!$phrases)
 		{
 			$phrases = $originalPhrases;

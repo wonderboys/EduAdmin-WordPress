@@ -4,6 +4,9 @@ $filtering = new XFiltering();
 $f = new XFilter('ShowOnWeb','=','true');
 $filtering->AddItem($f);
 
+$showEventsWithEventsOnly = $attributes['onlyevents'];
+$showEventsWithoutEventsOnly = $attributes['onlyempty'];
+
 if($categoryID > 0)
 {
 	$f = new XFilter('CategoryID', '=', $categoryID);
@@ -297,7 +300,11 @@ foreach($edo as $object)
 
 	#echo "<xmp>" . print_r($sortedEvents, true) . "</xmp>";
 
+	if($showEventsWithEventsOnly && empty($sortedEvents))
+		continue;
 
+	if($showEventsWithoutEventsOnly && !empty($sortedEvents))
+		continue;
 ?>
 	<div class="objectBlock brick">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
