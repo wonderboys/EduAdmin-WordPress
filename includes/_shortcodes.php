@@ -22,7 +22,9 @@ function eduadmin_get_list_view($attributes)
 			'template' => $selectedTemplate,
 			'category' => null,
 			'subject' => null,
-			'hidesearch' => false
+			'hidesearch' => false,
+			'onlyevents' => false,
+			'onlyempty' => false
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
