@@ -100,7 +100,6 @@ if(isset($_SESSION['eduadmin-loginUser']))
 		$ft = new XFilter('CustomerID', '=', $customer->CustomerID);
 		$f->AddItem($ft);
 		$extraInfo = $eduapi->GetCustomerExtraInfo($edutoken, '', $f->ToString());
-		echo "<pre>" . print_r($extraInfo, true) . "</pre>";
 		foreach($extraInfo as $info)
 		{
 			if($info->Key == "DiscountPercent" && isset($info->Value))
