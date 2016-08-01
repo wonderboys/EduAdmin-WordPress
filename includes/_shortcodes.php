@@ -46,6 +46,7 @@ function eduadmin_get_detail_view($attributes)
 		'eduadmin-detailview'
 	);
 	unset($_SESSION['checkEmail']);
+	unset($_SESSION['needsLogin']);
 	unset($_SESSION['eduadmin-loginUser']->NewCustomer);
 	if(!isset($attributes['customtemplate']) || $attributes['customtemplate'] != 1)
 	{
