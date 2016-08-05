@@ -45,16 +45,16 @@ function renderQuestion($question)
 // QuestionTypeID 5
 function renderNoteQuestion ($question)
 {
-	echo "<h3>" . $question->QuestionText . ($question->Answers->EventBookingAnswer->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question->Answers->EventBookingAnswer->Price) . ")</i>" : "") . "</h3>";
+	echo "<label><h3 class=\"inputLabel noteQuestion\">" . $question->QuestionText . ($question->Answers->EventBookingAnswer->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question->Answers->EventBookingAnswer->Price) . ")</i>" : "") . "</h3>";
 	echo "<div class=\"inputHolder\">";
 	echo "<textarea name=\"question_" . $question->Answers->EventBookingAnswer->AnswerID . "_note\" data-type=\"note\" onchange=\"eduBookingView.UpdatePrice();\" data-price=\"" . $question->Answers->EventBookingAnswer->Price . "\" resizable=\"resizable\" class=\"questionNoteField\" rows=\"3\">" . $question->Answers->EventBookingAnswer->DefaultAnswerText . "</textarea>";
-	echo "</div>";
+	echo "</div></label>";
 }
 
 // QuestionTypeID 2
 function renderCheckBoxQuestion($question)
 {
-	echo "<h3>" . $question->QuestionText . "</h3>";
+	echo "<h3 class=\"inputLabel checkBoxQuestion\">" . $question->QuestionText . "</h3>";
 	foreach($question->Answers->EventBookingAnswer as $q)
 	{
 		echo "<label>";
@@ -128,7 +128,7 @@ function renderInfoText($question)
 {
 	if(trim($question->Answers->EventBookingAnswer->AnswerText) != "")
 	{
-		echo "<h3>" . $question->QuestionText . ($question->Answers->EventBookingAnswer->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question->Answers->EventBookingAnswer->Price) . ")</i>" : "") . "</h3>";
+		echo "<h3 class=\"inputLabel questionInfoQuestion\">" . $question->QuestionText . ($question->Answers->EventBookingAnswer->Price > 0 ? " <i class=\"priceLabel\">(" . convertToMoney($question->Answers->EventBookingAnswer->Price) . ")</i>" : "") . "</h3>";
 		echo "<div class=\"questionInfoText\" data-type=\"infotext\" data-price=\"" . $question->Answers->EventBookingAnswer->Price . "\">";
 		echo $question->Answers->EventBookingAnswer->AnswerText;
 		echo "</div>";
@@ -138,7 +138,7 @@ function renderInfoText($question)
 
 function renderRadioQuestion($question, $display)
 {
-	echo "<h3>" . $question->QuestionText . "</h3>";
+	echo "<h3 class=\"inputLabel radioQuestion\">" . $question->QuestionText . "</h3>";
 	if($display == 'vertical')
 	{
 		foreach($question->Answers->EventBookingAnswer as $q)
