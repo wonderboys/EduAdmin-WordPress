@@ -100,6 +100,14 @@
 				</div>
 			</label>
 			<label>
+				<div class="inputLabel">
+					<?php edu_e("Purchase order number"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="purchaseOrderNumber" placeholder="<?php edu_e("Purchase order number"); ?>" value="<?php echo @esc_attr($purchaseOrderNumber); ?>" />
+				</div>
+			</label>
+			<label>
 				<div class="inputHolder">
 					<input type="checkbox" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
 					<?php edu_e("Use other information for invoicing"); ?>

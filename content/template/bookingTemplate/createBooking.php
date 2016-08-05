@@ -30,6 +30,8 @@ else
 	$customer->City = trim($_POST['customerPostalCity']);
 	$customer->CustomerReference = trim($_POST['invoiceReference']);
 
+	$purchaseOrderNumber = trim($_POST['purchaseOrderNumber']);
+
 	if(!isset($_POST['alsoInvoiceCustomer']))
 	{
 		$customer->InvoiceName = trim($_POST['customerName']);
@@ -313,6 +315,7 @@ else
 		$bi->CustomerID = $customer->CustomerID;
 		$bi->CustomerContactID = $contact->CustomerContactID;
 		$bi->SubEventPersons = $pArr;
+		$bi->PurchaseOrderNumber = $purchaseOrderNumber;
 		if(isset($_POST['edu-pricename']))
 		{
 			$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
