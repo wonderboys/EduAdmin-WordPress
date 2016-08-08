@@ -11,6 +11,7 @@ function eduadmin_rewrite_init()
 	add_rewrite_tag('%edu-certificates%', '([^&]+)');
 	add_rewrite_tag('%edu-limiteddiscount%', '([^&]+)');
 	add_rewrite_tag('%edu-logout%', '([^&]+)');
+	add_rewrite_tag('%edu-password%', '([^&]+)');
 
 	$listView = get_option('eduadmin-listViewPage');
 	$loginView = get_option('eduadmin-loginViewPage');
@@ -28,6 +29,7 @@ function eduadmin_rewrite_init()
 			add_rewrite_rule($courseFolder . '/profile/bookings/?', 'index.php?page_id=' . $loginView . '&edu-bookings=1', 'top');
 			add_rewrite_rule($courseFolder . '/profile/card/?', 'index.php?page_id=' . $loginView . '&edu-limiteddiscount=1', 'top');
 			add_rewrite_rule($courseFolder . '/profile/certificates/?', 'index.php?page_id=' . $loginView . '&edu-certificates=1', 'top');
+			add_rewrite_rule($courseFolder . '/profile/password/?', 'index.php?page_id=' . $loginView . '&edu-password=1', 'top');
 			add_rewrite_rule($courseFolder . '/profile/logout/?', 'index.php?page_id=' . $loginView . '&edu-logout=1', 'top');
 		}
 
@@ -45,8 +47,6 @@ function eduadmin_rewrite_init()
 		{
 			add_rewrite_rule($courseFolder . '/?$', 'index.php?page_id=' . $listView, 'top');
 		}
-
-
 	}
 }
 

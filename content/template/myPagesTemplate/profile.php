@@ -113,6 +113,7 @@ include_once("login_tab_header.php");
 				<div class="inputLabel"><?php edu_e("E-mail address"); ?></div>
 				<div class="inputHolder"><input type="text" name="contactEmail" readonly required placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo esc_attr($contact->Email); ?>" /></div>
 			</label>
+			<a href="<?php echo $baseUrl; ?>/profile/password"><?php edu_e("Change password"); ?></a>
 		</div>
 		<button class="profileSaveButton"><?php edu_e("Save"); ?></button>
 	</form>

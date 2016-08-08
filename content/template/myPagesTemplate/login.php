@@ -22,6 +22,10 @@ if(isset($_SESSION['eduadmin-loginUser']) && isset($_SESSION['eduadmin-loginUser
 	{
 		include_once("certificates.php");
 	}
+	else if(isset($q['edu-password']))
+	{
+		include_once("changePassword.php");
+	}
 	else if(isset($q['edu-logout']))
 	{
 		logoutUser();
