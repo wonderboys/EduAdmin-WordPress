@@ -125,5 +125,12 @@
 "Card name": "Card name",
 "Valid": "Valid",
 "Credits": "Credits",
-"You don't have any discount cards registered.": "You don't have any discount cards registered."
+"You don't have any discount cards registered.": "You don't have any discount cards registered.",
+"You must fill in a password to change it.": "You must fill in a password to change it.",
+"Given password does not match.": "Given password does not match.",
+"You cannot set your password to be the same as the one before.": "You cannot set your password to be the same as the one before.",
+"Current password": "Current password",
+"New password": "New password",
+"Confirm password": "Confirm password",
+"Change password": "Change password"
 }
