@@ -214,8 +214,16 @@ $firstPrice = current($uniquePrices);
 	</div>
 
 		<input type="hidden" name="act" value="bookCourse" />
-		<?php include_once("contactView.php"); ?>
-		<?php include_once("customerView.php"); ?>
+		<?php
+		$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
+		if($fieldOrder == "contact_customer") {
+			include_once("contactView.php");
+			include_once("customerView.php");
+		} else if($fieldOrder == "customer_contact") {
+			include_once("customerView.php");
+			include_once("contactView.php");
+		}
+		?>
 		<?php include_once("participantView.php"); ?>
 		<br />
 		<?php

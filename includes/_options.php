@@ -32,6 +32,9 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-booking', 'eduadmin-javascript');
 	register_setting('eduadmin-booking', 'eduadmin-customerMatching');
 	register_setting('eduadmin-booking', 'eduadmin-selectPricename');
+	register_setting('eduadmin-booking', 'eduadmin-fieldOrder');
+	register_setting('eduadmin-booking', 'eduadmin-allowInterestRegObject');
+	register_setting('eduadmin-booking', 'eduadmin-allowInterestRegEvent');
 
 	/* Phrase settings */
 	register_setting('eduadmin-phrases', 'eduadmin-phrases');

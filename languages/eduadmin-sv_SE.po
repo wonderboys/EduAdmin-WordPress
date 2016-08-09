@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-07-20 09:21+0200\n"
-"PO-Revision-Date: 2016-07-20 09:22+0200\n"
+"POT-Creation-Date: 2016-08-09 16:11+0200\n"
+"PO-Revision-Date: 2016-08-09 16:12+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -213,65 +213,65 @@ msgstr ""
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:112
+#: includes/_options.php:113
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:112 includes/generalSettings.php:8
+#: includes/_options.php:113 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:113
+#: includes/_options.php:114
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:113 includes/listSettings.php:15
+#: includes/_options.php:114 includes/listSettings.php:15
 #: includes/listSettings.php:29
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:114
+#: includes/_options.php:115
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:114 includes/detailSettings.php:2
+#: includes/_options.php:115 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:115
+#: includes/_options.php:116
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:115 includes/bookingSettings.php:2
+#: includes/_options.php:116 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:116
+#: includes/_options.php:117
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:116 includes/textSettings.php:8
+#: includes/_options.php:117 includes/textSettings.php:8
 #: includes/textSettings.php:17
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:117
+#: includes/_options.php:118
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:117
+#: includes/_options.php:118
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:118
+#: includes/_options.php:119
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:118
+#: includes/_options.php:119
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:158
+#: includes/_options.php:159
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
@@ -287,94 +287,110 @@ msgstr "EduAdmin inställningar - %s"
 msgid "Default customer group"
 msgstr "Förvald kundgrupp"
 
-#: includes/bookingSettings.php:79
+#: includes/bookingSettings.php:80
 msgid "Use login"
 msgstr "Använd inloggning"
 
-#: includes/bookingSettings.php:82
+#: includes/bookingSettings.php:83
+msgid "Booking form settings"
+msgstr "Bokningsformulärinställningar"
+
+#: includes/bookingSettings.php:84
+msgid "Field order"
+msgstr "Fältordning"
+
+#: includes/bookingSettings.php:90
+msgid "Contact, customer"
+msgstr "Kontakt, kund"
+
+#: includes/bookingSettings.php:95
+msgid "Customer, contact"
+msgstr "Kund, kontakt"
+
+#: includes/bookingSettings.php:98
 msgid "Price name settings"
 msgstr "Prisnamnsinställningar"
 
-#: includes/bookingSettings.php:88
+#: includes/bookingSettings.php:104
 msgid ""
 "EduAdmin chooses the appropriate price name for the event and participants"
 msgstr ""
 "EduAdmin väljer det mest lämpliga prisnamnet för tillfället och deltagarna"
 
-#: includes/bookingSettings.php:93
+#: includes/bookingSettings.php:109
 msgid "Can choose between public price names"
 msgstr "Välj mellan de publika prisnamnen"
 
-#: includes/bookingSettings.php:98
+#: includes/bookingSettings.php:114
 msgid "Can choose per participant"
 msgstr "Välj per deltagare"
 
-#: includes/bookingSettings.php:103
+#: includes/bookingSettings.php:119
 msgid "Customer matching"
 msgstr "Kundmatchning"
 
-#: includes/bookingSettings.php:105
+#: includes/bookingSettings.php:121
 msgid "No matching (Creates new customers every time)"
 msgstr "Ingen matchning (Skapa nya kunder för varje bokning)"
 
-#: includes/bookingSettings.php:106
+#: includes/bookingSettings.php:122
 msgid "No matching for new customers, matches and overwrites old"
 msgstr "Matcha inte nya kunder, skriv över befintliga"
 
-#: includes/bookingSettings.php:107
+#: includes/bookingSettings.php:123
 msgid "Match on customer name and zip code (and use previous info)"
 msgstr "Matcha på kundnamn och postnummer (och använd info från EduAdmin)"
 
-#: includes/bookingSettings.php:108
+#: includes/bookingSettings.php:124
 msgid "Match on customer name and zip code (and overwrite with provided info)"
 msgstr ""
 "Matcha på kundnamn och postnummer (och skriv över information i EduAdmin)"
 
-#: includes/bookingSettings.php:115
+#: includes/bookingSettings.php:131
 msgid "Currency"
 msgstr "Valuta"
 
-#: includes/bookingSettings.php:276
+#: includes/bookingSettings.php:292
 msgid "Booking terms"
 msgstr "Bokningsvillkor"
 
-#: includes/bookingSettings.php:277 includes/bookingSettings.php:278
+#: includes/bookingSettings.php:293 includes/bookingSettings.php:294
 msgid "Booking terms link"
 msgstr "Länk till bokningsvillkor"
 
-#: includes/bookingSettings.php:281
+#: includes/bookingSettings.php:297
 msgid "Use booking terms"
 msgstr "Använd bokningsvillkor"
 
-#: includes/bookingSettings.php:283
+#: includes/bookingSettings.php:299
 msgid "Javascript to run when a booking is completed"
 msgstr "Javaskript att köra när en bokning har genomförts"
 
-#: includes/bookingSettings.php:284
+#: includes/bookingSettings.php:300
 msgid "You do not need to include &lt;script&gt;-tags"
 msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
 
-#: includes/bookingSettings.php:291
+#: includes/bookingSettings.php:307
 msgid "Keywords for JavaScript"
 msgstr "Nyckelord för JavaScript"
 
-#: includes/bookingSettings.php:296
+#: includes/bookingSettings.php:312
 msgid "The booking number"
 msgstr "Bokningsnumret"
 
-#: includes/bookingSettings.php:300
+#: includes/bookingSettings.php:316
 msgid "Inserts the product name"
 msgstr "Infogar produktnamnet"
 
-#: includes/bookingSettings.php:304
+#: includes/bookingSettings.php:320
 msgid "Inserts the total sum"
 msgstr "Infogar totalsumman"
 
-#: includes/bookingSettings.php:308
+#: includes/bookingSettings.php:324
 msgid "Inserts the number participants"
 msgstr "Infogar antal deltagare"
 
-#: includes/bookingSettings.php:316 includes/detailSettings.php:28
+#: includes/bookingSettings.php:332 includes/detailSettings.php:28
 #: includes/generalSettings.php:34 includes/generalSettings.php:178
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
 #: includes/textSettings.php:35

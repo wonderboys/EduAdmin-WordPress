@@ -44,9 +44,9 @@ else
 			$depth = 0;
 
 
-			function edu_writeOptions($g, $array, $depth)
+			function edu_writeOptions($g, $array, $depth, $selectedOption)
 			{
-				$selectedOption = get_option('eduadmin-customerGroupId', 0);
+
 				echo
 				"<option value=\"" . $g->CustomerGroupID . "\"" . ($selectedOption == $g->CustomerGroupID ? " selected=\"selected\"" : "") . ">" .
 					str_repeat('&nbsp;', $depth * 4) .
@@ -57,7 +57,7 @@ else
 					$depth++;
 					foreach($array[$g->CustomerGroupID] as $ng)
 					{
-						edu_writeOptions($ng, $array, $depth);
+						edu_writeOptions($ng, $array, $depth, $selectedOption);
 					}
 					$depth--;
 				}
@@ -67,9 +67,10 @@ else
 			<select name="eduadmin-customerGroupId">
 			<?php
 			$root = $levelStack['0'];
+			$selectedOption = get_option('eduadmin-customerGroupId', 0);
 			foreach($root as $g)
 			{
-				edu_writeOptions($g, $levelStack, $depth);
+				edu_writeOptions($g, $levelStack, $depth, $selectedOption);
 			}
 			?></select>
 			<br />
@@ -80,16 +81,29 @@ else
 			</label>
 			<br />
 			<h3><?php _e("Booking form settings", "eduadmin"); ?></h3>
-			<h4>Field order</h4>
+			<h4><?php _e("Field order", "eduadmin"); ?></h4>
 			<?php
 			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
 			?>
 			<label>
-				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "contact_customer" ? " checked=\"checked\"" : ""); ?> value="contact_customer" /> Contact, customer
+				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "contact_customer" ? " checked=\"checked\"" : ""); ?> value="contact_customer" />
+				<?php _e("Contact, customer", "eduadmin"); ?>
 			</label>
 			<br />
 			<label>
-				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "customer_contact" ? " checked=\"checked\"" : ""); ?> value="customer_contact" /> Customer, contact
+				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "customer_contact" ? " checked=\"checked\"" : ""); ?> value="customer_contact" />
+				<?php _e("Customer, contact", "eduadmin"); ?>
+			</label>
+			<br />
+			<h4><?php _e("Interest registration", "eduadmin"); ?></h4>
+			<label>
+				<input type="checkbox" name="eduadmin-allowInterestRegObject" value="true" />
+				<?php _e("Allow interest registration for course", "eduadmin"); ?>
+			</label>
+			<br />
+			<label>
+				<input type="checkbox" name="eduadmin-allowInterestRegEvent" value="true" />
+				<?php _e("Allow interest registration for event", "eduadmin"); ?>
 			</label>
 			<br />
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
