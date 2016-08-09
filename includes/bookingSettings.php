@@ -79,6 +79,19 @@ else
 				<?php _e("Use login", "eduadmin"); ?>
 			</label>
 			<br />
+			<h3><?php _e("Booking form settings", "eduadmin"); ?></h3>
+			<h4>Field order</h4>
+			<?php
+			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
+			?>
+			<label>
+				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "contact_customer" ? " checked=\"checked\"" : ""); ?> value="contact_customer" /> Contact, customer
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="eduadmin-fieldOrder"<?php echo ($fieldOrder === "customer_contact" ? " checked=\"checked\"" : ""); ?> value="customer_contact" /> Customer, contact
+			</label>
+			<br />
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
 			<?php
 			$priceNameSetting = get_option('eduadmin-selectPricename', 'firstPublic');
