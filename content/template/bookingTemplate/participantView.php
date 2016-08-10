@@ -93,7 +93,7 @@
 							<?php edu_e("Civic Registration Number"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="text" required name="participantCivReg[]" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
+							<input type="text" name="participantCivReg[]" placeholder="<?php edu_e("Civic Registration Number"); ?>" />
 						</div>
 					</label>
 					<?php } ?>

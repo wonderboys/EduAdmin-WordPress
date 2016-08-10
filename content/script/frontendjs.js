@@ -235,7 +235,8 @@ var eduBookingView = {
 
 		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)');
 		var requiredFieldsToCreateParticipants = [
-			'participantFirstName[]'
+			'participantFirstName[]',
+			'participantCivReg[]'
 		];
 
 		var contactParticipant = document.getElementById('contactIsAlsoParticipant');
