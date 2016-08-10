@@ -96,13 +96,17 @@ else
 			</label>
 			<br />
 			<h4><?php _e("Interest registration", "eduadmin"); ?></h4>
+			<?php
+			$allowInterestRegObject = get_option('eduadmin-allowInterestRegObject', false);
+			$allowInterestRegEvent = get_option('eduadmin-allowInterestRegEvent', false);
+			?>
 			<label>
-				<input type="checkbox" name="eduadmin-allowInterestRegObject" value="true" />
+				<input type="checkbox" name="eduadmin-allowInterestRegObject"<?php echo ($allowInterestRegObject === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
 				<?php _e("Allow interest registration for course", "eduadmin"); ?>
 			</label>
 			<br />
 			<label>
-				<input type="checkbox" name="eduadmin-allowInterestRegEvent" value="true" />
+				<input type="checkbox" name="eduadmin-allowInterestRegEvent"<?php echo ($allowInterestRegEvent === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
 				<?php _e("Allow interest registration for event", "eduadmin"); ?>
 			</label>
 			<br />
