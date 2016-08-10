@@ -70,7 +70,7 @@ else
 		if(empty($matchingCustomer))
 		{
 			$customer->CustomerID = 0;
-			$cres = $eduapi->SetCustomer($token, array($customer));
+			$cres = $eduapi->SetCustomer($edutoken, array($customer));
 			$customer->CustomerID = $cres[0];
 		}
 		else
@@ -321,7 +321,7 @@ else
 			$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
 		}
 		$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : trim(str_replace(';', ' ', $contact->ContactName)));
-		//$api->debug = true;
+		//$eduapi->debug = true;
 		$eventCustomerLnkID = $eduapi->CreateSubEventBooking(
 			$edutoken,
 			$bi

@@ -41,6 +41,7 @@ function eduadmin_rewrite_init()
 		if($detailsView != false)
 		{
 			add_rewrite_rule($courseFolder . '/(.*?)__(.*)/?', 'index.php?page_id=' . $detailsView . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
+			//add_rewrite_rule($courseFolder . '/(.*?)__(.*)/interest/?', 'index.php?page_id=' . $interestPage . '&
 		}
 
 		if($listView != false)

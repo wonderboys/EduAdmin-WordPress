@@ -2,6 +2,7 @@
 
 function edu_getQueryString($prepend = "?", $removeParameters = array())
 {
+	array_push($removeParameters, 'eduadmin-thankyou');
 	foreach($removeParameters as $par)
 	{
 		unset($_GET[$par]);
