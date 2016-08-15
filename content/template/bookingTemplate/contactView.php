@@ -46,7 +46,7 @@
 			<?php if(empty($contact->Loginpass)) { ?>
 			<label>
 				<div class="inputLabel">
-					<?php edu_e("Password"); ?>
+					<?php edu_e("Please enter a password"); ?>
 				</div>
 				<div class="inputHolder">
 					<input type="password" required name="contactPass" placeholder="<?php edu_e("Please enter a password"); ?>" />
