@@ -22,6 +22,8 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-rewrite', 'eduadmin-detailViewPage');
 	register_setting('eduadmin-rewrite', 'eduadmin-bookingViewPage');
 	register_setting('eduadmin-rewrite', 'eduadmin-thankYouPage');
+	register_setting('eduadmin-rewrite', 'eduadmin-interestObjectPage');
+	register_setting('eduadmin-rewrite', 'eduadmin-interestEventPage');
 
 	/* Booking settings */
 	register_setting('eduadmin-booking', 'eduadmin-useLogin');

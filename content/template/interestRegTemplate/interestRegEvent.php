@@ -12,4 +12,7 @@ if(!$apiKey || empty($apiKey))
 else
 {
 }
+
+$out = ob_get_clean();
+return $out;
 ?>

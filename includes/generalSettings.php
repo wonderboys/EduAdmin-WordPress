@@ -172,6 +172,58 @@ foreach($eduPages as $p)
 						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-loginview]</i>
 					</td>
 				</tr>
+				<tr>
+					<td><?php echo __("Course interest page", "eduadmin"); ?></td>
+					<td>
+						<select class="form-control" style="width: 300px;" name="eduadmin-interestObjectPage" id="eduadmin-interestObjectPage">
+							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
+<?php
+$objectInterestPage = get_option('eduadmin-interestObjectPage');
+foreach($eduPages as $p)
+{
+	$suggested = false;
+	if(stristr($p->post_content, '[eduadmin-objectinterest'))
+	{
+		$suggested = true;
+	}
+	echo "\t\t\t\t\t\t\t<option" . ($objectInterestPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
+		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
+	"</option>\n";
+}
+?>
+						</select>
+					</td>
+					<td>
+						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-objectinterest]</i>
+					</td>
+				</tr>
+				<tr>
+					<td><?php echo __("Event interest page", "eduadmin"); ?></td>
+					<td>
+						<select class="form-control" style="width: 300px;" name="eduadmin-interestEventPage" id="eduadmin-interestEventPage">
+							<option value="">-- <?php _e("No page selected", "eduadmin"); ?> --</option>
+<?php
+$eventInterestPage = get_option('eduadmin-interestEventPage');
+foreach($eduPages as $p)
+{
+	$suggested = false;
+	if(stristr($p->post_content, '[eduadmin-eventinterest'))
+	{
+		$suggested = true;
+	}
+	echo "\t\t\t\t\t\t\t<option" . ($eventInterestPage == $p->ID ? " selected=\"selected\"" : "") . " value=\"" . $p->ID . "\">" .
+		htmlentities($p->post_title . " (ID: " . $p->ID . ")") .
+		($suggested ? " (" . __("suggested", "eduadmin") . ")" : "") .
+	"</option>\n";
+}
+?>
+						</select>
+					</td>
+					<td>
+						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-eventinterest]</i>
+					</td>
+				</tr>
 			</table>
 			<input type="hidden" name="eduadmin-options_have_changed" value="true" />
 			<p class="submit">
