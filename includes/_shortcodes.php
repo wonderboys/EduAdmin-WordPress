@@ -44,6 +44,17 @@ function eduadmin_get_object_interest($attributes)
 	return $str;
 }
 
+function eduadmin_get_event_interest($attributes)
+{
+	$attributes = shortcode_atts(
+		array(),
+		normalize_empty_atts($attributes),
+		'eduadmin-eventinterest'
+	);
+	$str = include(plugin_dir_path(__DIR__) . "content/template/interestRegTemplate/interestRegEvent.php");
+	return $str;
+}
+
 function eduadmin_get_detail_view($attributes)
 {
 	$selectedTemplate = get_option('eduadmin-detailTemplate', 'template_A');
@@ -611,4 +622,5 @@ add_shortcode('eduadmin-detailinfo', 'eduadmin_get_detailinfo');
 add_shortcode('eduadmin-loginwidget', 'eduadmin_get_login_widget');
 add_shortcode('eduadmin-loginview', 'eduadmin_get_login_view');
 add_shortcode('eduadmin-objectinterest', 'eduadmin_get_object_interest');
+add_shortcode('eduadmin-eventinterest', 'eduadmin_get_event_interest');
 ?>
