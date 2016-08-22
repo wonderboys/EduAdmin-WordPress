@@ -38,13 +38,19 @@ function eduadmin_rewrite_init()
 
 		if($bookingView != false)
 		{
-			add_rewrite_rule($courseFolder . '/(.*?)__(.*)/book/interest/?', 'index.php?page_id=' . $eventInterestPage . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
+			if($eventInterestPage != false)
+			{
+				add_rewrite_rule($courseFolder . '/(.*?)__(.*)/book/interest/?', 'index.php?page_id=' . $eventInterestPage . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
+			}
 			add_rewrite_rule($courseFolder . '/(.*?)__(.*)/book/?', 'index.php?page_id=' . $bookingView . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
 		}
 
 		if($detailsView != false)
 		{
-			add_rewrite_rule($courseFolder . '/(.*?)__(.*)/interest/?', 'index.php?page_id=' . $objectInterestPage . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
+			if($objectInterestPage)
+			{
+				add_rewrite_rule($courseFolder . '/(.*?)__(.*)/interest/?', 'index.php?page_id=' . $objectInterestPage . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
+			}
 			add_rewrite_rule($courseFolder . '/(.*?)__(.*)/?', 'index.php?page_id=' . $detailsView . '&courseSlug=$matches[1]&courseId=$matches[2]', 'top');
 		}
 

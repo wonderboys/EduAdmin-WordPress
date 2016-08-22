@@ -15,7 +15,7 @@ function DecryptApiKey($key) {
 
 function edu_getTimers() {
 	global $eduapi;
-	if($eduapi->debugTimers)
+	if($eduapi->timers)
 	{
 		echo "<!-- EduAdmin Booking - Timers -->\n";
 		$totalValue = 0;
