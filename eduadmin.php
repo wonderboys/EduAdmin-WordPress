@@ -53,19 +53,12 @@ function edu_load_language()
 	load_textdomain($domain, WP_LANG_DIR.'/eduadmin/'.$domain.'-'.$locale.'.mo');
 	load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
 }
-function edu_check_for_updates()
-{
-	require_once("includes/auto_update.php");
-	$current_version = '0.9.6.5';
-	$slug = plugin_basename(__FILE__);
-	new wp_auto_update($current_version, $slug);
-}
+
 function edu_new_theme()
 {
 	update_option('eduadmin-options_have_changed', true);
 }
 
 add_action('plugins_loaded', 'edu_load_language');
-add_action('admin_init', 'edu_check_for_updates');
 add_action('after_switch_theme', 'edu_new_theme');
 ?>
