@@ -5,7 +5,7 @@
   {
     protected $__server;
     public $debug = false;
-    protected $timers;
+    public $timers;
 
       public function __construct()
       {
