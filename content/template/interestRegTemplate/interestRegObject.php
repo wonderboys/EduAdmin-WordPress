@@ -42,6 +42,11 @@ else
 		die();
 	}
 
+	if(isset($_REQUEST['act']) && $_REQUEST['act'] == 'objectInquiry')
+	{
+		include_once("sendObjectInquiry.php");
+	}
+
 	?>
 <div class="eduadmin">
 	<a href="../" class="backLink"><?php edu_e("« Go back"); ?></a>
@@ -55,51 +60,52 @@ else
 		<hr />
 		<form action="" method="POST">
 			<input type="hidden" name="objectid" value="<?php echo $selectedCourse->ObjectID; ?>" />
+			<input type="hidden" name="act" value="objectInquiry" />
 			<label>
-				<div class="inputLabel">Company name</div>
+				<div class="inputLabel"><?php edu_e("Customer name"); ?> *</div>
 				<div class="inputHolder">
-					<input type="text" />
+					<input type="text" required name="edu-companyName" placeholder="<?php edu_e("Customer name"); ?>" />
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Contact name</div>
+				<div class="inputLabel"><?php edu_e("Contact name"); ?> *</div>
 				<div class="inputHolder">
-					<input type="text" />
+					<input type="text" required name="edu-contactName" placeholder="<?php edu_e("Contact name"); ?>" />
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Email address</div>
+				<div class="inputLabel"><?php edu_e("E-mail address"); ?> *</div>
 				<div class="inputHolder">
-					<input type="email" />
+					<input type="email" required name="edu-emailAddress" placeholder="<?php edu_e("E-mail address"); ?>" />
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Phone</div>
+				<div class="inputLabel"><?php edu_e("Phone number"); ?></div>
 				<div class="inputHolder">
-					<input type="phone" />
+					<input type="tel" name="edu-phone" placeholder="<?php edu_e("Phone number"); ?>" />
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Mobile</div>
+				<div class="inputLabel"><?php edu_e("Mobile number"); ?></div>
 				<div class="inputHolder">
-					<input type="phone" />
+					<input type="tel" name="edu-mobile" placeholder="<?php edu_e("Mobile number"); ?>" />
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Notes</div>
+				<div class="inputLabel"><?php edu_e("Notes"); ?></div>
 				<div class="inputHolder">
-					<textarea>
+					<textarea name="edu-notes" placeholder="<?php edu_e("Notes"); ?>">
 					</textarea>
 				</div>
 			</label>
 			<label>
-				<div class="inputLabel">Participants</div>
+				<div class="inputLabel"><?php edu_e("Participants"); ?> *</div>
 				<div class="inputHolder">
-					<input type="number" min="1" />
+					<input type="number" min="1" required name="edu-participants" placeholder="<?php edu_e("Participants"); ?>" />
 				</div>
 			</label>
 
-			<input type="submit" class="bookButton" onclick="var validated = eduBookingView.CheckValidation(); return validated;" value="<?php edu_e("Send inquiry"); ?>" />
+			<input type="submit" class="bookButton" value="<?php edu_e("Send inquiry"); ?>" />
 		</form>
 	</div>
 </div>
