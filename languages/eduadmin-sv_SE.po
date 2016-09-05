@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-08-09 16:11+0200\n"
-"PO-Revision-Date: 2016-08-09 16:12+0200\n"
+"POT-Creation-Date: 2016-09-05 15:21+0200\n"
+"PO-Revision-Date: 2016-09-05 15:22+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: eduadmin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -213,65 +213,65 @@ msgstr ""
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:113
+#: includes/_options.php:117
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:113 includes/generalSettings.php:8
+#: includes/_options.php:117 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:114
+#: includes/_options.php:118
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:114 includes/listSettings.php:15
+#: includes/_options.php:118 includes/listSettings.php:15
 #: includes/listSettings.php:29
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:115
+#: includes/_options.php:119
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:115 includes/detailSettings.php:2
+#: includes/_options.php:119 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:116
+#: includes/_options.php:120
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:116 includes/bookingSettings.php:2
+#: includes/_options.php:120 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:117
+#: includes/_options.php:121
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:117 includes/textSettings.php:8
+#: includes/_options.php:121 includes/textSettings.php:8
 #: includes/textSettings.php:17
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:118
+#: includes/_options.php:122
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:118
+#: includes/_options.php:122
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:119
+#: includes/_options.php:123
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:119
+#: includes/_options.php:123
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:159
+#: includes/_options.php:163
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
@@ -308,90 +308,102 @@ msgid "Customer, contact"
 msgstr "Kund, kontakt"
 
 #: includes/bookingSettings.php:98
+msgid "Interest registration"
+msgstr "Intresseanmälan"
+
+#: includes/bookingSettings.php:105
+msgid "Allow interest registration for course"
+msgstr "Tillåt intresseanmälan för kurser"
+
+#: includes/bookingSettings.php:110
+msgid "Allow interest registration for event"
+msgstr "Tillåt intresseanmälan för tillfällen"
+
+#: includes/bookingSettings.php:113
 msgid "Price name settings"
 msgstr "Prisnamnsinställningar"
 
-#: includes/bookingSettings.php:104
+#: includes/bookingSettings.php:119
 msgid ""
 "EduAdmin chooses the appropriate price name for the event and participants"
 msgstr ""
 "EduAdmin väljer det mest lämpliga prisnamnet för tillfället och deltagarna"
 
-#: includes/bookingSettings.php:109
+#: includes/bookingSettings.php:124
 msgid "Can choose between public price names"
 msgstr "Välj mellan de publika prisnamnen"
 
-#: includes/bookingSettings.php:114
+#: includes/bookingSettings.php:129
 msgid "Can choose per participant"
 msgstr "Välj per deltagare"
 
-#: includes/bookingSettings.php:119
+#: includes/bookingSettings.php:134
 msgid "Customer matching"
 msgstr "Kundmatchning"
 
-#: includes/bookingSettings.php:121
+#: includes/bookingSettings.php:136
 msgid "No matching (Creates new customers every time)"
 msgstr "Ingen matchning (Skapa nya kunder för varje bokning)"
 
-#: includes/bookingSettings.php:122
+#: includes/bookingSettings.php:137
 msgid "No matching for new customers, matches and overwrites old"
 msgstr "Matcha inte nya kunder, skriv över befintliga"
 
-#: includes/bookingSettings.php:123
+#: includes/bookingSettings.php:138
 msgid "Match on customer name and zip code (and use previous info)"
 msgstr "Matcha på kundnamn och postnummer (och använd info från EduAdmin)"
 
-#: includes/bookingSettings.php:124
+#: includes/bookingSettings.php:139
 msgid "Match on customer name and zip code (and overwrite with provided info)"
 msgstr ""
 "Matcha på kundnamn och postnummer (och skriv över information i EduAdmin)"
 
-#: includes/bookingSettings.php:131
+#: includes/bookingSettings.php:146
 msgid "Currency"
 msgstr "Valuta"
 
-#: includes/bookingSettings.php:292
+#: includes/bookingSettings.php:307
 msgid "Booking terms"
 msgstr "Bokningsvillkor"
 
-#: includes/bookingSettings.php:293 includes/bookingSettings.php:294
+#: includes/bookingSettings.php:308 includes/bookingSettings.php:309
 msgid "Booking terms link"
 msgstr "Länk till bokningsvillkor"
 
-#: includes/bookingSettings.php:297
+#: includes/bookingSettings.php:312
 msgid "Use booking terms"
 msgstr "Använd bokningsvillkor"
 
-#: includes/bookingSettings.php:299
+#: includes/bookingSettings.php:314
 msgid "Javascript to run when a booking is completed"
 msgstr "Javaskript att köra när en bokning har genomförts"
 
-#: includes/bookingSettings.php:300
+#: includes/bookingSettings.php:315
 msgid "You do not need to include &lt;script&gt;-tags"
 msgstr "Du behöver inte inkludera &lt;script&gt;-taggar"
 
-#: includes/bookingSettings.php:307
+#: includes/bookingSettings.php:322
 msgid "Keywords for JavaScript"
 msgstr "Nyckelord för JavaScript"
 
-#: includes/bookingSettings.php:312
+#: includes/bookingSettings.php:327
 msgid "The booking number"
 msgstr "Bokningsnumret"
 
-#: includes/bookingSettings.php:316
+#: includes/bookingSettings.php:331
 msgid "Inserts the product name"
 msgstr "Infogar produktnamnet"
 
-#: includes/bookingSettings.php:320
+#: includes/bookingSettings.php:335
 msgid "Inserts the total sum"
 msgstr "Infogar totalsumman"
 
-#: includes/bookingSettings.php:324
+#: includes/bookingSettings.php:339
 msgid "Inserts the number participants"
 msgstr "Infogar antal deltagare"
 
-#: includes/bookingSettings.php:332 includes/detailSettings.php:28
-#: includes/generalSettings.php:34 includes/generalSettings.php:178
+#: includes/bookingSettings.php:347 includes/detailSettings.php:28
+#: includes/generalSettings.php:34 includes/generalSettings.php:230
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
 #: includes/textSettings.php:35
 msgid "Save settings"
@@ -483,17 +495,20 @@ msgstr "Listvy-sida"
 
 #: includes/generalSettings.php:57 includes/generalSettings.php:83
 #: includes/generalSettings.php:109 includes/generalSettings.php:135
-#: includes/generalSettings.php:153
+#: includes/generalSettings.php:153 includes/generalSettings.php:179
+#: includes/generalSettings.php:205
 msgid "No page selected"
 msgstr "Ingen sida vald"
 
 #: includes/generalSettings.php:69 includes/generalSettings.php:95
 #: includes/generalSettings.php:121 includes/generalSettings.php:165
+#: includes/generalSettings.php:191 includes/generalSettings.php:217
 msgid "suggested"
 msgstr "föreslagen"
 
 #: includes/generalSettings.php:76 includes/generalSettings.php:102
 #: includes/generalSettings.php:128 includes/generalSettings.php:172
+#: includes/generalSettings.php:198 includes/generalSettings.php:224
 msgid "Shortcode to use in your page"
 msgstr "Kortkod att använda i din sida"
 
@@ -513,19 +528,27 @@ msgstr "Tack-sida"
 msgid "Login page"
 msgstr "Inloggningssida"
 
-#: includes/generalSettings.php:186
+#: includes/generalSettings.php:176
+msgid "Course interest page"
+msgstr "Intresseanmälansida, kurs"
+
+#: includes/generalSettings.php:202
+msgid "Event interest page"
+msgstr "Intresseanmälansida, tillfälle"
+
+#: includes/generalSettings.php:238
 msgid "No spots left / 5 spots left"
 msgstr "Inga platser kvar / 5 platser kvar"
 
-#: includes/generalSettings.php:187
+#: includes/generalSettings.php:239
 msgid "No spots left / Few spots left / Spots left"
 msgstr "Inga platser kvar / Få platser kvar / Platser kvar"
 
-#: includes/generalSettings.php:188
+#: includes/generalSettings.php:240
 msgid "No spots left / 3-5 spots left / 6+ spots left"
 msgstr "Inga platser kvar / 3-5 platser kvar / 6+ platser kvar"
 
-#: includes/generalSettings.php:189
+#: includes/generalSettings.php:241
 msgid "Few spots left"
 msgstr "Få platser kvar"
 
