@@ -1,0 +1,3 @@
+*.sh
+.official.plugin.php
+includes/auto_update.php
