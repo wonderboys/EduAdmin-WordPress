@@ -132,7 +132,8 @@ function eduadmin_get_detailinfo($attributes)
 			'courseattributeid' => null,
 			'courseeventlistfiltercity' => null,
 			'pagetitlejs' => null,
-			'bookurl' => null
+			'bookurl' => null,
+			'courseinquiryurl' => null
 			//'coursesubject' => null
 		),
 		normalize_empty_atts($attributes),
@@ -399,6 +400,15 @@ function eduadmin_get_detailinfo($attributes)
 				$baseUrl = $surl . '/' . $cat;
 				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
 				$retStr .= $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/' . edu_getQueryString();
+			 }
+
+			 if(isset($attributes['courseinquiryurl']))
+			 {
+			 	$surl = get_site_url();
+				$cat = get_option('eduadmin-rewriteBaseUrl');
+				$baseUrl = $surl . '/' . $cat;
+				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
+				$retStr .= $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/interest/' . edu_getQueryString();
 			 }
 
 			 if(isset($attributes['courseeventlist']))
