@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EduAdmin Booking\n"
-"POT-Creation-Date: 2016-09-05 15:21+0200\n"
-"PO-Revision-Date: 2016-09-05 15:22+0200\n"
+"POT-Creation-Date: 2016-09-06 15:44+0200\n"
+"PO-Revision-Date: 2016-09-06 15:44+0200\n"
 "Last-Translator: Chris Gårdenberg <chga@multinet.se>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -213,65 +213,69 @@ msgstr ""
 msgid "Fetches value from a course attribute (Insert attribute ID)"
 msgstr "Hämtar värdet från ett eget fält från kursen (Fyll i fält-ID)"
 
-#: includes/_options.php:117
+#: includes/_metaBox.php:144
+msgid "Gets the URL that is used to send the inquiry form for a course"
+msgstr "Hämtar länken som används för att skicka en intresseanmälan för kursen"
+
+#: includes/_options.php:119
 msgid "EduAdmin - General"
 msgstr "EduAdmin - Allmänt"
 
-#: includes/_options.php:117 includes/generalSettings.php:8
+#: includes/_options.php:119 includes/generalSettings.php:8
 msgid "General settings"
 msgstr "﻿Allmänna inställningar"
 
-#: includes/_options.php:118
+#: includes/_options.php:120
 msgid "EduAdmin - List view"
 msgstr "EduAdmin - Listvy"
 
-#: includes/_options.php:118 includes/listSettings.php:15
+#: includes/_options.php:120 includes/listSettings.php:15
 #: includes/listSettings.php:29
 msgid "List settings"
 msgstr "Listvy-inställningar"
 
-#: includes/_options.php:119
+#: includes/_options.php:121
 msgid "EduAdmin - Detail view"
 msgstr "EduAdmin - Detaljvy"
 
-#: includes/_options.php:119 includes/detailSettings.php:2
+#: includes/_options.php:121 includes/detailSettings.php:2
 msgid "Detail settings"
 msgstr "Detaljvy-inställningar"
 
-#: includes/_options.php:120
+#: includes/_options.php:122
 msgid "EduAdmin - Booking view"
 msgstr "EduAdmin - Bokningsvy"
 
-#: includes/_options.php:120 includes/bookingSettings.php:2
+#: includes/_options.php:122 includes/bookingSettings.php:2
 msgid "Booking settings"
 msgstr "Bokningsinställningar"
 
-#: includes/_options.php:121
+#: includes/_options.php:123
 msgid "EduAdmin - Translation"
 msgstr "EduAdmin - Översättning"
 
-#: includes/_options.php:121 includes/textSettings.php:8
+#: includes/_options.php:123 includes/textSettings.php:8
 #: includes/textSettings.php:17
 msgid "Translation"
 msgstr "Översättning"
 
-#: includes/_options.php:122
+#: includes/_options.php:124
 msgid "EduAdmin - Style"
 msgstr "EduAdmin - Stil"
 
-#: includes/_options.php:122
+#: includes/_options.php:124
 msgid "Style settings"
 msgstr "Stilinställningar"
 
-#: includes/_options.php:123
+#: includes/_options.php:125
 msgid "EduAdmin - Api Authentication"
 msgstr "EduAdmin - Api Autentisering"
 
-#: includes/_options.php:123
+#: includes/_options.php:125
 msgid "Api Authentication"
 msgstr "Api Autentisering"
 
-#: includes/_options.php:163
+#: includes/_options.php:165
 msgid "EduAdmin - Shortcodes"
 msgstr "EduAdmin - Shortcodes"
 
@@ -403,7 +407,7 @@ msgid "Inserts the number participants"
 msgstr "Infogar antal deltagare"
 
 #: includes/bookingSettings.php:347 includes/detailSettings.php:28
-#: includes/generalSettings.php:34 includes/generalSettings.php:230
+#: includes/generalSettings.php:38 includes/generalSettings.php:234
 #: includes/settingsPage.php:37 includes/styleSettings.php:22
 #: includes/textSettings.php:35
 msgid "Save settings"
@@ -473,11 +477,15 @@ msgstr "Enbart ett intervall på rad (1-3, 4-10, 10+)"
 msgid "Number of participants before showing as \"Few spots left\""
 msgstr "Antal registrerade deltagare innan \"Få platser kvar\" visas"
 
-#: includes/generalSettings.php:36
+#: includes/generalSettings.php:34
+msgid "Number of months to fetch events for"
+msgstr "Antal månader att hämta tillfällen för"
+
+#: includes/generalSettings.php:40
 msgid "Rewrite settings"
 msgstr "Rewrite-inställningar"
 
-#: includes/generalSettings.php:38
+#: includes/generalSettings.php:42
 msgid ""
 "Enter the URL you want to use with the application (please check that the "
 "URL does not exists)"
@@ -485,70 +493,70 @@ msgstr ""
 "Ange Webbadressen du vill använda med programmet (Vänligen kontrollera att "
 "adressen inte finns)"
 
-#: includes/generalSettings.php:40
+#: includes/generalSettings.php:44
 msgid "URL"
 msgstr "URL"
 
-#: includes/generalSettings.php:54
+#: includes/generalSettings.php:58
 msgid "List view page"
 msgstr "Listvy-sida"
 
-#: includes/generalSettings.php:57 includes/generalSettings.php:83
-#: includes/generalSettings.php:109 includes/generalSettings.php:135
-#: includes/generalSettings.php:153 includes/generalSettings.php:179
-#: includes/generalSettings.php:205
+#: includes/generalSettings.php:61 includes/generalSettings.php:87
+#: includes/generalSettings.php:113 includes/generalSettings.php:139
+#: includes/generalSettings.php:157 includes/generalSettings.php:183
+#: includes/generalSettings.php:209
 msgid "No page selected"
 msgstr "Ingen sida vald"
 
-#: includes/generalSettings.php:69 includes/generalSettings.php:95
-#: includes/generalSettings.php:121 includes/generalSettings.php:165
-#: includes/generalSettings.php:191 includes/generalSettings.php:217
+#: includes/generalSettings.php:73 includes/generalSettings.php:99
+#: includes/generalSettings.php:125 includes/generalSettings.php:169
+#: includes/generalSettings.php:195 includes/generalSettings.php:221
 msgid "suggested"
 msgstr "föreslagen"
 
-#: includes/generalSettings.php:76 includes/generalSettings.php:102
-#: includes/generalSettings.php:128 includes/generalSettings.php:172
-#: includes/generalSettings.php:198 includes/generalSettings.php:224
+#: includes/generalSettings.php:80 includes/generalSettings.php:106
+#: includes/generalSettings.php:132 includes/generalSettings.php:176
+#: includes/generalSettings.php:202 includes/generalSettings.php:228
 msgid "Shortcode to use in your page"
 msgstr "Kortkod att använda i din sida"
 
-#: includes/generalSettings.php:80
+#: includes/generalSettings.php:84
 msgid "Details view page"
 msgstr "Detaljvy-sida"
 
-#: includes/generalSettings.php:106
+#: includes/generalSettings.php:110
 msgid "Booking view page"
 msgstr "Bokningsvy-sida"
 
-#: includes/generalSettings.php:132
+#: includes/generalSettings.php:136
 msgid "Thank you page"
 msgstr "Tack-sida"
 
-#: includes/generalSettings.php:150
+#: includes/generalSettings.php:154
 msgid "Login page"
 msgstr "Inloggningssida"
 
-#: includes/generalSettings.php:176
+#: includes/generalSettings.php:180
 msgid "Course interest page"
 msgstr "Intresseanmälansida, kurs"
 
-#: includes/generalSettings.php:202
+#: includes/generalSettings.php:206
 msgid "Event interest page"
 msgstr "Intresseanmälansida, tillfälle"
 
-#: includes/generalSettings.php:238
+#: includes/generalSettings.php:242
 msgid "No spots left / 5 spots left"
 msgstr "Inga platser kvar / 5 platser kvar"
 
-#: includes/generalSettings.php:239
+#: includes/generalSettings.php:243
 msgid "No spots left / Few spots left / Spots left"
 msgstr "Inga platser kvar / Få platser kvar / Platser kvar"
 
-#: includes/generalSettings.php:240
+#: includes/generalSettings.php:244
 msgid "No spots left / 3-5 spots left / 6+ spots left"
 msgstr "Inga platser kvar / 3-5 platser kvar / 6+ platser kvar"
 
-#: includes/generalSettings.php:241
+#: includes/generalSettings.php:245
 msgid "Few spots left"
 msgstr "Få platser kvar"
 

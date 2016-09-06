@@ -30,6 +30,10 @@
 					<input type="number" name="eduadmin-alwaysFewSpots" value="<?php echo esc_attr(get_option('eduadmin-alwaysFewSpots', "3")); ?>" />
 				</div>
 			</div>
+			<br />
+			<?php _e("Number of months to fetch events for", "eduadmin"); ?><br />
+			<input type="number" name="eduadmin-monthsToFetch" value="<?php echo esc_attr(get_option('eduadmin-monthsToFetch', '6')); ?>" /> months
+			<br />
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e("Save settings", "eduadmin"); ?>" />
 			</p>

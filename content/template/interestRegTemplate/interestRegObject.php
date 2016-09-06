@@ -11,6 +11,11 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
+	if(isset($_REQUEST['act']) && $_REQUEST['act'] == 'objectInquiry')
+	{
+		include_once("sendObjectInquiry.php");
+	}
+
 	$edo = get_transient('eduadmin-listCourses');
 	if(!$edo)
 	{
@@ -42,10 +47,7 @@ else
 		die();
 	}
 
-	if(isset($_REQUEST['act']) && $_REQUEST['act'] == 'objectInquiry')
-	{
-		include_once("sendObjectInquiry.php");
-	}
+
 
 	?>
 <div class="eduadmin">
