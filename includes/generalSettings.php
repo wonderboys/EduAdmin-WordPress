@@ -198,7 +198,7 @@ foreach($eduPages as $p)
 						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-objectinterest]</i>
 					</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td><?php echo __("Event interest page", "eduadmin"); ?></td>
 					<td>
 						<select class="form-control" style="width: 300px;" name="eduadmin-interestEventPage" id="eduadmin-interestEventPage">
@@ -223,7 +223,7 @@ foreach($eduPages as $p)
 					<td>
 						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-eventinterest]</i>
 					</td>
-				</tr>
+				</tr>-->
 			</table>
 			<input type="hidden" name="eduadmin-options_have_changed" value="true" />
 			<p class="submit">
