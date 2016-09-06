@@ -114,6 +114,7 @@ if(!function_exists('edu_api_eventlist'))
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
+		$showEventInquiry = isset($request['event-inquiry']) && $request['event-inquiry'] == "1";
 		$baseUrl = $surl . '/' . $cat;
 		$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
@@ -179,10 +180,15 @@ if(!function_exists('edu_api_eventlist'))
 				 . '
 				</div>
 				<div class="eventBook' . $groupByCityClass . '">
-				' . ($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
-
+				' .
+				($ev->MaxParticipantNr == 0 || $spotsLeft > 0 ?
 					'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", $removeItems) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 				:
+					($showEventInquiry ?
+						'<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $objectId . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&", $removeItems) . '">' . edu__("Inquiry") . '</a> '
+					:
+						''
+					) .
 					'<i class="fullBooked">' . edu__("Full") . '</i>'
 				) . '
 				</div>';
