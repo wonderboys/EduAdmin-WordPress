@@ -306,6 +306,17 @@ else
 	}
 	?>
 	</div>
+	<?php
+	$objectInterestPage = get_option('eduadmin-interestObjectPage');
+	if($objectInterestPage != false) {
+	?>
+	<br />
+	<div class="inquiry">
+		<a href="./interest/"><?php edu_e("Send inquiry about this course"); ?></a>
+	</div>
+	<?php
+	}
+	?>
 </div>
 <?php
 $originalTitle = get_the_title();
