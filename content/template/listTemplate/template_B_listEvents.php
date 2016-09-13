@@ -260,9 +260,18 @@ $currency = get_option('eduadmin-currency', 'SEK');
 	data-currency="<?php echo esc_attr($currency); ?>"
 	data-search="<?php echo esc_attr($_REQUEST['searchCourses']); ?>"
 	data-showimages="<?php echo esc_attr($showImages); ?>"
+	data-numberofevents="<?php echo esc_attr($attributes['numberofevents']); ?>"
 ><?php
+
+$numberOfEvents = $attributes['numberofevents'];
+$currentEvents = 0;
+
 foreach($ede as $object)
 {
+	if($numberOfEvents != null && $numberOfEvents > 0 && $currentEvents >= $numberOfEvents)
+	{
+		break;
+	}
 	$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
 ?>
 	<div class="objectBlock brick">
@@ -303,6 +312,7 @@ foreach($ede as $object)
 		</div>
 	</div>
 <?php
+	$currentEvents++;
 }
 ?>
 </div><?php

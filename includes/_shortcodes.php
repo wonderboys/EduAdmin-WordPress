@@ -24,7 +24,8 @@ function eduadmin_get_list_view($attributes)
 			'subject' => null,
 			'hidesearch' => false,
 			'onlyevents' => false,
-			'onlyempty' => false
+			'onlyempty' => false,
+			'numberofevents' => null
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
