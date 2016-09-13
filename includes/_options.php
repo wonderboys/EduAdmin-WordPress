@@ -70,10 +70,12 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-list', 'eduadmin-showCourseDays');
 	register_setting('eduadmin-list', 'eduadmin-showCourseTimes');
 
+
 	/* Global settings */
 	register_setting('eduadmin-rewrite', 'eduadmin-spotsLeft');
 	register_setting('eduadmin-rewrite', 'eduadmin-spotsSettings');
 	register_setting('eduadmin-rewrite', 'eduadmin-alwaysFewSpots');
+	register_setting('eduadmin-rewrite', 'eduadmin-monthsToFetch');
 }
 
 function eduadmin_frontend_content()

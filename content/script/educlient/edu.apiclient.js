@@ -118,6 +118,7 @@ edu.apiclient = {
 				search: 			jQuery(target).data('search'),
 				showimages: 		jQuery(target).data('showimages'),
 				template: 			jQuery(target).data('template'),
+				numberofevents:		jQuery(target).data('numberofevents'),
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {

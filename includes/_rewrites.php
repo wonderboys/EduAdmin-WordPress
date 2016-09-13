@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPress.' );
 
-function eduadmin_rewrite_init()
+function eduadmin_rewrite_init($rewrites)
 {
 	add_rewrite_tag('%courseSlug%', '([^&]+)');
 	add_rewrite_tag('%courseId%', '([^&]+)');
@@ -59,8 +59,10 @@ function eduadmin_rewrite_init()
 			add_rewrite_rule($courseFolder . '/?$', 'index.php?page_id=' . $listView, 'top');
 		}
 	}
+
+	return $rewrites;
 }
 
-add_action('init', 'eduadmin_rewrite_init');
+//add_action('init', 'eduadmin_rewrite_init');
 add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
 ?>

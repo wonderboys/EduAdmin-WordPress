@@ -140,5 +140,8 @@
 		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("Fetches value from a course attribute (Insert attribute ID)", "eduadmin"); ?>">courseattributeid</span>
 		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Gets the URL that is used to send the inquiry form for a course", "eduadmin"); ?>">courseinquiryurl</span>
+		</div>
 	</div>
 </div>

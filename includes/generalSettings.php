@@ -30,6 +30,10 @@
 					<input type="number" name="eduadmin-alwaysFewSpots" value="<?php echo esc_attr(get_option('eduadmin-alwaysFewSpots', "3")); ?>" />
 				</div>
 			</div>
+			<br />
+			<?php _e("Number of months to fetch events for", "eduadmin"); ?><br />
+			<input type="number" name="eduadmin-monthsToFetch" value="<?php echo esc_attr(get_option('eduadmin-monthsToFetch', '6')); ?>" /> <?php _e("months", "eduadmin"); ?>
+			<br />
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e("Save settings", "eduadmin"); ?>" />
 			</p>
@@ -198,7 +202,7 @@ foreach($eduPages as $p)
 						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-objectinterest]</i>
 					</td>
 				</tr>
-				<!--<tr>
+				<tr>
 					<td><?php echo __("Event interest page", "eduadmin"); ?></td>
 					<td>
 						<select class="form-control" style="width: 300px;" name="eduadmin-interestEventPage" id="eduadmin-interestEventPage">
@@ -223,7 +227,7 @@ foreach($eduPages as $p)
 					<td>
 						<i title="<?php esc_attr_e("Shortcode to use in your page", "eduadmin"); ?>">[eduadmin-eventinterest]</i>
 					</td>
-				</tr>-->
+				</tr>
 			</table>
 			<input type="hidden" name="eduadmin-options_have_changed" value="true" />
 			<p class="submit">

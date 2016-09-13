@@ -19,8 +19,9 @@ if($missingFields)
 }
 else
 {
-	$inquiry = new InterestRegObject();
+	$inquiry = new InterestRegEvent();
 	$inquiry->ObjectID = $_POST['objectid'];
+	$inquiry->EventID = $_POST['eventid'];
 	$inquiry->ParticipantNr = $_POST['edu-participants'];
 	$inquiry->CompanyName = $_POST['edu-companyName'];
 	$inquiry->ContactName = $_POST['edu-contactName'];
@@ -29,7 +30,7 @@ else
 	$inquiry->Mobile = $_POST['edu-mobile'];
 	$inquiry->Notes = $_POST['edu-notes'];
 
-	$inquiryId = $eduapi->SetInterestRegObject($edutoken, array($inquiry))[0];
+	$inquiryId = $eduapi->SetInterestRegEvent($edutoken, array($inquiry))[0];
 
 	die("<script type=\"text/javascript\">alert('" . edu__("Thank you for your inquiry! We will be in touch!") . "'); location.href = '" . get_page_link('/') . "?edu-thankyouinquiry=" . $inquiryId . "';</script>");
 }

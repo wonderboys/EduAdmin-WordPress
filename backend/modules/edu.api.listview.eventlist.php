@@ -186,6 +186,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 		$surl = $request['baseUrl'];
 		$cat = $request['courseFolder'];
+		$numberOfEvents = $request['numberofevents'];
 		$baseUrl = $surl . '/' . $cat;
 
 		$removeItems = array(
@@ -199,12 +200,21 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					'objectid',
 					'groupbycity',
 					'fewspots',
-					'spotsettings'
+					'spotsettings',
+					'numberofevents'
 				);
 
 		ob_start();
+
+
+		$currentEvents = 0;
+
 		foreach($data as $object)
 		{
+			if($numberOfEvents != null && $numberOfEvents > 0 && $currentEvents >= $numberOfEvents)
+			{
+				break;
+			}
 			$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
 		?>
 			<div class="objectItem">
@@ -259,6 +269,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 				</div>
 			</div>
 		<?php
+			$currentEvents++;
 		}
 		$out = ob_get_clean();
 		return $out;
@@ -284,6 +295,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 
 		$surl = $request['baseUrl'];
 		$cat = $request['courseFolder'];
+		$numberOfEvents = $request['numberofevents'];
 		$baseUrl = $surl . '/' . $cat;
 
 		$removeItems = array(
@@ -297,12 +309,19 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 					'objectid',
 					'groupbycity',
 					'fewspots',
-					'spotsettings'
+					'spotsettings',
+					'numberofevents'
 				);
 		ob_start();
 
+		$currentEvents = 0;
+
 		foreach($data as $object)
 		{
+			if($numberOfEvents != null && $numberOfEvents > 0 && $currentEvents >= $numberOfEvents)
+			{
+				break;
+			}
 			$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
 		?>
 			<div class="objectBlock brick">
@@ -344,6 +363,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 				</div>
 			</div>
 		<?php
+			$currentEvents++;
 		}
 		$out = ob_get_clean();
 		return $out;

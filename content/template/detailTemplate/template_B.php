@@ -249,6 +249,14 @@ else
 			<?php
 			} else {
 			?>
+			<?php
+				$eventInterestPage = get_option('eduadmin-interestEventPage');
+				if($eventInterestPage != false) {
+				?>
+					<a class="inquiry-link" href="./book/interest/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Inquiry"); ?></a>
+				<?php
+				}
+				?>
 				<i class="fullBooked"><?php edu_e("Full"); ?></i>
 			<?php } ?>
 			</div>
@@ -274,7 +282,7 @@ else
 	?>
 	<br />
 	<div class="inquiry">
-		<a href="./interest/"><?php edu_e("Send inquiry about this course"); ?></a>
+		<a class="inquiry-link" href="./interest/<?php echo edu_getQueryString("?"); ?>"><?php edu_e("Send inquiry about this course"); ?></a>
 	</div>
 	<?php
 	}
