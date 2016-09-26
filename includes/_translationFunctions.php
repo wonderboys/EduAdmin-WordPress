@@ -28,8 +28,10 @@ function edu_LoadPhrases()
 	}
 
 	$_SESSION['eduadmin-phrases'] = $phrases;
+	
+	if(is_array($phrases)) return $phrases;
 
-	return $phrases;
+	return (array)$phrases;
 }
 
 function edu__($key)
