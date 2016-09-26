@@ -184,10 +184,15 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
-		$surl = $request['baseUrl'];
-		$cat = $request['courseFolder'];
+		$baseUrl = '.';
+		if(get_option('eduadmin-useAbsoluteUri'))
+		{
+			$surl = $request['baseUrl'];
+			$cat = $request['courseFolder'];
+			$baseUrl = $surl . '/' . $cat;
+		}
+
 		$numberOfEvents = $request['numberofevents'];
-		$baseUrl = $surl . '/' . $cat;
 
 		$removeItems = array(
 					'eid',
@@ -219,11 +224,11 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 		?>
 			<div class="objectItem">
 				<?php if($showImages && !empty($object->ImageUrl)) { ?>
-				<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+				<div class="objectImage" onclick="location.href = '<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 				<?php } ?>
 				<div class="objectInfoHolder">
 					<div class="objectName">
-						<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
+						<a href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
 							echo htmlentities($name);
 						?></a>
 					</div>
@@ -255,11 +260,11 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 		?></div>
 					<div class="objectBook">
-						<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a><br />
+						<a class="readMoreButton" href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a><br />
 							<?php
 						if($spotsLeft > 0 || $object->MaxParticipantNr == 0) {
 						?>
-							<a class="bookButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Book"); ?></a>
+							<a class="bookButton" href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Book"); ?></a>
 						<?php
 						} else {
 						?>
@@ -293,10 +298,15 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 
 		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
-		$surl = $request['baseUrl'];
-		$cat = $request['courseFolder'];
+		$baseUrl = '.';
+		if(get_option('eduadmin-useAbsoluteUri'))
+		{
+			$surl = $request['baseUrl'];
+			$cat = $request['courseFolder'];
+			$baseUrl = $surl . '/' . $cat;
+		}
+
 		$numberOfEvents = $request['numberofevents'];
-		$baseUrl = $surl . '/' . $cat;
 
 		$removeItems = array(
 					'eid',
@@ -326,10 +336,10 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 		?>
 			<div class="objectBlock brick">
 				<?php if($showImages && !empty($object->ImageUrl)) { ?>
-				<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+				<div class="objectImage" onclick="location.href = '<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 				<?php } ?>
 				<div class="objectName">
-					<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
+					<a href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
 						echo htmlentities($name);
 					?></a>
 				</div>
@@ -359,7 +369,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 				echo '<br />' . edu_getSpotsLeft($spotsLeft, $object->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots);
 		?></div>
 				<div class="objectBook">
-					<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a>
+					<a class="readMoreButton" href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php edu_e("Read more"); ?></a>
 				</div>
 			</div>
 		<?php

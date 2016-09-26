@@ -105,8 +105,13 @@ if(!function_exists('edu_api_eventlist'))
 			});
 		}
 
-		$surl = $request['baseUrl'];
-		$cat = $request['courseFolder'];
+		$baseUrl = '.';
+		if(get_option('eduadmin-useAbsoluteUri'))
+        {
+            $surl = $request['baseUrl'];
+            $cat = $request['courseFolder'];
+            $baseUrl = $surl . '/' . $cat;
+        }
 
 		$lastCity = "";
 
@@ -115,7 +120,6 @@ if(!function_exists('edu_api_eventlist'))
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
 		$showEventInquiry = isset($request['event-inquiry']) && $request['event-inquiry'] == "1";
-		$baseUrl = $surl . '/' . $cat;
 		$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
 		$i = 0;
