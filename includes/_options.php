@@ -16,7 +16,6 @@ function eduadmin_settings_init()
 
 	/* Rewrite settings */
 	register_setting('eduadmin-rewrite', 'eduadmin-options_have_changed');
-    register_setting('eduadmin-rewrite', 'eduadmin-useAbsoluteUri');
 	register_setting('eduadmin-rewrite', 'eduadmin-rewriteBaseUrl');
 	register_setting('eduadmin-rewrite', 'eduadmin-listViewPage');
 	register_setting('eduadmin-rewrite', 'eduadmin-loginViewPage');
