@@ -266,14 +266,6 @@ $currency = get_option('eduadmin-currency', 'SEK');
 $numberOfEvents = $attributes['numberofevents'];
 $currentEvents = 0;
 
-$baseUrl = '.';
-if(get_option('eduadmin-useAbsoluteUri'))
-{
-	$surl = $request['baseUrl'];
-	$cat = $request['courseFolder'];
-	$baseUrl = $surl . '/' . $cat;
-}
-
 foreach($ede as $object)
 {
 	if($numberOfEvents != null && $numberOfEvents > 0 && $currentEvents >= $numberOfEvents)
@@ -284,10 +276,10 @@ foreach($ede as $object)
 ?>
 	<div class="objectBlock brick">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
-		<div class="objectImage" onclick="location.href = '<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+		<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 		<?php } ?>
 		<div class="objectName">
-			<a href="./<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
+			<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
 				echo htmlentities(getUTF8($name));
 			?></a>
 		</div>
@@ -316,7 +308,7 @@ foreach($ede as $object)
 		echo '<br />' . getSpotsLeft($spotsLeft, $object->MaxParticipantNr);
 ?></div>
 		<div class="objectBook">
-			<a class="readMoreButton" href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a>
+			<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a>
 		</div>
 	</div>
 <?php
