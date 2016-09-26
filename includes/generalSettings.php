@@ -38,10 +38,17 @@
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e("Save settings", "eduadmin"); ?>" />
 			</p>
 			<h3><?php _e("Rewrite settings", "eduadmin"); ?></h3>
+			<label>
+				<input type="checkbox" name="eduadmin-useAbsoluteUri" value="1" <?php checked(get_option('eduadmin-useAbsoluteUri')) ?> /><?php _e("Use absolute Uri for links", "eduadmin") ?>
+			</label>
+			<br />
+			<br />
 			<p>
 				<?php echo __("Enter the URL you want to use with the application (please check that the URL does not exists)", "eduadmin"); ?>
 			</p>
 			<?php echo get_option('siteurl'); ?>/<input style="width: 200px;" type="text" class="form-control folder" name="eduadmin-rewriteBaseUrl" id="eduadmin-rewriteBaseUrl" value="<?php echo esc_attr(get_option('eduadmin-rewriteBaseUrl')); ?>" placeholder="<?php echo __("URL", "eduadmin"); ?>" />/
+			<br />
+			<br />
 <?php
 	$pages = get_pages();
 	$eduPages = array();

@@ -271,6 +271,14 @@ $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
 
 $showDescr = get_option('eduadmin-showCourseDescription', true);
 
+$baseUrl = '.';
+if(get_option('eduadmin-useAbsoluteUri'))
+{
+	$surl = $request['baseUrl'];
+	$cat = $request['courseFolder'];
+	$baseUrl = $surl . '/' . $cat;
+}
+
 foreach($edo as $object)
 {
 	$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
@@ -308,10 +316,10 @@ foreach($edo as $object)
 ?>
 	<div class="objectBlock brick">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
-		<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+		<div class="objectImage" onclick="location.href = '<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 		<?php } ?>
 		<div class="objectName">
-			<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>"><?php
+			<a href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>"><?php
 				echo htmlentities(getUTF8($name));
 			?></a>
 		</div>
@@ -369,7 +377,7 @@ foreach($edo as $object)
 				}
 		?></div>
 		<div class="objectBook">
-			<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>"><?php edu_e("Read more"); ?></a>
+			<a class="readMoreButton" href="<?php echo $baseUrl . '/' . makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/<?php echo edu_getQueryString(); ?>"><?php edu_e("Read more"); ?></a>
 		</div>
 	</div>
 <?php
