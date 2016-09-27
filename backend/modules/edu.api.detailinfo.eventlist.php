@@ -105,13 +105,9 @@ if(!function_exists('edu_api_eventlist'))
 			});
 		}
 
-		$baseUrl = '.';
-		if(get_option('eduadmin-useAbsoluteUri'))
-        {
-            $surl = $request['baseUrl'];
-            $cat = $request['courseFolder'];
-            $baseUrl = $surl . '/' . $cat;
-        }
+        $surl = $request['baseUrl'];
+        $cat = $request['courseFolder'];
+        $baseUrl = $surl . '/' . $cat;
 
 		$lastCity = "";
 

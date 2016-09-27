@@ -274,8 +274,8 @@ $showDescr = get_option('eduadmin-showCourseDescription', true);
 $baseUrl = '.';
 if(get_option('eduadmin-useAbsoluteUri'))
 {
-	$surl = $request['baseUrl'];
-	$cat = $request['courseFolder'];
+	$surl = get_site_url();
+	$cat = get_option('eduadmin-rewriteBaseUrl');
 	$baseUrl = $surl . '/' . $cat;
 }
 
