@@ -169,10 +169,24 @@ if(isset($_REQUEST['eduadmin-level']) && !empty($_REQUEST['eduadmin-level']))
 }
 
 $occIds = array();
+$evIds = array();
 
 foreach($ede as $e)
 {
 	$occIds[] = $e->OccationID;
+	$evIds[] = $e->EventID;
+}
+
+$ft = new XFiltering();
+$f = new XFilter('EventID', 'IN', join(",", $evIds));
+$ft->AddItem($f);
+
+$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+$eventDates = array();
+foreach($eventDays as $ed)
+{
+	$eventDates[$ed->EventID][] = $ed->StartDate;
 }
 
 $ft = new XFiltering();
@@ -286,7 +300,7 @@ foreach($ede as $object)
 		<div class="objectDescription"><?php
 
 		$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-		echo GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 		if(!empty($object->City))
 		{

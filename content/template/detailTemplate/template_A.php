@@ -76,9 +76,27 @@ else
 
 	$occIds = array();
 	$occIds[] = -1;
+
+	$eventIds = array();
+	$eventIds[] = -1;
+
 	foreach($events as $e)
 	{
 		$occIds[] = $e->OccationID;
+		$eventIds[] = $e->EventID;
+	}
+
+	$ft = new XFiltering();
+	$f = new XFilter('EventID', 'IN', join(",", $eventIds));
+	$ft->AddItem($f);
+
+	$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+
+	$eventDates = array();
+	foreach($eventDays as $ed)
+	{
+		$eventDates[$ed->EventID][] = $ed->StartDate;
 	}
 
 	$ft = new XFiltering();
@@ -263,7 +281,7 @@ else
 		?>
 			<div class="eventItem">
 				<div class="eventDate<?php echo $groupByCityClass; ?>">
-					<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
+					<?php echo isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
 					<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
 				</div>
 				<?php if(!$groupByCity) { ?>

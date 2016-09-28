@@ -100,6 +100,16 @@ function GetDisplayDate($inDate, $short = false)
 	return '<span style="white-space: nowrap;">' . date('d', strtotime($inDate)) . ' ' . $months[date('n', strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
 }
 
+function GetLogicalDateGroups($dates, $short = false)
+{
+	$nDates = array();
+	foreach($dates as $d)
+	{
+		$nDates[] = date("d/m", strtotime($d));
+	}
+	return join(", ", $nDates);
+}
+
 function GetStartEndDisplayDate($startDate, $endDate, $short = false)
 {
 	$months = array(

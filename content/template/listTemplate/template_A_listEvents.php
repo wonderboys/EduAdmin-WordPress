@@ -172,6 +172,18 @@ foreach($ede as $e)
 }
 
 $ft = new XFiltering();
+$f = new XFilter('EventID', 'IN', join(",", $evIds));
+$ft->AddItem($f);
+
+$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+$eventDates = array();
+foreach($eventDays as $ed)
+{
+	$eventDates[$ed->EventID][] = $ed->StartDate;
+}
+
+$ft = new XFiltering();
 $f = new XFilter('PublicPriceName', '=', 'true');
 $ft->AddItem($f);
 $f = new XFilter('OccationID', 'IN', join(",", $occIds));
@@ -287,7 +299,7 @@ foreach($ede as $object)
 			<div class="objectDescription"><?php
 
 		$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-		echo GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 		if(!empty($object->City))
 		{
