@@ -453,13 +453,28 @@ function eduadmin_get_detailinfo($attributes)
 				);
 
 				$occIds = array();
-
 				$occIds[] = -1;
+
+                $eventIds = array();
+                $eventIds[] = -1;
 
 				foreach($events as $e)
 				{
 					$occIds[] = $e->OccationID;
+                    $eventIds[] = $e->EventID;
 				}
+
+                 $ft = new XFiltering();
+                 $f = new XFilter('EventID', 'IN', join(",", $eventIds));
+                 $ft->AddItem($f);
+
+                 $eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+                 $eventDates = array();
+                 foreach($eventDays as $ed)
+                 {
+                     $eventDates[$ed->EventID][] = $ed->StartDate;
+                 }
 
 				$ft = new XFiltering();
 				$f = new XFilter('PublicPriceName', '=', 'true');
@@ -542,7 +557,7 @@ function eduadmin_get_detailinfo($attributes)
 					$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
 					$retStr .= '
 					<div class="eventDate' . $groupByCityClass . '">
-						' . GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true) . ',
+						' . (isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . ',
 						' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
 					</div>
 					'. (!$groupByCity ?
