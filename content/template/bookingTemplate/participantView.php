@@ -105,12 +105,26 @@
 						<div class="inputHolder">
 							<select name="participantPriceName[]" class="edudropdown participantPriceName" onchange="eduBookingView.UpdatePrice();">
 								<?php foreach($prices as $price) { ?>
-								<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>"><?php echo trim($price->Description); ?> (<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)</option>
+								<option data-price="<?php echo esc_attr($price->Price); ?>" value="<?php echo esc_attr($price->OccationPriceNameLnkID); ?>">
+									<?php echo trim($price->Description); ?>
+									(<?php echo convertToMoney($price->Price, get_option('eduadmin-currency', 'SEK')) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?>)
+								</option>
 								<?php } ?>
 							</select>
 						</div>
 					</label>
 					<?php } ?>
+					<?php
+						$st = new XSorting();
+						$s = new XSort('StartDate', 'ASC');
+						$st->AddItem($s);
+
+						$ft = new XFiltering();
+						$f = new XFilter('ParentEventID', '=', $event->EventID);
+						$ft->AddItem($f);
+						$subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
+						echo "<pre>" . print_r($subEvents, true) . "\n" . print_r($event, true) . "</pre>";
+					?>
 				</div>
 			</div>
 			<div>
