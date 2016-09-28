@@ -99,10 +99,24 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 
 		$occIds = array();
+		$evIds = array();
 
 		foreach($ede as $e)
 		{
 			$occIds[] = $e->OccationID;
+			$evIds[] = $e->EventID;
+		}
+
+		$ft = new XFiltering();
+		$f = new XFilter('EventID', 'IN', join(",", $evIds));
+		$ft->AddItem($f);
+
+		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+		$eventDates = array();
+		foreach($eventDays as $ed)
+		{
+			$eventDates[$ed->EventID][] = $ed->StartDate;
 		}
 
 		$ft = new XFiltering();
@@ -157,11 +171,11 @@ if(!function_exists('edu_api_listview_eventlist'))
 
 		if($request['template'] == "A")
 		{
-			echo edu_api_listview_eventlist_template_A($ede, $request);
+			echo edu_api_listview_eventlist_template_A($ede, $eventDates, $request);
 		}
 		else if($request['template'] == "B")
 		{
-			echo edu_api_listview_eventlist_template_B($ede, $request);
+			echo edu_api_listview_eventlist_template_B($ede, $eventDates, $request);
 		}
 
 		#echo json_encode($ede);
@@ -170,7 +184,7 @@ if(!function_exists('edu_api_listview_eventlist'))
 
 if(!function_exists('edu_api_listview_eventlist_template_A'))
 {
-	function edu_api_listview_eventlist_template_A($data, $request)
+	function edu_api_listview_eventlist_template_A($data, $eventDates, $request)
 	{
 		global $eduapi;
 		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
@@ -230,7 +244,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					<div class="objectDescription"><?php
 
 				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-				echo edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID]) : edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 				if(!empty($object->City))
 				{
@@ -278,7 +292,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 if(!function_exists('edu_api_listview_eventlist_template_B'))
 {
-	function edu_api_listview_eventlist_template_B($data, $request)
+	function edu_api_listview_eventlist_template_B($data, $eventDates, $request)
 	{
 		global $eduapi;
 		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
@@ -336,7 +350,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 				<div class="objectDescription"><?php
 
 				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-				echo edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID]) : edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 				if(!empty($object->City))
 				{
