@@ -300,7 +300,6 @@ foreach($ede as $object)
 
 		$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
 		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
-		//echo GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 		if(!empty($object->City))
 		{

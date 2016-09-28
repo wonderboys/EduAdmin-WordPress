@@ -89,7 +89,6 @@ if(!function_exists('edu_api_eventlist'))
 
 		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
 
-
 		$eventDates = array();
 		foreach($eventDays as $ed)
 		{
