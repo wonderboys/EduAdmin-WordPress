@@ -96,14 +96,30 @@ function edu_getSpotsLeft($freeSpots, $maxSpots, $spotOption = 'exactNumbers', $
 	}
 }
 
-function edu_GetLogicalDateGroups($dates, $short = false)
+function edu_GetLogicalDateGroups($dates, $short = true)
 {
-	$nDates = array();
-	foreach($dates as $d)
-	{
-		$nDates[] = date("d/m", strtotime($d));
-	}
+	$nDates = getRangeFromDays($dates, $short);
 	return join(", ", $nDates);
+}
+
+// Copied from http://codereview.stackexchange.com/a/83095/27610
+if(!function_exists('getRangeFromDays'))
+{
+	function getRangeFromDays($days, $short) {
+		sort($days);
+		$startDate  = $days[0];
+		$finishDate = array_pop($days);
+		// walk through the dates, breaking at gaps
+		foreach ($days as $key => $date)
+		if (($key > 0) && (strtotime($date)-strtotime($days[$key-1]) > 99999)) {
+		$result[] = edu_GetStartEndDisplayDate($startDate,$days[$key-1], $short);
+		$startDate = $date;
+		}
+		// force the end
+		$result[] = edu_GetStartEndDisplayDate($startDate,$finishDate, $short);
+	
+	return $result;
+	}
 }
 
 function edu_GetDisplayDate($inDate, $short = false)

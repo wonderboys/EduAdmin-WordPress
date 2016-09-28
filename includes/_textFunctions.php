@@ -78,7 +78,7 @@ function convertToMoney($value, $currency = "SEK", $decimal = ',', $thousand = '
 	return $d;
 }
 
-function GetDisplayDate($inDate, $short = false)
+function GetDisplayDate($inDate, $short = true)
 {
 	$months = array(
 		1 => !$short ? edu__('january'): edu__('jan'),
@@ -102,12 +102,25 @@ function GetDisplayDate($inDate, $short = false)
 
 function GetLogicalDateGroups($dates, $short = false)
 {
-	$nDates = array();
-	foreach($dates as $d)
-	{
-		$nDates[] = date("d/m", strtotime($d));
-	}
+	$nDates = getRangeFromDays($dates, $short);
 	return join(", ", $nDates);
+}
+
+// Copied from http://codereview.stackexchange.com/a/83095/27610
+function getRangeFromDays($days, $short) {
+    sort($days);
+    $startDate  = $days[0];
+    $finishDate = array_pop($days);
+    // walk through the dates, breaking at gaps
+    foreach ($days as $key => $date)
+    if (($key > 0) && (strtotime($date)-strtotime($days[$key-1]) > 99999)) {
+      $result[] = GetStartEndDisplayDate($startDate,$days[$key-1], $short);
+      $startDate = $date;
+    }
+    // force the end
+    $result[] = GetStartEndDisplayDate($startDate,$finishDate, $short);
+  
+  return $result;
 }
 
 function GetStartEndDisplayDate($startDate, $endDate, $short = false)
