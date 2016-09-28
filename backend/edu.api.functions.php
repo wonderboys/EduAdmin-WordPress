@@ -96,6 +96,16 @@ function edu_getSpotsLeft($freeSpots, $maxSpots, $spotOption = 'exactNumbers', $
 	}
 }
 
+function edu_GetLogicalDateGroups($dates, $short = false)
+{
+	$nDates = array();
+	foreach($dates as $d)
+	{
+		$nDates[] = date("d/m", strtotime($d));
+	}
+	return join(", ", $nDates);
+}
+
 function edu_GetDisplayDate($inDate, $short = false)
 {
 	$months = array(
