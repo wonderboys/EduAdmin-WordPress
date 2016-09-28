@@ -347,6 +347,8 @@ foreach($edo as $object)
 					if(!empty($sortedEvents))
 					{
 						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+					} else {
+						echo "<i>" . edu__('No coming events') . "</i>";
 					}
 					echo "</div> ";
 				}
