@@ -44,6 +44,7 @@ include_once("includes/_shortcodes.php");
 if(file_exists(dirname(__FILE__) . "/.official.plugin.php"))
 {
 	include_once(".official.plugin.php");
+    
 }
 
 function edu_load_language()
@@ -52,6 +53,10 @@ function edu_load_language()
 	$locale = apply_filters('plugin_locale', get_locale(), $domain);
 	load_textdomain($domain, WP_LANG_DIR.'/eduadmin/'.$domain.'-'.$locale.'.mo');
 	load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
+
+    if(!wp_next_scheduled( 'eduadmin_call_home' )) {
+        wp_schedule_event( time(), 'hourly', 'eduadmin_call_home' );
+    }
 }
 
 function edu_new_theme()
@@ -59,6 +64,30 @@ function edu_new_theme()
 	update_option('eduadmin-options_have_changed', true);
 }
 
+function edu_call_home()
+{
+    global $wp_version;
+    $usageData = array(
+        'siteUrl' => get_site_url(),
+        'siteName' => get_option('blogname'),
+        'wpVersion' => $wp_version,
+        'token' => get_option('eduadmin-api-key'),
+        'officialVersion' => file_exists(dirname(__FILE__) . "/.official.plugin.php"),
+        'pluginVersion' => '0.9.8'
+    );
+
+    $callHomeUrl = 'http://ws10.multinet.se/edu-plugin/wp_phone_home.php';
+    wp_remote_post($callHomeUrl, array('body' => $usageData));
+}
+
+add_action('eduadmin_call_home', 'edu_call_home');
+
 add_action('plugins_loaded', 'edu_load_language');
 add_action('after_switch_theme', 'edu_new_theme');
+
+register_deactivation_hook(__FILE__, 'eduadmin_deactivate');
+
+function eduadmin_deactivate() {
+    wp_clear_scheduled_hook( 'eduadmin_call_home' );
+}
 ?>
