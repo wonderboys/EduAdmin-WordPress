@@ -228,6 +228,17 @@ else
 		$personEmail[] = $contact->Email;
 	}
 
+	$st = new XSorting();
+	$s = new XSort('StartDate', 'ASC');
+	$st->AddItem($s);
+	$s = new XSort('EndDate', 'ASC');
+	$st->AddItem($s);
+
+	$ft = new XFiltering();
+	$f = new XFilter('ParentEventID', '=', $eventId);
+	$ft->AddItem($f);
+	$subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
+
 	$pArr = array();
 	foreach($_POST['participantFirstName'] as $key => $value)
 	{
@@ -273,6 +284,13 @@ else
 				$person->OccasionPriceNameLnkID = trim($_POST['participantPriceName'][$key]);
 			}
 
+			foreach($subEvents as $subEvent)
+			{
+				$fieldName = "participantSubEvent_" . $subEvent->EventID;
+				$fieldValue = $_POST[$fieldName][$key];
+				$person->SubEvents[] = $fieldValue;
+			}
+
 			$pArr[] = $person;
 
 			if(!empty($person->PersonEmail) && !in_array($person->PersonEmail, $personEmail))
@@ -302,14 +320,29 @@ else
 		{
 			$person = $matchingPersons[0];
 		}
+
+		if(isset($_POST['contactCivReg']))
+		{
+			$person->PersonCivicRegistrationNumber = trim($_POST['contactCivReg']);
+		}
+
+		if(isset($_POST['contactPriceName']))
+		{
+			$person->OccasionPriceNameLnkID = trim($_POST['contactPriceName']);
+		}
+
+		foreach($subEvents as $subEvent)
+		{
+			$fieldName = "contactSubEvent_" . $subEvent->EventID;
+			$fieldValue = $_POST[$fieldName];
+			$person->SubEvents[] = $fieldValue;
+		}
+
 		$pArr[] = $person;
 	}
 
 	if(!empty($pArr))
 	{
-		// Deltagare saknas, avbryt
-		//$persons = $api->SetPerson($token, $pArr);
-
 		$bi = new BookingInfoSubEvent();
 		$bi->EventID = $eventId;
 		$bi->CustomerID = $customer->CustomerID;
@@ -320,15 +353,14 @@ else
 		{
 			$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
 		}
+
 		$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : trim(str_replace(';', ' ', $contact->ContactName)));
-		//$eduapi->debug = true;
 		$eventCustomerLnkID = $eduapi->CreateSubEventBooking(
 			$edutoken,
 			$bi
 		);
 
 		$answers = array();
-		// TODO: Add loop to push in all Answers from Questions
 		foreach($_POST as $input => $value)
 		{
 			if(strpos($input, "question_") !== FALSE)
