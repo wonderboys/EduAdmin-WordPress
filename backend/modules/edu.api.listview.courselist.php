@@ -12,13 +12,18 @@ if(!function_exists('edu_api_listview_courselist'))
 
 		$objectIds = $request['objectIds'];
 
+		$fetchMonths = $request['fetchmonths'];
+		if(!is_numeric($fetchMonths)) {
+			$fetchMonths = 6;
+		}
+
 		$filtering = new XFiltering();
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
 		$f = new XFilter('PeriodStart','>',date("Y-m-d 00:00:00", strtotime("now +1 day")));
 		$filtering->AddItem($f);
-		$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +6 months")));
+		$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 		$filtering->AddItem($f);
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);

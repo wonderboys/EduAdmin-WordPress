@@ -414,10 +414,15 @@ function eduadmin_get_detailinfo($attributes)
 
 			 if(isset($attributes['courseeventlist']))
 			 {
+				$fetchMonths = get_option('eduadmin-monthsToFetch', 6);
+				if(!is_numeric($fetchMonths)) {
+					$fetchMonths = 6;
+				}
+
 			 	$ft = new XFiltering();
 				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 				$ft->AddItem($f);
-				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +'. $fetchMonths . ' months')));
 				$ft->AddItem($f);
 				$f = new XFilter('ShowOnWeb', '=', 'true');
 				$ft->AddItem($f);
@@ -514,13 +519,15 @@ function eduadmin_get_detailinfo($attributes)
 
 				$baseUrl = $surl . '/' . $cat;
 				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
-				$retStr .= '<div class="eduadmin"><div class="event-table eventDays" data-eduwidget="eventlist" data-objectid="' . $selectedCourse->ObjectID .
+				$retStr .= '<div class="eduadmin"><div class="event-table eventDays" data-eduwidget="eventlist" '.
+				'data-objectid="' . $selectedCourse->ObjectID .
 				'" data-spotsleft="' . $spotLeftOption .
 				'" data-showmore="' . $showMore .
 				'" data-groupbycity="' . $groupByCity . '"' .
 				'" data-spotsettings="' . get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+") . '"' .
 				'" data-fewspots="' . get_option('eduadmin-alwaysFewSpots', "3") . '"' .
 				(!empty($attributes['courseeventlistfiltercity']) ? ' data-city="' . $attributes['courseeventlistfiltercity'] . '"' : '') .
+				' data-fetchmonths="' . $fetchMonths . '"' .
 				(isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : '') .
 				'>';
 				$i = 0;
@@ -554,6 +561,8 @@ function eduadmin_get_detailinfo($attributes)
 						$hasHiddenDates = true;
 					}
 
+					$eventInterestPage = get_option('eduadmin-interestEventPage');
+
 					$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
 					$retStr .= '
 					<div class="eventDate' . $groupByCityClass . '">
@@ -574,6 +583,7 @@ function eduadmin_get_detailinfo($attributes)
 
 						'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", array('eid')) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 					:
+						($eventInterestPage != false ? '<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&") . '">' . edu_e("Inquiry") . '</a>' : '') . 
 						'<i class="fullBooked">' . edu__("Full") . '</i>'
 					) . '
 					</div>';

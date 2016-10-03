@@ -52,6 +52,11 @@ if(!function_exists('edu_api_listview_eventlist'))
 			$filtering->AddItem($f);
 		}
 
+		$fetchMonths = $request['fetchmonths'];
+		if(!is_numeric($fetchMonths)) {
+			$fetchMonths = 6;
+		}
+
 		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 
 		$filtering = new XFiltering();
@@ -60,7 +65,7 @@ if(!function_exists('edu_api_listview_eventlist'))
 
 		$f = new XFilter('PeriodStart','>',date("Y-m-d 00:00:00", strtotime("now +1 day")));
 		$filtering->AddItem($f);
-		$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +6 months")));
+		$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 		$filtering->AddItem($f);
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);
