@@ -109,9 +109,8 @@
 			</label>
 			<label>
 				<div class="inputHolder alsoInvoiceCustomer">
-					<label class="inline-checkbox">
-						<input type="checkbox" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
-					</label>
+					<input type="checkbox" id="alsoInvoiceCustomer" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
+					<label class="inline-checkbox" for="alsoInvoiceCustomer"></label>
 					<?php edu_e("Use other information for invoicing"); ?>
 				</div>
 			</label>

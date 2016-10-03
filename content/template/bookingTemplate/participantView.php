@@ -183,7 +183,7 @@
 									"type=\"checkbox\"" .
 									($subEvent->SelectedByDefault == true || $subEvent->MandatoryParticipation == true ? " checked=\"checked\"" : "") .
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
-								" value=\"" . $subEvent->EventID . "\"> " . 
+								" value=\"" . $subEvent->EventID . "\">" .
 									$subEvent->Description . 
 									" (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") " .
 
