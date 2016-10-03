@@ -54,8 +54,9 @@
 			</label>
 			<?php } ?>
 			<label>
-				<div class="inputHolder">
+				<div class="inputHolder contactIsAlsoParticipant">
 					<input type="checkbox" id="contactIsAlsoParticipant" name="contactIsAlsoParticipant" value="true" onchange="if(eduBookingView.CheckParticipantCount()) { eduBookingView.UpdatePrice(); } else { this.checked = false; return false; }" />
+					<label class="inline-checkbox" for="contactIsAlsoParticipant"></label>
 					<?php edu_e("Contact is also a participant"); ?>
 				</div>
 			</label>

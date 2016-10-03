@@ -108,8 +108,9 @@
 				</div>
 			</label>
 			<label>
-				<div class="inputHolder">
-					<input type="checkbox" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
+				<div class="inputHolder alsoInvoiceCustomer">
+					<input type="checkbox" id="alsoInvoiceCustomer" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
+					<label class="inline-checkbox" for="alsoInvoiceCustomer"></label>
 					<?php edu_e("Use other information for invoicing"); ?>
 				</div>
 			</label>

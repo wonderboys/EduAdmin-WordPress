@@ -1,5 +1,4 @@
 <?php
-
 if(!function_exists('edu_api_loginwidget'))
 {
 	function edu_api_loginwidget($request)
@@ -11,6 +10,7 @@ if(!function_exists('edu_api_loginwidget'))
 		$baseUrl = $surl . '/' . $cat;
 		if(isset($_SESSION['eduadmin-loginUser']))
 			$user = $_SESSION['eduadmin-loginUser'];
+		
 		if(isset($_SESSION['eduadmin-loginUser']) &&
 		!empty($_SESSION['eduadmin-loginUser']) &&
 		isset($_SESSION['eduadmin-loginUser']->Contact) &&

@@ -119,6 +119,7 @@ edu.apiclient = {
 				showimages: 		jQuery(target).data('showimages'),
 				template: 			jQuery(target).data('template'),
 				numberofevents:		jQuery(target).data('numberofevents'),
+				fetchmonths:		jQuery(target).data('fetchmonths'),
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {
@@ -144,6 +145,8 @@ edu.apiclient = {
 				fewspots: 		jQuery(target).data('fewspots'),
 				spotsettings: 	jQuery(target).data('spotsettings'),
 				eid: 			jQuery(target).data('eid'),
+				numberofevents:		jQuery(target).data('numberofevents'),
+				fetchmonths:	jQuery(target).data('fetchmonths'),
 				phrases: 		wp_edu.Phrases
 			},
 			success: function(d) {
