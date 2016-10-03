@@ -42,10 +42,15 @@ else
 		die();
 	}
 
+	$fetchMonths = get_option('eduadmin-monthsToFetch', 6);
+	if(!is_numeric($fetchMonths)) {
+		$fetchMonths = 6;
+	}
+
 	$ft = new XFiltering();
 	$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 	$ft->AddItem($f);
-	$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+	$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +' . $fetchMonths . ' months')));
 	$ft->AddItem($f);
 	$f = new XFilter('ShowOnWeb', '=', 'true');
 	$ft->AddItem($f);
@@ -76,9 +81,27 @@ else
 
 	$occIds = array();
 	$occIds[] = -1;
+
+	$eventIds = array();
+	$eventIds[] = -1;
+
 	foreach($events as $e)
 	{
 		$occIds[] = $e->OccationID;
+		$eventIds[] = $e->EventID;
+	}
+
+	$ft = new XFiltering();
+	$f = new XFilter('EventID', 'IN', join(",", $eventIds));
+	$ft->AddItem($f);
+
+	$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+
+	$eventDates = array();
+	foreach($eventDays as $ed)
+	{
+		$eventDates[$ed->EventID][] = $ed->StartDate;
 	}
 
 	$ft = new XFiltering();
@@ -241,6 +264,7 @@ else
 		data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
 		data-showmore="0"
 		data-groupbycity="<?php echo $groupByCity; ?>"
+		data-fetchmonths="<?php echo $fetchMonths; ?>"
 		<?php echo (isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : ''); ?>>
 	<?php
 	$i = 0;
@@ -263,7 +287,7 @@ else
 		?>
 			<div class="eventItem">
 				<div class="eventDate<?php echo $groupByCityClass; ?>">
-					<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
+					<?php echo isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
 					<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
 				</div>
 				<?php if(!$groupByCity) { ?>

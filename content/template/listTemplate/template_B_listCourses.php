@@ -134,9 +134,14 @@ if(isset($_REQUEST['eduadmin-subject']))
 	$filtering->AddItem($f);
 }
 
+$fetchMonths = get_option('eduadmin-monthsToFetch', 6);
+if(!is_numeric($fetchMonths)) {
+	$fetchMonths = 6;
+}
+
 $f = new XFilter('PeriodStart','>',date("Y-m-d 00:00:00", strtotime("now +1 day")));
 $filtering->AddItem($f);
-$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +6 months")));
+$f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 $filtering->AddItem($f);
 $f = new XFilter('StatusID','=','1');
 $filtering->AddItem($f);
@@ -298,8 +303,6 @@ foreach($edo as $object)
 	ksort($sortedEvents);
 	ksort($eventCities);
 
-	#echo "<xmp>" . print_r($sortedEvents, true) . "</xmp>";
-
 	if($showEventsWithEventsOnly && empty($sortedEvents))
 		continue;
 
@@ -322,15 +325,12 @@ foreach($edo as $object)
 						return $oa->ObjectID == $object->ObjectID;
 					});
 
-					//$descr = strip_tags(str_replace(Array('<br />', '<br>', '<br/>', "\n", "\r"), " ", htmlspecialchars_decode(current($objectDescription)->AttributeValue)));
 					$descr = htmlspecialchars_decode(current($objectDescription)->AttributeValue);
 				}
 				else
 				{
-					//$descr = strip_tags(str_replace(Array('<br />', '<br>', '<br/>', "\n", "\r"), " ", $object->{$descrField}));
 					$descr = $object->{$descrField};
 				}
-
 
 				if($showDescr)
 					echo "<div class\"courseDescription\">" . $descr . "</div>";
@@ -347,6 +347,8 @@ foreach($edo as $object)
 					if(!empty($sortedEvents))
 					{
 						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+					} else {
+						echo "<i>" . edu__('No coming events') . "</i>";
 					}
 					echo "</div> ";
 				}

@@ -6,6 +6,10 @@
 	margin-top: 0.3em;
 }
 
+.eduadmin .inline-checkbox {
+	display: inline;
+}
+
 .eduadmin .myReservationsTable {
 	width: 100%;
 }

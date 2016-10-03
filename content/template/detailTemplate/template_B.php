@@ -38,10 +38,15 @@ else
 		die();
 	}
 
+	$fetchMonths = get_option('eduadmin-monthsToFetch', 6);
+	if(!is_numeric($fetchMonths)) {
+		$fetchMonths = 6;
+	}
+
 	$ft = new XFiltering();
 	$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 	$ft->AddItem($f);
-	$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+	$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +' . $fetchMonths . ' months')));
 	$ft->AddItem($f);
 	$f = new XFilter('ShowOnWeb', '=', 'true');
 	$ft->AddItem($f);
