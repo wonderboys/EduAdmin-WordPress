@@ -1,7 +1,10 @@
 <?php
 ob_start();
-#$edo = get_transient('eduadmin-listCourses');
-#if(!$edo || count($filterCourses) > 0)
+
+$surl = get_site_url();
+$cat = get_option('eduadmin-rewriteBaseUrl');
+$baseUrl = $surl . '/' . $cat;
+
 {
 	$filtering = new XFiltering();
 	$f = new XFilter('ShowOnWeb','=','true');
@@ -296,10 +299,10 @@ foreach($ede as $object)
 ?>
 	<div class="objectBlock brick">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
-		<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+		<div class="objectImage" onclick="location.href = '<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 		<?php } ?>
 		<div class="objectName">
-			<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
+			<a href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
 				echo htmlentities(getUTF8($name));
 			?></a>
 		</div>
@@ -328,7 +331,7 @@ foreach($ede as $object)
 		echo '<br />' . getSpotsLeft($spotsLeft, $object->MaxParticipantNr);
 ?></div>
 		<div class="objectBook">
-			<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a>
+			<a class="readMoreButton" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a>
 		</div>
 	</div>
 <?php
