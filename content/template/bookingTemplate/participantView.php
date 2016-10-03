@@ -66,7 +66,7 @@
 					</label>
 					<?php } ?>
 					<?php
-						/*$st = new XSorting();
+						$st = new XSorting();
 						$s = new XSort('StartDate', 'ASC');
 						$st->AddItem($s);
 						$s = new XSort('EndDate', 'ASC');
@@ -93,7 +93,7 @@
 								"</label>\n";
 							}
 							echo "<br />";
-						}*/
+						}
 					?>
 				</div>
 				<div class="participantItem template" style="display: none;">
@@ -162,7 +162,7 @@
 					</label>
 					<?php } ?>
 					<?php
-					/*
+					
 						$st = new XSorting();
 						$s = new XSort('StartDate', 'ASC');
 						$st->AddItem($s);
@@ -192,7 +192,7 @@
 							echo "<br />";
 						}
 						#echo "<pre>" . print_r($subEvents, true) . "</pre>";
-						*/
+						
 					?>
 				</div>
 			</div>
