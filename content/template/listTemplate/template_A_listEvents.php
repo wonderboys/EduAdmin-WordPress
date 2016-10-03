@@ -1,5 +1,10 @@
 <?php
 ob_start();
+
+$surl = get_site_url();
+$cat = get_option('eduadmin-rewriteBaseUrl');
+$baseUrl = $surl . '/' . $cat;
+
 {
 	$filtering = new XFiltering();
 	$f = new XFilter('ShowOnWeb','=','true');
@@ -294,11 +299,11 @@ foreach($ede as $object)
 ?>
 	<div class="objectItem">
 		<?php if($showImages && !empty($object->ImageUrl)) { ?>
-		<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+		<div class="objectImage" onclick="location.href = '<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 		<?php } ?>
 		<div class="objectInfoHolder">
 			<div class="objectName">
-				<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
+				<a href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php
 					echo htmlentities(getUTF8($name));
 				?></a>
 			</div>
@@ -330,11 +335,11 @@ foreach($ede as $object)
 
 ?></div>
 			<div class="objectBook">
-				<a class="readMoreButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a><br />
+				<a class="readMoreButton" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a><br />
 					<?php
 				if($spotsLeft > 0 || $object->MaxParticipantNr == 0) {
 				?>
-					<a class="bookButton" href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Book"); ?></a>
+					<a class="bookButton" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID;?>/book/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Book"); ?></a>
 				<?php
 				} else {
 				?>
