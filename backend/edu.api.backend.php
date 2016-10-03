@@ -1,6 +1,6 @@
 <?php
-@session_start();
 include_once("edu.api.functions.php");
+@session_start();
 
 $modules = scandir(__DIR__ . '/modules');
 foreach($modules as $module)

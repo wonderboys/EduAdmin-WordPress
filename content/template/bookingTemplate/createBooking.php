@@ -419,8 +419,8 @@ else
 		$_SESSION['eduadmin-printJS'] = true;
 
 		$user = $_SESSION['eduadmin-loginUser'];
-		$user->Contact = $contact;
-		$user->Customer = $customer;
+		$user->Contact = json_decode(json_encode($contact));
+		$user->Customer = json_decode(json_encode($customer));
 		$_SESSION['eduadmin-loginUser'] = $user;
 
 		die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=" . $eventCustomerLnkID . "';</script>");
