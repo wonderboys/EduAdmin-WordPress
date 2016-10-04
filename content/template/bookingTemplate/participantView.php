@@ -66,22 +66,17 @@
 					</label>
 					<?php } ?>
 					<?php
-						$st = new XSorting();
-						$s = new XSort('StartDate', 'ASC');
-						$st->AddItem($s);
-						$s = new XSort('EndDate', 'ASC');
-						$st->AddItem($s);
-
-						$ft = new XFiltering();
-						$f = new XFilter('ParentEventID', '=', $event->EventID);
-						$ft->AddItem($f);
-						$subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
 						if(count($subEvents) > 0) {
 							echo "<h4>" . edu__("Sub events") . "</h4>\n";
 							foreach($subEvents as $subEvent)
 							{
+								if(count($sePrice[$subEvent->OccasionID]) > 0) {
+									$s = current($sePrice[$subEvent->OccasionID])->Price;
+								} else {
+									$s = 0;
+								}
 								echo "<label>".
-								"<input " .
+								"<input class=\"subEventCheckBox\" data-price=\"" . $s . "\" onchange=\"eduBookingView.UpdatePrice();\" " .
 									"name=\"contactSubEvent_" . $subEvent->EventID . "\" " .
 									"type=\"checkbox\"" .
 									($subEvent->SelectedByDefault == true || $subEvent->MandatoryParticipation == true ? " checked=\"checked\"" : "") .
@@ -89,7 +84,7 @@
 								" value=\"" . $subEvent->EventID . "\"> " . 
 									$subEvent->Description . 
 									" (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") " .
-
+									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
 							echo "<br />";
@@ -162,37 +157,29 @@
 					</label>
 					<?php } ?>
 					<?php
-					
-						$st = new XSorting();
-						$s = new XSort('StartDate', 'ASC');
-						$st->AddItem($s);
-						$s = new XSort('EndDate', 'ASC');
-						$st->AddItem($s);
-
-						$ft = new XFiltering();
-						$f = new XFilter('ParentEventID', '=', $event->EventID);
-						$ft->AddItem($f);
-						$subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
 						if(count($subEvents) > 0) {
 							echo "<h4>" . edu__("Sub events") . "</h4>\n";
 							foreach($subEvents as $subEvent)
 							{
+								if(count($sePrice[$subEvent->OccasionID]) > 0) {
+									$s = current($sePrice[$subEvent->OccasionID])->Price;
+								} else {
+									$s = 0;
+								}
 								echo "<label>".
-								"<input " .
+								"<input class=\"subEventCheckBox\" data-price=\"" . $s . "\" onchange=\"eduBookingView.UpdatePrice();\" " .
 									"name=\"participantSubEvent_" . $subEvent->EventID . "[]\" " .
 									"type=\"checkbox\"" .
 									($subEvent->SelectedByDefault == true || $subEvent->MandatoryParticipation == true ? " checked=\"checked\"" : "") .
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
-								" value=\"" . $subEvent->EventID . "\">" .
+								" value=\"" . $subEvent->EventID . "\"> " .
 									$subEvent->Description . 
 									" (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") " .
-
+									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
 							echo "<br />";
 						}
-						#echo "<pre>" . print_r($subEvents, true) . "</pre>";
-						
 					?>
 				</div>
 			</div>
@@ -202,5 +189,4 @@
 			<div class="edu-modal warning" id="edu-warning-participants">
 				<?php edu_e("You cannot add any more participants."); ?>
 			</div>
-
 		</div>

@@ -287,9 +287,22 @@ else
 			foreach($subEvents as $subEvent)
 			{
 				$fieldName = "participantSubEvent_" . $subEvent->EventID;
-				$fieldValue = $_POST[$fieldName][$key];
+				if(isset($_POST[$fieldName][$key]))
+				{
+					$fieldValue = $_POST[$fieldName][$key];
+					$subEventInfo = new SubEventInfo();
+					$subEventInfo->EventID = $fieldValue;
+					$person->SubEvents[] = $subEventInfo;
+				}
+				else if($subEvent->MandatoryParticipation) {
+					$subEventInfo = new SubEventInfo();
+					$subEventInfo->EventID = $subEvent->EventID;
+					$person->SubEvents[] = $subEventInfo;
+				}
 				$person->SubEvents[] = $fieldValue;
 			}
+
+			
 
 			$pArr[] = $person;
 
@@ -330,12 +343,22 @@ else
 		{
 			$person->OccasionPriceNameLnkID = trim($_POST['contactPriceName']);
 		}
-
+		$person->SubEvents = array();
 		foreach($subEvents as $subEvent)
 		{
 			$fieldName = "contactSubEvent_" . $subEvent->EventID;
-			$fieldValue = $_POST[$fieldName];
-			$person->SubEvents[] = $fieldValue;
+			if(isset($_POST[$fieldName]))
+			{
+				$fieldValue = $_POST[$fieldName];
+				$subEventInfo = new SubEventInfo();
+				$subEventInfo->EventID = $fieldValue;
+				$person->SubEvents[] = $subEventInfo;
+			}
+			else if($subEvent->MandatoryParticipation) {
+				$subEventInfo = new SubEventInfo();
+				$subEventInfo->EventID = $subEvent->EventID;
+				$person->SubEvents[] = $subEventInfo;
+			}
 		}
 
 		$pArr[] = $person;

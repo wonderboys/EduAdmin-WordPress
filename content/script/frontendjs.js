@@ -153,6 +153,22 @@ var eduBookingView = {
 				newPrice += questionPrice;
 			}
 
+			var subEventPrices = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson) input.subEventCheckBox:checked');
+			if(subEventPrices.length > 0) {
+				for(var i = 0; i < subEventPrices.length; i++) {
+					newPrice += parseFloat(subEventPrices[i].attributes['data-price'].value);
+				}
+			}
+
+			if(contactParticipant.checked) {
+				var subEventPrices = document.querySelectorAll('.eduadmin .participantItem.contactPerson:not(.template) input.subEventCheckBox:checked');
+				if(subEventPrices.length > 0) {
+					for(var i = 0; i < subEventPrices.length; i++) {
+						newPrice += parseFloat(subEventPrices[i].attributes['data-price'].value);
+					}
+				}
+			}
+
 			if(totalPriceDiscountPercent != 0) {
 				var disc = (totalPriceDiscountPercent / 100) * newPrice;
 				newPrice = newPrice - disc;

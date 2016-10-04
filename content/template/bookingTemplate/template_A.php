@@ -146,6 +146,38 @@ foreach($prices as $price)
 	$uniquePrices[$price->Description] = $price;
 }
 $firstPrice = current($uniquePrices);
+
+$st = new XSorting();
+$s = new XSort('StartDate', 'ASC');
+$st->AddItem($s);
+$s = new XSort('EndDate', 'ASC');
+$st->AddItem($s);
+
+$ft = new XFiltering();
+$f = new XFilter('ParentEventID', '=', $event->EventID);
+$ft->AddItem($f);
+$subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
+$occIds = Array();
+foreach($subEvents as $se) {
+	$occIds[] = $se->OccasionID;
+}
+
+$ft = new XFiltering();
+$f = new XFilter('PublicPriceName', '=', 'true');
+$ft->AddItem($f);
+$f = new XFilter('OccationID', 'IN', join(',', $occIds));
+$ft->AddItem($f);
+
+$st = new XSorting();
+$s = new XSort('Price', 'ASC');
+$st->AddItem($s);
+
+$subPrices = $eduapi->GetPriceName($edutoken, $st->ToString(), $ft->ToString());
+$sePrice = array();
+foreach($subPrices as $sp)
+{
+	$sePrice[$sp->OccationID][] = $sp;
+}
 ?>
 <div class="eduadmin">
 	<form action="" method="post">
