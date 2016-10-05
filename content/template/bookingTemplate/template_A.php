@@ -179,6 +179,8 @@ foreach($subPrices as $sp)
 {
 	$sePrice[$sp->OccationID][] = $sp;
 }
+
+$hideSubEventDateInfo = get_option('eduadmin-hideSubEventDateTime', false);
 ?>
 <div class="eduadmin">
 	<form action="" method="post">

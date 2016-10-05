@@ -84,7 +84,7 @@
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
 								" value=\"" . $subEvent->EventID . "\"> " . 
 									$subEvent->Description . 
-									" (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") " .
+									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") ") .
 									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
@@ -176,7 +176,7 @@
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
 								" value=\"" . $subEvent->EventID . "\"> " .
 									$subEvent->Description . 
-									" (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") " .
+									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") ") .
 									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
