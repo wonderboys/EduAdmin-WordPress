@@ -145,6 +145,7 @@ foreach($prices as $price)
 {
 	$uniquePrices[$price->Description] = $price;
 }
+// PriceNameVat
 $firstPrice = current($uniquePrices);
 
 $st = new XSorting();

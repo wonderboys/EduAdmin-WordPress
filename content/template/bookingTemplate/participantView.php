@@ -75,6 +75,7 @@
 								} else {
 									$s = 0;
 								}
+								// PriceNameVat
 								echo "<label>".
 								"<input class=\"subEventCheckBox\" data-price=\"" . $s . "\" onchange=\"eduBookingView.UpdatePrice();\" " .
 									"name=\"contactSubEvent_" . $subEvent->EventID . "\" " .
@@ -166,6 +167,7 @@
 								} else {
 									$s = 0;
 								}
+								// PriceNameVat
 								echo "<label>".
 								"<input class=\"subEventCheckBox\" data-price=\"" . $s . "\" onchange=\"eduBookingView.UpdatePrice();\" " .
 									"name=\"participantSubEvent_" . $subEvent->EventID . "[]\" " .
