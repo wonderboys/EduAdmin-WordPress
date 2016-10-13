@@ -95,6 +95,15 @@ else
 				<?php _e("Customer, contact", "eduadmin"); ?>
 			</label>
 			<br />
+			<h4><?php _e("Sub Events", "eduadmin"); ?></h4>
+			<?php
+				$hideSubEventDateTime = get_option('eduadmin-hideSubEventDateTime', false);
+			?>
+			<label>
+				<input type="checkbox" name="eduadmin-hideSubEventDateTime"<?php echo ($hideSubEventDateTime === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Hide date and time information from sub events", "eduadmin"); ?>
+			</label>
+			<br />
 			<!--<h4><?php _e("Interest registration", "eduadmin"); ?></h4>
 			<?php
 			$allowInterestRegObject = get_option('eduadmin-allowInterestRegObject', false);

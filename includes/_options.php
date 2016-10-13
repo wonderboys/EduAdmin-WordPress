@@ -37,6 +37,7 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-booking', 'eduadmin-fieldOrder');
 	register_setting('eduadmin-booking', 'eduadmin-allowInterestRegObject');
 	register_setting('eduadmin-booking', 'eduadmin-allowInterestRegEvent');
+	register_setting('eduadmin-booking', 'eduadmin-hideSubEventDateTime');
 
 	/* Phrase settings */
 	register_setting('eduadmin-phrases', 'eduadmin-phrases');

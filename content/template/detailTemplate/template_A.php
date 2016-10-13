@@ -255,6 +255,7 @@ else
 		<h3><?php edu_e("Price"); ?></h3>
 		<?php
 			$currency = get_option('eduadmin-currency', 'SEK');
+			// PriceNameVat
 			foreach($uniquePrices as $price) {
 		?>
 		<?php echo sprintf('%1$s: %2$s', $price->Description, convertToMoney($price->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat"); ?><br />
