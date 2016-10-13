@@ -1,3 +1,21 @@
+<?php
+if(isset($_REQUEST['act']) && $_REQUEST['act'] == "clearTransients")
+{
+	global $wpdb;
+
+	$prefix = esc_sql('eduadmin-');
+	$options = $wpdb->options;
+	$t = esc_sql("%transient%$prefix%");
+	$sql = $wpdb->prepare("SELECT option_name FROM $options WHERE option_name LIKE '%s'", $t);
+	$transients = $wpdb->get_col($sql);
+	foreach($transients as $transient) {
+		$key = str_replace('_transient_timeout_', '', $transient);
+		delete_transient($key);
+	}
+
+	wp_cache_flush();
+}
+?>
 <div class="eduadmin wrap">
 	<h2><?php echo sprintf(__("EduAdmin settings - %s", "eduadmin"), __("General", "eduadmin")); ?></h2>
 
@@ -234,6 +252,10 @@ foreach($eduPages as $p)
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_attr_e("Save settings", "eduadmin"); ?>" />
 			</p>
 		</div>
+	</form>
+	<form action="" method="POST">
+		<input type="hidden" name="act" value="clearTransients" />
+		<input type="submit" class="button button-primary" value="<?php esc_attr_e("Clear transients/cache", "eduadmin"); ?>" />
 	</form>
 </div>
 <script type="text/javascript">
