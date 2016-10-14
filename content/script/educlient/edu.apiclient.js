@@ -225,7 +225,7 @@ edu.apiclient = {
 };
 
 (function() {
-	if(jQuery != undefined) {
+	if(typeof jQuery != 'undefined') {
 		jQuery('document').ready(function() { edu.apiclient.parseDocument(); });
 	} else {
 		edu.apiclient.parseDocument();
