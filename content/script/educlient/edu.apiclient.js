@@ -78,6 +78,21 @@ edu.apiclient = {
 			type: 'POST',
 			data: {
 				objectIds: 	objectIds,
+				showcoursedays: 	jQuery('.eduadmin-courselistoptions').data('showcoursedays'),
+				spotsleft: 			jQuery('.eduadmin-courselistoptions').data('spotsleft'),
+				fewspots: 			jQuery('.eduadmin-courselistoptions').data('fewspots'),
+				spotsettings: 		jQuery('.eduadmin-courselistoptions').data('spotsettings'),
+				city: 				jQuery('.eduadmin-courselistoptions').data('city'),
+				category: 			jQuery('.eduadmin-courselistoptions').data('category'),
+				subject: 			jQuery('.eduadmin-courselistoptions').data('subject'),
+				showcoursetimes: 	jQuery('.eduadmin-courselistoptions').data('showcoursetimes'),
+				showcourseprices: 	jQuery('.eduadmin-courselistoptions').data('showcourseprices'),
+				currency: 			jQuery('.eduadmin-courselistoptions').data('currency'),
+				search: 			jQuery('.eduadmin-courselistoptions').data('search'),
+				showimages: 		jQuery('.eduadmin-courselistoptions').data('showimages'),
+				template: 			jQuery('.eduadmin-courselistoptions').data('template'),
+				numberofevents:		jQuery('.eduadmin-courselistoptions').data('numberofevents'),
+				fetchmonths:		jQuery('.eduadmin-courselistoptions').data('fetchmonths'),
 				phrases: 	wp_edu.Phrases
 			},
 			success: function(d) {
@@ -228,6 +243,6 @@ edu.apiclient = {
 	if(typeof jQuery != 'undefined') {
 		jQuery('document').ready(function() { edu.apiclient.parseDocument(); });
 	} else {
-		edu.apiclient.parseDocument();
+		setTimeout(edu.apiclient.parseDocument, 500);
 	}
 })();
