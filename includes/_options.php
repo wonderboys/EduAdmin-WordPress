@@ -96,11 +96,12 @@ function eduadmin_frontend_content()
 		'Phrases' => edu_LoadPhrases(),
 		'ApiKey' => get_option('eduadmin-api-key')
 	));
-	wp_enqueue_script('eduadmin_apiclient_script');
+	wp_enqueue_script('eduadmin_apiclient_script', false, array('jquery'));
 
 	$scriptVersion = filemtime(dirname(__DIR__) . '/content/script/frontendjs.js');
 	wp_register_script('eduadmin_frontend_script', plugins_url('content/script/frontendjs.js', dirname(__FILE__)), false, dateVersion($scriptVersion));
-	wp_enqueue_script('eduadmin_frontend_script');
+	wp_enqueue_script('eduadmin_frontend_script', false, array('jquery'));
+	
 }
 
 function eduadmin_backend_content()
@@ -111,7 +112,7 @@ function eduadmin_backend_content()
 
 	$scriptVersion = filemtime(dirname(__DIR__) . '/content/script/adminjs.js');
 	wp_register_script('eduadmin_admin_script', plugins_url('content/script/adminjs.js', dirname(__FILE__)), false, dateVersion($scriptVersion));
-	wp_enqueue_script('eduadmin_admin_script');
+	wp_enqueue_script('eduadmin_admin_script', false, array('jquery'));
 }
 
 function eduadmin_backend_menu()
