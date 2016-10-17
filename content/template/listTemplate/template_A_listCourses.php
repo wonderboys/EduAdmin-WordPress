@@ -283,6 +283,21 @@ if(!empty($edo))
 	$showDescr = get_option('eduadmin-showCourseDescription', true);
 	$currency = get_option('eduadmin-currency', 'SEK');
 
+	?><div style="display: none;" class="eduadmin-courselistoptions" data-subject="<?php echo @esc_attr($attributes['subject']); ?>"
+	data-category="<?php echo @esc_attr($attributes['category']); ?>"
+	data-city="<?php echo @esc_attr($attributes['city']); ?>"
+	data-spotsleft="<?php echo @get_option('eduadmin-spotsLeft', 'exactNumbers'); ?>"
+	data-spotsettings="<?php echo @get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+"); ?>"
+	data-fewspots="<?php echo @get_option('eduadmin-alwaysFewSpots', "3"); ?>"
+	data-showcoursedays="<?php echo @esc_attr($showCourseDays); ?>"
+	data-showcoursetimes="<?php echo @esc_attr($showCourseTimes); ?>"
+	data-showcourseprices="<?php echo @esc_attr($showEventPrice); ?>"
+	data-currency="<?php echo @esc_attr($currency); ?>"
+	data-search="<?php echo @esc_attr($_REQUEST['searchCourses']); ?>"
+	data-showimages="<?php echo @esc_attr($showImages); ?>"
+	data-numberofevents="<?php echo @esc_attr($attributes['numberofevents']); ?>"
+	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"></div><?php
+
 	foreach($edo as $object)
 	{
 		$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);

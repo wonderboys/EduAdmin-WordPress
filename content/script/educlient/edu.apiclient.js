@@ -7,9 +7,9 @@ edu.apiclient = {
 	CookieBase: 'edu_',
 	parseDocument: function() {
 		if(wp_edu != undefined) {
-			this.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
-			this.courseFolder = wp_edu.CourseFolder;
-			this.authJS(wp_edu.ApiKey, function() {
+			edu.apiclient.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
+			edu.apiclient.courseFolder = wp_edu.CourseFolder;
+			edu.apiclient.authJS(wp_edu.ApiKey, function() {
 				edu.apiclient.replaceLoginWidget();
 				edu.apiclient.replaceEventListWidget();
 				edu.apiclient.replaceCourseListDates();
@@ -50,9 +50,9 @@ edu.apiclient = {
 		}
 	},
 	authJS: function(apiKey, next) {
-		if(this.GetCookie('apiToken') == null || this.GetCookie('apiToken') == '') {
+		if(edu.apiclient.GetCookie('apiToken') == null || edu.apiclient.GetCookie('apiToken') == '') {
 			jQuery.ajax({
-				url: this.baseUrl + '?authenticate',
+				url: edu.apiclient.baseUrl + '?authenticate',
 				type: 'POST',
 				data: {
 					key: apiKey
@@ -64,20 +64,35 @@ edu.apiclient = {
 				}
 			});
 		} else {
-			var t = this.GetCookie('apiToken');
+			var t = edu.apiclient.GetCookie('apiToken');
 			edu.apiclient.authToken = t;
 			next();
 		}
 	},
 	getCourseListDates: function(objectIds) {
 		jQuery.ajax({
-			url: this.baseUrl + '?module=listview_courselist',
+			url: edu.apiclient.baseUrl + '?module=listview_courselist',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
 			},
 			type: 'POST',
 			data: {
 				objectIds: 	objectIds,
+				showcoursedays: 	jQuery('.eduadmin-courselistoptions').data('showcoursedays'),
+				spotsleft: 			jQuery('.eduadmin-courselistoptions').data('spotsleft'),
+				fewspots: 			jQuery('.eduadmin-courselistoptions').data('fewspots'),
+				spotsettings: 		jQuery('.eduadmin-courselistoptions').data('spotsettings'),
+				city: 				jQuery('.eduadmin-courselistoptions').data('city'),
+				category: 			jQuery('.eduadmin-courselistoptions').data('category'),
+				subject: 			jQuery('.eduadmin-courselistoptions').data('subject'),
+				showcoursetimes: 	jQuery('.eduadmin-courselistoptions').data('showcoursetimes'),
+				showcourseprices: 	jQuery('.eduadmin-courselistoptions').data('showcourseprices'),
+				currency: 			jQuery('.eduadmin-courselistoptions').data('currency'),
+				search: 			jQuery('.eduadmin-courselistoptions').data('search'),
+				showimages: 		jQuery('.eduadmin-courselistoptions').data('showimages'),
+				template: 			jQuery('.eduadmin-courselistoptions').data('template'),
+				numberofevents:		jQuery('.eduadmin-courselistoptions').data('numberofevents'),
+				fetchmonths:		jQuery('.eduadmin-courselistoptions').data('fetchmonths'),
 				phrases: 	wp_edu.Phrases
 			},
 			success: function(d) {
@@ -97,7 +112,7 @@ edu.apiclient = {
 	},
 	getCourseEventList: function(target) {
 		jQuery.ajax({
-			url: this.baseUrl + '?module=listview_eventlist',
+			url: edu.apiclient.baseUrl + '?module=listview_eventlist',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
 			},
@@ -129,7 +144,7 @@ edu.apiclient = {
 	},
 	getEventList: function(target) {
 		jQuery.ajax({
-			url: this.baseUrl + '?module=detailinfo_eventlist',
+			url: edu.apiclient.baseUrl + '?module=detailinfo_eventlist',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
 			},
@@ -173,7 +188,7 @@ edu.apiclient = {
 		}
 
 		jQuery.ajax({
-			url: this.baseUrl + '?module=login_widget',
+			url: edu.apiclient.baseUrl + '?module=login_widget',
 			type: 'POST',
 			data: {
 				baseUrl: 		wp_edu.BaseUrl,
@@ -190,7 +205,7 @@ edu.apiclient = {
 	GetCookie: function (name) {
         try {
             var cookie = document.cookie;
-            name = this.CookieBase + name;
+            name = edu.apiclient.CookieBase + name;
             var valueStart = cookie.indexOf(name + "=") + 1;
             if (valueStart === 0) {
                 return null;
@@ -206,7 +221,7 @@ edu.apiclient = {
         return null;
     },
     SetCookie: function (name, value, expire) {
-        var temp = this.CookieBase + name + "=" + escape(value) +
+        var temp = edu.apiclient.CookieBase + name + "=" + escape(value) +
         (expire !== 0 ?
         	"; path=/; expires=" + ((new Date((new Date()).getTime() + expire)).toUTCString()) + ";" :
         	"; path=/;"
@@ -220,14 +235,14 @@ edu.apiclient = {
         return can;
     },
     DelCookie: function (name) {
-        document.cookie = this.CookieBase + name + '=0; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = edu.apiclient.CookieBase + name + '=0; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 };
 
 (function() {
-	if(jQuery != undefined) {
+	if(typeof jQuery != 'undefined') {
 		jQuery('document').ready(function() { edu.apiclient.parseDocument(); });
 	} else {
-		edu.apiclient.parseDocument();
+		setTimeout(edu.apiclient.parseDocument, 500);
 	}
 })();
