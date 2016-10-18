@@ -43,7 +43,7 @@
 				</div>
 			</label>
 			<?php } ?>
-			<?php if(empty($contact->Loginpass)) { ?>
+			<?php if(get_option('eduadmin-useLogin', false) && empty($contact->Loginpass)) { ?>
 			<label>
 				<div class="inputLabel">
 					<?php edu_e("Please enter a password"); ?>

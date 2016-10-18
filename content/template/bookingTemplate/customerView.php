@@ -18,18 +18,18 @@
 			</label>
 			<label>
 				<div class="inputLabel">
-					<?php edu_e("Address"); ?> 1
+					<?php edu_e("Address 1"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerAddress1" placeholder="<?php edu_e("Address"); ?> 1" value="<?php echo @esc_attr($customer->Address1); ?>" />
+					<input type="text" name="customerAddress1" placeholder="<?php edu_e("Address 1"); ?>" value="<?php echo @esc_attr($customer->Address1); ?>" />
 				</div>
 			</label>
 			<label>
 				<div class="inputLabel">
-					<?php edu_e("Address"); ?> 2
+					<?php edu_e("Address 2"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" name="customerAddress2" placeholder="<?php edu_e("Address"); ?> 2" value="<?php echo @esc_attr($customer->Address2); ?>" />
+					<input type="text" name="customerAddress2" placeholder="<?php edu_e("Address 2"); ?>" value="<?php echo @esc_attr($customer->Address2); ?>" />
 				</div>
 			</label>
 			<label>
@@ -60,18 +60,18 @@
 				</label>
 				<label>
 					<div class="inputLabel">
-						<?php edu_e("Address"); ?> 1
+						<?php edu_e("Address 1"); ?>
 					</div>
 					<div class="inputHolder">
-						<input type="text" name="invoiceAddress1" placeholder="<?php edu_e("Address"); ?> 1" value="<?php echo @esc_attr($customer->InvoiceAddress1); ?>" />
+						<input type="text" name="invoiceAddress1" placeholder="<?php edu_e("Address 1"); ?>" value="<?php echo @esc_attr($customer->InvoiceAddress1); ?>" />
 					</div>
 				</label>
 				<label>
 					<div class="inputLabel">
-						<?php edu_e("Address"); ?> 2
+						<?php edu_e("Address 2"); ?>
 					</div>
 					<div class="inputHolder">
-						<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address"); ?> 2" value="<?php echo @esc_attr($customer->InvoiceAddress2); ?>" />
+						<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address 2"); ?>" value="<?php echo @esc_attr($customer->InvoiceAddress2); ?>" />
 					</div>
 				</label>
 				<label>
