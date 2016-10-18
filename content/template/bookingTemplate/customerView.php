@@ -68,10 +68,10 @@
 				</label>
 				<label>
 					<div class="inputLabel">
-						<?php edu_e("Address"); ?> 2
+						<?php edu_e("Address 2"); ?>
 					</div>
 					<div class="inputHolder">
-						<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address"); ?> 2" value="<?php echo @esc_attr($customer->InvoiceAddress2); ?>" />
+						<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address 2"); ?>" value="<?php echo @esc_attr($customer->InvoiceAddress2); ?>" />
 					</div>
 				</label>
 				<label>
