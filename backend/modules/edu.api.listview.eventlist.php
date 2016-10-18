@@ -238,7 +238,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 		?>
 			<div class="objectItem">
 				<?php if($showImages && !empty($object->ImageUrl)) { ?>
-				<div class="objectImage" onclick="location.href = './<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
+				<div class="objectImage" onclick="location.href = '<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>';" style="background-image: url('<?php echo $object->ImageUrl; ?>');"></div>
 				<?php } ?>
 				<div class="objectInfoHolder">
 					<div class="objectName">
