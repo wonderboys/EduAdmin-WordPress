@@ -93,11 +93,10 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 
 		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
-
 		$eventDates = array();
 		foreach($eventDays as $ed)
 		{
-			$eventDates[$ed->EventID][] = $ed->StartDate;
+			$eventDates[$ed->EventID][] = $ed;
 		}
 
 		$ft = new XFiltering();
@@ -189,8 +188,8 @@ if(!function_exists('edu_api_eventlist'))
 				$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
 				$retStr .= '
 				<div class="eventDate' . $groupByCityClass . '">
-					' . (isset($eventDates[$ev->EventID]) ? edu_GetLogicalDateGroups($eventDates[$ev->EventID]) : edu_GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . ',
-					' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
+					' . (isset($eventDates[$ev->EventID]) ? edu_GetLogicalDateGroups($eventDates[$ev->EventID], true, $ev, true) : edu_GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . '
+					' . (!isset($eventDates[$ev->EventID]) ? ', ' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) : '') . '
 				</div>
 				'. (!$groupByCity ?
 				'<div class="eventCity">

@@ -137,5 +137,19 @@
 	"Please fill out the form below to send a inquiry to us about this course.": "Please fill out the form below to send a inquiry to us about this course.",
 	"Thank you for your inquiry! We will be in touch!": "Thank you for your inquiry! We will be in touch!",
 	"No coming events": "No coming events",
-	"Sub events": "Sub events"
+	"Sub events": "Sub events",
+	"monday": "monday",
+	"tuesday": "tuesday",
+	"wednesday": "wednesday",
+	"thursday": "thursday",
+	"friday": "friday",
+	"saturday": "saturday",
+	"sunday": "sunday",
+	"mon": "mon",
+	"tue": "tue",
+	"wed": "wed",
+	"thu": "thu",
+	"fri": "fri",
+	"sat": "sat",
+	"sun": "sun"
 }

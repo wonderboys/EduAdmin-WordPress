@@ -117,11 +117,11 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$ft->AddItem($f);
 
 		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
-
+		
 		$eventDates = array();
 		foreach($eventDays as $ed)
 		{
-			$eventDates[$ed->EventID][] = $ed->StartDate;
+			$eventDates[$ed->EventID][] = $ed;
 		}
 
 		$ft = new XFiltering();
@@ -242,14 +242,14 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 				<?php } ?>
 				<div class="objectInfoHolder">
 					<div class="objectName">
-						<a href="./<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
+						<a href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&", $removeItems); ?>"><?php
 							echo htmlentities($name);
 						?></a>
 					</div>
 					<div class="objectDescription"><?php
 
 				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID]) : edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID], true, $object, true) : edu_GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 				if(!empty($object->City))
 				{

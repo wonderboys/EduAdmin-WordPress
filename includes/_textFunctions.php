@@ -97,34 +97,44 @@ function GetDisplayDate($inDate, $short = true)
 
 	$year = date('Y', strtotime($inDate));
 	$nowYear = date('Y');
-	return '<span style="white-space: nowrap;">' . date('d', strtotime($inDate)) . ' ' . $months[date('n', strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
+	return '<span style="white-space: nowrap;" class="eduadmin-dateText">' . date('d', strtotime($inDate)) . ' ' . $months[date('n', strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
 }
 
-function GetLogicalDateGroups($dates, $short = false)
+function GetLogicalDateGroups($dates, $short = false, $event = null, $showDays = false)
 {
-	$nDates = getRangeFromDays($dates, $short);
+	$nDates = getRangeFromDays($dates, $short, $event, $showDays);
 	return join(", ", $nDates);
 }
 
 // Copied from http://codereview.stackexchange.com/a/83095/27610
-function getRangeFromDays($days, $short) {
+function getRangeFromDays($days, $short, $event, $showDays) {
     sort($days);
     $startDate  = $days[0];
-    $finishDate = array_pop($days);
+    $finishDate = $days[count($days) - 1];
     // walk through the dates, breaking at gaps
     foreach ($days as $key => $date)
-    if (($key > 0) && (strtotime($date)-strtotime($days[$key-1]) > 99999)) {
-      $result[] = GetStartEndDisplayDate($startDate,$days[$key-1], $short);
+    if (($key > 0) && (strtotime($date->StartDate)-strtotime($days[$key-1]->StartDate) > 99999)) {
+      $result[] = GetStartEndDisplayDate($startDate, $days[$key-1], $short, $event, $showDays);
       $startDate = $date;
     }
     // force the end
-    $result[] = GetStartEndDisplayDate($startDate,$finishDate, $short);
+    $result[] = GetStartEndDisplayDate($startDate, $finishDate, $short, $event, $showDays);
   
   return $result;
 }
 
-function GetStartEndDisplayDate($startDate, $endDate, $short = false)
+function GetStartEndDisplayDate($startDate, $endDate, $short = false, $event, $showDays = false)
 {
+	$days = array(
+		1 => !$short ? edu__('monday') : edu__('mon'),
+		2 => !$short ? edu__('tuesday') : edu__('tue'),
+		3 => !$short ? edu__('wednesday') : edu__('wed'),
+		4 => !$short ? edu__('thursday') : edu__('thu'),
+		5 => !$short ? edu__('friday') : edu__('fri'),
+		6 => !$short ? edu__('saturday') : edu__('sat'),
+		7 => !$short ? edu__('sunday') : edu__('sun'),
+	);
+
 	$months = array(
 		1 => !$short ? edu__('january'): edu__('jan'),
 		2 => !$short ? edu__('february') : edu__('feb'),
@@ -140,6 +150,117 @@ function GetStartEndDisplayDate($startDate, $endDate, $short = false)
 		12 => !$short ? edu__('december') : edu__('dec')
 	);
 
+	$startYear = date('Y', strtotime($startDate->StartDate));
+	$startMonth = date('n', strtotime($startDate->StartDate));
+	$endYear = date('Y', strtotime($endDate->EndDate));
+	$endMonth = date('n', strtotime($endDate->EndDate));
+	$nowYear = date('Y');
+	$str =  '<span style="white-space: nowrap;" class="eduadmin-dateText">';
+	if($showDays)
+	{
+		$str .= $days[date('N', strtotime($startDate->StartDate))] . " ";
+	}
+	$str .= date('d', strtotime($startDate->StartDate));
+	if(date('Y-m-d', strtotime($startDate->StartDate)) != date('Y-m-d', strtotime($endDate->EndDate)))
+	{
+		if($startYear === $endYear)
+		{
+			if($startMonth === $endMonth)
+			{
+				if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($startDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($startDate->EndDate)))*/) 
+				{
+					$str .= ' ' . date('H:i', strtotime($startDate->StartDate)) . '-' . date('H:i', strtotime($startDate->EndDate));
+				}
+				$str .= ' - ';
+				if($showDays)
+				{
+					$str .= $days[date('N', strtotime($endDate->EndDate))] . " ";
+				}
+				$str .= date('d', strtotime($endDate->EndDate));
+				$str .= ' ';
+				$str .= $months[date('n', strtotime($startDate->StartDate))];
+				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
+				if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($endDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($endDate->EndDate)))*/) 
+				{
+					$str .= ' ' . date('H:i', strtotime($endDate->StartDate)) . '-' . date('H:i', strtotime($endDate->EndDate));
+				}
+			}
+			else
+			{
+				if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($startDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($startDate->EndDate)))*/) 
+				{
+					$str .= ' ' . date('H:i', strtotime($startDate->StartDate)) . '-' . date('H:i', strtotime($startDate->EndDate));
+				}
+				$str .= ' ';
+				$str .= $months[date('n', strtotime($startDate->StartDate))];
+				$str .= ' - ';
+				if($showDays)
+				{
+					$str .= $days[date('N', strtotime($endDate->EndDate))] . " ";
+				}
+				$str .= date('d', strtotime($endDate->EndDate));
+				$str .= ' ';
+				$str .= $months[date('n', strtotime($endDate->EndDate))];
+				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
+				if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($endDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($endDate->EndDate)))*/) 
+				{
+					$str .= ' ' . date('H:i', strtotime($endDate->StartDate)) . '-' . date('H:i', strtotime($endDate->EndDate));
+				}
+			}
+		}
+		else
+		{
+				$str .= ' ';
+				$str .= $months[date('n', strtotime($startDate->StartDate))];
+				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
+				$str .= ' - ';
+				if($showDays)
+				{
+					$str .= $days[date('N', strtotime($endDate->EndDate))] . " ";
+				}
+				$str .= date('d', strtotime($endDate->EndDate));
+				$str .= ' ';
+				$str .= $months[date('n', strtotime($endDate->EndDate))];
+				$str .= ($nowYear != $endYear ? ' ' . $endYear : '');
+				if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($endDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($endDate->EndDate)))*/) 
+				{
+					$str .= ' ' . date('H:i', strtotime($endDate->StartDate)) . '-' . date('H:i', strtotime($endDate->EndDate));
+				}
+		}
+	}
+	else
+	{
+		$str .= ' ';
+		$str .= $months[date('n', strtotime($startDate->EndDate))];
+		$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
+		if($showDays/* && (date("H:i", strtotime($event->PeriodStart)) != date("H:i", strtotime($startDate->StartDate)) || date("H:i", strtotime($event->PeriodEnd)) != date("H:i", strtotime($startDate->EndDate)))*/) 
+		{
+			$str .= ' ' . date('H:i', strtotime($startDate->StartDate)) . '-' . date('H:i', strtotime($startDate->EndDate));
+		}
+	}
+
+
+	$str .= '</span>';
+
+	return $str;
+}
+
+function GetOldStartEndDisplayDate($startDate, $endDate, $short = false)
+{
+	$months = array(
+		1 => !$short ? edu__('january'): edu__('jan'),
+		2 => !$short ? edu__('february') : edu__('feb'),
+		3 => !$short ? edu__('march') : edu__('mar'),
+		4 => !$short ? edu__('april') : edu__('apr'),
+		5 => !$short ? edu__('may') : edu__('may_short'),
+		6 => !$short ? edu__('june') : edu__('jun'),
+		7 => !$short ? edu__('july') : edu__('jul'),
+		8 => !$short ? edu__('august') : edu__('aug'),
+		9 => !$short ? edu__('september') : edu__('sep'),
+		10 => !$short ? edu__('october') : edu__('oct'),
+		11 => !$short ? edu__('november') : edu__('nov'),
+		12 => !$short ? edu__('december') : edu__('dec')
+	);
 	$startYear = date('Y', strtotime($startDate));
 	$startMonth = date('n', strtotime($startDate));
 	$endYear = date('Y', strtotime($endDate));
@@ -185,10 +306,7 @@ function GetStartEndDisplayDate($startDate, $endDate, $short = false)
 		$str .= $months[date('n', strtotime($startDate))];
 		$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 	}
-
-
 	$str .= '</span>';
-
 	return $str;
 }
 
