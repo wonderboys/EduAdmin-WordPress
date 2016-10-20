@@ -309,7 +309,7 @@ foreach($ede as $object)
 		<div class="objectDescription"><?php
 
 		$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 		if(!empty($object->City))
 		{

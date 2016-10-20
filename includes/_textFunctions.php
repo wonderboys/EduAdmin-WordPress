@@ -103,7 +103,7 @@ function GetDisplayDate($inDate, $short = true)
 function GetLogicalDateGroups($dates, $short = false, $event = null, $showDays = false)
 {
 	$nDates = getRangeFromDays($dates, $short, $event, $showDays);
-	return join(", ", $nDates);
+	return join(" ", $nDates);
 }
 
 // Copied from http://codereview.stackexchange.com/a/83095/27610
