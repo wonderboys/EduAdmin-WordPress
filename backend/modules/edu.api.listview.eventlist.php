@@ -253,7 +253,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 				if(!empty($object->City))
 				{
-					echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+					echo " <span class=\"cityInfo\">" . $object->City . "</span>";
 				}
 
 				if(isset($object->Days) && $object->Days > 0) {
@@ -361,7 +361,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 
 				if(!empty($object->City))
 				{
-					echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+					echo " <span class=\"cityInfo\">" . $object->City . "</span>";
 				}
 
 				if($object->Days > 0) {

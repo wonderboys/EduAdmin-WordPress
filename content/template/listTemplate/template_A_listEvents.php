@@ -314,7 +314,7 @@ foreach($ede as $object)
 
 		if(!empty($object->City))
 		{
-			echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+			echo " <span class=\"cityInfo\">" . $object->City . "</span>";
 		}
 
 		if($object->Days > 0) {
