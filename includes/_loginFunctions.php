@@ -66,7 +66,7 @@ function sendForgottenPassword($email) {
 
 function logoutUser()
 {
-	$surl = get_site_url();
+	$surl = get_home_url();
 	$cat = get_option('eduadmin-rewriteBaseUrl');
 
 	$baseUrl = $surl . '/' . $cat;
@@ -124,7 +124,7 @@ else
 					$loginContact = loginContactPerson($_POST['eduadminloginEmail'], $_POST['eduadminpassword']);
 					if($loginContact)
 					{
-						$surl = get_site_url();
+						$surl = get_home_url();
 						$cat = get_option('eduadmin-rewriteBaseUrl');
 
 						$baseUrl = $surl . '/' . $cat;

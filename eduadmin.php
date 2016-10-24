@@ -44,7 +44,7 @@ include_once("includes/_shortcodes.php");
 if(file_exists(dirname(__FILE__) . "/.official.plugin.php"))
 {
 	include_once(".official.plugin.php");
-    
+
 }
 
 function edu_load_language()
