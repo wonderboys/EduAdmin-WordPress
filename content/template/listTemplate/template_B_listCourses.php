@@ -144,6 +144,9 @@ if(!is_numeric($fetchMonths)) {
 	$fetchMonths = 6;
 }
 
+$f = new XFilter('CustomerID','=','0');
+$filtering->AddItem($f);
+
 $f = new XFilter('PeriodStart','>',date("Y-m-d 00:00:00", strtotime("now +1 day")));
 $filtering->AddItem($f);
 $f = new XFilter('PeriodEnd', '<', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));

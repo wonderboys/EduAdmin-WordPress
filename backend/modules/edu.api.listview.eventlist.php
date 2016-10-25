@@ -97,6 +97,9 @@ if(!function_exists('edu_api_listview_eventlist'))
 			$filtering->AddItem($f);
 		}
 
+		$f = new XFilter('CustomerID','=','0');
+		$filtering->AddItem($f);
+
 		$sorting = new XSorting();
 		$s = new XSort('PeriodStart', 'ASC');
 		$sorting->AddItem($s);

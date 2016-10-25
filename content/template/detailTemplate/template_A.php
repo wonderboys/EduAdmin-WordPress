@@ -65,6 +65,9 @@ else
 	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d H:i:s"));
 	$ft->AddItem($f);
 
+	$f = new XFilter('CustomerID','=','0');
+	$ft->AddItem($f);
+
 	$st = new XSorting();
 	$groupByCity = get_option('eduadmin-groupEventsByCity', FALSE);
 	$groupByCityClass = "";

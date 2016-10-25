@@ -125,6 +125,9 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 		$filtering->AddItem($f);
 	}
 
+	$f = new XFilter('CustomerID','=','0');
+	$filtering->AddItem($f);
+
 	$sorting = new XSorting();
 	$s = new XSort('PeriodStart', 'ASC');
 	$sorting->AddItem($s);
