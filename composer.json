@@ -1,0 +1,9 @@
+{
+  "name": "MultinetInteractive/EduAdmin-WordPress",
+  "description": "EduAdmin - WordPress-plugin",
+  "homepage": "http://www.multinet.se/",
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "~1.0.12"
+  }
+}
