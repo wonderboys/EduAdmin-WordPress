@@ -21,7 +21,6 @@ else
 
 	$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 
-
 	$selectedCourse = false;
 	$name = "";
 	foreach($edo as $object)
@@ -165,9 +164,26 @@ else
 
 		$occIds = Array();
 		$occIds[] = -1;
-		foreach($events as $ev)
+
+		$eventIds = array();
+		$eventIds[] = -1;
+
+		foreach($events as $e)
 		{
-			$occIds[] = $ev->OccationID;
+			$occIds[] = $e->OccationID;
+			$eventIds[] = $e->EventID;
+		}
+
+		$ft = new XFiltering();
+		$f = new XFilter('EventID', 'IN', join(",", $eventIds));
+		$ft->AddItem($f);
+
+		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+		$eventDates = array();
+		foreach($eventDays as $ed)
+		{
+			$eventDates[$ed->EventID][] = $ed;
 		}
 
 		$ft = new XFiltering();
@@ -214,6 +230,7 @@ else
 		data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
 		data-showmore="0"
 		data-groupbycity="<?php echo $groupByCity; ?>"
+		data-fetchmonths="<?php echo $fetchMonths; ?>"
 		<?php echo (isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : ''); ?>>
 	<?php
 	foreach($events as $ev)

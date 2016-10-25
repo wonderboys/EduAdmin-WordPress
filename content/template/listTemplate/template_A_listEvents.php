@@ -190,7 +190,7 @@ $eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
 $eventDates = array();
 foreach($eventDays as $ed)
 {
-	$eventDates[$ed->EventID][] = $ed->StartDate;
+	$eventDates[$ed->EventID][] = $ed;
 }
 
 $ft = new XFiltering();
@@ -310,18 +310,19 @@ foreach($ede as $object)
 			<div class="objectDescription"><?php
 
 		$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID]) : GetStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+		echo isset($eventDates[$object->EventID]) ? GetLogicalDateGroups($eventDates[$object->EventID], true, $object, true) : GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 		if(!empty($object->City))
 		{
-			echo ", <span class=\"cityInfo\">" . $object->City . "</span>";
+			echo " <span class=\"cityInfo\">" . $object->City . "</span>";
 		}
 
 		if($object->Days > 0) {
 			echo
 			"<div class=\"dayInfo\">" .
-				($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
-				($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
+				($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . 
+				($showCourseTimes && $object->StartTime != '' && $object->EndTime != '' && !isset($eventDates[$object->EventID]) ? ', ' : '') : '') .
+				($showCourseTimes && $object->StartTime != '' && $object->EndTime != '' && !isset($eventDates[$object->EventID]) ? date("H:i", strtotime($object->StartTime)) .
 				' - ' .
 				date("H:i", strtotime($object->EndTime)) : '') .
 			"</div>";
