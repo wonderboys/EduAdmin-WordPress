@@ -311,7 +311,7 @@ else
 				<?php
 				if($ev->MaxParticipantNr == 0 ||$spotsLeft > 0) {
 				?>
-					<a class="book-link" href="<?php echo $baseUrl; ?>/book/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
+					<a class="book-link" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/book/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>" style="text-align: center;"><?php edu_e("Book"); ?></a>
 				<?php
 				} else {
 				?>
@@ -319,7 +319,7 @@ else
 				$eventInterestPage = get_option('eduadmin-interestEventPage');
 				if($eventInterestPage != false) {
 				?>
-					<a class="inquiry-link" href="<?php echo $baseUrl; ?>/book/interest/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Inquiry"); ?></a>
+					<a class="inquiry-link" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/book/interest/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Inquiry"); ?></a>
 				<?php
 				}
 				?>
@@ -348,7 +348,7 @@ else
 	?>
 	<br />
 	<div class="inquiry">
-		<a class="inquiry-link" href="<?php echo $baseUrl; ?>/interest/<?php echo edu_getQueryString("?"); ?>"><?php edu_e("Send inquiry about this course"); ?></a>
+		<a class="inquiry-link" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/interest/<?php echo edu_getQueryString("?"); ?>"><?php edu_e("Send inquiry about this course"); ?></a>
 	</div>
 	<?php
 	}
