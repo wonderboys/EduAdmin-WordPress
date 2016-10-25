@@ -396,7 +396,7 @@ function eduadmin_get_detailinfo($attributes)
 
 			 if(isset($attributes['bookurl']))
 			 {
-			 	$surl = get_site_url();
+			 	$surl = get_home_url();
 				$cat = get_option('eduadmin-rewriteBaseUrl');
 				$baseUrl = $surl . '/' . $cat;
 				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
@@ -405,7 +405,7 @@ function eduadmin_get_detailinfo($attributes)
 
 			 if(isset($attributes['courseinquiryurl']))
 			 {
-			 	$surl = get_site_url();
+			 	$surl = get_home_url();
 				$cat = get_option('eduadmin-rewriteBaseUrl');
 				$baseUrl = $surl . '/' . $cat;
 				$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
@@ -509,7 +509,7 @@ function eduadmin_get_detailinfo($attributes)
 					});
 				}
 
-				$surl = get_site_url();
+				$surl = get_home_url();
 				$cat = get_option('eduadmin-rewriteBaseUrl');
 
 				$lastCity = "";
@@ -583,7 +583,7 @@ function eduadmin_get_detailinfo($attributes)
 
 						'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", array('eid')) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 					:
-						($eventInterestPage != false ? '<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&") . '">' . edu_e("Inquiry") . '</a>' : '') . 
+						($eventInterestPage != false ? '<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&") . '">' . edu_e("Inquiry") . '</a>' : '') .
 						'<i class="fullBooked">' . edu__("Full") . '</i>'
 					) . '
 					</div>';
@@ -618,7 +618,7 @@ function eduadmin_get_login_widget($attributes)
 		'eduadmin-loginwidget'
 	);
 
-	$surl = get_site_url();
+	$surl = get_home_url();
 	$cat = get_option('eduadmin-rewriteBaseUrl');
 
 	$baseUrl = $surl . '/' . $cat;

@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$surl = get_site_url();
+$surl = get_home_url();
 $cat = get_option('eduadmin-rewriteBaseUrl');
 $baseUrl = $surl . '/' . $cat;
 

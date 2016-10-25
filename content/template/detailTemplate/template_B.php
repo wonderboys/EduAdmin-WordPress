@@ -11,7 +11,7 @@ if(!$apiKey || empty($apiKey))
 }
 else
 {
-	$surl = get_site_url();
+	$surl = get_home_url();
 	$cat = get_option('eduadmin-rewriteBaseUrl');
 	$baseUrl = $surl . '/' . $cat;
 
