@@ -26,7 +26,10 @@ if(isset($_POST['resetTranslation']))
 	foreach($phrases as $phrase => $translation)
 	{
 		?>
-		<tr><td><?php echo $phrase; ?></td><td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" data-key="<?php echo htmlentities($phrase); ?>" placeholder="<?php echo htmlentities($originalPhrases[$phrase]); ?>" value="<?php echo htmlentities($phrases[$phrase]); ?>" /></td></tr>
+		<tr>
+			<td><?php echo $phrase; ?></td>
+			<td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" data-key="<?php echo htmlentities($phrase); ?>" placeholder="<?php echo htmlentities($originalPhrases[$phrase]); ?>" value="<?php echo htmlentities($phrases[$phrase]); ?>" /></td>
+		</tr>
 		<?php
 	}
 ?>
