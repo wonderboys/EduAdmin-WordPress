@@ -1,8 +1,13 @@
 {
   "name": "MultinetInteractive/EduAdmin-WordPress",
+  "type": "wordpress-plugin",
   "description": "EduAdmin - WordPress-plugin",
   "homepage": "http://www.multinet.se/",
-  "type": "wordpress-plugin",
+  "support": {
+    "issues": "https://github.com/MultinetInteractive/EduAdmin-WordPress/issues"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "composer/installers": "~1.0.12"
   }
