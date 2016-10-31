@@ -56,6 +56,8 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('StatusID','=','1');
 	$ft->AddItem($f);
+	$f = new XFilter('CustomerID','=','0');
+	$ft->AddItem($f);
 
 	$st = new XSorting();
 	$s = new XSort('PeriodStart', 'ASC');
