@@ -42,7 +42,7 @@ include_once("login_tab_header.php");
 		<tr>
 			<td><?php echo getDisplayDate($book->Created, true); ?></td>
 			<td><?php echo $book->EventDescription; ?></td>
-			<td><?php echo GetStartEndDisplayDate($book->PeriodStart, $book->PeriodEnd, true); ?></td>
+			<td><?php echo GetOldStartEndDisplayDate($book->PeriodStart, $book->PeriodEnd, true); ?></td>
 			<td align="right"><?php echo $book->ParticipantNr; ?></td>
 			<td align="right"><?php echo convertToMoney($book->TotalPrice, $currency); ?></td>
 		</tr>

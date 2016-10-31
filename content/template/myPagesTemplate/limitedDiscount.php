@@ -33,7 +33,7 @@ include_once("login_tab_header.php");
 		<?php
 		if(empty($cards)) {
 		?>
-		<tr><td colspan="3" align="center"><i><?php edu_e("You don't have any discount cards registered."); ?></i></td></tr>
+		<tr><td colspan="4" align="center"><i><?php edu_e("You don't have any discount cards registered."); ?></i></td></tr>
 		<?php
 		} else {
 			foreach($cards as $card) {
