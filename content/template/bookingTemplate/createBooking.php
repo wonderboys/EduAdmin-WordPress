@@ -299,7 +299,6 @@ else
 					$subEventInfo->EventID = $subEvent->EventID;
 					$person->SubEvents[] = $subEventInfo;
 				}
-				$person->SubEvents[] = $fieldValue;
 			}
 
 			
