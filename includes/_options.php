@@ -92,6 +92,8 @@ function eduadmin_frontend_content()
 	wp_localize_script('eduadmin_apiclient_script', 'wp_edu',
 	array(
 		'BaseUrl' => get_option('home'),
+		'BaseUrlBackend' => plugins_url('backend', dirname(__FILE__)),
+		'BaseUrlScripts' => plugins_url('content/script', dirname(__FILE__)),
 		'CourseFolder' => get_option('eduadmin-rewriteBaseUrl'),
 		'Phrases' => edu_LoadPhrases(),
 		'ApiKey' => get_option('eduadmin-api-key')
