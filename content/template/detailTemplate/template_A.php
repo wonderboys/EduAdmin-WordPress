@@ -347,7 +347,8 @@ else
 	</div>
 	<?php
 	$objectInterestPage = get_option('eduadmin-interestObjectPage');
-	if($objectInterestPage != false) {
+	$allowInterestRegObject = get_option('eduadmin-allowInterestRegObject', false);
+	if($allowInterestRegObject && $objectInterestPage != false) {
 	?>
 	<br />
 	<div class="inquiry">

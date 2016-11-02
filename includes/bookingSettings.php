@@ -104,7 +104,7 @@ else
 				<?php _e("Hide date and time information from sub events", "eduadmin"); ?>
 			</label>
 			<br />
-			<!--<h4><?php _e("Interest registration", "eduadmin"); ?></h4>
+			<h4><?php _e("Interest registration", "eduadmin"); ?></h4>
 			<?php
 			$allowInterestRegObject = get_option('eduadmin-allowInterestRegObject', false);
 			$allowInterestRegEvent = get_option('eduadmin-allowInterestRegEvent', false);
@@ -118,7 +118,7 @@ else
 				<input type="checkbox" name="eduadmin-allowInterestRegEvent"<?php echo ($allowInterestRegEvent === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
 				<?php _e("Allow interest registration for event", "eduadmin"); ?>
 			</label>
-			<br />-->
+			<br />
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
 			<?php
 			$priceNameSetting = get_option('eduadmin-selectPricename', 'firstPublic');
