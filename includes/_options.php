@@ -95,8 +95,7 @@ function eduadmin_frontend_content()
 		'CourseFolder' => get_option('eduadmin-rewriteBaseUrl'),
 		'Phrases' => edu_LoadPhrases(),
 		'ApiKey' => get_option('eduadmin-api-key'),
-		'PluginsPath' => plugins_url(),
-		'ScriptPath' => plugins_url('content/script', __FILE__)
+		'ScriptBaseUrl' => plugins_url('content/script', dirname(__FILE__))
 	));
 	wp_enqueue_script('eduadmin_apiclient_script', false, array('jquery'));
 
