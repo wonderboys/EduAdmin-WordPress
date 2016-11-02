@@ -7,7 +7,7 @@ edu.apiclient = {
 	CookieBase: 'edu_',
 	parseDocument: function() {
 		if(wp_edu != undefined) {
-			edu.apiclient.baseUrl = wp_edu.BaseUrl + '/wp-content/plugins/eduadmin/backend/edu.api.backend.php';
+			edu.apiclient.baseUrl = wp_edu.BaseUrlBackend + '/edu.api.backend.php';
 			edu.apiclient.courseFolder = wp_edu.CourseFolder;
 			edu.apiclient.authJS(wp_edu.ApiKey, function() {
 				edu.apiclient.replaceLoginWidget();
