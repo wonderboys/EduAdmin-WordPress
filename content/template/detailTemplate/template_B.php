@@ -280,7 +280,8 @@ else
 			?>
 			<?php
 				$eventInterestPage = get_option('eduadmin-interestEventPage');
-				if($eventInterestPage != false) {
+				$allowInterestRegEvent = get_option('eduadmin-allowInterestRegEvent', false);
+				if($allowInterestRegEvent && $eventInterestPage != false) {
 				?>
 					<a class="inquiry-link" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/book/interest/?eid=<?php echo $ev->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Inquiry"); ?></a>
 				<?php

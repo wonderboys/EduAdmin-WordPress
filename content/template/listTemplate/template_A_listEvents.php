@@ -268,6 +268,7 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 		return $nameMatch;
 	});
 }
+print_r($ede);
 ?>
 <div class="eventListTable"
 	data-eduwidget="listview-eventlist"
