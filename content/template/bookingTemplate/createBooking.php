@@ -28,6 +28,7 @@ else
 	$customer->Address2 = trim($_POST['customerAddress2']);
 	$customer->Zip = trim($_POST['customerPostalCode']);
 	$customer->City = trim($_POST['customerPostalCity']);
+	$customer->Email = trim($_POST['customerEmail']);
 	$customer->CustomerReference = trim($_POST['invoiceReference']);
 
 	$purchaseOrderNumber = trim($_POST['purchaseOrderNumber']);

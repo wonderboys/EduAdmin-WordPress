@@ -93,6 +93,14 @@
 			</div>
 			<label>
 				<div class="inputLabel">
+					<?php edu_e("E-mail address"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="customerEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo @esc_attr($customer->Email); ?>" />
+				</div>
+			</label>
+			<label>
+				<div class="inputLabel">
 					<?php edu_e("Invoice reference"); ?>
 				</div>
 				<div class="inputHolder">
