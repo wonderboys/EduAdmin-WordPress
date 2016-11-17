@@ -128,6 +128,9 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('CustomerID','=','0');
 	$filtering->AddItem($f);
 
+	$f = new XFilter('ParentEventID', '=', '0');
+	$filtering->AddItem($f);
+
 	$sorting = new XSorting();
 	$s = new XSort('PeriodStart', 'ASC');
 	$sorting->AddItem($s);
@@ -268,7 +271,6 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 		return $nameMatch;
 	});
 }
-print_r($ede);
 ?>
 <div class="eventListTable"
 	data-eduwidget="listview-eventlist"

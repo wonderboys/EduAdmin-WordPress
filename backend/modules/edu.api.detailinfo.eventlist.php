@@ -55,6 +55,9 @@ if(!function_exists('edu_api_eventlist'))
 		$f = new XFilter('CustomerID','=','0');
 		$ft->AddItem($f);
 
+		$f = new XFilter('ParentEventID', '=', '0');
+		$ft->AddItem($f);
+
 		if(!empty($request['city']))
 		{
 			$f = new XFilter('City', '=', $request['city']);

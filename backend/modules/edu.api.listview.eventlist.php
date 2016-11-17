@@ -100,6 +100,9 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$f = new XFilter('CustomerID','=','0');
 		$filtering->AddItem($f);
 
+		$f = new XFilter('ParentEventID', '=', '0');
+		$filtering->AddItem($f);
+
 		$sorting = new XSorting();
 		$s = new XSort('PeriodStart', 'ASC');
 		$sorting->AddItem($s);
