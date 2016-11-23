@@ -33,6 +33,8 @@ else
 
 	$purchaseOrderNumber = trim($_POST['purchaseOrderNumber']);
 
+	$customerInvoiceEmailAddress = trim($_POST['invoiceEmail']);
+
 	if(!isset($_POST['alsoInvoiceCustomer']))
 	{
 		$customer->InvoiceName = trim($_POST['customerName']);
@@ -159,6 +161,15 @@ else
 			}
 		}
 	}
+
+	if(!empty($customerInvoiceEmailAddress)) 
+	{
+		$cie = new ExtraInfo();
+		$cie->Key = "InvoiceEmail";
+		$cie->Value = $customerInvoiceEmailAddress;
+		$eduapi->SetCustomerExtraInfo($edutoken, $customer->CustomerID, array($cie));
+	}
+
 	$contact = new CustomerContact();
 	$contact->CustomerID = $customer->CustomerID;
 

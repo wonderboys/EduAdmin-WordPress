@@ -90,6 +90,7 @@ $customer = new Customer();
 
 $discountPercent = 0.0;
 $participantDiscountPercent = 0.0;
+$customerInvoiceEmail = "";
 $incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 if(isset($_SESSION['eduadmin-loginUser']))
@@ -113,7 +114,13 @@ if(isset($_SESSION['eduadmin-loginUser']))
 			{
 				$participantDiscountPercent = (double)$info->Value;
 			}
+			else if($info->Key == "CustomerInvoiceEmail" && isset($info->Value))
+			{
+				$customerInvoiceEmail = $info->Value;
+			}
 		}
+
+		#echo "<pre>" . print_r($extraInfo, true) . "</pre>";
 	}
 }
 
