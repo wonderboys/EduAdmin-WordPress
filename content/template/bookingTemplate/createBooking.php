@@ -162,13 +162,13 @@ else
 		}
 	}
 
-	if(!empty($customerInvoiceEmailAddress)) 
+	/*if(!empty($customerInvoiceEmailAddress)) 
 	{
 		$cie = new ExtraInfo();
 		$cie->Key = "InvoiceEmail";
 		$cie->Value = $customerInvoiceEmailAddress;
 		$eduapi->SetCustomerExtraInfo($edutoken, $customer->CustomerID, array($cie));
-	}
+	}*/
 
 	$contact = new CustomerContact();
 	$contact->CustomerID = $customer->CustomerID;
