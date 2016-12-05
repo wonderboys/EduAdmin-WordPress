@@ -73,8 +73,39 @@ if(!function_exists('edu_api_eventlist'))
 			$st->AddItem($s);
 			$groupByCityClass = " noCity";
 		}
-		$s = new XSort('PeriodStart', 'ASC');
-		$st->AddItem($s);
+		
+		$customOrderBy = null;
+		$customOrderByOrder = null;
+		if(!empty($request['orderby']))
+		{
+			$customOrderBy = $request['orderby'];
+		}
+
+		if(!empty($request['order']))
+		{
+			$customOrderByOrder = $request['order'];
+		}
+
+		if($customOrderBy != null) 
+		{
+			$orderby = explode(' ', $customOrderBy);
+			$sortorder = explode(' ', $customOrderByOrder);
+			foreach($orderby as $od => $v)
+			{
+				if(isset($sortorder[$od]))
+					$or = $sortorder[$od];
+				else
+					$or = "ASC";
+				
+				$s = new XSort($v, $or);
+				$st->AddItem($s);
+			}
+		}
+		else 
+		{
+			$s = new XSort('PeriodStart', 'ASC');
+			$st->AddItem($s);
+		}
 
 		$events = $eduapi->GetEvent(
 			$edutoken,

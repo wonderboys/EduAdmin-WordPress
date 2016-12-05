@@ -25,7 +25,10 @@ function eduadmin_get_list_view($attributes)
 			'hidesearch' => false,
 			'onlyevents' => false,
 			'onlyempty' => false,
-			'numberofevents' => null
+			'numberofevents' => null,
+			'mode' => null,
+			'orderby' => null,
+			'order' => null
 		),
 		normalize_empty_atts($attributes),
 		'eduadmin-listview'
@@ -448,8 +451,39 @@ function eduadmin_get_detailinfo($attributes)
 					$st->AddItem($s);
 					$groupByCityClass = " noCity";
 				}
-				$s = new XSort('PeriodStart', 'ASC');
-				$st->AddItem($s);
+				
+				$customOrderBy = null;
+				$customOrderByOrder = null;
+				if(!empty($attributes['orderby']))
+				{
+					$customOrderBy = $attributes['orderby'];
+				}
+
+				if(!empty($attributes['order']))
+				{
+					$customOrderByOrder = $attributes['order'];
+				}
+
+				if($customOrderBy != null) 
+				{
+					$orderby = explode(' ', $customOrderBy);
+					$sortorder = explode(' ', $customOrderByOrder);
+					foreach($orderby as $od => $v)
+					{
+						if(isset($sortorder[$od]))
+							$or = $sortorder[$od];
+						else
+							$or = "ASC";
+						
+						$s = new XSort($v, $or);
+						$st->AddItem($s);
+					}
+				}
+				else 
+				{
+					$s = new XSort('PeriodStart', 'ASC');
+					$st->AddItem($s);
+				}
 
 				$events = $eduapi->GetEvent(
 					$edutoken,
@@ -529,6 +563,8 @@ function eduadmin_get_detailinfo($attributes)
 				(!empty($attributes['courseeventlistfiltercity']) ? ' data-city="' . $attributes['courseeventlistfiltercity'] . '"' : '') .
 				' data-fetchmonths="' . $fetchMonths . '"' .
 				(isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : '') .
+				' data-order="' . $customOrderBy . '"' .
+				' data-orderby="' . $customOrderByOrder . '"' .
 				'>';
 				$i = 0;
 				$hasHiddenDates = false;

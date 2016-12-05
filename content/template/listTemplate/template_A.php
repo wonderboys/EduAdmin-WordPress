@@ -174,12 +174,30 @@ else
 
 	$showImages = get_option('eduadmin-showCourseImage', TRUE);
 
-	if($showEvents)
+	$customOrderBy = null;
+	$customOrderByOrder = null;
+	if(!empty($attributes['orderby']))
+	{
+		$customOrderBy = $attributes['orderby'];
+	}
+
+	if(!empty($attributes['order']))
+	{
+		$customOrderByOrder = $attributes['order'];
+	}
+
+	$customMode = null;
+	if(!empty($attributes['mode']))
+	{
+		$customMode = $attributes['mode'];
+	}
+
+	if($showEvents || $customMode == 'event')
 	{
 		$str = include("template_A_listEvents.php");
 		echo $str;
 	}
-	else
+	else if (!$showEvents || $customMode == 'course')
 	{
 		$str = include("template_A_listCourses.php");
 		echo $str;

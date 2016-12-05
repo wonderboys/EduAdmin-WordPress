@@ -25,6 +25,7 @@ else
 						<select name="eduadmin-listTemplate">
 							<option value="template_A"<?php echo (get_option('eduadmin-listTemplate') === "template_A" ? " selected=\"selected\"" : ""); ?>>Layout A</option>
 							<option value="template_B"<?php echo (get_option('eduadmin-listTemplate') === "template_B" ? " selected=\"selected\"" : ""); ?>>Layout B</option>
+							<option value="template_GF"<?php echo (get_option('eduadmin-listTemplate') === "template_GF" ? " selected=\"selected\"" : ""); ?>>Layout GF</option>
 						</select>
 						<h3><?php _e("List settings", "eduadmin"); ?></h3>
 						<label>

@@ -104,8 +104,39 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$filtering->AddItem($f);
 
 		$sorting = new XSorting();
-		$s = new XSort('PeriodStart', 'ASC');
-		$sorting->AddItem($s);
+
+		$customOrderBy = null;
+		$customOrderByOrder = null;
+		if(!empty($request['orderby']))
+		{
+			$customOrderBy = $request['orderby'];
+		}
+
+		if(!empty($request['order']))
+		{
+			$customOrderByOrder = $request['order'];
+		}
+
+		if($customOrderBy != null) 
+		{
+			$orderby = explode(' ', $customOrderBy);
+			$sortorder = explode(' ', $customOrderByOrder);
+			foreach($orderby as $od => $v)
+			{
+				if(isset($sortorder[$od]))
+					$or = $sortorder[$od];
+				else
+					$or = "ASC";
+				
+				$s = new XSort($v, $or);
+				$sorting->AddItem($s);
+			}
+		}
+		else 
+		{
+			$s = new XSort('PeriodStart', 'ASC');
+			$sorting->AddItem($s);
+		}
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 

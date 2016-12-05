@@ -131,9 +131,26 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('ParentEventID', '=', '0');
 	$filtering->AddItem($f);
 
-	$sorting = new XSorting();
-	$s = new XSort('PeriodStart', 'ASC');
-	$sorting->AddItem($s);
+	if($customOrderBy != null) 
+	{
+		$orderby = explode(' ', $customOrderBy);
+		$sortorder = explode(' ', $customOrderByOrder);
+		foreach($orderby as $od => $v)
+		{
+			if(isset($sortorder[$od]))
+				$or = $sortorder[$od];
+			else
+				$or = "ASC";
+			
+			$s = new XSort($v, $or);
+			$sorting->AddItem($s);
+		}
+	}
+	else 
+	{
+		$s = new XSort('PeriodStart', 'ASC');
+		$sorting->AddItem($s);
+	}
 
 	$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 	#if(count($filterCourses) == 0)
@@ -290,6 +307,8 @@ $currency = get_option('eduadmin-currency', 'SEK');
 	data-showimages="<?php echo @esc_attr($showImages); ?>"
 	data-numberofevents="<?php echo @esc_attr($attributes['numberofevents']); ?>"
 	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"
+	data-orderby="<?php echo @esc_attr($attributes['orderby']); ?>"
+	data-order="<?php echo @esc_attr($attributes['order']); ?>"
 ><?php
 
 $numberOfEvents = $attributes['numberofevents'];

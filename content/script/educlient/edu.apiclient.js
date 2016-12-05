@@ -93,6 +93,8 @@ edu.apiclient = {
 				template: 			jQuery('.eduadmin-courselistoptions').data('template'),
 				numberofevents:		jQuery('.eduadmin-courselistoptions').data('numberofevents'),
 				fetchmonths:		jQuery('.eduadmin-courselistoptions').data('fetchmonths'),
+				orderby:			jQuery('.eduadmin-courselistoptions').data('orderby'),
+				order:				jQuery('.eduadmin-courselistoptions').data('order'),
 				phrases: 	wp_edu.Phrases
 			},
 			success: function(d) {
@@ -135,6 +137,8 @@ edu.apiclient = {
 				template: 			jQuery(target).data('template'),
 				numberofevents:		jQuery(target).data('numberofevents'),
 				fetchmonths:		jQuery(target).data('fetchmonths'),
+				orderby:			jQuery(target).data('orderby'),
+				order:				jQuery(target).data('order'),
 				phrases: wp_edu.Phrases
 			},
 			success: function(d) {

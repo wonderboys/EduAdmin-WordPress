@@ -132,8 +132,27 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$filtering->AddItem($f);
 
 	$sorting = new XSorting();
-	$s = new XSort('PeriodStart', 'ASC');
-	$sorting->AddItem($s);
+
+	if($customOrderBy != null) 
+	{
+		$orderby = explode(' ', $customOrderBy);
+		$sortorder = explode(' ', $customOrderByOrder);
+		foreach($orderby as $od => $v)
+		{
+			if(isset($sortorder[$od]))
+				$or = $sortorder[$od];
+			else
+				$or = "ASC";
+			
+			$s = new XSort($v, $or);
+			$sorting->AddItem($s);
+		}
+	}
+	else 
+	{
+		$s = new XSort('PeriodStart', 'ASC');
+		$sorting->AddItem($s);
+	}
 
 	$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 }
@@ -208,20 +227,20 @@ $pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
 set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 
-	if(!empty($pricenames))
-	{
-		$ede = array_filter($ede, function($object) {
-			$pn = get_transient('eduadmin-publicpricenames');
-			foreach($pn as $subj)
+if(!empty($pricenames))
+{
+	$ede = array_filter($ede, function($object) {
+		$pn = get_transient('eduadmin-publicpricenames');
+		foreach($pn as $subj)
+		{
+			if($object->OccationID == $subj->OccationID)
 			{
-				if($object->OccationID == $subj->OccationID)
-				{
-					return true;
-				}
+				return true;
 			}
-			return false;
-		});
-	}
+		}
+		return false;
+	});
+}
 
 $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
@@ -289,6 +308,8 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	data-showimages="<?php echo @esc_attr($showImages); ?>"
 	data-numberofevents="<?php echo @esc_attr($attributes['numberofevents']); ?>"
 	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"
+	data-orderby="<?php echo @esc_attr($attributes['orderby']); ?>"
+	data-order="<?php echo @esc_attr($attributes['order']); ?>"
 >
 <?php
 

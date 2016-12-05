@@ -67,7 +67,7 @@ else
 			$f = new XFilter('InvoiceOrgnr', '=', $customer->InvoiceOrgnr);
 			$ft->AddItem($f);
 		}
-		$f = new XFilter('Zip', '=', $customer->Zip);
+		$f = new XFilter('Zip', '=', str_replace(" ", "", $customer->Zip));
 		$ft->AddItem($f);
 		$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 		if(empty($matchingCustomer))
@@ -95,7 +95,7 @@ else
 			$f = new XFilter('InvoiceOrgnr', '=', $customer->InvoiceOrgnr);
 			$ft->AddItem($f);
 		}
-		$f = new XFilter('Zip', '=', $customer->Zip);
+		$f = new XFilter('Zip', '=', str_replace(" ", "", $customer->Zip));
 		$ft->AddItem($f);
 		$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 		if(empty($matchingCustomer))
@@ -144,7 +144,7 @@ else
 					$f = new XFilter('InvoiceOrgnr', '=', $customer->InvoiceOrgnr);
 					$ft->AddItem($f);
 				}
-				$f = new XFilter('Zip', '=', $customer->Zip);
+				$f = new XFilter('Zip', '=', str_replace(" ", "", $customer->Zip));
 				$ft->AddItem($f);
 				$matchingCustomer = $eduapi->GetCustomer($edutoken, '', $ft->ToString(), false);
 				if(empty($matchingCustomer))
