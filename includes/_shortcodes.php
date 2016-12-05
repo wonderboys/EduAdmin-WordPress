@@ -137,7 +137,9 @@ function eduadmin_get_detailinfo($attributes)
 			'courseeventlistfiltercity' => null,
 			'pagetitlejs' => null,
 			'bookurl' => null,
-			'courseinquiryurl' => null
+			'courseinquiryurl' => null,
+			'order' => null,
+			'orderby' => null
 			//'coursesubject' => null
 		),
 		normalize_empty_atts($attributes),
