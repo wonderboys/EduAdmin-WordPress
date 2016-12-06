@@ -425,9 +425,9 @@ function eduadmin_get_detailinfo($attributes)
 				}
 
 			 	$ft = new XFiltering();
-				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
+				$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", strtotime('now +'. $fetchMonths . ' months')));
 				$ft->AddItem($f);
-				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +'. $fetchMonths . ' months')));
+				$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 				$ft->AddItem($f);
 				$f = new XFilter('ShowOnWeb', '=', 'true');
 				$ft->AddItem($f);
