@@ -162,8 +162,26 @@ if(!empty($objIds))
 }
 
 $sorting = new XSorting();
-$s = new XSort('PeriodStart', 'ASC');
-$sorting->AddItem($s);
+if($customOrderBy != null) 
+{
+	$orderby = explode(' ', $customOrderBy);
+	$sortorder = explode(' ', $customOrderByOrder);
+	foreach($orderby as $od => $v)
+	{
+		if(isset($sortorder[$od]))
+			$or = $sortorder[$od];
+		else
+			$or = "ASC";
+		
+		$s = new XSort($v, $or);
+		$sorting->AddItem($s);
+	}
+}
+else 
+{
+	$s = new XSort('PeriodStart', 'ASC');
+	$sorting->AddItem($s);
+}
 
 $ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 
