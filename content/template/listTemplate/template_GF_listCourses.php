@@ -243,7 +243,7 @@ set_transient('eduadmin-publicobjectpricenames', $pricenames, HOUR_IN_SECONDS);
 if(!empty($pricenames))
 {
 	$ede = array_filter($ede, function($object) {
-		$pn = get_transient('eduadmin-publicpricenames');
+		$pn = get_transient('eduadmin-publicobjectpricenames');
 		foreach($pn as $subj)
 		{
 			if($object->OccationID == $subj->OccationID)
@@ -310,11 +310,14 @@ if(!empty($edo))
 
 	foreach($edo as $object => $item)
 	{
-		$categories[$object] = $item->CategoryName;
+		$categories[$object] = strtolower($item->CategoryName);
+		$name = strtolower(!empty($item->PublicName) ? $item->PublicName : $item->ObjectName);
+		$objectNames[$object] = $name;
 	}
 
+	
 	#echo "<pre>" . print_r($edo, true) . "</pre>";
-	array_multisort($categories, SORT_ASC, $edo);
+	array_multisort($categories, SORT_ASC, SORT_STRING, $objectNames, SORT_ASC, SORT_NATURAL, $edo);
 	foreach($edo as $object)
 	{
 
@@ -377,16 +380,6 @@ if(!empty($edo))
 			<?php	
 			$cats[] = $object->CategoryName;
 		}
-
-		$st = new XSorting();
-		if($groupByCity)
-		{
-			$s = new XSort('City', 'ASC');
-			$st->AddItem($s);
-		}
-		$s = new XSort('PeriodStart', 'ASC');
-		$st->AddItem($s);
-
 ?>
 	<tr class="GFObjectItem" data-objectid="<?php echo $object->ObjectID; ?>">
 		<td class="GFObjectName">
