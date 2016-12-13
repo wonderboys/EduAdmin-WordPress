@@ -249,24 +249,21 @@ foreach($ede as $e)
 	$occIds[] = $e->OccationID;
 }
 
-$pricenames = get_transient('eduadmin-publicobjectpricenames');
-if(!$pricenames)
-{
-	$ft = new XFiltering();
-	$f = new XFilter('PublicPriceName', '=', 'true');
-	$ft->AddItem($f);
-
-	$pricenames = $eduapi->GetObjectPriceName($edutoken,'',$ft->ToString());
-	set_transient('eduadmin-publicobjectpricenames', $pricenames, HOUR_IN_SECONDS);
-}
+$ft = new XFiltering();
+$f = new XFilter('PublicPriceName', '=', 'true');
+$ft->AddItem($f);
+$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+$ft->AddItem($f);
+$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
+set_transient('eduadmin-publicpricenames', $pricenames, HOUR_IN_SECONDS);
 
 if(!empty($pricenames))
 {
-	$ede = array_filter($ede, function($object) use (&$pricenames) {
-		$pn = $pricenames;
+	$ede = array_filter($ede, function($object) {
+		$pn = get_transient('eduadmin-publicpricenames');
 		foreach($pn as $subj)
 		{
-			if($object->ObjectID == $subj->ObjectID)
+			if($object->OccationID == $subj->OccationID)
 			{
 				return true;
 			}
