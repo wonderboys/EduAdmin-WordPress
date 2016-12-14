@@ -234,9 +234,9 @@ if(!function_exists('edu_api_eventlist'))
 					' . $ev->City . '
 				</div>' : '') .
 				'<div class="eventStatus' . $groupByCityClass . '">
-				' .
+				<span class="spotsLeftInfo">' .
 					edu_getSpotsLeft($spotsLeft, $ev->MaxParticipantNr, $spotLeftOption, $spotSettings, $alwaysFewSpots)
-				 . '
+				 . '</span>
 				</div>
 				<div class="eventBook' . $groupByCityClass . '">
 				' .

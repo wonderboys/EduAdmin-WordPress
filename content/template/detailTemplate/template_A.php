@@ -307,7 +307,7 @@ else
 				<div class="eventStatus<?php echo $groupByCityClass; ?>">
 				<?php
 					$spotsLeft = ($ev->MaxParticipantNr - $ev->TotalParticipantNr);
-					echo getSpotsLeft($spotsLeft, $ev->MaxParticipantNr);
+					echo "<span class=\"spotsLeftInfo\">" . getSpotsLeft($spotsLeft, $ev->MaxParticipantNr) . "</span>";
 				?>
 				</div>
 				<div class="eventBook<?php echo $groupByCityClass; ?>">

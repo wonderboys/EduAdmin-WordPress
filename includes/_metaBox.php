@@ -5,6 +5,9 @@
 	</span>
 	<div class="eduadmin-attributelist">
 		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Sets which template to use in the listview (template_A, template_B, template_GF)", "eduadmin"); ?>">template</span>
+		</div>
+		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("Filters the course list by category (Insert category ID)", "eduadmin"); ?>">category</span>
 		</div>
 		<div class="eduadmin-attribute">
@@ -18,6 +21,18 @@
 		</div>
 		<div class="eduadmin-attribute">
 			<span title="<?php esc_attr_e("Only shows courses that do not have events", "eduadmin"); ?>">onlyempty</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Tells the list how many items to show at max", "eduadmin"); ?>">numberofevents</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Sets which mode you want to use in the list view (event, course)", "eduadmin"); ?>">mode</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Only shows courses that do not have events", "eduadmin"); ?>">orderby</span>
+		</div>
+		<div class="eduadmin-attribute">
+			<span title="<?php esc_attr_e("Only shows courses that do not have events", "eduadmin"); ?>">order</span>
 		</div>
 	</div>
 </div>
@@ -144,4 +159,7 @@
 			<span title="<?php esc_attr_e("Gets the URL that is used to send the inquiry form for a course", "eduadmin"); ?>">courseinquiryurl</span>
 		</div>
 	</div>
+	<hr />
+	<?php _e("For more information about our shortcodes and attributes, check our GitHub-page"); ?><br />
+	<a href="https://github.com/MultinetInteractive/EduAdmin-WordPress/wiki" target="_blank">GitHub EduAdmin</a>
 </div>

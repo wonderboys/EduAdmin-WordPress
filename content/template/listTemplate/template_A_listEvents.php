@@ -359,7 +359,8 @@ foreach($ede as $object)
 		if($showEventPrice) {
 			echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($object->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 		}
-		echo getSpotsLeft($spotsLeft, $object->MaxParticipantNr)
+		
+		echo "<span class=\"spotsLeftInfo\">" . getSpotsLeft($spotsLeft, $object->MaxParticipantNr) . "</span>";
 
 
 ?></div>

@@ -353,7 +353,8 @@ foreach($ede as $object)
 		if($showEventPrice) {
 			echo "<div class=\"priceInfo\">" . sprintf(edu__('From %1$s'), convertToMoney($object->Price, $currency)) . " " . edu__($incVat ? "inc vat" : "ex vat") . "</div> ";
 		}
-		echo '<br />' . getSpotsLeft($spotsLeft, $object->MaxParticipantNr);
+		echo '<br />';
+		echo "<span class=\"spotsLeftInfo\">" . getSpotsLeft($spotsLeft, $object->MaxParticipantNr) . "</span>";
 ?></div>
 		<div class="objectBook">
 			<a class="readMoreButton" href="<?php echo $baseUrl; ?>/<?php echo makeSlugs($name); ?>__<?php echo $object->ObjectID; ?>/?eid=<?php echo $object->EventID; ?><?php echo edu_getQueryString("&"); ?>"><?php edu_e("Read more"); ?></a>

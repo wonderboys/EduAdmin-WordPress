@@ -20,7 +20,7 @@ function loginContactPerson($email, $password)
 		$filter = new XFiltering();
 		$f = new XFilter('CustomerID', '=', $contact->CustomerID);
 		$filter->AddItem($f);
-		$customers = $eduapi->GetCustomer($edutoken, '', $filter->ToString(), true);
+		$customers = $eduapi->GetCustomerV2($edutoken, '', $filter->ToString(), true);
 		if(count($customers) == 1)
 		{
 			$customer = $customers[0];

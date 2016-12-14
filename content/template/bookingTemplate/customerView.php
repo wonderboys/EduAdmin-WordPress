@@ -99,14 +99,14 @@
 					<input type="text" name="customerEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo @esc_attr($customer->Email); ?>" />
 				</div>
 			</label>
-			<!--<label>
+			<label>
 				<div class="inputLabel">
 					<?php edu_e("Invoice e-mail address"); ?>
 				</div>
 				<div class="inputHolder">
 					<input type="text" name="invoiceEmail" placeholder="<?php edu_e("Invoice e-mail address"); ?>" value="<?php echo @esc_attr($customerInvoiceEmail); ?>" />
 				</div>
-			</label>-->
+			</label>
 			<label>
 				<div class="inputLabel">
 					<?php edu_e("Invoice reference"); ?>
