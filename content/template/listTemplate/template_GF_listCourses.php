@@ -405,7 +405,7 @@ if(!empty($edo))
 					echo '<td></td>';
 				}
 			} else {
-				echo '<td colspan="4"></td>';
+				echo '<td></td><td></td><td></td><td></td>';
 			}
 		?>
 		<td class="GFObjectBook">

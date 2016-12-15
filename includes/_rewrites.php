@@ -63,6 +63,6 @@ function eduadmin_rewrite_init($rewrites)
 	return $rewrites;
 }
 
-//add_action('init', 'eduadmin_rewrite_init');
-add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
+add_action('init', 'eduadmin_rewrite_init');
+//add_filter('option_rewrite_rules', 'eduadmin_rewrite_init', 5);
 ?>
