@@ -2,7 +2,7 @@
 $eventId = $_REQUEST['eid'];
 $requiredFields = array();
 $requiredFields[] = 'customerName';
-
+error_reporting(E_ALL);
 $missingFields = false;
 foreach($requiredFields as $field)
 {
@@ -20,6 +20,7 @@ if($missingFields)
 }
 else
 {
+	$eduapi->debug = true;
 	$customer = new CustomerV2();
 	$customer->CustomerName = trim($_POST['customerName']);
 	$customer->CustomerGroupID = get_option('eduadmin-customerGroupId', NULL);
@@ -166,8 +167,6 @@ else
 			}
 		}
 	}
-
-	
 
 	$contact = new CustomerContact();
 	$contact->CustomerID = $customer->CustomerID;

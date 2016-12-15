@@ -14,7 +14,7 @@
       $this->__server = new SoapClient(
         ServiceUrl,
         array(
-          'trace' => 0,
+          'trace' => 1,
           'cache_wsdl' => WSDL_CACHE_BOTH
         )
       );
@@ -3077,7 +3077,7 @@ class CustomerV2 {
       $this->CanLogin = null;
       $this->DiscountPercent = null;
       $this->ParticipantDiscountPercent = null;
-      $this->NotCreditworthy = null;
+      $this->NotCreditworthy = false;
       $this->CustomerID = 0;
       $this->CustomerGroupID = null;
       $this->VatFree = null;
