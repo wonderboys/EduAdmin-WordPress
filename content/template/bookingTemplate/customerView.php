@@ -48,6 +48,14 @@
 					<input type="text" name="customerPostalCity" placeholder="<?php edu_e("Postal city"); ?>" value="<?php echo @esc_attr($customer->City); ?>" />
 				</div>
 			</label>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("E-mail address"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="customerEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo @esc_attr($customer->Email); ?>" />
+				</div>
+			</label>
 			<div id="invoiceView" class="invoiceView" style="display: none;">
 				<h2><?php edu_e("Invoice information"); ?></h2>
 				<label>
@@ -91,14 +99,6 @@
 					</div>
 				</label>
 			</div>
-			<label>
-				<div class="inputLabel">
-					<?php edu_e("E-mail address"); ?>
-				</div>
-				<div class="inputHolder">
-					<input type="text" name="customerEmail" placeholder="<?php edu_e("E-mail address"); ?>" value="<?php echo @esc_attr($customer->Email); ?>" />
-				</div>
-			</label>
 			<label>
 				<div class="inputLabel">
 					<?php edu_e("Invoice e-mail address"); ?>
