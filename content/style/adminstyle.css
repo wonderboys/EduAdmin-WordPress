@@ -51,3 +51,20 @@
 	display: none;
 }
 
+.eduadmin .eduWindow {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	background-color: #FFF;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.eduadmin .eduWindow table tr th {
+	border-bottom: 1px solid #9c9c9c;
+}
+
+.eduadmin .eduWindow table tr:nth-child(even) {
+	background-color: #f0f0f0;
+}

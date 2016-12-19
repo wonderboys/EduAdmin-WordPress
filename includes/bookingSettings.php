@@ -119,6 +119,9 @@ else
 				<?php _e("Allow interest registration for event", "eduadmin"); ?>
 			</label>
 			<br />
+			<h4><?php _e("Form settings", "eduadmin"); ?></h4>
+			<button class="button" onclick="showFormWindow(); return false;">Show settings</button>
+			<br />
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
 			<?php
 			$priceNameSetting = get_option('eduadmin-selectPricename', 'firstPublic');
@@ -355,6 +358,71 @@ else
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
 			</p>
+			<div id="edu-formSettings" class="eduWindow">
+				<h3 style="margin-top: 0;">Form settings</h3>
+				<table>
+					<tr>
+						<td valign="top">
+							<h4 style="margin: 0;">Customer fields</h4>
+							<table cellspacing="0" cellpadding="3" width="100%">
+								<tr><th>Field name</th><th>Required</th><th>Visible</th></tr>
+								<tr><td>Customer name</td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td></tr>
+								<tr><td>Org.No.</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Address 1</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Address 2</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Postal code</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Postal city</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>E-mail address</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+							</table>
+							<br />
+							<h4 style="margin: 0;">Invoice fields</h4>
+							<table cellspacing="0" cellpadding="3" width="100%">
+								<tr><th>Field name</th><th>Required</th><th>Visible</th></tr>
+								<tr><td>Customer name</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td></tr>
+								<tr><td>Address 1</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Address 2</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Postal code</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Postal city</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Invoice e-mail address</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Invoice reference</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Purchase order number</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+							</table>
+						</td>
+						<td valign="top">
+							<h4 style="margin: 0;">Contact fields</h4>
+							<table cellspacing="0" cellpadding="3" width="100%">
+								<tr><th>Field name</th><th>Required</th><th>Visible</th></tr>
+								<tr><td>Contact name</td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td></tr>
+								<tr><td>E-mail address</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Phone number</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Mobile number</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+							</table>
+							<br />
+							<h4 style="margin: 0;">Participant fields</h4>
+							<table cellspacing="0" cellpadding="3" width="100%">
+								<tr><th>Field name</th><th>Required</th><th>Visible</th></tr>
+								<tr><td>Participant name</td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td><td align="center"><input type="checkbox" disabled readonly checked value="1" /></td></tr>
+								<tr><td>E-mail address</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Phone number</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+								<tr><td>Mobile number</td><td align="center"><input type="checkbox" value="1" /></td><td align="center"><input type="checkbox" checked value="1" /></td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<p class="submit">
+					<input type="submit" name="submit2" id="submit2" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
+					<button class="button button-primary" onclick="hideFormWindow(); return false;"><?php echo __("Close", "eduadmin"); ?></button>
+				</p>
+			</div>
+			<script type="text/javascript">
+			function showFormWindow() {
+				jQuery('#edu-formSettings').show();
+			}
+
+			function hideFormWindow() {
+				jQuery('#edu-formSettings').hide();
+			}
+			</script>
 <?php } ?>
 		</div>
 	</form>
