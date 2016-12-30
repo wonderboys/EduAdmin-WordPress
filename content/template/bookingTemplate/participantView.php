@@ -102,8 +102,8 @@
 							<?php edu_e("Participant name"); ?>
 						</div>
 						<div class="inputHolder">
-							<input type="text" style="width: 49%; display: inline-block;" class="participantFirstName" name="participantFirstName[]" placeholder="<?php edu_e("Participant first name"); ?>" />
-							<input type="text" style="width: 49%; display: inline-block; float: right;" class="participantLastName" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
+							<input type="text" style="width: 48%; display: inline;" class="participantFirstName" name="participantFirstName[]" placeholder="<?php edu_e("Participant first name"); ?>" />
+							<input type="text" style="width: 48%; display: inline;" class="participantLastName" name="participantLastName[]" placeholder="<?php edu_e("Participant surname"); ?>" />
 						</div>
 					</label>
 					<label>
