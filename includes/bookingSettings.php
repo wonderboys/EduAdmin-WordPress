@@ -120,7 +120,7 @@ else
 			</label>
 			<br />
 			<h4><?php _e("Form settings", "eduadmin"); ?></h4>
-			<button class="button" onclick="showFormWindow(); return false;">Show settings</button>
+			<button class="button" disabled onclick="showFormWindow(); return false;"><?php _e("Show settings", "eduadmin"); ?></button>
 			<br />
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
 			<?php
@@ -358,7 +358,7 @@ else
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __("Save settings", "eduadmin"); ?>" />
 			</p>
-			<div id="edu-formSettings" class="eduWindow">
+			<div id="edu-formSettings" class="eduWindow" style="display: none;">
 				<h3 style="margin-top: 0;">Form settings</h3>
 				<table>
 					<tr>
