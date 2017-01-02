@@ -27,11 +27,19 @@ function edu_LoadPhrases()
 		set_transient('eduadmin-phrases', $phrases, DAY_IN_SECONDS);
 	}
 
-	$_SESSION['eduadmin-phrases'] = $phrases;
-	
-	if(is_array($phrases)) return $phrases;
+	$nPhrases = array();
+	foreach($phrases as $p => $ph)
+	{
+		$nPhrases[$p] = new stdClass;
+		$nPhrases[$p]->OldPhrase = $ph;
+		$nPhrases[$p]->NewPhrase = __($p, "eduadmin");
+	}
 
-	return (array)$phrases;
+	$_SESSION['eduadmin-phrases'] = $nPhrases;
+	
+	if(is_array($nPhrases)) return $nPhrases;
+
+	return (array)$nPhrases;
 }
 
 function edu__($key)
@@ -44,7 +52,10 @@ function edu__($key)
 		update_option('eduadmin-phrases', json_encode($phrases));
 	}
 
-	return $phrases[$key];
+	if($phrases[$key] != $key)
+		return $phrases[$key];
+
+	return __($key, "eduadmin"); //$phrases[$key];
 }
 
 function edu_e($key)
