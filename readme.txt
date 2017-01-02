@@ -1,4 +1,15 @@
+=== EduAdmin WordPress-plugin ===
+Tags: booking, participants, courses, events, eduadmin, lega online
+Requires at least: 3.0
+Tested up to: 4.7
+License: GPL3
+
+EduAdmin plugin to allow visitors to book courses at your website.
+
 == Changelog ==
+
+= 0.9.9.2.34 =
+* Adding support for the WPML-plugin
 
 = 0.9.9.2.25 =
 * Added GF-course view (Hard coded with cities)

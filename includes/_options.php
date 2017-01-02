@@ -91,7 +91,7 @@ function eduadmin_frontend_content()
 	wp_register_script('eduadmin_apiclient_script', plugins_url('content/script/educlient/edu.apiclient.js', dirname(__FILE__)), false, dateVersion($scriptVersion));
 	wp_localize_script('eduadmin_apiclient_script', 'wp_edu',
 	array(
-		'BaseUrl' => get_option('home'),
+		'BaseUrl' => home_url(),
 		'BaseUrlBackend' => plugins_url('backend', dirname(__FILE__)),
 		'BaseUrlScripts' => plugins_url('content/script', dirname(__FILE__)),
 		'CourseFolder' => get_option('eduadmin-rewriteBaseUrl'),

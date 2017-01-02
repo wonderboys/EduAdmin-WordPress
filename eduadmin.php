@@ -12,7 +12,7 @@ if(!session_id())
  * Tags:	booking, participants, courses, events, eduadmin, lega online
  * Version:	0.9.9.2.33
  * Requires at least: 3.0
- * Tested up to: 4.6.1
+ * Tested up to: 4.7
  * Author:	Chris Gårdenberg, MultiNet Interactive AB
  * Author URI:	http://www.multinet.se
  * License:	GPL3
