@@ -39,7 +39,7 @@ if(isset($_POST['resetTranslation']))
 			</table>
 			<p class="submit">
 				<input type="submit" disabled name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__("Save settings", "eduadmin"); ?>" />
-				<input type="button" disabled onclick="var c = confirm('<?php _e("Are you sure you want to reset the translation?", "eduadmin"); ?>'); if (c) { var f = document.getElementById('resetForm').submit(); } else { return false; }" class="button button-secondary" value="<?php echo esc_attr__("Reset translations", "eduadmin"); ?>" />
+				<input type="button" onclick="var c = confirm('<?php _e("Are you sure you want to reset the translation?", "eduadmin"); ?>'); if (c) { var f = document.getElementById('resetForm').submit(); } else { return false; }" class="button button-secondary" value="<?php echo esc_attr__("Reset translations", "eduadmin"); ?>" />
 			</p>
 		</div>
 		<input type="hidden" id="eduadmin-phrases" name="eduadmin-phrases" value='' />
