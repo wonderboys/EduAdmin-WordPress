@@ -28,12 +28,20 @@ function edu_LoadPhrases()
 	}
 
 	$nPhrases = array();
+	//print_r($phrases);
 	foreach($phrases as $p => $ph)
 	{
-		$nPhrases[$p] = new stdClass;
-		$nPhrases[$p]->OldPhrase = $ph;
-		$nPhrases[$p]->NewPhrase = __($p, "eduadmin");
+		
+		$nPhrases[$p] = array();
+		if(!is_array($ph)) {
+			$nPhrases[$p]["OldPhrase"] = $ph;
+		} else {
+			$nPhrases[$p]["OldPhrase"] = $ph["OldPhrase"];
+		}
+		$nPhrases[$p]["NewPhrase"] = __($p, "eduadmin");
 	}
+
+	//print_r($nPhrases);
 
 	$_SESSION['eduadmin-phrases'] = $nPhrases;
 	
@@ -45,15 +53,14 @@ function edu_LoadPhrases()
 function edu__($key)
 {
 	$phrases = edu_LoadPhrases();
-
 	if(!array_key_exists($key, $phrases))
 	{
 		$phrases[$key] = $key;
 		update_option('eduadmin-phrases', json_encode($phrases));
 	}
 
-	if($phrases[$key]->OldPhrase != $key)
-		return $phrases[$key]->OldPhrase;
+	if($phrases[$key]["OldPhrase"] != $key)
+		return $phrases[$key]["OldPhrase"];
 
 	return __($key, "eduadmin"); //$phrases[$key];
 }

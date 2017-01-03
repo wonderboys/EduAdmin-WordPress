@@ -604,7 +604,7 @@ function eduadmin_get_detailinfo($attributes)
 					$retStr .= '<div data-groupid="eduev' . ($groupByCity ? "-" . $ev->City : "") . '" class="eventItem' . ($i % 2 == 0 ? " evenRow" : " oddRow") . ($showMore > 0 && $i >= $showMore ? " showMoreHidden" : "") . '">';
 					$retStr .= '
 					<div class="eventDate' . $groupByCityClass . '">
-						' . (isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . ',
+						' . (isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . ',
 						' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
 					</div>
 					'. (!$groupByCity ?
