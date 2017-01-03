@@ -385,7 +385,10 @@ function edu__($key)
 		$phrases[$key] = $key;
 	}
 
-	return $phrases[$key];
+	if($phrases[$key]["OldPhrase"] != $key)
+		return $phrases[$key]["OldPhrase"];
+
+	return $phrases[$key]["NewPhrase"]; //$phrases[$key];
 }
 
 function edu_e($key)
