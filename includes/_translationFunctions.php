@@ -52,8 +52,8 @@ function edu__($key)
 		update_option('eduadmin-phrases', json_encode($phrases));
 	}
 
-	if($phrases[$key] != $key)
-		return $phrases[$key];
+	if($phrases[$key]->OldPhrase != $key)
+		return $phrases[$key]->OldPhrase;
 
 	return __($key, "eduadmin"); //$phrases[$key];
 }
