@@ -1,6 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPress.' );
 
+date_default_timezone_set(get_option('timezone_string'));
+
 include_once("includes/loApiClient.php");
 if(!session_id())
 	session_start();
