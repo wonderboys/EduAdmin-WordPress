@@ -385,10 +385,13 @@ function edu__($key)
 		$phrases[$key] = $key;
 	}
 
-	if($phrases[$key]["OldPhrase"] != $key)
-		return $phrases[$key]["OldPhrase"];
+	if(isset($phrases[$key]["OldPhrase"]))
+		if($phrases[$key]["OldPhrase"] != $key)
+			return $phrases[$key]["OldPhrase"];
 
-	return $phrases[$key]["NewPhrase"]; //$phrases[$key];
+	if(isset($phrases[$key]["NewPhrase"]))
+		return $phrases[$key]["NewPhrase"]; //$phrases[$key];
+	return $key;
 }
 
 function edu_e($key)

@@ -167,6 +167,11 @@ else
 		}
 	}
 
+	if($customer->CustomerID == 0)
+	{
+		die("Kunde inte skapa kundposten");
+	}
+
 	$contact = new CustomerContact();
 	$contact->CustomerID = $customer->CustomerID;
 

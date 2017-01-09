@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Added
 - This changelog
+- Bugfix: if phrase doesn't exist in our dictionary, it threw an error. It shouldn't do that.
 
 ## [0.9.9.2.36] - 2017-01-05
 ### Removed
