@@ -1,8 +1,5 @@
 <?php
-if(isset($_SESSION['__defaultTimeZone']))
-{
-	date_default_timezone_set($_SESSION['__defaultTimeZone']);
-}
+date_default_timezone_set('UTC');
 if(!function_exists('edu_api_listview_courselist'))
 {
 	function edu_api_listview_courselist($request)
@@ -24,14 +21,14 @@ if(!function_exists('edu_api_listview_courselist'))
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$f = new XFilter('PeriodStart','<=', @date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
+		$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 		$filtering->AddItem($f);
-		$f = new XFilter('PeriodEnd', '>=', @date("Y-m-d 00:00:00", @strtotime("now +1 day")));
+		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
 		$filtering->AddItem($f);
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);
 
-		$f = new XFilter('LastApplicationDate','>',@date("Y-m-d H:i:s"));
+		$f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
 		$filtering->AddItem($f);
 
 		if(!empty($objectIds))
@@ -54,7 +51,7 @@ if(!function_exists('edu_api_listview_courselist'))
 		{
 			if(!isset($returnValue[$event->ObjectID]))
 			{
-				$returnValue[$event->ObjectID] = sprintf(edu__('Next event %1$s'), @date("Y-m-d", @strtotime($event->PeriodStart))) . " " . $event->City;
+				$returnValue[$event->ObjectID] = sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime($event->PeriodStart))) . " " . $event->City;
 			}
 		}
 

@@ -47,9 +47,9 @@ else
 	}
 
 	$ft = new XFiltering();
-	$f = new XFilter('PeriodStart', '>=', @date("Y-m-d 00:00:00", @strtotime('now +1 day')));
+	$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 	$ft->AddItem($f);
-	$f = new XFilter('PeriodEnd', '<=', @date("Y-m-d 00:00:00", @strtotime('now +' . $fetchMonths . ' months')));
+	$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +' . $fetchMonths . ' months')));
 	$ft->AddItem($f);
 	$f = new XFilter('ShowOnWeb', '=', 'true');
 	$ft->AddItem($f);
@@ -57,7 +57,7 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 	$ft->AddItem($f);
-	$f = new XFilter('LastApplicationDate', '>=', @date("Y-m-d H:i:s"));
+	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d H:i:s"));
 	$ft->AddItem($f);
 
 	$f = new XFilter('CustomerID','=','0');
@@ -161,7 +161,7 @@ else
 		<h3><?php edu_e("Time"); ?></h3>
 		<?php
 			echo ($selectedCourse->Days > 0 ? sprintf(edu_n('%1$d day', '%1$d days', $selectedCourse->Days), $selectedCourse->Days) . ', ' : '') .
-			@date("H:i", @strtotime($selectedCourse->StartTime)) . ' - ' . @date("H:i", @strtotime($selectedCourse->EndTime));
+			date("H:i", strtotime($selectedCourse->StartTime)) . ' - ' . date("H:i", strtotime($selectedCourse->EndTime));
 		?>
 		<?php } ?>
 		<?php
@@ -256,7 +256,7 @@ else
 		<div class="eventItem">
 			<div class="eventDate<?php echo $groupByCityClass; ?>">
 				<?php echo GetStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true); ?>,
-				<?php echo @date("H:i", @strtotime($ev->PeriodStart)); ?> - <?php echo @date("H:i", @strtotime($ev->PeriodEnd)); ?>
+				<?php echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd)); ?>
 			</div>
 			<?php if(!$groupByCity) { ?>
 			<div class="eventCity">

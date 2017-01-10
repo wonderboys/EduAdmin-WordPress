@@ -2491,8 +2491,8 @@ class BookedEventAccessory {
       $this->EventCustomerLnkID = 0;
       $this->BookedQuantity = 0;
       $this->ObjectID = 0;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
       $this->EventID = 0;
       $this->Cost = null;
       $this->Quantity = 0;
@@ -2666,7 +2666,7 @@ class Certificate {
 
   function __construct() {
       $this->CertificateID = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
       $this->ValidMonthCount = null;
       $this->ValidDayCount = null;
       $this->CompleteObjectsMonthCount = null;
@@ -2694,7 +2694,7 @@ class CertificatePerson {
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
-      $this->CertificateDate = @date('c');
+      $this->CertificateDate = date('c');
       $this->ValidFrom = null;
       $this->ValidTo = null;
       $this->CertificateFromEventID = null;
@@ -2730,7 +2730,7 @@ class CertificatePersonV2 {
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
-      $this->CertificateDate = @date('c');
+      $this->CertificateDate = date('c');
       $this->ValidFrom = null;
       $this->ValidTo = null;
       $this->CertificateFromEventID = null;
@@ -2811,8 +2811,8 @@ class Coupon {
   function __construct() {
       $this->CouponID = 0;
       $this->DiscountPercent = null;
-      $this->ValidFrom = @date('c');
-      $this->ValidTo = @date('c');
+      $this->ValidFrom = date('c');
+      $this->ValidTo = date('c');
   }
 }
 
@@ -3095,7 +3095,7 @@ class DocumentSentListEvent {
 
   function __construct() {
       $this->DocumentID = 0;
-      $this->SendDate = @date('c');
+      $this->SendDate = date('c');
       $this->Error = null;
       $this->EventID = 0;
       $this->EventCustomerLnkID = 0;
@@ -3255,8 +3255,8 @@ class Event {
       $this->ObjectID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->PeriodStart = @date('c');
-      $this->PeriodEnd = @date('c');
+      $this->PeriodStart = date('c');
+      $this->PeriodEnd = date('c');
       $this->OccationID = 0;
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
@@ -3286,8 +3286,8 @@ class EventAccessory {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
       $this->EventID = 0;
       $this->Cost = null;
       $this->Quantity = 0;
@@ -3320,11 +3320,11 @@ class EventBooking {
       $this->CustomerContactID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
       $this->Paid = null;
       $this->ObjectID = 0;
-      $this->PeriodStart = @date('c');
-      $this->PeriodEnd = @date('c');
+      $this->PeriodStart = date('c');
+      $this->PeriodEnd = date('c');
       $this->Preliminary = null;
   }
 }
@@ -3454,8 +3454,8 @@ class EventDate {
 
   function __construct() {
       $this->EventID = 0;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
   }
 }
 
@@ -3497,7 +3497,7 @@ class EventParticipant {
       $this->EventID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
       $this->Price = null;
       $this->ObjectID = 0;
       $this->Arrived = null;
@@ -3505,8 +3505,8 @@ class EventParticipant {
       $this->Paid = null;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
-      $this->PeriodStart = @date('c');
-      $this->PeriodEnd = @date('c');
+      $this->PeriodStart = date('c');
+      $this->PeriodEnd = date('c');
   }
 }
 
@@ -3565,7 +3565,7 @@ class EventParticipantV2 {
       $this->EventID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
       $this->Price = null;
       $this->ObjectID = 0;
       $this->Arrived = null;
@@ -3573,8 +3573,8 @@ class EventParticipantV2 {
       $this->Paid = null;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
-      $this->PeriodStart = @date('c');
-      $this->PeriodEnd = @date('c');
+      $this->PeriodStart = date('c');
+      $this->PeriodEnd = date('c');
   }
 }
 
@@ -3620,8 +3620,8 @@ class EventPersonnelObject {
       $this->EventID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
       $this->EventMaxParticipantNr = 0;
   }
 }
@@ -3649,8 +3649,8 @@ class EventPersonnelObjectV2 {
       $this->EventID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
       $this->EventMaxParticipantNr = 0;
   }
 }
@@ -3723,8 +3723,8 @@ class Filter {
 
   function __construct() {
       $this->StatisticsType = null;
-      $this->FromDate = @date('c');
-      $this->ToDate = @date('c');
+      $this->FromDate = date('c');
+      $this->ToDate = date('c');
   }
 }
 
@@ -4023,7 +4023,7 @@ class ObjectFile {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
   }
 }
 
@@ -4277,8 +4277,8 @@ class SubEvent {
       $this->ParentEventID = 0;
       $this->OccasionID = 0;
       $this->ObjectID = 0;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
       $this->SelectedByDefault = null;
@@ -4376,8 +4376,8 @@ class UnavailableDate {
     var $EndDate;
 
   function __construct() {
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
   }
 }
 
@@ -4400,8 +4400,8 @@ class UnavailablePersonnelDate {
   function __construct() {
       $this->PersonnelID = 0;
       $this->UnavailableDateID = 0;
-      $this->StartDate = @date('c');
-      $this->EndDate = @date('c');
+      $this->StartDate = date('c');
+      $this->EndDate = date('c');
   }
 }
 
@@ -4423,7 +4423,7 @@ class UnnamedParticipant {
       $this->Quantity = 0;
       $this->Canceled = null;
       $this->CustomerID = 0;
-      $this->Created = @date('c');
+      $this->Created = date('c');
   }
 }
 

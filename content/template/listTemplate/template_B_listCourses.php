@@ -163,14 +163,14 @@ if(!is_numeric($fetchMonths)) {
 $f = new XFilter('CustomerID','=','0');
 $filtering->AddItem($f);
 
-$f = new XFilter('PeriodStart','<=', @date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
+$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 $filtering->AddItem($f);
-$f = new XFilter('PeriodEnd', '>=', @date("Y-m-d 00:00:00", @strtotime("now +1 day")));
+$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
 $filtering->AddItem($f);
 $f = new XFilter('StatusID','=','1');
 $filtering->AddItem($f);
 
-$f = new XFilter('LastApplicationDate','>',@date("Y-m-d H:i:s"));
+$f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
 $filtering->AddItem($f);
 
 if(!empty($objIds))
@@ -403,7 +403,7 @@ foreach($edo as $object)
 					echo "<div class=\"nextEventDate\" data-eduwidget=\"courseitem-date\" data-objectid=\"" . $object->ObjectID . "\">";
 					if(!empty($sortedEvents))
 					{
-						echo sprintf(edu__('Next event %1$s'), @date("Y-m-d", @strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
 					} else {
 						echo "<i>" . edu__('No coming events') . "</i>";
 					}
@@ -421,9 +421,9 @@ foreach($edo as $object)
 					echo
 					"<div class=\"dayInfo\">" .
 						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
-						($showCourseTimes ? @date("H:i", @strtotime($object->StartTime)) .
+						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
 						' - ' .
-						@date("H:i", @strtotime($object->EndTime)) : '') .
+						date("H:i", strtotime($object->EndTime)) : '') .
 					"</div>";
 				}
 		?></div>

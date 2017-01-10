@@ -52,7 +52,7 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 	$ft->AddItem($f);
-	$f = new XFilter('LastApplicationDate', '>=', @date("Y-m-d 00:00:00", @strtotime("today +1 day")));
+	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00", strtotime("today +1 day")));
 	$ft->AddItem($f);
 	$f = new XFilter('StatusID','=','1');
 	$ft->AddItem($f);
@@ -95,7 +95,7 @@ else
 				{
 					?>				<option value="<?php echo $ev->EventID; ?>"><?php
 						echo wp_strip_all_tags(GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd)) . ", ";
-						echo @date("H:i", @strtotime($ev->PeriodStart)); ?> - <?php echo @date("H:i", @strtotime($ev->PeriodEnd));
+						echo date("H:i", strtotime($ev->PeriodStart)); ?> - <?php echo date("H:i", strtotime($ev->PeriodEnd));
 						$addresses = get_transient('eduadmin-location-' . $ev->LocationAddressID);
 						if(!$addresses)
 						{
@@ -122,7 +122,7 @@ else
 			<?php
 			} else {
 				echo "<div class=\"dateInfo\">" . GetOldStartEndDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
-				echo @date("H:i", @strtotime($event->PeriodStart)); ?> - <?php echo @date("H:i", @strtotime($event->PeriodEnd));
+				echo date("H:i", strtotime($event->PeriodStart)); ?> - <?php echo date("H:i", strtotime($event->PeriodEnd));
 				$addresses = get_transient('eduadmin-location-' . $event->LocationAddressID);
 				if(!$addresses)
 				{

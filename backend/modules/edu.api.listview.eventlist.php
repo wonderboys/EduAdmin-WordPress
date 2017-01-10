@@ -1,8 +1,5 @@
 <?php
-if(isset($_SESSION['__defaultTimeZone']))
-{
-	date_default_timezone_set($_SESSION['__defaultTimeZone']);
-}
+date_default_timezone_set('UTC');
 if(!function_exists('edu_api_listview_eventlist'))
 {
 	function edu_api_listview_eventlist($request)
@@ -67,9 +64,9 @@ if(!function_exists('edu_api_listview_eventlist'))
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
 
-		$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
+		$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
 		$filtering->AddItem($f);
-		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime("now +1 day")));
+		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
 		$filtering->AddItem($f);
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);
@@ -303,9 +300,9 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					"<div class=\"dayInfo\">" .
 						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) .
 						($showCourseTimes && $object->StartTime != '' && $object->EndTime != '' && !isset($eventDates[$object->EventID]) ? ', ' : '') : '') .
-						($showCourseTimes && $object->StartTime != '' && $object->EndTime != '' && !isset($eventDates[$object->EventID]) ? date("H:i", @strtotime($object->StartTime)) .
+						($showCourseTimes && $object->StartTime != '' && $object->EndTime != '' && !isset($eventDates[$object->EventID]) ? date("H:i", strtotime($object->StartTime)) .
 						' - ' .
-						date("H:i", @strtotime($object->EndTime)) : '') .
+						date("H:i", strtotime($object->EndTime)) : '') .
 					"</div>";
 				}
 
@@ -409,9 +406,9 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 					echo
 					"<div class=\"dayInfo\">" .
 						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
-						($showCourseTimes ? date("H:i", @strtotime($object->StartTime)) .
+						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
 						' - ' .
-						date("H:i", @strtotime($object->EndTime)) : '') .
+						date("H:i", strtotime($object->EndTime)) : '') .
 					"</div>";
 				}
 

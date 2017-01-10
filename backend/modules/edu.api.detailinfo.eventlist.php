@@ -1,8 +1,5 @@
 <?php
-if(isset($_SESSION['__defaultTimeZone']))
-{
-	date_default_timezone_set($_SESSION['__defaultTimeZone']);
-}
+date_default_timezone_set('UTC');
 
 if(!function_exists('edu_api_eventlist'))
 {
@@ -44,9 +41,9 @@ if(!function_exists('edu_api_eventlist'))
 		}
 
 		$ft = new XFiltering();
-		$f = new XFilter('PeriodStart', '<=', @date("Y-m-d 00:00:00", @strtotime('now +' . $fetchMonths . ' months')));
+		$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", strtotime('now +' . $fetchMonths . ' months')));
 		$ft->AddItem($f);
-		$f = new XFilter('PeriodEnd', '>=', @date("Y-m-d 00:00:00", @strtotime('now +1 day')));
+		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
 		$ft->AddItem($f);
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
@@ -54,7 +51,7 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 		$f = new XFilter('ObjectID', '=', $objectId);
 		$ft->AddItem($f);
-		$f = new XFilter('LastApplicationDate', '>=', @date("Y-m-d 23:59:59"));
+		$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 23:59:59"));
 		$ft->AddItem($f);
 
 		$f = new XFilter('CustomerID','=','0');
@@ -232,7 +229,7 @@ if(!function_exists('edu_api_eventlist'))
 				$retStr .= '
 				<div class="eventDate' . $groupByCityClass . '">
 					' . (isset($eventDates[$ev->EventID]) ? edu_GetLogicalDateGroups($eventDates[$ev->EventID], true, $ev, true) : edu_GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . '
-					' . (!isset($eventDates[$ev->EventID]) ? ', ' . @date("H:i", @strtotime($ev->PeriodStart)) . ' - ' . @date("H:i", @strtotime($ev->PeriodEnd)) : '') . '
+					' . (!isset($eventDates[$ev->EventID]) ? ', ' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) : '') . '
 				</div>
 				'. (!$groupByCity ?
 				'<div class="eventCity">

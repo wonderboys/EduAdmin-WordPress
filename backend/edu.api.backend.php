@@ -1,6 +1,7 @@
 <?php
 include_once("edu.api.functions.php");
 @session_start();
+date_default_timezone_set('UTC');
 
 $modules = scandir(__DIR__ . '/modules');
 foreach($modules as $module)

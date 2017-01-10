@@ -1,6 +1,12 @@
 # Change log
 
 ## [Unreleased]
+### Added
+- Set `date_default_timezone_set` to `UTC` to get rid of warnings instead.
+
+### Removed
+- Removed all error suppression regarding dates.
+
 
 ## [0.9.9.3.39]
 ### Added
