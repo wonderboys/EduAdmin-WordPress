@@ -20,7 +20,7 @@
       );
       $this->timers['InitSoapClient'] = microtime(true) - $this->timers['InitSoapClient'];
       }
-    
+
     public function Book($authToken, $eventID, $customerID, $customerContactID, array $personIDs) {
       $param = array(
         'authToken' => $authToken,
@@ -29,7 +29,7 @@
         'customerContactID' => $customerContactID,
         'personIDs' => $personIDs
       );
-      
+
       return $this->__callServer($param, 'Book');
     }
 
@@ -42,7 +42,7 @@
         'customerReference' => $customerReference,
         'personIDs' => $personIDs
       );
-      
+
       return $this->__callServer($param, 'BookIncCustomerReference');
     }
 
@@ -55,7 +55,7 @@
         'paymentMethodID' => $paymentMethodID,
         'personIDs' => $personIDs
       );
-      
+
       return $this->__callServer($param, 'BookIncPaymentMethod');
     }
 
@@ -70,7 +70,7 @@
         'occasionPriceNameLnkID' => $occasionPriceNameLnkID,
         'personIDs' => $personIDs
       );
-      
+
       return $this->__callServer($param, 'BookIncPriceName');
     }
 
@@ -83,7 +83,7 @@
         'paymentMethodID' => $paymentMethodID,
         'priceName' => $priceName
       );
-      
+
       return $this->__callServer($param, 'BookPriceName');
     }
 
@@ -93,7 +93,7 @@
         'eclID' => $eclID,
         'salesObjectBookingInfo' => $salesObjectBookingInfo
       );
-      
+
       return $this->__callServer($param, 'BookSalesObject');
     }
 
@@ -103,7 +103,7 @@
         'eclID' => $eclID,
         'salesObjectBookingInfo' => $salesObjectBookingInfo
       );
-      
+
       return $this->__callServer($param, 'BookSalesObjectXml');
     }
 
@@ -114,7 +114,7 @@
         'categoryID' => $categoryID,
         'code' => $code
       );
-      
+
       return $this->__callServer($param, 'CheckCouponCode');
     }
 
@@ -123,7 +123,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'CreateBooking');
     }
 
@@ -132,7 +132,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'CreateBookingPriceName');
     }
 
@@ -141,7 +141,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'CreateBookingXml');
     }
 
@@ -150,7 +150,7 @@
         'authToken' => $authToken,
         'namedParticipants' => $namedParticipants
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'CreateParticipantFromUnnamed'))->int;
     }
 
@@ -159,7 +159,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'CreateSeatBooking');
     }
 
@@ -168,7 +168,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'CreateSubEventBooking');
     }
 
@@ -177,7 +177,7 @@
         'authToken' => $authToken,
         'bookingInfoSubEvent' => $bookingInfoSubEvent
       );
-      
+
       return $this->__callServer($param, 'CreateSubEventBookingXml');
     }
 
@@ -186,7 +186,7 @@
         'authToken' => $authToken,
         'customerContactIDs' => $customerContactIDs
       );
-      
+
       return $this->__callServer($param, 'DeleteCustomerContact');
     }
 
@@ -195,7 +195,7 @@
         'authToken' => $authToken,
         'customerContactAttributeIDs' => $customerContactAttributeIDs
       );
-      
+
       return $this->__callServer($param, 'DeleteCustomerContactAttribute');
     }
 
@@ -204,7 +204,7 @@
         'authToken' => $authToken,
         'eventCustomerLnkID' => $eventCustomerLnkID
       );
-      
+
       return $this->__callServer($param, 'DeleteEventBooking');
     }
 
@@ -213,7 +213,7 @@
         'authToken' => $authToken,
         'eventParticipantID' => $eventParticipantID
       );
-      
+
       return $this->__callServer($param, 'DeleteEventParticipant');
     }
 
@@ -222,7 +222,7 @@
         'authToken' => $authToken,
         'subEventList' => $subEventList
       );
-      
+
       return $this->__callServer($param, 'DeleteEventParticipantSubEvent');
     }
 
@@ -231,7 +231,7 @@
         'authToken' => $authToken,
         'subEventList' => $subEventList
       );
-      
+
       return $this->__callServer($param, 'DeleteEventParticipantSubEventXml');
     }
 
@@ -240,7 +240,7 @@
         'authToken' => $authToken,
         'personIDs' => $personIDs
       );
-      
+
       return $this->__callServer($param, 'DeletePerson');
     }
 
@@ -249,7 +249,7 @@
         'authToken' => $authToken,
         'unavailableDateID' => $unavailableDateID
       );
-      
+
       return $this->__callServer($param, 'DeleteUnavailablePersonnelDate');
     }
 
@@ -257,7 +257,7 @@
       $param = array(
         'authToken' => $authToken
       );
-      
+
       return $this->__getArray('AccountInfo', $this->__callServer($param, 'GetAccountInfo'))->AccountInfo;
     }
 
@@ -265,7 +265,7 @@
       $param = array(
         'authToken' => $authToken
       );
-      
+
       return $this->__callServer($param, 'GetAccountInfoXml');
     }
 
@@ -274,7 +274,7 @@
         'authToken' => $authToken,
         'setting' => $setting
       );
-      
+
       return $this->__callServer($param, 'GetAccountSetting');
     }
 
@@ -283,7 +283,7 @@
         'authToken' => $authToken,
         'settings' => $settings
       );
-      
+
       return $this->__getArray('AccountSettingsInfo', $this->__callServer($param, 'GetAccountSettings'))->AccountSettingsInfo;
     }
 
@@ -293,7 +293,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Attribute', $this->__callServer($param, 'GetAttribute'))->Attribute;
     }
 
@@ -303,7 +303,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetAttributeXml');
     }
 
@@ -312,7 +312,7 @@
         'userID' => $userID,
         'hash' => $hash
       );
-      
+
       return $this->__callServer($param, 'GetAuthToken');
     }
 
@@ -322,7 +322,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('BookedEventAccessory', $this->__callServer($param, 'GetBookedEventAccessory'))->BookedEventAccessory;
     }
 
@@ -332,7 +332,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Category', $this->__callServer($param, 'GetCategory'))->Category;
     }
 
@@ -342,7 +342,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Category', $this->__callServer($param, 'GetCategorySpecial'))->Category;
     }
 
@@ -352,7 +352,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCategorySpecialXml');
     }
 
@@ -362,7 +362,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CategoryV3', $this->__callServer($param, 'GetCategoryV3'))->CategoryV3;
     }
 
@@ -372,7 +372,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCategoryXml');
     }
 
@@ -382,7 +382,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Certificate', $this->__callServer($param, 'GetCertificate'))->Certificate;
     }
 
@@ -392,7 +392,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CertificatePerson', $this->__callServer($param, 'GetCertificatePerson'))->CertificatePerson;
     }
 
@@ -403,7 +403,7 @@
         'filter' => $filter,
         'includeSubjects' => $includeSubjects
       );
-      
+
       return $this->__getArray('CertificatePersonV2', $this->__callServer($param, 'GetCertificatePersonV2'))->CertificatePersonV2;
     }
 
@@ -414,7 +414,7 @@
         'filter' => $filter,
         'includeSubjects' => $includeSubjects
       );
-      
+
       return $this->__callServer($param, 'GetCertificatePersonV2Xml');
     }
 
@@ -424,7 +424,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCertificatePersonXml');
     }
 
@@ -434,7 +434,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCertificateXml');
     }
 
@@ -444,7 +444,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CompanyAttribute', $this->__callServer($param, 'GetCompanyAttribute'))->CompanyAttribute;
     }
 
@@ -454,7 +454,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCompanyAttributeXml');
     }
 
@@ -464,7 +464,7 @@
         'eclID' => $eclID,
         'documentID' => $documentID
       );
-      
+
       return $this->__callServer($param, 'GetConfirmationEmailMessage');
     }
 
@@ -474,7 +474,7 @@
         'eclID' => $eclID,
         'documentID' => $documentID
       );
-      
+
       return $this->__callServer($param, 'GetConfirmationEmailMessageXml');
     }
 
@@ -483,7 +483,7 @@
         'authToken' => $authToken,
         'language' => $language
       );
-      
+
       return $this->__getArray('Country', $this->__callServer($param, 'GetCountries'))->Country;
     }
 
@@ -492,7 +492,7 @@
         'authToken' => $authToken,
         'language' => $language
       );
-      
+
       return $this->__callServer($param, 'GetCountriesXml');
     }
 
@@ -503,7 +503,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__getArray('Customer', $this->__callServer($param, 'GetCustomer'))->Customer;
     }
 
@@ -513,7 +513,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CustomerAttribute', $this->__callServer($param, 'GetCustomerAttribute'))->CustomerAttribute;
     }
 
@@ -523,7 +523,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCustomerAttributeXml');
     }
 
@@ -534,7 +534,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__getArray('CustomerContact', $this->__callServer($param, 'GetCustomerContact'))->CustomerContact;
     }
 
@@ -544,7 +544,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CustomerContactAttribute', $this->__callServer($param, 'GetCustomerContactAttribute'))->CustomerContactAttribute;
     }
 
@@ -554,7 +554,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCustomerContactAttributeXml');
     }
 
@@ -565,7 +565,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__getArray('CustomerContactV2', $this->__callServer($param, 'GetCustomerContactV2'))->CustomerContactV2;
     }
 
@@ -576,7 +576,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__callServer($param, 'GetCustomerContactV2Xml');
     }
 
@@ -587,7 +587,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__callServer($param, 'GetCustomerContactXml');
     }
 
@@ -597,7 +597,7 @@
         'customerID' => $customerID,
         'eventID' => $eventID
       );
-      
+
       return $this->__callServer($param, 'GetCustomerEventPrice');
     }
 
@@ -607,7 +607,7 @@
         'customerID' => $customerID,
         'eventID' => $eventID
       );
-      
+
       return $this->__callServer($param, 'GetCustomerEventPriceXml');
     }
 
@@ -617,7 +617,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ExtraInfo', $this->__callServer($param, 'GetCustomerExtraInfo'))->ExtraInfo;
     }
 
@@ -627,7 +627,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('CustomerGroup', $this->__callServer($param, 'GetCustomerGroup'))->CustomerGroup;
     }
 
@@ -637,7 +637,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetCustomerGroupXml');
     }
 
@@ -647,7 +647,7 @@
         'customerID' => $customerID,
         'objectIds' => $objectIds
       );
-      
+
       return $this->__getArray('CustomerPrice', $this->__callServer($param, 'GetCustomerObjectPrices'))->CustomerPrice;
     }
 
@@ -657,7 +657,7 @@
         'customerID' => $customerID,
         'objectIds' => $objectIds
       );
-      
+
       return $this->__callServer($param, 'GetCustomerObjectPricesXml');
     }
 
@@ -667,7 +667,7 @@
         'customerID' => $customerID,
         'objectID' => $objectID
       );
-      
+
       return $this->__callServer($param, 'GetCustomerPrice');
     }
 
@@ -677,7 +677,7 @@
         'customerID' => $customerID,
         'objectID' => $objectID
       );
-      
+
       return $this->__callServer($param, 'GetCustomerPriceXml');
     }
 
@@ -687,7 +687,7 @@
         'statisticsFilter' => $statisticsFilter,
         'top' => $top
       );
-      
+
       return $this->__getArray('CustomerStatistics', $this->__callServer($param, 'GetCustomerStatistics'))->CustomerStatistics;
     }
 
@@ -697,7 +697,7 @@
         'statisticsFilter' => $statisticsFilter,
         'top' => $top
       );
-      
+
       return $this->__callServer($param, 'GetCustomerStatisticsXml');
     }
 
@@ -708,7 +708,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__getArray('CustomerV2', $this->__callServer($param, 'GetCustomerV2'))->CustomerV2;
     }
 
@@ -719,7 +719,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__callServer($param, 'GetCustomerV2Xml');
     }
 
@@ -730,7 +730,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__callServer($param, 'GetCustomerXml');
     }
 
@@ -739,7 +739,7 @@
         'authToken' => $authToken,
         'eventID' => $eventID
       );
-      
+
       return $this->__callServer($param, 'GetDefaultParticipantDocumentID');
     }
 
@@ -749,7 +749,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('DocumentSentListEvent', $this->__callServer($param, 'GetDocumentSentList'))->DocumentSentListEvent;
     }
 
@@ -759,7 +759,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetDocumentSentListXml');
     }
 
@@ -769,7 +769,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EducationLevel', $this->__callServer($param, 'GetEducationLevel'))->EducationLevel;
     }
 
@@ -779,7 +779,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EducationLevelObject', $this->__callServer($param, 'GetEducationLevelObject'))->EducationLevelObject;
     }
 
@@ -789,7 +789,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEducationLevelObjectXml');
     }
 
@@ -799,7 +799,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEducationLevelXml');
     }
 
@@ -809,7 +809,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EducationObject', $this->__callServer($param, 'GetEducationObject'))->EducationObject;
     }
 
@@ -820,7 +820,7 @@
         'filter' => $filter,
         'includeSubjects' => $includeSubjects
       );
-      
+
       return $this->__getArray('EducationObjectV2', $this->__callServer($param, 'GetEducationObjectV2'))->EducationObjectV2;
     }
 
@@ -831,7 +831,7 @@
         'filter' => $filter,
         'includeSubjects' => $includeSubjects
       );
-      
+
       return $this->__callServer($param, 'GetEducationObjectV2Xml');
     }
 
@@ -841,7 +841,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEducationObjectXml');
     }
 
@@ -851,7 +851,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EducationSubject', $this->__callServer($param, 'GetEducationSubject'))->EducationSubject;
     }
 
@@ -861,7 +861,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEducationSubjectXml');
     }
 
@@ -871,7 +871,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Event', $this->__callServer($param, 'GetEvent'))->Event;
     }
 
@@ -881,7 +881,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventAccessory', $this->__callServer($param, 'GetEventAccessory'))->EventAccessory;
     }
 
@@ -891,7 +891,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventAccessoryXml');
     }
 
@@ -901,7 +901,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventBooking', $this->__callServer($param, 'GetEventBooking'))->EventBooking;
     }
 
@@ -911,7 +911,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ExtraInfo', $this->__callServer($param, 'GetEventBookingExtraInfo'))->ExtraInfo;
     }
 
@@ -921,7 +921,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventBookingPriceName', $this->__callServer($param, 'GetEventBookingPriceName'))->EventBookingPriceName;
     }
 
@@ -931,7 +931,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventBookingPriceNameXml');
     }
 
@@ -940,7 +940,7 @@
         'authToken' => $authToken,
         'eventID' => $eventID
       );
-      
+
       return $this->__getArray('EventBookingQuestion', $this->__callServer($param, 'GetEventBookingQuestion'))->EventBookingQuestion;
     }
 
@@ -949,7 +949,7 @@
         'authToken' => $authToken,
         'eventID' => $eventID
       );
-      
+
       return $this->__callServer($param, 'GetEventBookingQuestionXml');
     }
 
@@ -959,7 +959,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventBookingXml');
     }
 
@@ -969,7 +969,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventCustomerAnswer', $this->__callServer($param, 'GetEventCustomerAnswer'))->EventCustomerAnswer;
     }
 
@@ -979,7 +979,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventCustomerAnswerV2', $this->__callServer($param, 'GetEventCustomerAnswerV2'))->EventCustomerAnswerV2;
     }
 
@@ -989,7 +989,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventCustomerAnswerV2Xml');
     }
 
@@ -999,7 +999,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventCustomerAnswerXml');
     }
 
@@ -1009,7 +1009,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventDate', $this->__callServer($param, 'GetEventDate'))->EventDate;
     }
 
@@ -1019,7 +1019,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventDateXml');
     }
 
@@ -1029,7 +1029,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ExtraInfo', $this->__callServer($param, 'GetEventExtraInfo'))->ExtraInfo;
     }
 
@@ -1039,7 +1039,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventParticipant', $this->__callServer($param, 'GetEventParticipant'))->EventParticipant;
     }
 
@@ -1048,7 +1048,7 @@
         'authToken' => $authToken,
         'eventParticipantIDs' => $eventParticipantIDs
       );
-      
+
       return $this->__getArray('EventParticipantSubEvent', $this->__callServer($param, 'GetEventParticipantSubEvent'))->EventParticipantSubEvent;
     }
 
@@ -1057,7 +1057,7 @@
         'authToken' => $authToken,
         'eventParticipantIDs' => $eventParticipantIDs
       );
-      
+
       return $this->__callServer($param, 'GetEventParticipantSubEventXml');
     }
 
@@ -1067,7 +1067,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventParticipantV2', $this->__callServer($param, 'GetEventParticipantV2'))->EventParticipantV2;
     }
 
@@ -1077,7 +1077,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventParticipantV2Xml');
     }
 
@@ -1087,7 +1087,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventParticipantXml');
     }
 
@@ -1097,7 +1097,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventPaymentMethod', $this->__callServer($param, 'GetEventPaymentMethod'))->EventPaymentMethod;
     }
 
@@ -1107,7 +1107,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventPaymentMethodXml');
     }
 
@@ -1117,7 +1117,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventPersonnelMessage', $this->__callServer($param, 'GetEventPersonnelMessage'))->EventPersonnelMessage;
     }
 
@@ -1127,7 +1127,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventPersonnelMessageXml');
     }
 
@@ -1137,7 +1137,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventPersonnelObject', $this->__callServer($param, 'GetEventPersonnelObject'))->EventPersonnelObject;
     }
 
@@ -1147,7 +1147,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventPersonnelObjectV2', $this->__callServer($param, 'GetEventPersonnelObjectV2'))->EventPersonnelObjectV2;
     }
 
@@ -1157,7 +1157,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventPersonnelObjectV2Xml');
     }
 
@@ -1167,7 +1167,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventPersonnelObjectXml');
     }
 
@@ -1177,7 +1177,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventProjectNumber', $this->__callServer($param, 'GetEventProjectNumber'))->EventProjectNumber;
     }
 
@@ -1187,7 +1187,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventProjectNumberXml');
     }
 
@@ -1197,7 +1197,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('EventQuestion', $this->__callServer($param, 'GetEventQuestion'))->EventQuestion;
     }
 
@@ -1207,7 +1207,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventQuestionXml');
     }
 
@@ -1217,7 +1217,7 @@
         'objectID' => $objectID,
         'eventID' => $eventID
       );
-      
+
       return $this->__getArray('EventSeat', $this->__callServer($param, 'GetEventSeat'))->EventSeat;
     }
 
@@ -1227,7 +1227,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetEventXml');
     }
 
@@ -1237,7 +1237,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Grade', $this->__callServer($param, 'GetGrade'))->Grade;
     }
 
@@ -1247,7 +1247,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetGradeXml');
     }
 
@@ -1255,7 +1255,7 @@
       $param = array(
         'authToken' => $authToken
       );
-      
+
       return $this->__callServer($param, 'GetInternalIPAddressString');
     }
 
@@ -1265,7 +1265,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('LimitedDiscount', $this->__callServer($param, 'GetLimitedDiscount'))->LimitedDiscount;
     }
 
@@ -1275,7 +1275,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('LimitedDiscountObjectStatus', $this->__callServer($param, 'GetLimitedDiscountObjectStatus'))->LimitedDiscountObjectStatus;
     }
 
@@ -1285,7 +1285,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLimitedDiscountObjectStatusXml');
     }
 
@@ -1295,7 +1295,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('LimitedDiscountType', $this->__callServer($param, 'GetLimitedDiscountType'))->LimitedDiscountType;
     }
 
@@ -1305,7 +1305,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLimitedDiscountTypeXml');
     }
 
@@ -1315,7 +1315,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLimitedDiscountXml');
     }
 
@@ -1325,7 +1325,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('LMSObject', $this->__callServer($param, 'GetLMSObject'))->LMSObject;
     }
 
@@ -1335,7 +1335,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLMSObjectXml');
     }
 
@@ -1345,7 +1345,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Location', $this->__callServer($param, 'GetLocation'))->Location;
     }
 
@@ -1355,7 +1355,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('LocationAddress', $this->__callServer($param, 'GetLocationAddress'))->LocationAddress;
     }
 
@@ -1365,7 +1365,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLocationAddressXml');
     }
 
@@ -1375,7 +1375,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetLocationXml');
     }
 
@@ -1385,7 +1385,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ObjectAttribute', $this->__callServer($param, 'GetObjectAttribute'))->ObjectAttribute;
     }
 
@@ -1395,7 +1395,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetObjectAttributeXml');
     }
 
@@ -1405,7 +1405,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ObjectCategoryQuestion', $this->__callServer($param, 'GetObjectCategoryQuestion'))->ObjectCategoryQuestion;
     }
 
@@ -1415,7 +1415,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetObjectCategoryQuestionXml');
     }
 
@@ -1425,7 +1425,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ObjectFile', $this->__callServer($param, 'GetObjectFile'))->ObjectFile;
     }
 
@@ -1435,7 +1435,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetObjectFileXml');
     }
 
@@ -1445,7 +1445,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ObjectPriceName', $this->__callServer($param, 'GetObjectPriceName'))->ObjectPriceName;
     }
 
@@ -1455,7 +1455,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetObjectPriceNameXml');
     }
 
@@ -1466,7 +1466,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__getArray('Person', $this->__callServer($param, 'GetPerson'))->Person;
     }
 
@@ -1476,7 +1476,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('PersonAttribute', $this->__callServer($param, 'GetPersonAttribute'))->PersonAttribute;
     }
 
@@ -1486,7 +1486,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetPersonAttributeXml');
     }
 
@@ -1496,7 +1496,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('PersonnelObject', $this->__callServer($param, 'GetPersonnelObject'))->PersonnelObject;
     }
 
@@ -1506,7 +1506,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('PersonnelObjectTitle', $this->__callServer($param, 'GetPersonnelObjectTitle'))->PersonnelObjectTitle;
     }
 
@@ -1516,7 +1516,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetPersonnelObjectTitleXml');
     }
 
@@ -1526,7 +1526,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetPersonnelObjectXml');
     }
 
@@ -1537,7 +1537,7 @@
         'filter' => $filter,
         'includeAttributes' => $includeAttributes
       );
-      
+
       return $this->__callServer($param, 'GetPersonXml');
     }
 
@@ -1547,7 +1547,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('PriceName', $this->__callServer($param, 'GetPriceName'))->PriceName;
     }
 
@@ -1557,7 +1557,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetPriceNameXml');
     }
 
@@ -1567,7 +1567,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Question', $this->__callServer($param, 'GetQuestion'))->Question;
     }
 
@@ -1577,7 +1577,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetQuestionXml');
     }
 
@@ -1587,7 +1587,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('Region', $this->__callServer($param, 'GetRegion'))->Region;
     }
 
@@ -1597,7 +1597,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetRegionXml');
     }
 
@@ -1607,7 +1607,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('RentObject', $this->__callServer($param, 'GetRentObject'))->RentObject;
     }
 
@@ -1617,7 +1617,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetRentObjectXml');
     }
 
@@ -1627,7 +1627,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('ReportDoc', $this->__callServer($param, 'GetReportDoc'))->ReportDoc;
     }
 
@@ -1637,7 +1637,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetReportDocXml');
     }
 
@@ -1649,7 +1649,7 @@
         'showAsHtml' => $showAsHtml,
         'parameters' => $parameters
       );
-      
+
       return $this->__callServer($param, 'GetReportUrl');
     }
 
@@ -1661,7 +1661,7 @@
         'showAsHtml' => $showAsHtml,
         'parameters' => $parameters
       );
-      
+
       return $this->__callServer($param, 'GetReportUrlXml');
     }
 
@@ -1670,7 +1670,7 @@
         'authToken' => $authToken,
         'customerName' => $customerName
       );
-      
+
       return $this->__getArray('Customer', $this->__callServer($param, 'GetSimilarCustomer'))->Customer;
     }
 
@@ -1679,7 +1679,7 @@
         'authToken' => $authToken,
         'customerName' => $customerName
       );
-      
+
       return $this->__callServer($param, 'GetSimilarCustomerXml');
     }
 
@@ -1689,7 +1689,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('SubEvent', $this->__callServer($param, 'GetSubEvent'))->SubEvent;
     }
 
@@ -1699,7 +1699,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetSubEventXml');
     }
 
@@ -1709,7 +1709,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('UnavailablePersonnelDate', $this->__callServer($param, 'GetUnavailablePersonnelDate'))->UnavailablePersonnelDate;
     }
 
@@ -1719,7 +1719,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetUnavailablePersonnelDateXml');
     }
 
@@ -1729,7 +1729,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('UnnamedParticipant', $this->__callServer($param, 'GetUnnamedParticipant'))->UnnamedParticipant;
     }
 
@@ -1739,7 +1739,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__getArray('UserAttribute', $this->__callServer($param, 'GetUserAttribute'))->UserAttribute;
     }
 
@@ -1749,7 +1749,7 @@
         'sort' => $sort,
         'filter' => $filter
       );
-      
+
       return $this->__callServer($param, 'GetUserAttributeXml');
     }
 
@@ -1759,7 +1759,7 @@
         'objectID' => $objectID,
         'categoryID' => $categoryID
       );
-      
+
       return $this->__getArray('Coupon', $this->__callServer($param, 'GetValidCoupons'))->Coupon;
     }
 
@@ -1770,7 +1770,7 @@
         'fromEventStart' => $fromEventStart,
         'updateReference' => $updateReference
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'RefreshEventBookingCustomerInfo'))->int;
     }
 
@@ -1779,7 +1779,7 @@
         'authToken' => $authToken,
         'eventCustomerLnkID' => $eventCustomerLnkID
       );
-      
+
       return $this->__callServer($param, 'RefreshSingleEventBookingCustomerInfo');
     }
 
@@ -1790,7 +1790,7 @@
         'from' => $from,
         'toAddresses' => $toAddresses
       );
-      
+
       return $this->__getArray('string', $this->__callServer($param, 'SendConfirmationEmail'))->string;
     }
 
@@ -1802,7 +1802,7 @@
         'toAddresses' => $toAddresses,
         'toAddressesCopy' => $toAddressesCopy
       );
-      
+
       return $this->__callServer($param, 'SendConfirmationEmailAndCopy');
     }
 
@@ -1813,7 +1813,7 @@
         'from' => $from,
         'toAddresses' => $toAddresses
       );
-      
+
       return $this->__getArray('string', $this->__callServer($param, 'SendConfirmationEmailCompanyTailored'))->string;
     }
 
@@ -1825,7 +1825,7 @@
         'from' => $from,
         'toAddresses' => $toAddresses
       );
-      
+
       return $this->__getArray('string', $this->__callServer($param, 'SendConfirmationEmailDoc'))->string;
     }
 
@@ -1835,7 +1835,7 @@
         'customerContactID' => $customerContactID,
         'strSenderDescription' => $strSenderDescription
       );
-      
+
       return $this->__callServer($param, 'SendCustomerContactPassword');
     }
 
@@ -1845,7 +1845,7 @@
         'customerContactID' => $customerContactID,
         'strSenderDescription' => $strSenderDescription
       );
-      
+
       return $this->__callServer($param, 'SendCustomerContactPasswordEnglish');
     }
 
@@ -1855,7 +1855,7 @@
         'customerID' => $customerID,
         'strSenderDescription' => $strSenderDescription
       );
-      
+
       return $this->__callServer($param, 'SendCustomerPassword');
     }
 
@@ -1867,7 +1867,7 @@
         'from' => $from,
         'toAddresses' => $toAddresses
       );
-      
+
       return $this->__getArray('string', $this->__callServer($param, 'SendLimitedDiscountConfirmation'))->string;
     }
 
@@ -1877,7 +1877,7 @@
         'eclID' => $eclID,
         'paid' => $paid
       );
-      
+
       return $this->__callServer($param, 'SetBookPaidStatus');
     }
 
@@ -1886,7 +1886,7 @@
         'authToken' => $authToken,
         'customer' => $customer
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomer'))->int;
     }
 
@@ -1895,7 +1895,7 @@
         'authToken' => $authToken,
         'customerAttribute' => $customerAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerAttribute'))->int;
     }
 
@@ -1904,7 +1904,7 @@
         'authToken' => $authToken,
         'customerAttribute' => $customerAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerAttributeXml'))->int;
     }
 
@@ -1913,7 +1913,7 @@
         'authToken' => $authToken,
         'customerContact' => $customerContact
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContact'))->int;
     }
 
@@ -1922,7 +1922,7 @@
         'authToken' => $authToken,
         'customerContactAttribute' => $customerContactAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContactAttributes'))->int;
     }
 
@@ -1931,7 +1931,7 @@
         'authToken' => $authToken,
         'customerContactAttribute' => $customerContactAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContactAttributesXml'))->int;
     }
 
@@ -1940,7 +1940,7 @@
         'authToken' => $authToken,
         'customerContact' => $customerContact
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContactV2'))->int;
     }
 
@@ -1949,7 +1949,7 @@
         'authToken' => $authToken,
         'customerContact' => $customerContact
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContactV2Xml'))->int;
     }
 
@@ -1958,7 +1958,7 @@
         'authToken' => $authToken,
         'customerContact' => $customerContact
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerContactXml'))->int;
     }
 
@@ -1968,7 +1968,7 @@
         'customerId' => $customerId,
         'extraInfo' => $extraInfo
       );
-      
+
       return $this->__callServer($param, 'SetCustomerExtraInfo');
     }
 
@@ -1977,7 +1977,7 @@
         'authToken' => $authToken,
         'customer' => $customer
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerV2'))->int;
     }
 
@@ -1986,7 +1986,7 @@
         'authToken' => $authToken,
         'customer' => $customer
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerV2Xml'))->int;
     }
 
@@ -1995,7 +1995,7 @@
         'authToken' => $authToken,
         'customer' => $customer
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetCustomerXml'))->int;
     }
 
@@ -2004,7 +2004,7 @@
         'authToken' => $authToken,
         'eventBookingPostponedDates' => $eventBookingPostponedDates
       );
-      
+
       return $this->__callServer($param, 'SetEventBookingPostponedBillingDate');
     }
 
@@ -2013,7 +2013,7 @@
         'authToken' => $authToken,
         'eventBookingPostponedDates' => $eventBookingPostponedDates
       );
-      
+
       return $this->__callServer($param, 'SetEventBookingPostponedBillingDateXml');
     }
 
@@ -2023,7 +2023,7 @@
         'eventCustomerLnkID' => $eventCustomerLnkID,
         'preliminary' => $preliminary
       );
-      
+
       return $this->__callServer($param, 'SetEventBookingPreliminaryStatus');
     }
 
@@ -2033,7 +2033,7 @@
         'eventCustomerLnkID' => $eventCustomerLnkID,
         'lstEditPriceNames' => $lstEditPriceNames
       );
-      
+
       return $this->__callServer($param, 'SetEventBookingPricenameParticipantNr');
     }
 
@@ -2042,7 +2042,7 @@
         'authToken' => $authToken,
         'eventCustomerAnswer' => $eventCustomerAnswer
       );
-      
+
       return $this->__callServer($param, 'SetEventCustomerAnswer');
     }
 
@@ -2051,7 +2051,7 @@
         'authToken' => $authToken,
         'eventCustomerAnswer' => $eventCustomerAnswer
       );
-      
+
       return $this->__callServer($param, 'SetEventCustomerAnswerV2');
     }
 
@@ -2060,7 +2060,7 @@
         'authToken' => $authToken,
         'eventCustomerAnswer' => $eventCustomerAnswer
       );
-      
+
       return $this->__callServer($param, 'SetEventCustomerAnswerV2Xml');
     }
 
@@ -2069,7 +2069,7 @@
         'authToken' => $authToken,
         'eventCustomerAnswer' => $eventCustomerAnswer
       );
-      
+
       return $this->__callServer($param, 'SetEventCustomerAnswerXml');
     }
 
@@ -2078,7 +2078,7 @@
         'authToken' => $authToken,
         'eventParticipant' => $eventParticipant
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetEventParticipant'))->int;
     }
 
@@ -2088,7 +2088,7 @@
         'eventParticipantID' => $eventParticipantID,
         'arrived' => $arrived
       );
-      
+
       return $this->__callServer($param, 'SetEventParticipantArrivedStatus');
     }
 
@@ -2098,7 +2098,7 @@
         'eventParticipantID' => $eventParticipantID,
         'gradeID' => $gradeID
       );
-      
+
       return $this->__callServer($param, 'SetEventParticipantGrade');
     }
 
@@ -2107,7 +2107,7 @@
         'authToken' => $authToken,
         'subEventList' => $subEventList
       );
-      
+
       return $this->__callServer($param, 'SetEventParticipantSubEvent');
     }
 
@@ -2116,7 +2116,7 @@
         'authToken' => $authToken,
         'subEventList' => $subEventList
       );
-      
+
       return $this->__callServer($param, 'SetEventParticipantSubEventXml');
     }
 
@@ -2125,7 +2125,7 @@
         'authToken' => $authToken,
         'eventParticipant' => $eventParticipant
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetEventParticipantXml'))->int;
     }
 
@@ -2134,7 +2134,7 @@
         'authToken' => $authToken,
         'interestRegEventList' => $interestRegEventList
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetInterestRegEvent'))->int;
     }
 
@@ -2143,7 +2143,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'SetInterestRegEventBooking');
     }
 
@@ -2152,7 +2152,7 @@
         'authToken' => $authToken,
         'bookingInfoXml' => $bookingInfoXml
       );
-      
+
       return $this->__callServer($param, 'SetInterestRegEventBookingXml');
     }
 
@@ -2161,7 +2161,7 @@
         'authToken' => $authToken,
         'interestRegEventXml' => $interestRegEventXml
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetInterestRegEventXml'))->int;
     }
 
@@ -2170,7 +2170,7 @@
         'authToken' => $authToken,
         'interestRegObjectList' => $interestRegObjectList
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetInterestRegObject'))->int;
     }
 
@@ -2179,7 +2179,7 @@
         'authToken' => $authToken,
         'interestRegObjectXml' => $interestRegObjectXml
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetInterestRegObjectXml'))->int;
     }
 
@@ -2188,7 +2188,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'SetInterestRegSubEventBooking');
     }
 
@@ -2197,7 +2197,7 @@
         'authToken' => $authToken,
         'bookingInfo' => $bookingInfo
       );
-      
+
       return $this->__callServer($param, 'SetInterestRegSubEventBookingXml');
     }
 
@@ -2206,7 +2206,7 @@
         'authToken' => $authToken,
         'eclID' => $eclID
       );
-      
+
       return $this->__callServer($param, 'SetInvalidPayment');
     }
 
@@ -2215,7 +2215,7 @@
         'authToken' => $authToken,
         'limitedDiscount' => $limitedDiscount
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetLimitedDiscount'))->int;
     }
 
@@ -2224,7 +2224,7 @@
         'authToken' => $authToken,
         'limitedDiscount' => $limitedDiscount
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetLimitedDiscountXml'))->int;
     }
 
@@ -2233,7 +2233,7 @@
         'authToken' => $authToken,
         'person' => $person
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetPerson'))->int;
     }
 
@@ -2242,7 +2242,7 @@
         'authToken' => $authToken,
         'personAttribute' => $personAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetPersonAttribute'))->int;
     }
 
@@ -2251,7 +2251,7 @@
         'authToken' => $authToken,
         'personAttribute' => $personAttribute
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetPersonAttributeXml'))->int;
     }
 
@@ -2260,7 +2260,7 @@
         'authToken' => $authToken,
         'person' => $person
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'SetPersonXml'))->int;
     }
 
@@ -2270,7 +2270,7 @@
         'personnelID' => $personnelID,
         'unavailableDates' => $unavailableDates
       );
-      
+
       return $this->__callServer($param, 'SetUnavailablePersonnelDate');
     }
 
@@ -2280,7 +2280,7 @@
         'personnelID' => $personnelID,
         'unavailableDates' => $unavailableDates
       );
-      
+
       return $this->__callServer($param, 'SetUnavailablePersonnelDateXml');
     }
 
@@ -2289,7 +2289,7 @@
         'authToken' => $authToken,
         'eclID' => $eclID
       );
-      
+
       return $this->__callServer($param, 'SetValidPayment');
     }
 
@@ -2298,7 +2298,7 @@
         'authToken' => $authToken,
         'updateInfo' => $updateInfo
       );
-      
+
       return $this->__getArray('int', $this->__callServer($param, 'UpdateSalesBookingInfo'))->int;
     }
 
@@ -2308,7 +2308,7 @@
         'addressString' => $addressString,
         'compareAddress' => $compareAddress
       );
-      
+
       return $this->__callServer($param, 'ValidateAddressString');
     }
 
@@ -2316,7 +2316,7 @@
       $param = array(
         'authToken' => $authToken
       );
-      
+
       return $this->__callServer($param, 'ValidateAuthToken');
     }
 
@@ -2491,8 +2491,8 @@ class BookedEventAccessory {
       $this->EventCustomerLnkID = 0;
       $this->BookedQuantity = 0;
       $this->ObjectID = 0;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
       $this->EventID = 0;
       $this->Cost = null;
       $this->Quantity = 0;
@@ -2666,7 +2666,7 @@ class Certificate {
 
   function __construct() {
       $this->CertificateID = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
       $this->ValidMonthCount = null;
       $this->ValidDayCount = null;
       $this->CompleteObjectsMonthCount = null;
@@ -2694,7 +2694,7 @@ class CertificatePerson {
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
-      $this->CertificateDate = date('c');
+      $this->CertificateDate = @date('c');
       $this->ValidFrom = null;
       $this->ValidTo = null;
       $this->CertificateFromEventID = null;
@@ -2730,7 +2730,7 @@ class CertificatePersonV2 {
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
-      $this->CertificateDate = date('c');
+      $this->CertificateDate = @date('c');
       $this->ValidFrom = null;
       $this->ValidTo = null;
       $this->CertificateFromEventID = null;
@@ -2811,8 +2811,8 @@ class Coupon {
   function __construct() {
       $this->CouponID = 0;
       $this->DiscountPercent = null;
-      $this->ValidFrom = date('c');
-      $this->ValidTo = date('c');
+      $this->ValidFrom = @date('c');
+      $this->ValidTo = @date('c');
   }
 }
 
@@ -3095,7 +3095,7 @@ class DocumentSentListEvent {
 
   function __construct() {
       $this->DocumentID = 0;
-      $this->SendDate = date('c');
+      $this->SendDate = @date('c');
       $this->Error = null;
       $this->EventID = 0;
       $this->EventCustomerLnkID = 0;
@@ -3255,8 +3255,8 @@ class Event {
       $this->ObjectID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->PeriodStart = date('c');
-      $this->PeriodEnd = date('c');
+      $this->PeriodStart = @date('c');
+      $this->PeriodEnd = @date('c');
       $this->OccationID = 0;
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
@@ -3286,8 +3286,8 @@ class EventAccessory {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
       $this->EventID = 0;
       $this->Cost = null;
       $this->Quantity = 0;
@@ -3320,11 +3320,11 @@ class EventBooking {
       $this->CustomerContactID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
       $this->Paid = null;
       $this->ObjectID = 0;
-      $this->PeriodStart = date('c');
-      $this->PeriodEnd = date('c');
+      $this->PeriodStart = @date('c');
+      $this->PeriodEnd = @date('c');
       $this->Preliminary = null;
   }
 }
@@ -3454,8 +3454,8 @@ class EventDate {
 
   function __construct() {
       $this->EventID = 0;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
   }
 }
 
@@ -3497,7 +3497,7 @@ class EventParticipant {
       $this->EventID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
       $this->Price = null;
       $this->ObjectID = 0;
       $this->Arrived = null;
@@ -3505,8 +3505,8 @@ class EventParticipant {
       $this->Paid = null;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
-      $this->PeriodStart = date('c');
-      $this->PeriodEnd = date('c');
+      $this->PeriodStart = @date('c');
+      $this->PeriodEnd = @date('c');
   }
 }
 
@@ -3565,7 +3565,7 @@ class EventParticipantV2 {
       $this->EventID = 0;
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
       $this->Price = null;
       $this->ObjectID = 0;
       $this->Arrived = null;
@@ -3573,8 +3573,8 @@ class EventParticipantV2 {
       $this->Paid = null;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
-      $this->PeriodStart = date('c');
-      $this->PeriodEnd = date('c');
+      $this->PeriodStart = @date('c');
+      $this->PeriodEnd = @date('c');
   }
 }
 
@@ -3620,8 +3620,8 @@ class EventPersonnelObject {
       $this->EventID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
       $this->EventMaxParticipantNr = 0;
   }
 }
@@ -3649,8 +3649,8 @@ class EventPersonnelObjectV2 {
       $this->EventID = 0;
       $this->LocationID = 0;
       $this->LocationAddressID = null;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
       $this->EventMaxParticipantNr = 0;
   }
 }
@@ -3723,8 +3723,8 @@ class Filter {
 
   function __construct() {
       $this->StatisticsType = null;
-      $this->FromDate = date('c');
-      $this->ToDate = date('c');
+      $this->FromDate = @date('c');
+      $this->ToDate = @date('c');
   }
 }
 
@@ -4023,7 +4023,7 @@ class ObjectFile {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
   }
 }
 
@@ -4277,8 +4277,8 @@ class SubEvent {
       $this->ParentEventID = 0;
       $this->OccasionID = 0;
       $this->ObjectID = 0;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
       $this->SelectedByDefault = null;
@@ -4376,8 +4376,8 @@ class UnavailableDate {
     var $EndDate;
 
   function __construct() {
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
   }
 }
 
@@ -4400,8 +4400,8 @@ class UnavailablePersonnelDate {
   function __construct() {
       $this->PersonnelID = 0;
       $this->UnavailableDateID = 0;
-      $this->StartDate = date('c');
-      $this->EndDate = date('c');
+      $this->StartDate = @date('c');
+      $this->EndDate = @date('c');
   }
 }
 
@@ -4423,7 +4423,7 @@ class UnnamedParticipant {
       $this->Quantity = 0;
       $this->Canceled = null;
       $this->CustomerID = 0;
-      $this->Created = date('c');
+      $this->Created = @date('c');
   }
 }
 

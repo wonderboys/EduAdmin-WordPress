@@ -58,7 +58,7 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 	$ft->AddItem($f);
-	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00", @strtotime("today +1 day")));
+	$f = new XFilter('LastApplicationDate', '>=', @date("Y-m-d 00:00:00", @strtotime("today +1 day")));
 	$ft->AddItem($f);
 	$f = new XFilter('StatusID','=','1');
 	$ft->AddItem($f);
@@ -94,7 +94,7 @@ else
 	</div>
 	<?php
 	echo "<div class=\"dateInfo\">" . GetStartEndDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
-				echo date("H:i", @strtotime($event->PeriodStart)); ?> - <?php echo date("H:i", @strtotime($event->PeriodEnd));
+				echo @date("H:i", @strtotime($event->PeriodStart)); ?> - <?php echo @date("H:i", @strtotime($event->PeriodEnd));
 				$addresses = get_transient('eduadmin-location-' . $event->LocationAddressID);
 				if(!$addresses)
 				{

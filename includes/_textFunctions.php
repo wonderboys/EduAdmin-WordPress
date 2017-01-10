@@ -27,7 +27,7 @@
 		}
 
 		// last try, guess timezone string manually
-		$is_dst = date( 'I' );
+		$is_dst = @date( 'I' );
 
 		foreach ( timezone_abbreviations_list() as $abbr ) {
 			foreach ( $abbr as $city ) {
@@ -107,7 +107,7 @@ function getUTF8($input)
 
 function dateVersion($date)
 {
-	return sprintf('%1$s-%2$s-%3$s.%4$s', date("Y", $date), date("m", $date), date("d", $date), date("His", $date));
+	return sprintf('%1$s-%2$s-%3$s.%4$s', @date("Y", $date), @date("m", $date), @date("d", $date), @date("His", $date));
 }
 
 function convertToMoney($value, $currency = "SEK", $decimal = ',', $thousand = ' ')
@@ -136,9 +136,9 @@ function GetDisplayDate($inDate, $short = true)
 		12 => !$short ? edu__('december') : edu__('dec')
 	);
 
-	$year = date('Y', @strtotime($inDate));
-	$nowYear = date('Y');
-	return '<span style="white-space: nowrap;" class="eduadmin-dateText">' . date('d', @strtotime($inDate)) . ' ' . $months[date('n', @strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
+	$year = @date('Y', @strtotime($inDate));
+	$nowYear = @date('Y');
+	return '<span style="white-space: nowrap;" class="eduadmin-dateText">' . @date('d', @strtotime($inDate)) . ' ' . $months[@date('n', @strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
 }
 
 function GetLogicalDateGroups($dates, $short = false, $event = null, $showDays = false)
@@ -191,18 +191,18 @@ function GetStartEndDisplayDate($startDate, $endDate, $short = false, $event, $s
 		12 => !$short ? edu__('december') : edu__('dec')
 	);
 
-	$startYear = date('Y', @strtotime($startDate->StartDate));
-	$startMonth = date('n', @strtotime($startDate->StartDate));
-	$endYear = date('Y', @strtotime($endDate->EndDate));
-	$endMonth = date('n', @strtotime($endDate->EndDate));
-	$nowYear = date('Y');
+	$startYear = @date('Y', @strtotime($startDate->StartDate));
+	$startMonth = @date('n', @strtotime($startDate->StartDate));
+	$endYear = @date('Y', @strtotime($endDate->EndDate));
+	$endMonth = @date('n', @strtotime($endDate->EndDate));
+	$nowYear = @date('Y');
 	$str =  '<span style="white-space: nowrap;" class="eduadmin-dateText">';
 	if($showDays)
 	{
-		$str .= $days[date('N', @strtotime($startDate->StartDate))] . " ";
+		$str .= $days[@date('N', @strtotime($startDate->StartDate))] . " ";
 	}
-	$str .= date('d', @strtotime($startDate->StartDate));
-	if(date('Y-m-d', @strtotime($startDate->StartDate)) != date('Y-m-d', @strtotime($endDate->EndDate)))
+	$str .= @date('d', @strtotime($startDate->StartDate));
+	if(@date('Y-m-d', @strtotime($startDate->StartDate)) != @date('Y-m-d', @strtotime($endDate->EndDate)))
 	{
 		if($startYear === $endYear)
 		{
@@ -210,73 +210,73 @@ function GetStartEndDisplayDate($startDate, $endDate, $short = false, $event, $s
 			{
 				if($showDays)
 				{
-					$str .= ' ' . date('H:i', @strtotime($startDate->StartDate)) . '-' . date('H:i', @strtotime($startDate->EndDate));
+					$str .= ' ' . @date('H:i', @strtotime($startDate->StartDate)) . '-' . @date('H:i', @strtotime($startDate->EndDate));
 				}
 				$str .= ' - ';
 				if($showDays)
 				{
-					$str .= $days[date('N', strtotime($endDate->EndDate))] . " ";
+					$str .= $days[@date('N', strtotime($endDate->EndDate))] . " ";
 				}
-				$str .= date('d', @strtotime($endDate->EndDate));
+				$str .= @date('d', @strtotime($endDate->EndDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate->StartDate))];
+				$str .= $months[@date('n', @strtotime($startDate->StartDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 				if($showDays)
 				{
-					$str .= ' ' . date('H:i', @strtotime($endDate->StartDate)) . '-' . date('H:i', @strtotime($endDate->EndDate));
+					$str .= ' ' . @date('H:i', @strtotime($endDate->StartDate)) . '-' . @date('H:i', @strtotime($endDate->EndDate));
 				}
 			}
 			else
 			{
 				if($showDays)
 				{
-					$str .= ' ' . date('H:i', @strtotime($startDate->StartDate)) . '-' . date('H:i', @strtotime($startDate->EndDate));
+					$str .= ' ' . @date('H:i', @strtotime($startDate->StartDate)) . '-' . @date('H:i', @strtotime($startDate->EndDate));
 				}
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate->StartDate))];
+				$str .= $months[@date('n', @strtotime($startDate->StartDate))];
 				$str .= ' - ';
 				if($showDays)
 				{
-					$str .= $days[date('N', @strtotime($endDate->EndDate))] . " ";
+					$str .= $days[@date('N', @strtotime($endDate->EndDate))] . " ";
 				}
-				$str .= date('d', @strtotime($endDate->EndDate));
+				$str .= @date('d', @strtotime($endDate->EndDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($endDate->EndDate))];
+				$str .= $months[@date('n', @strtotime($endDate->EndDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 				if($showDays)
 				{
-					$str .= ' ' . date('H:i', @strtotime($endDate->StartDate)) . '-' . date('H:i', @strtotime($endDate->EndDate));
+					$str .= ' ' . @date('H:i', @strtotime($endDate->StartDate)) . '-' . @date('H:i', @strtotime($endDate->EndDate));
 				}
 			}
 		}
 		else
 		{
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate->StartDate))];
+				$str .= $months[@date('n', @strtotime($startDate->StartDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 				$str .= ' - ';
 				if($showDays)
 				{
-					$str .= $days[date('N', @strtotime($endDate->EndDate))] . " ";
+					$str .= $days[@date('N', @strtotime($endDate->EndDate))] . " ";
 				}
-				$str .= date('d', @strtotime($endDate->EndDate));
+				$str .= @date('d', @strtotime($endDate->EndDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($endDate->EndDate))];
+				$str .= $months[@date('n', @strtotime($endDate->EndDate))];
 				$str .= ($nowYear != $endYear ? ' ' . $endYear : '');
 				if($showDays)
 				{
-					$str .= ' ' . date('H:i', @strtotime($endDate->StartDate)) . '-' . date('H:i', @strtotime($endDate->EndDate));
+					$str .= ' ' . @date('H:i', @strtotime($endDate->StartDate)) . '-' . @date('H:i', @strtotime($endDate->EndDate));
 				}
 		}
 	}
 	else
 	{
 		$str .= ' ';
-		$str .= $months[date('n', @strtotime($startDate->EndDate))];
+		$str .= $months[@date('n', @strtotime($startDate->EndDate))];
 		$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 		if($showDays)
 		{
-			$str .= ' ' . date('H:i', @strtotime($startDate->StartDate)) . '-' . date('H:i', @strtotime($startDate->EndDate));
+			$str .= ' ' . @date('H:i', @strtotime($startDate->StartDate)) . '-' . @date('H:i', @strtotime($startDate->EndDate));
 		}
 	}
 
@@ -302,49 +302,49 @@ function GetOldStartEndDisplayDate($startDate, $endDate, $short = false)
 		11 => !$short ? edu__('november') : edu__('nov'),
 		12 => !$short ? edu__('december') : edu__('dec')
 	);
-	$startYear = date('Y', @strtotime($startDate));
-	$startMonth = date('n', @strtotime($startDate));
-	$endYear = date('Y', @strtotime($endDate));
-	$endMonth = date('n', @strtotime($endDate));
-	$nowYear = date('Y');
+	$startYear = @date('Y', @strtotime($startDate));
+	$startMonth = @date('n', @strtotime($startDate));
+	$endYear = @date('Y', @strtotime($endDate));
+	$endMonth = @date('n', @strtotime($endDate));
+	$nowYear = @date('Y');
 	$str =  '<span style="white-space: nowrap;">';
-	$str .= date('d', @strtotime($startDate));
-	if(date('Y-m-d', @strtotime($startDate)) != date('Y-m-d', @strtotime($endDate)))
+	$str .= @date('d', @strtotime($startDate));
+	if(@date('Y-m-d', @strtotime($startDate)) != @date('Y-m-d', @strtotime($endDate)))
 	{
 		if($startYear === $endYear)
 		{
 			if($startMonth === $endMonth)
 			{
-				$str .= ' - ' . date('d', @strtotime($endDate));
+				$str .= ' - ' . @date('d', @strtotime($endDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate))];
+				$str .= $months[@date('n', @strtotime($startDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 			}
 			else
 			{
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate))];
-				$str .= ' - ' . date('d', @strtotime($endDate));
+				$str .= $months[@date('n', @strtotime($startDate))];
+				$str .= ' - ' . @date('d', @strtotime($endDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($endDate))];
+				$str .= $months[@date('n', @strtotime($endDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 			}
 		}
 		else
 		{
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($startDate))];
+				$str .= $months[@date('n', @strtotime($startDate))];
 				$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
-				$str .= ' - ' . date('d', @strtotime($endDate));
+				$str .= ' - ' . @date('d', @strtotime($endDate));
 				$str .= ' ';
-				$str .= $months[date('n', @strtotime($endDate))];
+				$str .= $months[@date('n', @strtotime($endDate))];
 				$str .= ($nowYear != $endYear ? ' ' . $endYear : '');
 		}
 	}
 	else
 	{
 		$str .= ' ';
-		$str .= $months[date('n', @strtotime($startDate))];
+		$str .= $months[@date('n', @strtotime($startDate))];
 		$str .= ($nowYear != $startYear ? ' ' . $startYear : '');
 	}
 	$str .= '</span>';
@@ -353,8 +353,8 @@ function GetOldStartEndDisplayDate($startDate, $endDate, $short = false)
 
 function DateComparer($a, $b)
 {
-	$aDate = date("Y-m-d H:i:s", @strtotime($a->PeriodStart));
-	$bDate = date("Y-m-d H:i:s", @strtotime($b->PeriodStart));
+	$aDate = @date("Y-m-d H:i:s", @strtotime($a->PeriodStart));
+	$bDate = @date("Y-m-d H:i:s", @strtotime($b->PeriodStart));
 	if($aDate === $bDate) {
 		return 0;
 	}

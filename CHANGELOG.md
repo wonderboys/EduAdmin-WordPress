@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.9.9.3.39]
+### Added
+- More "fixes" for the broken host, only error suppression for `date` and `strtotime`
+
 ## [0.9.9.2.38]
 ### Added
 - Lots, and lots of warning suppression (all `strtotime`)
@@ -43,7 +47,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.38...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.39...HEAD
+[0.9.9.2.39]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.38...v0.9.9.2.39
 [0.9.9.2.38]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.37...v0.9.9.2.38
 [0.9.9.2.37]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.36...v0.9.9.2.37
 [0.9.9.2.36]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.25...v0.9.9.2.36
