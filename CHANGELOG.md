@@ -1,6 +1,8 @@
 # Change log
 
 ## [Unreleased]
+
+## [0.9.9.2.40]
 ### Added
 - Set `date_default_timezone_set` to `UTC` to get rid of warnings instead.
 
@@ -8,7 +10,7 @@
 - Removed all error suppression regarding dates.
 
 
-## [0.9.9.3.39]
+## [0.9.9.2.39]
 ### Added
 - More "fixes" for the broken host, only error suppression for `date` and `strtotime`
 
@@ -53,7 +55,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.39...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.40...HEAD
+[0.9.9.2.40]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.39...v0.9.9.2.40
 [0.9.9.2.39]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.38...v0.9.9.2.39
 [0.9.9.2.38]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.37...v0.9.9.2.38
 [0.9.9.2.37]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.36...v0.9.9.2.37
