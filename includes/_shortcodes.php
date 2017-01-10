@@ -307,9 +307,9 @@ function eduadmin_get_detailinfo($attributes)
 			 if(isset($attributes['courseprice']))
 			 {
 			 	$ft = new XFiltering();
-				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
+				$f = new XFilter('PeriodStart', '>=', date("Y-m-d 00:00:00", @strtotime('now +1 day')));
 				$ft->AddItem($f);
-				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", strtotime('now +6 months')));
+				$f = new XFilter('PeriodEnd', '<=', date("Y-m-d 00:00:00", @strtotime('now +6 months')));
 				$ft->AddItem($f);
 				$f = new XFilter('ShowOnWeb', '=', 'true');
 				$ft->AddItem($f);
@@ -425,9 +425,9 @@ function eduadmin_get_detailinfo($attributes)
 				}
 
 			 	$ft = new XFiltering();
-				$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", strtotime('now +'. $fetchMonths . ' months')));
+				$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", @strtotime('now +'. $fetchMonths . ' months')));
 				$ft->AddItem($f);
-				$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
+				$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime('now +1 day')));
 				$ft->AddItem($f);
 				$f = new XFilter('ShowOnWeb', '=', 'true');
 				$ft->AddItem($f);
@@ -453,7 +453,7 @@ function eduadmin_get_detailinfo($attributes)
 					$st->AddItem($s);
 					$groupByCityClass = " noCity";
 				}
-				
+
 				$customOrderBy = null;
 				$customOrderByOrder = null;
 				if(!empty($attributes['orderby']))
@@ -466,7 +466,7 @@ function eduadmin_get_detailinfo($attributes)
 					$customOrderByOrder = $attributes['order'];
 				}
 
-				if($customOrderBy != null) 
+				if($customOrderBy != null)
 				{
 					$orderby = explode(' ', $customOrderBy);
 					$sortorder = explode(' ', $customOrderByOrder);
@@ -476,12 +476,12 @@ function eduadmin_get_detailinfo($attributes)
 							$or = $sortorder[$od];
 						else
 							$or = "ASC";
-						
+
 						$s = new XSort($v, $or);
 						$st->AddItem($s);
 					}
 				}
-				else 
+				else
 				{
 					$s = new XSort('PeriodStart', 'ASC');
 					$st->AddItem($s);
@@ -605,7 +605,7 @@ function eduadmin_get_detailinfo($attributes)
 					$retStr .= '
 					<div class="eventDate' . $groupByCityClass . '">
 						' . (isset($eventDates[$ev->EventID]) ? GetLogicalDateGroups($eventDates[$ev->EventID]) : GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . ',
-						' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) . '
+						' . date("H:i", @strtotime($ev->PeriodStart)) . ' - ' . date("H:i", @strtotime($ev->PeriodEnd)) . '
 					</div>
 					'. (!$groupByCity ?
 					'<div class="eventCity">

@@ -145,9 +145,9 @@ if(!is_numeric($fetchMonths)) {
 $f = new XFilter('CustomerID','=','0');
 $filtering->AddItem($f);
 
-$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
+$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
 $filtering->AddItem($f);
-$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
+$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime("now +1 day")));
 $filtering->AddItem($f);
 $f = new XFilter('StatusID','=','1');
 $filtering->AddItem($f);
@@ -162,7 +162,7 @@ if(!empty($objIds))
 }
 
 $sorting = new XSorting();
-if($customOrderBy != null) 
+if($customOrderBy != null)
 {
 	$orderby = explode(' ', $customOrderBy);
 	$sortorder = explode(' ', $customOrderByOrder);
@@ -172,12 +172,12 @@ if($customOrderBy != null)
 			$or = $sortorder[$od];
 		else
 			$or = "ASC";
-		
+
 		$s = new XSort($v, $or);
 		$sorting->AddItem($s);
 	}
 }
-else 
+else
 {
 	$s = new XSort('PeriodStart', 'ASC');
 	$sorting->AddItem($s);
@@ -352,7 +352,7 @@ if(!empty($edo))
 		if($showEventsWithoutEventsOnly && !empty($sortedEvents) || $object->CategoryID == 43690 ) // custom exklude for this ID
 			continue;
 
-		if (!in_array($object->CategoryName, $cats)) { 
+		if (!in_array($object->CategoryName, $cats)) {
 			?>
 				<tr class="gf-header">
 					<th>
@@ -374,7 +374,7 @@ if(!empty($edo))
 					</th>
 				</tr>
 
-			<?php	
+			<?php
 			$cats[] = $object->CategoryName;
 		}
 ?>
@@ -394,7 +394,7 @@ if(!empty($edo))
 				echo isset($eventCities['Göteborg']) ? '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Göteborg']->PeriodStart, $eventCities['Göteborg']->PeriodEnd, true).'</td>' : '<td></td>' ;
 
 				echo isset($eventCities['Växjö']) ? '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Växjö']->PeriodStart, $eventCities['Växjö']->PeriodEnd, true).'</td>' : '<td></td>' ;
-				
+
 				if ( isset($eventCities['Malmö']) ) {
 					echo '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Malmö']->PeriodStart, $eventCities['Malmö']->PeriodEnd, true).'</td>';
 				} elseif( isset($eventCities['Kristianstad']) ){

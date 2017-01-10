@@ -109,9 +109,9 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 		$fetchMonths = 6;
 	}
 
-	$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
+	$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
 	$filtering->AddItem($f);
-	$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
+	$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime("now +1 day")));
 	$filtering->AddItem($f);
 	$f = new XFilter('StatusID','=','1');
 	$filtering->AddItem($f);
@@ -131,7 +131,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('ParentEventID', '=', '0');
 	$filtering->AddItem($f);
 
-	if($customOrderBy != null) 
+	if($customOrderBy != null)
 	{
 		$orderby = explode(' ', $customOrderBy);
 		$sortorder = explode(' ', $customOrderByOrder);
@@ -141,12 +141,12 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 				$or = $sortorder[$od];
 			else
 				$or = "ASC";
-			
+
 			$s = new XSort($v, $or);
 			$sorting->AddItem($s);
 		}
 	}
-	else 
+	else
 	{
 		$s = new XSort('PeriodStart', 'ASC');
 		$sorting->AddItem($s);
@@ -345,9 +345,9 @@ foreach($ede as $object)
 			echo
 			"<div class=\"dayInfo\">" .
 				($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
-				($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
+				($showCourseTimes ? date("H:i", @strtotime($object->StartTime)) .
 				' - ' .
-				date("H:i", strtotime($object->EndTime)) : '') .
+				date("H:i", @strtotime($object->EndTime)) : '') .
 			"</div>";
 		}
 		if($showEventPrice) {

@@ -46,7 +46,7 @@ $sortOrder = get_option('eduadmin-listSortOrder', 'SortIndex');
 
 $sort = new XSorting();
 
-if($customOrderBy != null) 
+if($customOrderBy != null)
 {
 	$orderby = explode(' ', $customOrderBy);
 	$sortorder = explode(' ', $customOrderByOrder);
@@ -56,7 +56,7 @@ if($customOrderBy != null)
 			$or = $sortorder[$od];
 		else
 			$or = "ASC";
-		
+
 		$s = new XSort($v, $or);
 		$sort->AddItem($s);
 	}
@@ -162,9 +162,9 @@ if(!is_numeric($fetchMonths)) {
 $f = new XFilter('CustomerID','=','0');
 $filtering->AddItem($f);
 
-$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", strtotime("now +" . $fetchMonths . " months")));
+$f = new XFilter('PeriodStart','<=', date("Y-m-d 23:59:59", @strtotime("now +" . $fetchMonths . " months")));
 $filtering->AddItem($f);
-$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime("now +1 day")));
+$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime("now +1 day")));
 $filtering->AddItem($f);
 $f = new XFilter('StatusID','=','1');
 $filtering->AddItem($f);
@@ -180,7 +180,7 @@ if(!empty($objIds))
 
 $sorting = new XSorting();
 
-	if($customOrderBy != null) 
+	if($customOrderBy != null)
 	{
 		$orderby = explode(' ', $customOrderBy);
 		$sortorder = explode(' ', $customOrderByOrder);
@@ -190,12 +190,12 @@ $sorting = new XSorting();
 				$or = $sortorder[$od];
 			else
 				$or = "ASC";
-			
+
 			$s = new XSort($v, $or);
 			$sorting->AddItem($s);
 		}
 	}
-	else 
+	else
 	{
 		$s = new XSort('PeriodStart', 'ASC');
 		$sorting->AddItem($s);
@@ -410,7 +410,7 @@ if(!empty($edo))
 					echo "<div class=\"nextEventDate\" data-eduwidget=\"courseitem-date\" data-objectid=\"" . $object->ObjectID . "\">";
 					if(!empty($sortedEvents))
 					{
-						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", @strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
 					} else {
 						echo "<i>" . edu__('No coming events') . "</i>";
 					}
@@ -428,9 +428,9 @@ if(!empty($edo))
 					echo
 					"<div class=\"dayInfo\">" .
 						($showCourseDays ? sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ($showCourseTimes ? ', ' : '') : '') .
-						($showCourseTimes ? date("H:i", strtotime($object->StartTime)) .
+						($showCourseTimes ? date("H:i", @strtotime($object->StartTime)) .
 						' - ' .
-						date("H:i", strtotime($object->EndTime)) : '') .
+						date("H:i", @strtotime($object->EndTime)) : '') .
 					"</div>";
 				}
 		?></div>

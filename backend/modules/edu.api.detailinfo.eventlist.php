@@ -1,4 +1,9 @@
 <?php
+if(isset($_SESSION['__defaultTimeZone']))
+{
+	date_default_timezone_set($_SESSION['__defaultTimeZone']);
+}
+
 if(!function_exists('edu_api_eventlist'))
 {
 	function edu_api_eventlist($request)
@@ -39,9 +44,9 @@ if(!function_exists('edu_api_eventlist'))
 		}
 
 		$ft = new XFiltering();
-		$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", strtotime('now +' . $fetchMonths . ' months')));
+		$f = new XFilter('PeriodStart', '<=', date("Y-m-d 00:00:00", @strtotime('now +' . $fetchMonths . ' months')));
 		$ft->AddItem($f);
-		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", strtotime('now +1 day')));
+		$f = new XFilter('PeriodEnd', '>=', date("Y-m-d 00:00:00", @strtotime('now +1 day')));
 		$ft->AddItem($f);
 		$f = new XFilter('ShowOnWeb', '=', 'true');
 		$ft->AddItem($f);
@@ -73,7 +78,7 @@ if(!function_exists('edu_api_eventlist'))
 			$st->AddItem($s);
 			$groupByCityClass = " noCity";
 		}
-		
+
 		$customOrderBy = null;
 		$customOrderByOrder = null;
 		if(!empty($request['orderby']))
@@ -86,7 +91,7 @@ if(!function_exists('edu_api_eventlist'))
 			$customOrderByOrder = $request['order'];
 		}
 
-		if($customOrderBy != null) 
+		if($customOrderBy != null)
 		{
 			$orderby = explode(' ', $customOrderBy);
 			$sortorder = explode(' ', $customOrderByOrder);
@@ -96,12 +101,12 @@ if(!function_exists('edu_api_eventlist'))
 					$or = $sortorder[$od];
 				else
 					$or = "ASC";
-				
+
 				$s = new XSort($v, $or);
 				$st->AddItem($s);
 			}
 		}
-		else 
+		else
 		{
 			$s = new XSort('PeriodStart', 'ASC');
 			$st->AddItem($s);
@@ -130,7 +135,7 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 
 		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
-		
+
 		$eventDates = array();
 		foreach($eventDays as $ed)
 		{
@@ -227,7 +232,7 @@ if(!function_exists('edu_api_eventlist'))
 				$retStr .= '
 				<div class="eventDate' . $groupByCityClass . '">
 					' . (isset($eventDates[$ev->EventID]) ? edu_GetLogicalDateGroups($eventDates[$ev->EventID], true, $ev, true) : edu_GetOldStartEndDisplayDate($ev->PeriodStart, $ev->PeriodEnd, true)) . '
-					' . (!isset($eventDates[$ev->EventID]) ? ', ' . date("H:i", strtotime($ev->PeriodStart)) . ' - ' . date("H:i", strtotime($ev->PeriodEnd)) : '') . '
+					' . (!isset($eventDates[$ev->EventID]) ? ', ' . date("H:i", @strtotime($ev->PeriodStart)) . ' - ' . date("H:i", @strtotime($ev->PeriodEnd)) : '') . '
 				</div>
 				'. (!$groupByCity ?
 				'<div class="eventCity">

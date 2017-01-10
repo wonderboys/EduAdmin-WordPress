@@ -82,9 +82,9 @@
 									"type=\"checkbox\"" .
 									($subEvent->SelectedByDefault == true || $subEvent->MandatoryParticipation == true ? " checked=\"checked\"" : "") .
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
-								" value=\"" . $subEvent->EventID . "\"> " . 
-									$subEvent->Description . 
-									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") ") .
+								" value=\"" . $subEvent->EventID . "\"> " .
+									$subEvent->Description .
+									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", @strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", @strtotime($subEvent->EndDate)) . ") ") .
 									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
@@ -175,8 +175,8 @@
 									($subEvent->SelectedByDefault == true || $subEvent->MandatoryParticipation == true ? " checked=\"checked\"" : "") .
 									($subEvent->MandatoryParticipation == true ? " disabled=\"disabled\"" : "") .
 								" value=\"" . $subEvent->EventID . "\"> " .
-									$subEvent->Description . 
-									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", strtotime($subEvent->EndDate)) . ") ") .
+									$subEvent->Description .
+									($hideSubEventDateInfo ? "" : " (" . date("d/m H:i", @strtotime($subEvent->StartDate)) . " - " . date("d/m H:i", @strtotime($subEvent->EndDate)) . ") ") .
 									($s > 0  ? " <i class=\"priceLabel\">" . convertToMoney($s) . "</i>" : "") .
 								"</label>\n";
 							}
