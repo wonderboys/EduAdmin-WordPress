@@ -5,6 +5,7 @@
 ## [0.9.9.2.38]
 ### Added
 - Lots, and lots of warning suppression (all `strtotime`)
+
 ### Updated
 - `CONTRIBUTING.md` is updated (ripped from [jmaynard](https://medium.com/@jmaynard/a-contribution-policy-for-open-source-that-works-bfc4600c9d83#.c42dikaxi))
 
