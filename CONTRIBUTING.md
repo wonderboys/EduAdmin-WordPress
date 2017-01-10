@@ -1,25 +1,22 @@
-# How to contribute
-If you feel that there's missing functionality in our plugin, feel free to help us out by extending the plugin.
-Before you start coding away, please check our [issues](https://github.com/MultinetInteractive/EduAdmin-WordPress/issues), if there is already an issue about the thing you want to do.
+## Policy
+We will accept contributions of good code that we can use from anyone.
 
-We're using [PHP](https://php.net) and always focus on the latest version of [WordPress](https://wordpress.com)
+## What this means
+- "We will accept": This means that we will incorporate your contribution into the project’s codebase, adapt it as needed, and give you full credit for your work.
 
-## Getting started
-- Make sure you have a [GitHub account](https://github.com)
-- Make sure you have access to a [EduAdmin-account](http://www.eduadmin.se) and the WordPress-API-key
-- Submit a ticket for your issue, assuming one does not already exist.
-- Fork the repository on GitHub
+- "contributions": This means just about anything you wish to contribute to the project, as long as it is good code we can use. The easier you make it for us to accept your contribution, the happier we are, but if it’s good enough, we will do a reasonable amount of work to use it.
 
-## Making changes
-- Base your branch of our `master`-branch
-- Make commits small and logical
-- Check for unnecessary whitespace with `git diff --check` before commiting
-- Make sure your commit messages are readable (Do not use the same format as the `autoDeploy`-branch)
-  - You should reference the issue the commit is for
+- "of good code": This means that we will accept contributions that work well and efficiently, that fit in with the goals of the project, that match the project’s coding style, and that do not impose an undue maintenance workload on us going forward. This does not mean just program code, either, but documentation and artistic works as appropriate to the project.
 
-## Submitting the changes
-- Push your changes to the branch you created in your own fork.
-- Submit a pull request to our `master`-branch
+- "that we can use": This means that your contribution must be given freely and irrevocably, that you must have the right to contribute it for our unrestricted use, and that your contribution is made under a license that is compatible with the license the project has chosen and that permits us to include, distribute, and modify your work without restriction.
+
+- "from anyone": This means exactly that. We don’t care about anything but your code. We don’t care about your race, religion, national origin, biological gender, perceived gender, sexual orientation, lifestyle, political viewpoint, or anything extraneous like that. We will neither reject your contribution nor grant it preferential treatment on any basis except the code itself. We do, however, reserve the right to tell you to go away if you behave too obnoxiously toward us.
+
+## If Your Contribution Is Rejected
+If we reject your contribution, it means only that we do not consider it suitable for our project in the form it was submitted. It is not personal. If you ask civilly, we will be happy to discuss it with you and help you understand why it was rejected, and if possible improve it so we can accept it. If we are not able to reach an agreement, then you are free to fork our project, as with any Open Source project, and add your contribution to your fork.
 
 ## Questions or support
-You can use our [support-portal](http://support.multinet.se) to submit tickets if you need help or have questions
+You post issues at our [GitHub-repo](https://github.com/MultinetInteractive/EduAdmin-WordPress/issues), if you need help or have questions.
+
+
+Guidelines taken from [jmaynard](https://medium.com/@jmaynard/)'s post: [A contribution policy for open source that works](https://medium.com/@jmaynard/a-contribution-policy-for-open-source-that-works-bfc4600c9d83#.c42dikaxi)
