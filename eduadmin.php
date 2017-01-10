@@ -45,6 +45,7 @@ include_once("includes/_options.php");
 include_once("includes/_shortcodes.php");
 
 date_default_timezone_set(wp_get_timezone_string());
+$_SESSION['__defaultTimeZone'] = wp_get_timezone_string();
 
 if(file_exists(dirname(__FILE__) . "/.official.plugin.php"))
 {
