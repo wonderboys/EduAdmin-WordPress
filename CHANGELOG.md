@@ -1,6 +1,8 @@
 # Change log
 
 ## [Unreleased]
+### Added
+- Fixed an error with translations in Booking settings
 
 ## [0.9.9.2.40]
 ### Added

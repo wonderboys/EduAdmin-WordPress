@@ -324,7 +324,7 @@ else
 				<input type="checkbox" name="eduadmin-useBookingTermsCheckbox" value="true"<?php if(get_option('eduadmin-useBookingTermsCheckbox', false)) { echo " checked=\"checked\""; } ?> /> <?php _e("Use booking terms", "eduadmin"); ?>
 			</label>
 			<h3><?php _e("Javascript to run when a booking is completed", "eduadmin"); ?></h3>
-			<i><?php _e("You do not need to include &lt;script&gt;-tags", "eduadmin"); ?></i><br />
+			<i><?php htmlentities(_e("You do not need to include &lt;script&gt;-tags", "eduadmin")); ?></i><br />
 			<table>
 				<tr>
 					<td style="vertical-align: top;">
