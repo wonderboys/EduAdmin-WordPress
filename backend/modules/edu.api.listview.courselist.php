@@ -46,6 +46,49 @@ if(!function_exists('edu_api_listview_courselist'))
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
 
+		$occIds = array();
+		$evIds = array();
+
+		foreach($ede as $e)
+		{
+			$occIds[] = $e->OccationID;
+			$evIds[] = $e->EventID;
+		}
+
+		$ft = new XFiltering();
+		$f = new XFilter('EventID', 'IN', join(",", $evIds));
+		$ft->AddItem($f);
+
+		$eventDays = $eduapi->GetEventDate($edutoken, '', $ft->ToString());
+
+		$eventDates = array();
+		foreach($eventDays as $ed)
+		{
+			$eventDates[$ed->EventID][] = $ed;
+		}
+
+		$ft = new XFiltering();
+		$f = new XFilter('PublicPriceName', '=', 'true');
+		$ft->AddItem($f);
+		$f = new XFilter('OccationID', 'IN', join(",", $occIds));
+		$ft->AddItem($f);
+		$pricenames = $eduapi->GetPriceName($edutoken,'',$ft->ToString());
+
+		if(!empty($pricenames))
+		{
+			$ede = array_filter($ede, function($object) use (&$pricenames) {
+				$pn = $pricenames;
+				foreach($pn as $subj)
+				{
+					if($object->OccationID == $subj->OccationID)
+					{
+						return true;
+					}
+				}
+				return false;
+			});
+		}
+
 		$returnValue = array();
 		foreach($ede as $event)
 		{
