@@ -4,10 +4,26 @@
 		<form action="" method="POST">
 			<input type="hidden" name="eduformloginaction" value="" />
 			<input type="hidden" name="eduReturnUrl" value="<?php echo esc_attr($_SERVER['HTTP_REFERER']); ?>" />
+			<?php
+			$selectedLoginField = get_option('eduadmin-loginField', 'Email');
+			$loginLabel = edu__("E-mail address");
+			switch($selectedLoginField)
+			{
+				case "Email":
+					$loginLabel = edu__("E-mail address");
+					break;
+				case "CivicRegistrationNumber":
+					$loginLabel = edu__("Civic Registration Number");
+					break;
+				case "CustomerNumber":
+					$loginLabel = edu__("Customer number");
+					break;
+			}
+			?>
 			<label>
-				<div class="loginLabel"><?php edu_e("E-mail address"); ?></div>
+				<div class="loginLabel"><?php echo $loginLabel; ?></div>
 				<div class="loginInput">
-					<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
+					<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr($loginLabel); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
 				</div>
 			</label>
 			<label>

@@ -3,6 +3,9 @@
 ## [Unreleased]
 ### Added
 - Fixed an error with translations in Booking settings
+- Fixing [#48](https://github.com/MultinetInteractive/EduAdmin-WordPress/issues/48), to allow users to choose "username" field
+- Login-code checks the given login field instead of email.
+- It is now possible to add your own translation directly in the plugin. (Again)
 
 ## [0.9.9.2.40]
 ### Added

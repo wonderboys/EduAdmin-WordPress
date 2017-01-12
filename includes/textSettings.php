@@ -31,7 +31,7 @@ if(isset($_POST['resetTranslation']))
 		?>
 		<tr>
 			<td><?php echo $phrase; ?></td>
-			<td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" readonly data-key="<?php echo esc_attr($phrase); ?>" placeholder="<?php echo esc_attr($originalPhrases[$phrase]->OldPhrase); ?>" value="<?php echo esc_attr($phrases[$phrase]->OldPhrase); ?>" /></td>
+			<td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" data-key="<?php echo esc_attr($phrase); ?>" placeholder="<?php echo esc_attr($originalPhrases[$phrase]->OldPhrase); ?>" value="<?php echo esc_attr($phrases[$phrase]->OldPhrase); ?>" /></td>
 		</tr>
 		<?php
 	}

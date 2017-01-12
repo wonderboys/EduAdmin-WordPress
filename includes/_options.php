@@ -27,6 +27,7 @@ function eduadmin_settings_init()
 
 	/* Booking settings */
 	register_setting('eduadmin-booking', 'eduadmin-useLogin');
+	register_setting('eduadmin-booking', 'eduadmin-loginField');
 	register_setting('eduadmin-booking', 'eduadmin-customerGroupId');
 	register_setting('eduadmin-booking', 'eduadmin-currency');
 	register_setting('eduadmin-booking', 'eduadmin-bookingTermsLink');

@@ -1,11 +1,14 @@
 <?php
 
-function loginContactPerson($email, $password)
+function loginContactPerson($loginValue, $password)
 {
 	global $eduapi;
 	global $edutoken;
+
+	$loginField = get_option('eduadmin-loginField', 'Email');
+
 	$filter = new XFiltering();
-	$f = new XFilter('Email', '=', $email);
+	$f = new XFilter($loginField, '=', $loginValue);
 	$filter->AddItem($f);
 	$f = new XFilter('Loginpass', '=', $password);
 	$filter->AddItem($f);
@@ -42,13 +45,15 @@ function loginContactPerson($email, $password)
 	}
 }
 
-function sendForgottenPassword($email) {
+function sendForgottenPassword($loginValue) {
 	global $eduapi;
 	global $edutoken;
 	$ccId = 0;
 
+	$loginField = get_option('eduadmin-loginField', 'Email');
+
 	$filter = new XFiltering();
-	$f = new XFilter('Email', '=', $email);
+	$f = new XFilter($loginField, '=', $loginValue);
 	$filter->AddItem($f);
 	$f = new XFilter('CanLogin', '=', true);
 	$filter->AddItem($f);
@@ -56,7 +61,7 @@ function sendForgottenPassword($email) {
 	if(count($cc) == 1)
 		$ccId = current($cc)->CustomerContactID;
 
-	if($ccId > 0) {
+	if($ccId > 0 && !empty(current($cc)->Email)) {
 		$sent = $eduapi->SendCustomerContactPassword($edutoken, $ccId, get_bloginfo( 'name' ));
 		return $sent;
 	}
@@ -139,7 +144,7 @@ else
 					}
 					else
 					{
-						$_SESSION['eduadminLoginError'] = edu__("Wrong email or password.");
+						$_SESSION['eduadminLoginError'] = edu__("Wrong username or password.");
 					}
 					break;
 				case "forgot":
@@ -150,7 +155,7 @@ else
 		}
 		else
 		{
-			$_SESSION['eduadminLoginError'] = edu__("You have to provide your e-mail adress.");
+			$_SESSION['eduadminLoginError'] = edu__("You have to provide your login credentials.");
 		}
 	}
 }

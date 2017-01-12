@@ -80,6 +80,16 @@ else
 				<?php _e("Use login", "eduadmin"); ?>
 			</label>
 			<br />
+			<br />
+			<label>
+				<?php _e("Login field", "eduadmin"); ?>
+				<?php $selectedLoginField = get_option('eduadmin-loginField', 'Email'); ?>
+				<select name="eduadmin-loginField">
+					<option<?php echo ($selectedLoginField === "Email" ? " selected=\"selected\"" : ""); ?> value="Email"><?php _e("E-mail address", "eduadmin"); ?></option>
+					<option<?php echo ($selectedLoginField === "CivicRegistrationNumber" ? " selected=\"selected\"" : ""); ?> value="CivicRegistrationNumber"><?php _e("Civic Registration Number", "eduadmin"); ?></option>
+					<!--<option value="CustomerNumber"><?php _e("Customer number", "eduadmin"); ?></option>--> <!-- To be enabled when it works in the API -->
+				</select>
+			</label>
 			<h3><?php _e("Booking form settings", "eduadmin"); ?></h3>
 			<h4><?php _e("Field order", "eduadmin"); ?></h4>
 			<?php
