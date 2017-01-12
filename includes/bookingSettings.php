@@ -91,6 +91,14 @@ else
 				</select>
 			</label>
 			<h3><?php _e("Booking form settings", "eduadmin"); ?></h3>
+			<?php
+			$singlePersonBooking = get_option('eduadmin-singlePersonBooking', false);
+			?>
+			<label>
+				<input type="checkbox" name="eduadmin-singlePersonBooking"<?php echo ($singlePersonBooking === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Participant is also customer and contact", "eduadmin"); ?>
+			</label>
+			<br />
 			<h4><?php _e("Field order", "eduadmin"); ?></h4>
 			<?php
 			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
