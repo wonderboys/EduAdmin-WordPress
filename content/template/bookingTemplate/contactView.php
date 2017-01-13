@@ -33,7 +33,8 @@
 					<input type="tel" id="edu-contactMobile" name="contactMobile" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Mobile number"); ?>" value="<?php echo @esc_attr($contact->Mobile); ?>" />
 				</div>
 			</label>
-			<?php if($selectedCourse->RequireCivicRegistrationNumber) { ?>
+			<?php $selectedLoginField = get_option('eduadmin-loginField', 'Email'); ?>
+			<?php if($selectedCourse->RequireCivicRegistrationNumber || $selectedLoginField == 'CivicRegistrationNumber') { ?>
 			<label>
 				<div class="inputLabel">
 					<?php edu_e("Civic Registration Number"); ?>
