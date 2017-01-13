@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Added
-
+- Bugfix: Search was not respected by ajax-reloads (Bad, bad JS..)
 
 ## [0.9.10]
 ### Added

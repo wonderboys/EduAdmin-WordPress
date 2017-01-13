@@ -60,6 +60,17 @@ if(!function_exists('edu_api_listview_eventlist'))
 
 		$edo = $eduapi->GetEducationObject($edutoken, '', $filtering->ToString());
 
+		if(!empty($request['search']))
+		{
+			$edo = array_filter($edo, function($object) {
+				$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
+				$descrMatch = stripos($object->CourseDescription, $request['search']) !== FALSE;
+				$shortDescrMatch = stripos($object->CourseDescriptionShort, $request['search']) !== FALSE;
+				$nameMatch = stripos($name, $request['search']) !== FALSE;
+				return ($nameMatch || $descrMatch || $shortDescrMatch);
+			});
+		}
+
 		$filtering = new XFiltering();
 		$f = new XFilter('ShowOnWeb','=','true');
 		$filtering->AddItem($f);
