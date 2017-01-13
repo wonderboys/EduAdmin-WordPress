@@ -51,7 +51,7 @@ if(!function_exists('edu_api_eventlist'))
 		$ft->AddItem($f);
 		$f = new XFilter('ObjectID', '=', $objectId);
 		$ft->AddItem($f);
-		$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 23:59:59"));
+		$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00"));
 		$ft->AddItem($f);
 
 		$f = new XFilter('CustomerID','=','0');

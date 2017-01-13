@@ -57,7 +57,7 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 	$ft->AddItem($f);
-	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d H:i:s"));
+	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00"));
 	$ft->AddItem($f);
 
 	$f = new XFilter('CustomerID','=','0');

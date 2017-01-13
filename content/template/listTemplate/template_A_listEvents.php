@@ -99,7 +99,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('StatusID','=','1');
 	$filtering->AddItem($f);
 
-	$f = new XFilter('LastApplicationDate','>',date("Y-m-d 23:59:59"));
+	$f = new XFilter('LastApplicationDate','>',date("Y-m-d 00:00:00"));
 	$filtering->AddItem($f);
 
 	if(!empty($filterCourses))

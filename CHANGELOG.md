@@ -8,6 +8,7 @@
 - It is now possible to add your own translation directly in the plugin. (Again)
 - Added extra filter to course list (ajax) to skip "next" event if there isn't a public price name set.
 - Fixes [#50](https://github.com/MultinetInteractive/EduAdmin-WordPress/issues/50), so end users won't have to fill in their details three times.
+- Changed the filter for LastApplicationDate on events to satisfy the needs (and proper implementation) of being able to book the same day
 
 ## [0.9.9.2.40]
 ### Added
