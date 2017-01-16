@@ -346,6 +346,9 @@ if(!empty($edo))
 		ksort($eventCities);
 		$showEventsWithEventsOnly = $attributes['onlyevents'];
 		$showEventsWithoutEventsOnly = $attributes['onlyempty'];
+
+		$showEventVenue = get_option('eduadmin-showEventVenueName', false);
+
 		if($showEventsWithEventsOnly && empty($sortedEvents))
 			continue;
 
@@ -390,10 +393,17 @@ if(!empty($edo))
 			if($showCourseLocations && !empty($eventCities)){
 				$days = sprintf(edu_n('%1$d day', '%1$d days', $object->Days), $object->Days) . ', ';
 
-				echo isset($eventCities['Stockholm']) ? '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Stockholm']->PeriodStart, $eventCities['Stockholm']->PeriodEnd, true).'</td>' : '<td></td>' ;
-				echo isset($eventCities['Göteborg']) ? '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Göteborg']->PeriodStart, $eventCities['Göteborg']->PeriodEnd, true).'</td>' : '<td></td>' ;
+				echo isset($eventCities['Stockholm']) ?
+					'<td>'.$days.GetOldStartEndDisplayDate($eventCities['Stockholm']->PeriodStart, $eventCities['Stockholm']->PeriodEnd, true).'</td>' :
+					'<td></td>';
 
-				echo isset($eventCities['Växjö']) ? '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Växjö']->PeriodStart, $eventCities['Växjö']->PeriodEnd, true).'</td>' : '<td></td>' ;
+				echo isset($eventCities['Göteborg']) ?
+					'<td>'.$days.GetOldStartEndDisplayDate($eventCities['Göteborg']->PeriodStart, $eventCities['Göteborg']->PeriodEnd, true).'</td>' :
+					'<td></td>';
+
+				echo isset($eventCities['Växjö']) ?
+					'<td>'.$days.GetOldStartEndDisplayDate($eventCities['Växjö']->PeriodStart, $eventCities['Växjö']->PeriodEnd, true).'</td>' :
+					'<td></td>';
 
 				if ( isset($eventCities['Malmö']) ) {
 					echo '<td>'.$days.GetOldStartEndDisplayDate($eventCities['Malmö']->PeriodStart, $eventCities['Malmö']->PeriodEnd, true).'</td>';

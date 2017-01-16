@@ -3,6 +3,8 @@
 ## [Unreleased]
 ### Added
 - Bugfix: Search was not respected by ajax-reloads (Bad, bad JS..)
+- Added extra option to show city **AND** venue name
+- Fixed all views and endpoints that show city to include venue name if the setting is on.
 
 ## [0.9.10]
 ### Added

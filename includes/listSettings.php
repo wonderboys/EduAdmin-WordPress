@@ -49,6 +49,11 @@ else
 						</label>
 						<br />
 						<label>
+							<input type="checkbox" name="eduadmin-showEventVenueName"<?php if(get_option('eduadmin-showEventVenueName', false)) { echo " checked=\"checked\""; } ?> />
+							<?php _e("Show venue name", "eduadmin"); ?>
+						</label>
+						<br />
+						<label>
 							<input type="checkbox" name="eduadmin-showEventPrice"<?php if(get_option('eduadmin-showEventPrice', false)) { echo " checked=\"checked\""; } ?> />
 							<?php _e("Show price", "eduadmin"); ?>
 						</label>

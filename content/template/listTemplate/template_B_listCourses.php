@@ -317,6 +317,7 @@ $showCourseDays = get_option('eduadmin-showCourseDays', true);
 $showCourseTimes = get_option('eduadmin-showCourseTimes', true);
 
 $showDescr = get_option('eduadmin-showCourseDescription', true);
+$showEventVenue = get_option('eduadmin-showEventVenueName', false);
 
 ?><div style="display: none;" class="eduadmin-courselistoptions" data-subject="<?php echo @esc_attr($attributes['subject']); ?>"
 	data-category="<?php echo @esc_attr($attributes['category']); ?>"
@@ -331,7 +332,9 @@ $showDescr = get_option('eduadmin-showCourseDescription', true);
 	data-search="<?php echo @esc_attr($_REQUEST['searchCourses']); ?>"
 	data-showimages="<?php echo @esc_attr($showImages); ?>"
 	data-numberofevents="<?php echo @esc_attr($attributes['numberofevents']); ?>"
-	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"></div><?php
+	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"
+	data-showvenue="<?php echo @esc_attr($showEventVenue); ?>"
+></div><?php
 
 foreach($edo as $object)
 {
@@ -404,6 +407,10 @@ foreach($edo as $object)
 					if(!empty($sortedEvents))
 					{
 						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
+						if($showEventVenue)
+						{
+							echo ", " . current($sortedEvents)->AddressName;
+						}
 					} else {
 						echo "<i>" . edu__('No coming events') . "</i>";
 					}

@@ -250,6 +250,8 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 		$showCourseDays = $request['showcoursedays'];
 		$showCourseTimes = $request['showcoursetimes'];
 
+		$showVenue = $request['showvenue'];
+
 		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 		$surl = $request['baseUrl'];
@@ -269,7 +271,10 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					'groupbycity',
 					'fewspots',
 					'spotsettings',
-					'numberofevents'
+					'numberofevents',
+					'showvenue',
+					'order',
+					'orderby'
 				);
 
 		ob_start();
@@ -302,7 +307,11 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 
 				if(!empty($object->City))
 				{
-					echo " <span class=\"cityInfo\">" . $object->City . "</span>";
+					echo " <span class=\"cityInfo\">";
+					echo $object->City;
+					if($showVenue && !empty($object->AddressName))
+						echo ", " . $object->AddressName;
+					echo "</span>";
 				}
 
 				if(isset($object->Days) && $object->Days > 0) {
@@ -361,6 +370,8 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 		$showCourseDays = $request['showcoursedays'];
 		$showCourseTimes = $request['showcoursetimes'];
 
+		$showVenue = $request['showvenue'];
+
 		$incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 		$surl = $request['baseUrl'];
@@ -380,7 +391,10 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 					'groupbycity',
 					'fewspots',
 					'spotsettings',
-					'numberofevents'
+					'numberofevents',
+					'showvenue',
+					'order',
+					'orderby'
 				);
 		ob_start();
 
@@ -410,7 +424,11 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 
 				if(!empty($object->City))
 				{
-					echo " <span class=\"cityInfo\">" . $object->City . "</span>";
+					echo " <span class=\"cityInfo\">";
+					echo $object->City;
+					if($showVenue && !empty($object->AddressName))
+						echo ", " . $object->AddressName;
+					echo "</span>";
 				}
 
 				if($object->Days > 0) {

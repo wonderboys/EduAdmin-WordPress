@@ -131,6 +131,7 @@ if(isset($_REQUEST['eduadmin-subject']) && !empty($_REQUEST['eduadmin-subject'])
 	$f = new XFilter('ParentEventID', '=', '0');
 	$filtering->AddItem($f);
 
+	$sorting = new XSorting();
 	if($customOrderBy != null)
 	{
 		$orderby = explode(' ', $customOrderBy);
@@ -288,6 +289,7 @@ $incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 $showEventPrice = get_option('eduadmin-showEventPrice', false);
 $currency = get_option('eduadmin-currency', 'SEK');
+$showEventVenue = get_option('eduadmin-showEventVenueName', false);
 
 ?>
 <div class="eventListTable"
@@ -309,6 +311,7 @@ $currency = get_option('eduadmin-currency', 'SEK');
 	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"
 	data-orderby="<?php echo @esc_attr($attributes['orderby']); ?>"
 	data-order="<?php echo @esc_attr($attributes['order']); ?>"
+	data-showvenue="<?php echo @esc_attr($showEventVenue); ?>"
 ><?php
 
 $numberOfEvents = $attributes['numberofevents'];
@@ -338,7 +341,11 @@ foreach($ede as $object)
 
 		if(!empty($object->City))
 		{
-			echo " <span class=\"cityInfo\">" . $object->City . "</span>";
+			echo " <span class=\"cityInfo\">";
+			echo $object->City;
+			if($showEventVenue && !empty($object->AddressName))
+				echo ", " . $object->AddressName;
+			echo "</span>";
 		}
 
 		if($object->Days > 0) {

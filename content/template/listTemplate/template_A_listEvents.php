@@ -249,6 +249,7 @@ $incVat = $eduapi->GetAccountSetting($edutoken, 'PriceIncVat') == "yes";
 
 $showEventPrice = get_option('eduadmin-showEventPrice', false);
 $currency = get_option('eduadmin-currency', 'SEK');
+$showEventVenue = get_option('eduadmin-showEventVenueName', false);
 
 $ft = new XFiltering();
 $f = new XFilter('EventID', 'IN', join(",", $evIds));
@@ -311,6 +312,7 @@ if(isset($_REQUEST['searchCourses']) && !empty($_REQUEST['searchCourses']))
 	data-fetchmonths="<?php echo @esc_attr($fetchMonths); ?>"
 	data-orderby="<?php echo @esc_attr($attributes['orderby']); ?>"
 	data-order="<?php echo @esc_attr($attributes['order']); ?>"
+	data-showvenue="<?php echo @esc_attr($showEventVenue); ?>"
 >
 <?php
 
@@ -342,7 +344,11 @@ foreach($ede as $object)
 
 		if(!empty($object->City))
 		{
-			echo " <span class=\"cityInfo\">" . $object->City . "</span>";
+			echo " <span class=\"cityInfo\">";
+			echo $object->City;
+			if($showEventVenue && !empty($object->AddressName))
+				echo ", " . $object->AddressName;
+			echo "</span>";
 		}
 
 		if($object->Days > 0) {

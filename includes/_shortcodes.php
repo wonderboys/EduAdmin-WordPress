@@ -567,6 +567,7 @@ function eduadmin_get_detailinfo($attributes)
 				(isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : '') .
 				' data-order="' . $customOrderBy . '"' .
 				' data-orderby="' . $customOrderByOrder . '"' .
+				' data-showvenue="' . get_option('eduadmin-showEventVenueName', false) . '"' .
 				'>';
 				$i = 0;
 				$hasHiddenDates = false;

@@ -174,6 +174,7 @@ if(!function_exists('edu_api_eventlist'))
 		$showMore = isset($request['showmore']) && !empty($request['showmore']) ? $request['showmore'] : -1;
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
+		$showVenue = $request['showvenue'];
 		$spotSettings = $request['spotsettings'];
 		$showEventInquiry = isset($request['event-inquiry']) && $request['event-inquiry'] == "1";
 		$baseUrl = $surl . '/' . $cat;
@@ -233,7 +234,9 @@ if(!function_exists('edu_api_eventlist'))
 				</div>
 				'. (!$groupByCity ?
 				'<div class="eventCity">
-					' . $ev->City . '
+					' . $ev->City .
+					($showVenue && !empty($ev->AddressName) ? ', ' . $ev->AddressName : '') .
+					'
 				</div>' : '') .
 				'<div class="eventStatus' . $groupByCityClass . '">
 				<span class="spotsLeftInfo">' .
