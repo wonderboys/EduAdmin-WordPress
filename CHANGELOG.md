@@ -6,6 +6,15 @@
 - Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
 - Fixing `frontend.js` to work with single participant-settings.
 
+## [0.9.12]
+### Added
+- Added option `eduadmin-allowDiscountCode`, to enable the customers to enter a discount code when they book participants for a event.
+- Bugfix: When copying contact to participant, correct field is now copied, instead of surname.
+- Added backend-api file to handle checking coupon codes
+- Added support to validate coupon codes against the api
+- Added support to recalculate the price and post the coupon with the Booking
+
+
 ## [0.9.11]
 ### Added
 - Removed `margin-top: 1.0em; vertical-align: top;` from `.inputLabel` and replaced with `vertical-align: middle;`.
@@ -77,7 +86,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.11...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.12...HEAD
+[0.9.12]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.40...v0.9.10
 [0.9.9.2.40]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.39...v0.9.9.2.40

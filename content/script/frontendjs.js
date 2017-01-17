@@ -5,6 +5,7 @@ var eduBookingView = {
 	SingleParticipant: false,
 	MaxParticipants: 0,
 	CurrentParticipants: 0,
+	DiscountPercent: 0,
 	AddParticipant: function() {
 		if(!eduBookingView.SingleParticipant) {
 			if(eduBookingView.MaxParticipants == -1 || eduBookingView.CurrentParticipants < eduBookingView.MaxParticipants)
@@ -171,8 +172,8 @@ var eduBookingView = {
 				}
 			}
 
-			if(totalPriceDiscountPercent != 0) {
-				var disc = (totalPriceDiscountPercent / 100) * newPrice;
+			if(totalPriceDiscountPercent != 0 || eduBookingView.DiscountPercent != 0) {
+				var disc = ((totalPriceDiscountPercent + eduBookingView.DiscountPercent) / 100) * newPrice;
 				newPrice = newPrice - disc;
 			}
 
@@ -215,7 +216,7 @@ var eduBookingView = {
 			var tCivReg = document.querySelector('.contactCivReg')
 			if(tCivReg) {
 				var cCivReg = document.getElementById('edu-contactCivReg').value;
-				tCivReg.value = cLastName;
+				tCivReg.value = cCivReg;
 			}
 
 			if(contact == 1 && !this.AddedContactPerson) {
@@ -235,6 +236,30 @@ var eduBookingView = {
 		}
 	},
 	AddedContactPerson: false,
+	ValidateDiscountCode: function() {
+		edu.apiclient.CheckCouponCode(
+			jQuery('#edu-discountCode').val(),
+			jQuery('.validateDiscount').data('objectid'),
+			jQuery('.validateDiscount').data('categoryid'),
+			function(data) {
+				if(data) {
+					jQuery('#edu-discountCodeID').val(data.CouponID);
+					eduBookingView.DiscountPercent = data.DiscountPercent;
+					eduBookingView.UpdatePrice();
+				} else {
+					// Invalid code
+					var codeWarning = document.getElementById('edu-warning-discount');
+					if(codeWarning) {
+						codeWarning.style.display = 'block';
+						setTimeout(function() {
+							var codeWarning = document.getElementById('edu-warning-discount');
+							codeWarning.style.display = '';
+						}, 5000);
+					}
+				}
+			}
+		);
+	},
 	CheckValidation: function() {
 		var terms = document.getElementById('confirmTerms');
 		if(terms) {

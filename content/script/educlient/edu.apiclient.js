@@ -209,6 +209,25 @@ edu.apiclient = {
 			}
 		});
 	},
+	CheckCouponCode: function(code, objectId, categoryId, onData) {
+		jQuery.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
+			},
+			url: edu.apiclient.baseUrl + '?module=check_coupon_code',
+			type: 'POST',
+			data: {
+				code: code,
+				objectId: objectId,
+				categoryId: categoryId
+			},
+			success: function(d) {
+				if(onData && typeof onData == 'function') {
+					onData(d);
+				}
+			}
+		});
+	},
 	GetCookie: function (name) {
         try {
             var cookie = document.cookie;

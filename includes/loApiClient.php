@@ -5,7 +5,7 @@
   {
     protected $__server;
     public $debug = false;
-    public $timers;
+    protected $timers;
 
       public function __construct()
       {
@@ -14,7 +14,7 @@
       $this->__server = new SoapClient(
         ServiceUrl,
         array(
-          'trace' => 1,
+          'trace' => 0,
           'cache_wsdl' => WSDL_CACHE_BOTH
         )
       );
@@ -456,6 +456,14 @@
       );
 
       return $this->__callServer($param, 'GetCompanyAttributeXml');
+    }
+
+    public function GetCompanyLogoUrl($authToken) {
+      $param = array(
+        'authToken' => $authToken
+      );
+
+      return $this->__callServer($param, 'GetCompanyLogoUrl');
     }
 
     public function GetConfirmationEmailMessage($authToken, $eclID, $documentID) {
@@ -1231,6 +1239,16 @@
       return $this->__callServer($param, 'GetEventXml');
     }
 
+    public function GetGetUserLocationXml($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__callServer($param, 'GetGetUserLocationXml');
+    }
+
     public function GetGrade($authToken, $sort, $filter) {
       $param = array(
         'authToken' => $authToken,
@@ -1751,6 +1769,16 @@
       );
 
       return $this->__callServer($param, 'GetUserAttributeXml');
+    }
+
+    public function GetUserLocation($authToken, $sort, $filter) {
+      $param = array(
+        'authToken' => $authToken,
+        'sort' => $sort,
+        'filter' => $filter
+      );
+
+      return $this->__getArray('UserLocation', $this->__callServer($param, 'GetUserLocation'))->UserLocation;
     }
 
     public function GetValidCoupons($authToken, $objectID, $categoryID) {
@@ -2396,7 +2424,9 @@
       if($this->debug)
         $this->__debug();
       $this->timers[$methodName . '__callServer'] = microtime(true) - $this->timers[$methodName . '__callServer'];
-      return $result->{$methodName/*$d*/ . 'Result'};
+      if(isset($result->{$methodName/*$d*/ . 'Result'}))
+        return $result->{$methodName/*$d*/ . 'Result'};
+      return null;
     }
 
     private function __debug($result = null)
@@ -2707,6 +2737,8 @@ class CertificatePersonV2 {
     var $CertificateFromEventIDs;
     var $CertificateFromPersonCertificateIDs;
     var $Subjects;
+    var $CertificateAfterRetest;
+    var $CertificatePersonComment;
     var $PersonID;
     var $PersonFirstName;
     var $PersonLastName;
@@ -2727,6 +2759,7 @@ class CertificatePersonV2 {
       $this->CertificateFromEventIDs = array();
       $this->CertificateFromPersonCertificateIDs = array();
       $this->Subjects = array();
+      $this->CertificateAfterRetest = null;
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
@@ -2803,6 +2836,7 @@ class Country {
 class Coupon {
     var $CouponID;
     var $Code;
+
     var $DiscountPercent;
     var $CouponDescription;
     var $ValidFrom;
@@ -2852,7 +2886,6 @@ class Customer {
       $this->Attribute = array();
   }
 }
-
 
 class CustomerAttribute {
     var $CustomerID;
@@ -3077,7 +3110,7 @@ class CustomerV2 {
       $this->CanLogin = null;
       $this->DiscountPercent = null;
       $this->ParticipantDiscountPercent = null;
-      $this->NotCreditworthy = false;
+      $this->NotCreditworthy = null;
       $this->CustomerID = 0;
       $this->CustomerGroupID = null;
       $this->VatFree = null;
@@ -4464,6 +4497,17 @@ class UserAttribute {
       $this->AttributeAlternative = array();
   }
 }
+
+class UserLocation {
+    var $UserID;
+    var $LocationID;
+
+  function __construct() {
+      $this->UserID = 0;
+      $this->LocationID = 0;
+  }
+}
+
 
 class XFilter
 {

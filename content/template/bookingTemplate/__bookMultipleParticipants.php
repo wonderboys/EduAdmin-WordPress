@@ -369,6 +369,10 @@ if(!empty($pArr))
 		$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
 	}
 
+	if(isset($_POST['edu-discountCodeID']) && $_POST['edu-discountCodeID'] != "0") {
+		$bi->CouponID = $_POST['edu-discountCodeID'];
+	}
+
 	$bi->CustomerReference = (!empty($_POST['invoiceReference']) ? trim($_POST['invoiceReference']) : trim(str_replace(';', ' ', $contact->ContactName)));
 	$eventCustomerLnkID = $eduapi->CreateSubEventBooking(
 		$edutoken,

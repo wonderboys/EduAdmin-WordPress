@@ -99,6 +99,13 @@ else
 				<?php _e("Participant is also customer and contact (Only allow a single participant)", "eduadmin"); ?>
 			</label>
 			<br />-->
+			<?php
+			$allowDiscountCode = get_option('eduadmin-allowDiscountCode', false);
+			?>
+			<label>
+				<input type="checkbox" name="eduadmin-allowDiscountCode"<?php echo ($allowDiscountCode === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Allow end customers to use discount codes", "eduadmin"); ?>
+			</label>
 			<h4><?php _e("Field order", "eduadmin"); ?></h4>
 			<?php
 			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');

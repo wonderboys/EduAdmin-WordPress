@@ -289,6 +289,29 @@ $hideSubEventDateInfo = get_option('eduadmin-hideSubEventDateTime', false);
 		}
 		?>
 		<?php include_once("questionView.php"); ?>
+		<?php
+		if(get_option('eduadmin-allowDiscountCode', false)) {
+		?>
+		<label>
+			<div class="inputLabel">
+				<?php edu_e("Discount code"); ?>
+			</div>
+			<div class="inputHolder">
+				<input type="text" name="edu-discountCode" id="edu-discountCode" style="width: 78%;" placeholder="<?php edu_e("Discount code"); ?>" />
+				<button class="validateDiscount"
+					style="width: 20%;"
+					data-categoryid="<?php echo @esc_attr($selectedCourse->CategoryID); ?>"
+					data-objectid="<?php echo @esc_attr($selectedCourse->ObjectID); ?>"
+					onclick="eduBookingView.ValidateDiscountCode(); return false;">
+					<?php edu_e("Validate"); ?>
+				</button>
+				<input type="hidden" name="edu-discountCodeID" id="edu-discountCodeID" />
+			</div>
+		</label>
+		<div class="edu-modal warning" id="edu-warning-discount">
+			<?php edu_e("Invalid discount code, please check your code and try again."); ?>
+		</div>
+		<?php } ?>
 		<div class="sumTotal"><?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span></div>
 
 		<?php
