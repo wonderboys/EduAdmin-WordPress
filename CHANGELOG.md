@@ -2,9 +2,17 @@
 
 ## [Unreleased]
 ### Added
-- Bugfix: Search was not respected by ajax-reloads (Bad, bad JS..)
-- Added extra option to show city **AND** venue name
+- Added `singlePersonBooking.php` to handle when the participant is customer, contact and participant.
+- Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
+- Fixing `frontend.js` to work with single participant-settings.
+
+## [0.9.11]
+### Added
+- Removed `margin-top: 1.0em; vertical-align: top;` from `.inputLabel` and replaced with `vertical-align: middle;`.
+- Bugfix: Search was not respected by ajax-reloads. (Bad, bad JS..)
+- Added extra option to show city **AND** venue name.
 - Fixed all views and endpoints that show city to include venue name if the setting is on.
+- Only show date period in the listview event list, instead of all course days.
 
 ## [0.9.10]
 ### Added
@@ -69,7 +77,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.10...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.11...HEAD
+[0.9.11]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.40...v0.9.10
 [0.9.9.2.40]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.39...v0.9.9.2.40
 [0.9.9.2.39]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.9.2.38...v0.9.9.2.39

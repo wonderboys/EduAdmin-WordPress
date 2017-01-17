@@ -2,31 +2,33 @@ var eduBookingView = {
 	Customer: null,
 	ContactPerson: null,
 	Participants: [],
+	SingleParticipant: false,
 	MaxParticipants: 0,
 	CurrentParticipants: 0,
 	AddParticipant: function() {
-		if(eduBookingView.MaxParticipants == -1 || eduBookingView.CurrentParticipants < eduBookingView.MaxParticipants)
-		{
-			var holder = document.getElementById('edu-participantHolder');
-			var tmpl = document.querySelector('.eduadmin .participantItem.template');
-			var cloned = tmpl.cloneNode(true);
-			cloned.style.display = 'block';
-			cloned.className = cloned.className.replace(' template', '');
-			holder.appendChild(cloned);
-		}
-		else
-		{
-			var partWarning = document.getElementById('edu-warning-participants');
-			if(partWarning)
+		if(!eduBookingView.SingleParticipant) {
+			if(eduBookingView.MaxParticipants == -1 || eduBookingView.CurrentParticipants < eduBookingView.MaxParticipants)
 			{
-				partWarning.style.display = 'block';
-				setTimeout(function() {
-					var partWarning = document.getElementById('edu-warning-participants');
-					partWarning.style.display = '';
-				}, 5000);
+				var holder = document.getElementById('edu-participantHolder');
+				var tmpl = document.querySelector('.eduadmin .participantItem.template');
+				var cloned = tmpl.cloneNode(true);
+				cloned.style.display = 'block';
+				cloned.className = cloned.className.replace(' template', '');
+				holder.appendChild(cloned);
+			}
+			else
+			{
+				var partWarning = document.getElementById('edu-warning-participants');
+				if(partWarning)
+				{
+					partWarning.style.display = 'block';
+					setTimeout(function() {
+						var partWarning = document.getElementById('edu-warning-participants');
+						partWarning.style.display = '';
+					}, 5000);
+				}
 			}
 		}
-
 		eduBookingView.UpdatePrice();
 	},
 	RemoveParticipant: function(obj) {
@@ -42,7 +44,7 @@ var eduBookingView = {
 	},
 	CheckParticipantCount: function()
 	{
-		var participants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length - 1;
+		var participants = (eduBookingView.SingleParticipant ? 1 : document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length - 1);
 		if(participants >= eduBookingView.MaxParticipants && eduBookingView.MaxParticipants >= 0) {
 			return false;
 		}
@@ -59,7 +61,7 @@ var eduBookingView = {
 			}
 		}
 		eduBookingView.ContactAsParticipant();
-		eduBookingView.CurrentParticipants = document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact;
+		eduBookingView.CurrentParticipants = (eduBookingView.SingleParticipant ? 1 : document.querySelectorAll('.eduadmin .participantItem:not(.template):not(.contactPerson)').length + contact);
 
 		var questions = document.querySelectorAll('.questionPanel [data-price]');
 
@@ -160,7 +162,7 @@ var eduBookingView = {
 				}
 			}
 
-			if(contactParticipant.checked) {
+			if(contactParticipant && contactParticipant.checked) {
 				var subEventPrices = document.querySelectorAll('.eduadmin .participantItem.contactPerson:not(.template) input.subEventCheckBox:checked');
 				if(subEventPrices.length > 0) {
 					for(var i = 0; i < subEventPrices.length; i++) {

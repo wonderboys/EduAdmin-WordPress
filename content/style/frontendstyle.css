@@ -304,10 +304,6 @@
 	margin: 0;
 }
 
-.eduadmin .textblock
-{
-}
-
 .eduadmin .textblock ul
 {
 	display: block;
@@ -418,8 +414,7 @@
 {
 	margin-right: 1em;
 	width: 30%;
-	vertical-align: top;
-	margin-top: 1.0em;
+	vertical-align: middle;
 }
 
 .eduadmin .inputHolder
@@ -500,11 +495,6 @@
 /* Mobil-css för när vi ska fixa till så att den är responsiv */
 @media (max-width: 690px)
 {
-	.eduadmin .objectItem .objectDescription,
-	.eduadmin .objectItem .dayInfo
-	{
-		/*display: none;*/
-	}
 	.eduadmin .objectItem .objectBook
 	{
 		display: none;
@@ -528,7 +518,6 @@
 	{
 		display: table-cell;
 		vertical-align: middle;
-		/*height: 3.7em;*/
 	}
 
 	.eduadmin .inputLabel,

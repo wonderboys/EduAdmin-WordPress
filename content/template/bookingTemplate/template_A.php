@@ -260,18 +260,23 @@ $hideSubEventDateInfo = get_option('eduadmin-hideSubEventDateTime', false);
 
 		<input type="hidden" name="act" value="bookCourse" />
 		<?php
-		$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
-		if($fieldOrder == "contact_customer") {
-			include_once("contactView.php");
-			include_once("customerView.php");
-		} else if($fieldOrder == "customer_contact") {
-			include_once("customerView.php");
-			include_once("contactView.php");
-		}
+		$singlePersonBooking = get_option('eduadmin-singlePersonBooking', false);
+		if($singlePersonBooking) {
+			include_once("singlePersonBooking.php");
+		} else {
+			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
+			if($fieldOrder == "contact_customer") {
+				include_once("contactView.php");
+				include_once("customerView.php");
+			} else if($fieldOrder == "customer_contact") {
+				include_once("customerView.php");
+				include_once("contactView.php");
+			}
 		?>
 		<?php include_once("participantView.php"); ?>
 		<br />
 		<?php
+		}
 		if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectWholeEvent") {
 		?>
 		<?php edu_e("Price name"); ?>
@@ -337,7 +342,7 @@ var vatText = '<?php echo edu__($incVat ? "inc vat" : "ex vat"); ?>';
 	title = title.replace('<?php echo esc_attr($originalTitle); ?>', '<?php echo esc_attr($newTitle); ?>');
 	document.title = title;
 	eduBookingView.MaxParticipants = <?php echo ($event->MaxParticipantNr == 0 ? -1 : ($event->MaxParticipantNr - $event->TotalParticipantNr)); ?>;
-
+	<?php echo (get_option('eduadmin-singlePersonBooking', false) ? "eduBookingView.SingleParticipant = true;" : ""); ?>
 	eduBookingView.AddParticipant();
 	eduBookingView.UpdatePrice();
 })();

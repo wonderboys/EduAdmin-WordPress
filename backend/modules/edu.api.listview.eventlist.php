@@ -303,7 +303,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					<div class="objectDescription"><?php
 
 				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID], true, $object, true) : edu_GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+				echo /*isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID], true, $object, true) :*/ edu_GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 				if(!empty($object->City))
 				{
@@ -420,7 +420,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 				<div class="objectDescription"><?php
 
 				$spotsLeft = ($object->MaxParticipantNr - $object->TotalParticipantNr);
-				echo isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID]) : edu_GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
+				echo /*isset($eventDates[$object->EventID]) ? edu_GetLogicalDateGroups($eventDates[$object->EventID]) :*/ edu_GetOldStartEndDisplayDate($object->PeriodStart, $object->PeriodEnd, true);
 
 				if(!empty($object->City))
 				{
