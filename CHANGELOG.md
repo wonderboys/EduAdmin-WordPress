@@ -5,6 +5,9 @@
 - Added `singlePersonBooking.php` to handle when the participant is customer, contact and participant.
 - Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
 - Fixing `frontend.js` to work with single participant-settings.
+- Added support for attributes (customer, contact and person) in booking form.
+- Added functions to render the different attribute types, attributes not supported is multi value attributes, dates, checkbox lists and HTML
+- Added: Saving customer attributes
 
 ## [0.9.12]
 ### Added

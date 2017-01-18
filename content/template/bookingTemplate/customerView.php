@@ -123,6 +123,25 @@
 					<input type="text" name="purchaseOrderNumber" placeholder="<?php edu_e("Purchase order number"); ?>" value="<?php echo @esc_attr($purchaseOrderNumber); ?>" />
 				</div>
 			</label>
+			<?php
+
+			$so = new XSorting();
+			$s = new XSort('SortIndex', 'ASC');
+			$so->AddItem($s);
+
+			$fo = new XFiltering();
+			$f = new XFilter('ShowOnWeb', '=', 'true');
+			$fo->AddItem($f);
+			$f = new XFilter('AttributeOwnerTypeID', '=', 2);
+			$fo->AddItem($f);
+			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+			foreach($contactAttributes as $attr)
+			{
+				renderAttribute($attr);
+			}
+
+			?>
 			<label>
 				<div class="inputHolder alsoInvoiceCustomer">
 					<input type="checkbox" id="alsoInvoiceCustomer" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />

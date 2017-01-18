@@ -48,6 +48,25 @@
 						</div>
 					</label>
 					<?php } ?>
+					<?php
+
+					$so = new XSorting();
+					$s = new XSort('SortIndex', 'ASC');
+					$so->AddItem($s);
+
+					$fo = new XFiltering();
+					$f = new XFilter('ShowOnWeb', '=', 'true');
+					$fo->AddItem($f);
+					$f = new XFilter('AttributeOwnerTypeID', '=', 3);
+					$fo->AddItem($f);
+					$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+					foreach($contactAttributes as $attr)
+					{
+						renderAttribute($attr, true);
+					}
+
+					?>
 					<?php if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectParticipant") { ?>
 					<label>
 						<div class="inputLabel">
@@ -140,6 +159,25 @@
 						</div>
 					</label>
 					<?php } ?>
+					<?php
+
+					$so = new XSorting();
+					$s = new XSort('SortIndex', 'ASC');
+					$so->AddItem($s);
+
+					$fo = new XFiltering();
+					$f = new XFilter('ShowOnWeb', '=', 'true');
+					$fo->AddItem($f);
+					$f = new XFilter('AttributeOwnerTypeID', '=', 3);
+					$fo->AddItem($f);
+					$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+					foreach($contactAttributes as $attr)
+					{
+						renderAttribute($attr, true);
+					}
+
+					?>
 					<?php if(get_option('eduadmin-selectPricename', 'firstPublic') == "selectParticipant") { ?>
 					<label>
 						<div class="inputLabel">

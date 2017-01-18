@@ -150,6 +150,51 @@ if($customer->CustomerID == 0)
 {
 	die("Kunde inte skapa kundposten");
 }
+else
+{
+	$so = new XSorting();
+	$s = new XSort('SortIndex', 'ASC');
+	$so->AddItem($s);
+
+	$fo = new XFiltering();
+	$f = new XFilter('ShowOnWeb', '=', 'true');
+	$fo->AddItem($f);
+	$f = new XFilter('AttributeOwnerTypeID', '=', 2);
+	$fo->AddItem($f);
+	$customerAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+	$cmpArr = array();
+
+	foreach($customerAttributes as $attr)
+	{
+		$fieldId = "edu-attr_" . $attr->AttributeID;
+		if(isset($_POST[$fieldId]))
+		{
+			$at = new CustomerAttribute();
+			$at->CustomerID = $customer->CustomerID;
+			//$at->CustomerAttributeID = $attr->AttributeID;
+			$at->AttributeID = $attr->AttributeID;
+
+			switch($attr->AttributeTypeID)
+			{
+				case 1:
+					$at->AttributeChecked = true;
+					break;
+				case 5:
+					$at->AttributeAlternative = $_POST[$fieldId];
+					break;
+				default:
+					$at->AttributeValue = $_POST[$fieldId];
+					break;
+			}
+
+			$cmpArr[] = $at;
+		}
+	}
+
+	$res = $eduapi->SetCustomerAttribute($edutoken, $cmpArr);
+}
+
 
 $contact = new CustomerContact();
 $contact->CustomerID = $customer->CustomerID;

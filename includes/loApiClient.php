@@ -5,7 +5,7 @@
   {
     protected $__server;
     public $debug = false;
-    protected $timers;
+    public $timers;
 
       public function __construct()
       {
@@ -2408,9 +2408,8 @@
       $this->timers[$methodName . '__callServer'] = microtime(true);
       $result = null;
       try {
-        //$d = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
         $result = $this->__server->__soapCall(
-          $methodName, //$d,
+          $methodName,
           array($params)
         );
       }
@@ -2424,8 +2423,8 @@
       if($this->debug)
         $this->__debug();
       $this->timers[$methodName . '__callServer'] = microtime(true) - $this->timers[$methodName . '__callServer'];
-      if(isset($result->{$methodName/*$d*/ . 'Result'}))
-        return $result->{$methodName/*$d*/ . 'Result'};
+      if(isset($result->{$methodName . 'Result'}))
+        return $result->{$methodName . 'Result'};
       return null;
     }
 
@@ -2640,9 +2639,9 @@ class Category {
 
   function __construct() {
       $this->CategoryID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->ParentID = 0;
-      $this->ShowOnWebInternal = null;
+      $this->ShowOnWebInternal = false;
   }
 }
 
@@ -2658,9 +2657,9 @@ class CategoryV2 {
 
   function __construct() {
       $this->CategoryID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->ParentID = 0;
-      $this->ShowOnWebInternal = null;
+      $this->ShowOnWebInternal = false;
   }
 }
 
@@ -2677,9 +2676,9 @@ class CategoryV3 {
 
   function __construct() {
       $this->CategoryID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->ParentID = 0;
-      $this->ShowOnWebInternal = null;
+      $this->ShowOnWebInternal = false;
   }
 }
 
@@ -2755,11 +2754,11 @@ class CertificatePersonV2 {
 
   function __construct() {
       $this->CertificatePersonID = 0;
-      $this->RequiresHealthCertificate = null;
+      $this->RequiresHealthCertificate = false;
       $this->CertificateFromEventIDs = array();
       $this->CertificateFromPersonCertificateIDs = array();
       $this->Subjects = array();
-      $this->CertificateAfterRetest = null;
+      $this->CertificateAfterRetest = false;
       $this->PersonID = 0;
       $this->CustomerID = 0;
       $this->CertificateID = 0;
@@ -2792,7 +2791,7 @@ class CompanyAttribute {
     var $AttributeAlternative;
 
   function __construct() {
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeDate = null;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
@@ -2836,10 +2835,10 @@ class Country {
 class Coupon {
     var $CouponID;
     var $Code;
-
     var $DiscountPercent;
     var $CouponDescription;
     var $ValidFrom;
+
     var $ValidTo;
 
   function __construct() {
@@ -2904,7 +2903,7 @@ class CustomerAttribute {
   function __construct() {
       $this->CustomerID = 0;
       $this->CustomerAttributeID = null;
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeDate = null;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
@@ -2938,7 +2937,7 @@ class CustomerContact {
   function __construct() {
       $this->CustomerContactID = 0;
       $this->CustomerID = 0;
-      $this->PublicGroup = null;
+      $this->PublicGroup = false;
       $this->CanLogin = null;
       $this->Attribute = array();
   }
@@ -2961,7 +2960,7 @@ class CustomerContactAttribute {
   function __construct() {
       $this->CustomerContactID = 0;
       $this->CustomerContactAttributeID = null;
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeDate = null;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
@@ -2998,7 +2997,7 @@ class CustomerContactV2 {
   function __construct() {
       $this->CustomerContactID = 0;
       $this->CustomerID = 0;
-      $this->PublicGroup = null;
+      $this->PublicGroup = false;
       $this->CanLogin = null;
       $this->Attribute = array();
   }
@@ -3029,7 +3028,7 @@ class CustomerGroup {
       $this->CustomerGroupID = 0;
       $this->ParentCustomerGroupID = 0;
       $this->DiscountPercent = null;
-      $this->PublicGroup = null;
+      $this->PublicGroup = false;
   }
 }
 
@@ -3129,7 +3128,7 @@ class DocumentSentListEvent {
   function __construct() {
       $this->DocumentID = 0;
       $this->SendDate = date('c');
-      $this->Error = null;
+      $this->Error = false;
       $this->EventID = 0;
       $this->EventCustomerLnkID = 0;
   }
@@ -3187,10 +3186,10 @@ class EducationObject {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->CategoryID = 0;
       $this->Days = 0;
-      $this->RequireCivicRegistrationNumber = null;
+      $this->RequireCivicRegistrationNumber = false;
       $this->ParticipantDocumentID = 0;
       $this->MaxParticipantNr = 0;
       $this->MinParticipantNr = 0;
@@ -3234,10 +3233,10 @@ class EducationObjectV2 {
       $this->Vat = null;
       $this->Subjects = array();
       $this->ObjectID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->CategoryID = 0;
       $this->Days = 0;
-      $this->RequireCivicRegistrationNumber = null;
+      $this->RequireCivicRegistrationNumber = false;
       $this->ParticipantDocumentID = 0;
       $this->MaxParticipantNr = 0;
       $this->MinParticipantNr = 0;
@@ -3293,14 +3292,14 @@ class Event {
       $this->OccationID = 0;
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
-      $this->ShowOnWeb = null;
-      $this->ShowOnWebInternal = null;
+      $this->ShowOnWeb = false;
+      $this->ShowOnWebInternal = false;
       $this->StatusID = 0;
-      $this->ConfirmedAddress = null;
+      $this->ConfirmedAddress = false;
       $this->CustomerID = 0;
-      $this->UsePriceNameMaxParticipantNr = null;
+      $this->UsePriceNameMaxParticipantNr = false;
       $this->LastApplicationDate = null;
-      $this->Seats = null;
+      $this->Seats = false;
       $this->PersonnelIDs = array();
   }
 }
@@ -3354,11 +3353,11 @@ class EventBooking {
       $this->TotalPrice = null;
       $this->ParticipantNr = 0;
       $this->Created = date('c');
-      $this->Paid = null;
+      $this->Paid = false;
       $this->ObjectID = 0;
       $this->PeriodStart = date('c');
       $this->PeriodEnd = date('c');
-      $this->Preliminary = null;
+      $this->Preliminary = false;
   }
 }
 
@@ -3377,7 +3376,7 @@ class EventBookingAnswer {
       $this->SortIndex = 0;
       $this->Price = null;
       $this->VatPercent = null;
-      $this->DefaultAlternative = null;
+      $this->DefaultAlternative = false;
   }
 }
 
@@ -3440,13 +3439,13 @@ class EventBookingQuestion {
   function __construct() {
       $this->QuestionID = 0;
       $this->QuestionTypeID = 0;
-      $this->ShowExternal = null;
-      $this->AddNumberField = null;
-      $this->Time = null;
+      $this->ShowExternal = false;
+      $this->AddNumberField = false;
+      $this->Time = false;
       $this->SortIndex = 0;
       $this->CategoryID = null;
-      $this->Mandatory = null;
-      $this->KeyQuestion = null;
+      $this->Mandatory = false;
+      $this->KeyQuestion = false;
       $this->Answers = array();
   }
 }
@@ -3535,7 +3534,7 @@ class EventParticipant {
       $this->ObjectID = 0;
       $this->Arrived = null;
       $this->GradeID = 0;
-      $this->Paid = null;
+      $this->Paid = false;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
       $this->PeriodStart = date('c');
@@ -3589,7 +3588,7 @@ class EventParticipantV2 {
   function __construct() {
       $this->CanceledDate = null;
       $this->GradeDate = null;
-      $this->GradeAfterRetest = null;
+      $this->GradeAfterRetest = false;
       $this->EventParticipantID = 0;
       $this->PersonID = 0;
       $this->CustomerID = 0;
@@ -3603,7 +3602,7 @@ class EventParticipantV2 {
       $this->ObjectID = 0;
       $this->Arrived = null;
       $this->GradeID = 0;
-      $this->Paid = null;
+      $this->Paid = false;
       $this->PaymentMethodID = null;
       $this->Canceled = null;
       $this->PeriodStart = date('c');
@@ -3648,7 +3647,7 @@ class EventPersonnelObject {
 
   function __construct() {
       $this->PersonnelID = 0;
-      $this->Confirmed = null;
+      $this->Confirmed = false;
       $this->OccationID = 0;
       $this->EventID = 0;
       $this->LocationID = 0;
@@ -3677,7 +3676,7 @@ class EventPersonnelObjectV2 {
 
   function __construct() {
       $this->PersonnelID = 0;
-      $this->Confirmed = null;
+      $this->Confirmed = false;
       $this->OccationID = 0;
       $this->EventID = 0;
       $this->LocationID = 0;
@@ -3733,9 +3732,9 @@ class EventSeat {
       $this->SeatSortIndex = 0;
       $this->RowSortIndex = 0;
       $this->Nr = 0;
-      $this->Booked = null;
-      $this->Locked = null;
-      $this->Dead = null;
+      $this->Booked = false;
+      $this->Locked = false;
+      $this->Dead = false;
       $this->TicketID = null;
   }
 }
@@ -3879,10 +3878,10 @@ class LimitedDiscountType {
 
   function __construct() {
       $this->LimitedDiscountTypeID = 0;
-      $this->IndividualBooking = null;
+      $this->IndividualBooking = false;
       $this->Price = null;
       $this->DiscountPercent = 0;
-      $this->ShowPublic = null;
+      $this->ShowPublic = false;
       $this->CreditCount = 0;
       $this->ValidFrom = null;
       $this->ValidTo = null;
@@ -3918,10 +3917,10 @@ class LMSObject {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->ShowOnWeb = null;
+      $this->ShowOnWeb = false;
       $this->CategoryID = 0;
       $this->Days = 0;
-      $this->RequireCivicRegistrationNumber = null;
+      $this->RequireCivicRegistrationNumber = false;
       $this->ParticipantDocumentID = 0;
       $this->MaxParticipantNr = 0;
       $this->MinParticipantNr = 0;
@@ -3940,7 +3939,7 @@ class Location {
 
   function __construct() {
       $this->LocationID = 0;
-      $this->PublicLocation = null;
+      $this->PublicLocation = false;
       $this->RegionID = null;
   }
 }
@@ -4007,7 +4006,7 @@ class ObjectAttribute {
 
   function __construct() {
       $this->ObjectID = 0;
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
       $this->AttributeOwnerTypeID = 0;
@@ -4036,13 +4035,13 @@ class ObjectCategoryQuestion {
       $this->VatPercent = null;
       $this->CategoryID = null;
       $this->ObjectID = null;
-      $this->Time = null;
+      $this->Time = false;
       $this->QuestionID = 0;
       $this->QuestionTypeID = 0;
-      $this->ShowExternal = null;
+      $this->ShowExternal = false;
       $this->AnswerID = 0;
       $this->Price = null;
-      $this->DefaultAlternative = null;
+      $this->DefaultAlternative = false;
       $this->SortIndex = 0;
   }
 }
@@ -4071,7 +4070,7 @@ class ObjectPriceName {
       $this->PriceNameID = 0;
       $this->ObjectID = 0;
       $this->Price = null;
-      $this->PublicPriceName = null;
+      $this->PublicPriceName = false;
   }
 }
 
@@ -4126,7 +4125,7 @@ class PersonAttribute {
   function __construct() {
       $this->PersonID = 0;
       $this->PersonAttributeID = null;
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeDate = null;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
@@ -4186,7 +4185,7 @@ class PriceName {
       $this->PriceNameID = 0;
       $this->OccationID = 0;
       $this->Price = null;
-      $this->PublicPriceName = null;
+      $this->PublicPriceName = false;
       $this->DiscountPercent = null;
       $this->MaxPriceNameParticipantNr = 0;
       $this->ParticipantNr = 0;
@@ -4219,10 +4218,10 @@ class Question {
   function __construct() {
       $this->QuestionID = 0;
       $this->QuestionTypeID = 0;
-      $this->ShowExternal = null;
+      $this->ShowExternal = false;
       $this->AnswerID = 0;
       $this->Price = null;
-      $this->DefaultAlternative = null;
+      $this->DefaultAlternative = false;
       $this->SortIndex = 0;
   }
 }
@@ -4253,8 +4252,8 @@ class RentObject {
       $this->ObjectID = 0;
       $this->CategoryID = 0;
       $this->DepotID = 0;
-      $this->GroupObject = null;
-      $this->SalesObject = null;
+      $this->GroupObject = false;
+      $this->SalesObject = false;
   }
 }
 
@@ -4314,8 +4313,8 @@ class SubEvent {
       $this->EndDate = date('c');
       $this->MaxParticipantNr = 0;
       $this->TotalParticipantNr = 0;
-      $this->SelectedByDefault = null;
-      $this->MandatoryParticipation = null;
+      $this->SelectedByDefault = false;
+      $this->MandatoryParticipation = false;
   }
 }
 
@@ -4419,7 +4418,7 @@ class UnavailableDateResponse {
     var $ErrorMessage;
 
   function __construct() {
-      $this->Success = null;
+      $this->Success = false;
   }
 }
 
@@ -4454,7 +4453,7 @@ class UnnamedParticipant {
       $this->EventID = 0;
       $this->OccasionPriceNameLnkID = 0;
       $this->Quantity = 0;
-      $this->Canceled = null;
+      $this->Canceled = false;
       $this->CustomerID = 0;
       $this->Created = date('c');
   }
@@ -4489,7 +4488,7 @@ class UserAttribute {
   function __construct() {
       $this->UserAttributeID = null;
       $this->UserID = 0;
-      $this->AttributeChecked = null;
+      $this->AttributeChecked = false;
       $this->AttributeDate = null;
       $this->AttributeID = 0;
       $this->AttributeTypeID = 0;
@@ -4507,7 +4506,6 @@ class UserLocation {
       $this->LocationID = 0;
   }
 }
-
 
 class XFilter
 {

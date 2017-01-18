@@ -54,6 +54,26 @@
 				</div>
 			</label>
 			<?php } ?>
+			<?php
+
+			$so = new XSorting();
+			$s = new XSort('SortIndex', 'ASC');
+			$so->AddItem($s);
+
+			$fo = new XFiltering();
+			$f = new XFilter('ShowOnWeb', '=', 'true');
+			$fo->AddItem($f);
+			$f = new XFilter('AttributeOwnerTypeID', '=', 4);
+			$fo->AddItem($f);
+			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+			foreach($contactAttributes as $attr)
+			{
+				renderAttribute($attr);
+			}
+
+			?>
+
 			<label>
 				<div class="inputHolder contactIsAlsoParticipant">
 					<input type="checkbox" id="contactIsAlsoParticipant" name="contactIsAlsoParticipant" value="true" onchange="if(eduBookingView.CheckParticipantCount()) { eduBookingView.UpdatePrice(); } else { this.checked = false; return false; }" />
