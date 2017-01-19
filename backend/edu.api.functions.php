@@ -43,7 +43,7 @@ if(!function_exists('edu_encrypt'))
 {
 	function edu_encrypt($key, $toEncrypt)
 	{
-	    return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $toEncrypt, MCRYPT_MODE_CBC, md5(md5($key))));
+	    return base64_encode(openssl_encrypt($toEncrypt, "blowfish", md5($key), OPENSSL_ZERO_PADDING, "0ab2c432"));
 	}
 }
 
@@ -51,7 +51,7 @@ if(!function_exists('edu_decrypt'))
 {
 	function edu_decrypt($key, $toDecrypt)
 	{
-	    return rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($toDecrypt), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+		return rtrim(openssl_decrypt(base64_decode($toDecrypt), "blowfish", md5($key), OPENSSL_ZERO_PADDING, "0ab2c432"));
 	}
 }
 
