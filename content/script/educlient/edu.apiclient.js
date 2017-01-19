@@ -72,11 +72,9 @@ edu.apiclient = {
 	getCourseListDates: function(objectIds) {
 		jQuery.ajax({
 			url: edu.apiclient.baseUrl + '?module=listview_courselist',
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
-			},
 			type: 'POST',
 			data: {
+				token:				edu.apiclient.authToken,
 				objectIds: 	objectIds,
 				showcoursedays: 	jQuery('.eduadmin-courselistoptions').data('showcoursedays'),
 				spotsleft: 			jQuery('.eduadmin-courselistoptions').data('spotsleft'),
@@ -116,11 +114,9 @@ edu.apiclient = {
 	getCourseEventList: function(target) {
 		jQuery.ajax({
 			url: edu.apiclient.baseUrl + '?module=listview_eventlist',
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
-			},
 			type: 'POST',
 			data: {
+				token:				edu.apiclient.authToken,
 				baseUrl: 			wp_edu.BaseUrl,
 				courseFolder: 		wp_edu.CourseFolder,
 				showcoursedays: 	jQuery(target).data('showcoursedays'),
@@ -151,11 +147,9 @@ edu.apiclient = {
 	getEventList: function(target) {
 		jQuery.ajax({
 			url: edu.apiclient.baseUrl + '?module=detailinfo_eventlist',
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
-			},
 			type: 'POST',
 			data: {
+				token:			edu.apiclient.authToken,
 				objectid: 		jQuery(target).data('objectid'),
 				city: 			jQuery(target).data('city'),
 				groupbycity: 	jQuery(target).data('groupbycity'),
@@ -211,12 +205,10 @@ edu.apiclient = {
 	},
 	CheckCouponCode: function(code, objectId, categoryId, onData) {
 		jQuery.ajax({
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Edu-Auth-Token', edu.apiclient.authToken);
-			},
 			url: edu.apiclient.baseUrl + '?module=check_coupon_code',
 			type: 'POST',
 			data: {
+				token:				edu.apiclient.authToken,
 				code: code,
 				objectId: objectId,
 				categoryId: categoryId

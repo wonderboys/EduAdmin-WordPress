@@ -7,7 +7,7 @@ if(!function_exists('edu_api_listview_eventlist'))
 		header("Content-type: text/html; charset=UTF-8");
 		global $eduapi;
 
-		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
+		$edutoken = edu_decrypt("edu_js_token_crypto", $request["token"]);
 		$_SESSION['eduadmin-phrases'] = $request['phrases'];
 
 		$sorting = new XSorting();

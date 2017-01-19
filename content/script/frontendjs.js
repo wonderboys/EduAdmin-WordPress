@@ -163,7 +163,7 @@ var eduBookingView = {
 				}
 			}
 
-			if(contactParticipant && contactParticipant.checked) {
+			if(eduBookingView.SingleParticipant || (contactParticipant && contactParticipant.checked)) {
 				var subEventPrices = document.querySelectorAll('.eduadmin .participantItem.contactPerson:not(.template) input.subEventCheckBox:checked');
 				if(subEventPrices.length > 0) {
 					for(var i = 0; i < subEventPrices.length; i++) {
@@ -291,6 +291,9 @@ var eduBookingView = {
 				contact = 0;
 			}
 		}
+
+		if(eduBookingView.SingleParticipant)
+			contact = 1;
 
 		if(participants.length + contact == 0) {
 			var noPartWarning = document.getElementById('edu-warning-no-participants');
