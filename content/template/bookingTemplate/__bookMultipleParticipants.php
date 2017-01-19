@@ -259,6 +259,54 @@ if(!empty($_POST['contactFirstName']))
 	$contact->ContactName = str_replace(";", " ", $contact->ContactName);
 }
 
+if($contact->CustomerContactID == 0)
+{
+}
+else
+{
+	$so = new XSorting();
+	$s = new XSort('SortIndex', 'ASC');
+	$so->AddItem($s);
+
+	$fo = new XFiltering();
+	$f = new XFilter('ShowOnWeb', '=', 'true');
+	$fo->AddItem($f);
+	$f = new XFilter('AttributeOwnerTypeID', '=', 4);
+	$fo->AddItem($f);
+	$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+	$cmpArr = array();
+
+	foreach($contactAttributes as $attr)
+	{
+		$fieldId = "edu-attr_" . $attr->AttributeID;
+		if(isset($_POST[$fieldId]))
+		{
+			$at = new CustomerContactAttribute();
+			$at->CustomerID = $customer->CustomerID;
+			//$at->CustomerAttributeID = $attr->AttributeID;
+			$at->AttributeID = $attr->AttributeID;
+
+			switch($attr->AttributeTypeID)
+			{
+				case 1:
+					$at->AttributeChecked = true;
+					break;
+				case 5:
+					$at->AttributeAlternative = $_POST[$fieldId];
+					break;
+				default:
+					$at->AttributeValue = $_POST[$fieldId];
+					break;
+			}
+
+			$cmpArr[] = $at;
+		}
+	}
+
+	$res = $eduapi->SetCustomerAttribute($edutoken, $cmpArr);
+}
+
 $persons = array();
 $personEmail = array();
 if(!empty($contact->Email) && !in_array($contact->Email, $personEmail))
