@@ -416,7 +416,7 @@ if(!empty($edo))
 						echo sprintf(edu__('Next event %1$s'), date("Y-m-d", strtotime(current($sortedEvents)->PeriodStart))) . " " . current($sortedEvents)->City;
 						if($showEventVenue)
 						{
-							echo ", " . current($sortedEvents)->AddressName;
+							echo "<span class=\"venueInfo\">, " . current($sortedEvents)->AddressName . "</span>";
 						}
 					} else {
 						echo "<i>" . edu__('No coming events') . "</i>";

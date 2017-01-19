@@ -271,7 +271,7 @@ $showEventVenue = get_option('eduadmin-showEventVenueName', false);
 				<?php
 				echo $ev->City;
 				if($showEventVenue && !empty($ev->AddressName))
-					echo ", " . $ev->AddressName;
+					echo "<span class=\"venueInfo\">, " . $ev->AddressName . "</span>";
 				?>
 			</div>
 			<?php } ?>

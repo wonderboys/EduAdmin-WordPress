@@ -310,7 +310,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 					echo " <span class=\"cityInfo\">";
 					echo $object->City;
 					if($showVenue && !empty($object->AddressName))
-						echo ", " . $object->AddressName;
+						echo "<span class=\"venueInfo\">, " . $object->AddressName . "</span>";
 					echo "</span>";
 				}
 

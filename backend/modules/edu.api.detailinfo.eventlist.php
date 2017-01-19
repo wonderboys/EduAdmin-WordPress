@@ -235,7 +235,7 @@ if(!function_exists('edu_api_eventlist'))
 				'. (!$groupByCity ?
 				'<div class="eventCity">
 					' . $ev->City .
-					($showVenue && !empty($ev->AddressName) ? ', ' . $ev->AddressName : '') .
+					($showVenue && !empty($ev->AddressName) ? '<span class="venueInfo">, ' . $ev->AddressName . '</span>' : '') .
 					'
 				</div>' : '') .
 				'<div class="eventStatus' . $groupByCityClass . '">

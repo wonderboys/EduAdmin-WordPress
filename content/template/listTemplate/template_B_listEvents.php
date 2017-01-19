@@ -344,7 +344,7 @@ foreach($ede as $object)
 			echo " <span class=\"cityInfo\">";
 			echo $object->City;
 			if($showEventVenue && !empty($object->AddressName))
-				echo ", " . $object->AddressName;
+				echo "<span class=\"venueInfo\">, " . $object->AddressName . "</span>";
 			echo "</span>";
 		}
 
