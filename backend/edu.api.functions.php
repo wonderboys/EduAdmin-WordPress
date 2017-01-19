@@ -169,7 +169,7 @@ function edu_GetDisplayDate($inDate, $short = false)
 
 	$year = date('Y', strtotime($inDate));
 	$nowYear = date('Y');
-	return '<span style="white-space: nowrap;" class="eduadmin-dateText">' . date('d', strtotime($inDate)) . ' ' . $months[date('n', strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
+	return '<span class="eduadmin-dateText">' . date('d', strtotime($inDate)) . ' ' . $months[date('n', strtotime($inDate))] . ($nowYear != $year ? ' ' . $year : '') . '</span>';
 }
 
 function edu_GetStartEndDisplayDate($startDate, $endDate, $short = false, $event, $showDays = false)
@@ -204,7 +204,7 @@ function edu_GetStartEndDisplayDate($startDate, $endDate, $short = false, $event
 	$endYear = date('Y', strtotime($endDate->EndDate));
 	$endMonth = date('n', strtotime($endDate->EndDate));
 	$nowYear = date('Y');
-	$str =  '<span style="white-space: nowrap;" class="eduadmin-dateText">';
+	$str =  '<span class="eduadmin-dateText">';
 	if($showDays)
 	{
 		$str .= $days[date('N', strtotime($startDate->StartDate))] . " ";
@@ -315,7 +315,7 @@ function edu_GetOldStartEndDisplayDate($startDate, $endDate, $short = false)
 	$endYear = date('Y', strtotime($endDate));
 	$endMonth = date('n', strtotime($endDate));
 	$nowYear = date('Y');
-	$str =  '<span style="white-space: nowrap;">';
+	$str =  '<span class="eduadmin-dateText">';
 	$str .= date('d', strtotime($startDate));
 	if(date('Y-m-d', strtotime($startDate)) != date('Y-m-d', strtotime($endDate)))
 	{
