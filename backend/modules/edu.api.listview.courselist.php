@@ -28,7 +28,7 @@ if(!function_exists('edu_api_listview_courselist'))
 		$f = new XFilter('StatusID','=','1');
 		$filtering->AddItem($f);
 
-		$f = new XFilter('LastApplicationDate','>',date("Y-m-d H:i:s"));
+		$f = new XFilter('LastApplicationDate','>=',date("Y-m-d 00:00:00"));
 		$filtering->AddItem($f);
 
 		if(!empty($objectIds))
