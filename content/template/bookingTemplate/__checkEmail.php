@@ -20,7 +20,7 @@
 	<label>
 		<div class="inputLabel"><?php echo $loginLabel; ?></div>
 		<div class="inputHolder">
-			<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(sprintf(edu__("Please enter your %s here"), $loginLabel)); ?>" placeholder="<?php echo esc_attr($loginLabel); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
+			<input type="text" name="eduadminloginEmail" required title="<?php echo esc_attr(sprintf(edu__("Please enter your %s here"), $loginLabel)); ?>" placeholder="<?php echo esc_attr($loginLabel); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
 		</div>
 	</label>
 	<input type="submit" class="bookingLoginButton" value="<?php echo esc_attr(edu__("Continue")); ?>" />
