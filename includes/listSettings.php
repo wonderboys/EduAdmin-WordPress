@@ -150,11 +150,11 @@ else
 						<table>
 							<tr>
 								<td align="center">
-									<img src="../wp-content/plugins/eduadmin/images/layoutA_list.png" /><br />
+									<img src="<?php echo plugins_url('../images', __FILE__); ?>/layoutA_list.png" /><br />
 									Layout A
 								</td>
 								<td align="center">
-									<img src="../wp-content/plugins/eduadmin/images/layoutB_list.png" /><br />
+									<img src="<?php echo plugins_url('../images', __FILE__); ?>/layoutB_list.png" /><br />
 									Layout B
 								</td>
 							</tr>
