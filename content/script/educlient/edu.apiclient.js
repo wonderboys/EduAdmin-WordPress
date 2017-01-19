@@ -93,7 +93,7 @@ edu.apiclient = {
 				template: 			jQuery('.eduadmin-courselistoptions').data('template'),
 				numberofevents:		jQuery('.eduadmin-courselistoptions').data('numberofevents'),
 				fetchmonths:		jQuery('.eduadmin-courselistoptions').data('fetchmonths'),
-				showvenue:			jQuery(target).data('showvenue'),
+				showvenue:			jQuery('.eduadmin-courselistoptions').data('showvenue'),
 				orderby:			jQuery('.eduadmin-courselistoptions').data('orderby'),
 				order:				jQuery('.eduadmin-courselistoptions').data('order'),
 				phrases: 	wp_edu.Phrases
