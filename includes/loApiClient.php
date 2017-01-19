@@ -4,7 +4,7 @@
   class EduAdminClient
   {
     protected $__server;
-    public $debug = false;
+    public $debugTimers = false;
     public $timers;
 
       public function __construct()
