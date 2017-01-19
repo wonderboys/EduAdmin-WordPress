@@ -12,9 +12,9 @@ if(!session_id())
  * Plugin URI:	http://www.eduadmin.se
  * Description:	EduAdmin plugin to allow visitors to book courses at your website
  * Tags:	booking, participants, courses, events, eduadmin, lega online
- * Version:	0.9.15
+ * Version:	0.9.16
  * Requires at least: 3.0
- * Tested up to: 4.7
+ * Tested up to: 4.7.1
  * Author:	Chris Gårdenberg, MultiNet Interactive AB
  * Author URI:	http://www.multinet.se
  * License:	GPL3
@@ -79,7 +79,7 @@ function edu_call_home()
         'wpVersion' => $wp_version,
         'token' => get_option('eduadmin-api-key'),
         'officialVersion' => file_exists(dirname(__FILE__) . "/.official.plugin.php"),
-        'pluginVersion' => '0.9.15'
+        'pluginVersion' => '0.9.16'
     );
 
     $callHomeUrl = 'http://ws10.multinet.se/edu-plugin/wp_phone_home.php';

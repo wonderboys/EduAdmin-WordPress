@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 ### Added
-
+- `edu.apiclient.AfterUpdate` can be used as a function in javascript to run after the page has loaded all EduAdmin-related things.
 
 ## [0.9.15]
 ### Added
