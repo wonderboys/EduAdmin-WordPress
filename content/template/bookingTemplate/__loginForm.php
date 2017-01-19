@@ -1,10 +1,26 @@
 <div class="checkLoginForm">
 	<input type="hidden" name="bookingLoginAction" value="loginEmail" />
 	<h3><?php edu_e("Please login to continue."); ?></h3>
+	<?php
+	$selectedLoginField = get_option('eduadmin-loginField', 'Email');
+	$loginLabel = edu__("E-mail address");
+	switch($selectedLoginField)
+	{
+		case "Email":
+			$loginLabel = edu__("E-mail address");
+			break;
+		case "CivicRegistrationNumber":
+			$loginLabel = edu__("Civic Registration Number");
+			break;
+		case "CustomerNumber":
+			$loginLabel = edu__("Customer number");
+			break;
+	}
+	?>
 	<label>
-		<div class="inputLabel"><?php edu_e("E-mail address"); ?></div>
-		<div class="inputHolder">
-			<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr(edu__("E-mail address")); ?>" value="<?php echo esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
+		<div class="loginLabel"><?php echo $loginLabel; ?></div>
+		<div class="loginInput">
+			<input type="email" name="eduadminloginEmail" required title="<?php echo esc_attr(edu__("Please enter your e-mail address here")); ?>" placeholder="<?php echo esc_attr($loginLabel); ?>" value="<?php echo @esc_attr($_REQUEST["eduadminloginEmail"]); ?>" />
 		</div>
 	</label>
 	<label>
