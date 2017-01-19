@@ -52,7 +52,7 @@ else
 	$ft->AddItem($f);
 	$f = new XFilter('ObjectID', '=', $selectedCourse->ObjectID);
 	$ft->AddItem($f);
-	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00", strtotime("today +1 day")));
+	$f = new XFilter('LastApplicationDate', '>=', date("Y-m-d 00:00:00"));
 	$ft->AddItem($f);
 	$f = new XFilter('StatusID','=','1');
 	$ft->AddItem($f);
