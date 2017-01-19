@@ -241,7 +241,7 @@ if(!function_exists('edu_api_listview_eventlist_template_A'))
 	function edu_api_listview_eventlist_template_A($data, $eventDates, $request)
 	{
 		global $eduapi;
-		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
+		$edutoken = edu_decrypt("edu_js_token_crypto", $request["token"]);
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
 		$spotSettings = $request['spotsettings'];
@@ -360,7 +360,7 @@ if(!function_exists('edu_api_listview_eventlist_template_B'))
 	function edu_api_listview_eventlist_template_B($data, $eventDates, $request)
 	{
 		global $eduapi;
-		$edutoken = edu_decrypt("edu_js_token_crypto", getallheaders()["Edu-Auth-Token"]);
+		$edutoken = edu_decrypt("edu_js_token_crypto", $request["token"]);
 
 		$spotLeftOption = $request['spotsleft'];
 		$alwaysFewSpots = $request['fewspots'];
