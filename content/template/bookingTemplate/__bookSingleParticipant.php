@@ -1,22 +1,22 @@
 <?php
 $customer = new CustomerV2();
-$customer->CustomerName = trim($_POST['customerName']);
+$customer->CustomerName = trim($_POST['contactFirstName'] . " " . $_POST["contactLastName"]);
 $customer->CustomerGroupID = get_option('eduadmin-customerGroupId', NULL);
-$customer->InvoiceOrgnr = trim($_POST['customerVatNo']);
+if(isset($_POST['contactCivRegNr']))
+	$customer->InvoiceOrgnr = trim($_POST['contactCivRegNr']);
 $customer->Address1 = trim($_POST['customerAddress1']);
 $customer->Address2 = trim($_POST['customerAddress2']);
 $customer->Zip = trim($_POST['customerPostalCode']);
 $customer->City = trim($_POST['customerPostalCity']);
-$customer->Email = trim($_POST['customerEmail']);
-$customer->CustomerReference = trim($_POST['invoiceReference']);
-
-$purchaseOrderNumber = trim($_POST['purchaseOrderNumber']);
+$customer->Phone = trim($_POST['contactPhone']);
+$customer->Mobile = trim($_POST['contactMobile']);
+$customer->Email = trim($_POST['contactEmail']);
 
 $customerInvoiceEmailAddress = trim($_POST['invoiceEmail']);
 
 if(!isset($_POST['alsoInvoiceCustomer']))
 {
-	$customer->InvoiceName = trim($_POST['customerName']);
+	$customer->InvoiceName = trim($_POST['contactFirstName'] . " " . $_POST["contactLastName"]);
 	$customer->InvoiceAddress1 = trim($_POST['customerAddress1']);
 	$customer->InvoiceAddress2 = trim($_POST['customerAddress2']);
 	$customer->InvoiceZip = trim($_POST['customerPostalCode']);
@@ -340,107 +340,7 @@ $f = new XFilter('AttributeOwnerTypeID', '=', 3);
 $fo->AddItem($f);
 $personAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
-foreach($_POST['participantFirstName'] as $key => $value)
-{
-	if($key == "0")
-	{
-		continue;
-	}
-
-	if(!empty($_POST['participantFirstName'][$key]))
-	{
-		$person = new SubEventPerson();
-		$person->CustomerID = $customer->CustomerID;
-		$person->PersonName = trim($_POST['participantFirstName'][$key]) . ";" . trim($_POST['participantLastName'][$key]);
-		$person->PersonEmail = trim($_POST['participantEmail'][$key]);
-		$person->PersonPhone = trim($_POST['participantPhone'][$key]);
-		$person->PersonMobile = trim($_POST['participantMobile'][$key]);
-
-		$ft = new XFiltering();
-		$f = new XFilter('CustomerID', '=', $customer->CustomerID);
-		$ft->AddItem($f);
-		$f = new XFilter('PersonName', '=', trim(str_replace(';', ' ', $person->PersonName)));
-		$ft->AddItem($f);
-		$f = new XFilter('PersonEmail', '=', $person->PersonEmail);
-		$ft->AddItem($f);
-		$matchingPersons = $eduapi->GetPerson($edutoken, '', $ft->ToString(), false);
-		if(!empty($matchingPersons))
-		{
-			$person = $matchingPersons[0];
-		}
-
-		$cmpArr = array();
-
-		foreach($personAttributes as $attr)
-		{
-			$fieldId = "edu-attr_" . $attr->AttributeID;
-			if(isset($_POST[$fieldId][$key]))
-			{
-				$at = new Attribute();
-				$at->AttributeID = $attr->AttributeID;
-
-				switch($attr->AttributeTypeID)
-				{
-					case 1:
-						//$at->AttributeChecked = true;
-						break;
-					case 5:
-						$alt = new AttributeAlternative();
-						$alt->AttributeAlternativeID = $_POST[$fieldId][$key];
-						$at->AttributeAlternative[] = $alt;
-						break;
-					default:
-						$at->AttributeValue = $_POST[$fieldId][$key];
-						break;
-				}
-
-				$cmpArr[] = $at;
-			}
-		}
-
-		$person->Attribute = $cmpArr;
-
-		$person->PersonEmail = trim($_POST['participantEmail'][$key]);
-		$person->PersonPhone = trim($_POST['participantPhone'][$key]);
-		$person->PersonMobile = trim($_POST['participantMobile'][$key]);
-
-		if(isset($_POST['participantCivReg'][$key]))
-		{
-			$person->PersonCivicRegistrationNumber = trim($_POST['participantCivReg'][$key]);
-		}
-
-		if(isset($_POST['participantPriceName'][$key]))
-		{
-			$person->OccasionPriceNameLnkID = trim($_POST['participantPriceName'][$key]);
-		}
-
-		foreach($subEvents as $subEvent)
-		{
-			$fieldName = "participantSubEvent_" . $subEvent->EventID;
-			if(isset($_POST[$fieldName][$key]))
-			{
-				$fieldValue = $_POST[$fieldName][$key];
-				$subEventInfo = new SubEventInfo();
-				$subEventInfo->EventID = $fieldValue;
-				$person->SubEvents[] = $subEventInfo;
-			}
-			else if($subEvent->MandatoryParticipation) {
-				$subEventInfo = new SubEventInfo();
-				$subEventInfo->EventID = $subEvent->EventID;
-				$person->SubEvents[] = $subEventInfo;
-			}
-		}
-
-		$pArr[] = $person;
-
-		if(!empty($person->PersonEmail) && !in_array($person->PersonEmail, $personEmail))
-		{
-			$personEmail[] = $person->PersonEmail;
-		}
-	}
-}
-
-if(isset($_POST['contactIsAlsoParticipant']) && $contact->CustomerContactID > 0)
+if($contact->CustomerContactID > 0)
 {
 	$person = new SubEventPerson();
 	$person->CustomerID = $customer->CustomerID;
@@ -529,7 +429,8 @@ if(!empty($pArr))
 	$bi->CustomerID = $customer->CustomerID;
 	$bi->CustomerContactID = $contact->CustomerContactID;
 	$bi->SubEventPersons = $pArr;
-	$bi->PurchaseOrderNumber = $purchaseOrderNumber;
+	if(isset($purchaseOrderNumber))
+		$bi->PurchaseOrderNumber = $purchaseOrderNumber;
 	if(isset($_POST['edu-pricename']))
 	{
 		$bi->OccasionPriceNameLnkID = $_POST['edu-pricename'];
@@ -590,7 +491,8 @@ if(!empty($pArr))
 		$eduapi->SetEventCustomerAnswerV2($edutoken, $sanswers);
 	}
 
-	$ai = $eduapi->GetAccountInfo($edutoken);
+	$ai = $eduapi->GetAccountInfo($edutoken)[0];
+	//print_r($ai);
 	$senderEmail = $ai->Email;
 	if(empty($senderEmail))
 	{
@@ -603,14 +505,18 @@ if(!empty($pArr))
 
 	$_SESSION['eduadmin-printJS'] = true;
 
-	$user = $_SESSION['eduadmin-loginUser'];
+	if(isset($_SESSION['eduadmin-loginUser']))
+		$user = $_SESSION['eduadmin-loginUser'];
+	else
+		$user = new stdClass;
+
 	$jsEncContact = json_encode($contact);
 	@$user->Contact = json_decode($jsEncContact);
 
 	$jsEncCustomer = json_encode($customer);
 	@$user->Customer = json_decode($jsEncCustomer);
 	$_SESSION['eduadmin-loginUser'] = $user;
-
+	//die();
 	die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=" . $eventCustomerLnkID . "';</script>");
 }
 ?>

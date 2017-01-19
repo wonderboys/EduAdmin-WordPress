@@ -590,7 +590,7 @@ if(!empty($pArr))
 		$eduapi->SetEventCustomerAnswerV2($edutoken, $sanswers);
 	}
 
-	$ai = $eduapi->GetAccountInfo($edutoken);
+	$ai = $eduapi->GetAccountInfo($edutoken)[0];
 	$senderEmail = $ai->Email;
 	if(empty($senderEmail))
 	{

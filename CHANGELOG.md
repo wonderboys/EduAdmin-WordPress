@@ -2,11 +2,20 @@
 
 ## [Unreleased]
 ### Added
+
+
+## [0.9.15]
+### Added
 - Added `singlePersonBooking.php` to handle when the participant is customer, contact and participant.
 - Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
 - Fixing `frontend.js` to work with single participant-settings.
-
+- Switched to openssl_encrypt/decrypt since mcrypt is deprecated
+- Added class name to dates, so you can style them yourself
+- Added span around venue name, so you can style it, if you want to
 - Adding support to load existing attribute data to customer and contact, when loading the booking form. (Would be bad if we emptied it..)
+
+### Removed
+- `getallheaders` is now gone, forever.
 
 ## [0.9.14]
 ### Added
@@ -101,7 +110,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.14...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.15...HEAD
+[0.9.15]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.14...v0.9.15
 [0.9.14]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.13...v0.9.14
 [0.9.13]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.12...v0.9.13
 [0.9.12]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.11...v0.9.12
