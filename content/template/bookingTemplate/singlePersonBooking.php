@@ -92,5 +92,187 @@
 					<input type="text" name="customerPostalCity" placeholder="<?php edu_e("Postal city"); ?>" value="<?php echo @esc_attr($customer->City); ?>" />
 				</div>
 			</label>
+
+			<label>
+				<div class="inputHolder alsoInvoiceCustomer">
+					<input type="checkbox" id="alsoInvoiceCustomer" name="alsoInvoiceCustomer" value="true" onchange="eduBookingView.UpdateInvoiceCustomer();" />
+					<label class="inline-checkbox" for="alsoInvoiceCustomer"></label>
+					<?php edu_e("Use other information for invoicing"); ?>
+				</div>
+			</label>
+		</div>
+		<div id="invoiceView" class="invoiceView" style="display: none;">
+			<h2><?php edu_e("Invoice information"); ?></h2>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("Customer name"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="invoiceName" placeholder="<?php edu_e("Customer name"); ?>" value="<?php echo @esc_attr($customer->InvoiceName); ?>" />
+				</div>
+			</label>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("Address 1"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="invoiceAddress1" placeholder="<?php edu_e("Address 1"); ?>" value="<?php echo @esc_attr($customer->InvoiceAddress1); ?>" />
+				</div>
+			</label>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("Address 2"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="invoiceAddress2" placeholder="<?php edu_e("Address 2"); ?>" value="<?php echo @esc_attr($customer->InvoiceAddress2); ?>" />
+				</div>
+			</label>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("Postal code"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="invoicePostalCode" placeholder="<?php edu_e("Postal code"); ?>" value="<?php echo @esc_attr($customer->InvoiceZip); ?>" />
+				</div>
+			</label>
+			<label>
+				<div class="inputLabel">
+					<?php edu_e("Postal city"); ?>
+				</div>
+				<div class="inputHolder">
+					<input type="text" name="invoicePostalCity" placeholder="<?php edu_e("Postal city"); ?>" value="<?php echo @esc_attr($customer->InvoiceCity); ?>" />
+				</div>
+			</label>
+		</div>
+		<br />
+		<div class="attributeView">
+		<?php
+			$so = new XSorting();
+			$s = new XSort('SortIndex', 'ASC');
+			$so->AddItem($s);
+
+			$fo = new XFiltering();
+			$f = new XFilter('ShowOnWeb', '=', 'true');
+			$fo->AddItem($f);
+			$f = new XFilter('AttributeOwnerTypeID', '=', 4);
+			$fo->AddItem($f);
+			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+			$db = array();
+			if($contact->CustomerContactID != 0) {
+				$fo = new XFiltering();
+				$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
+				$fo->AddItem($f);
+				$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+			}
+
+			foreach($contactAttributes as $attr)
+			{
+				$data = null;
+				foreach($db as $d)
+				{
+					if($d->AttributeID == $attr->AttributeID) {
+						switch($d->AttributeTypeID) {
+							case 1:
+								$data = $d->AttributeChecked;
+								break;
+							case 5:
+								$data = $d->AttributeAlternative->AttributeAlternativeID;
+								break;
+							default:
+								$data = $d->AttributeValue;
+								break;
+						}
+						break;
+					}
+				}
+				renderAttribute($attr, false, "", $data);
+			}
+
+			$so = new XSorting();
+			$s = new XSort('SortIndex', 'ASC');
+			$so->AddItem($s);
+
+			$fo = new XFiltering();
+			$f = new XFilter('ShowOnWeb', '=', 'true');
+			$fo->AddItem($f);
+			$f = new XFilter('AttributeOwnerTypeID', '=', 2);
+			$fo->AddItem($f);
+			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+			$db = array();
+			if($customer->CustomerID != 0) {
+				$fo = new XFiltering();
+				$f = new XFilter('CustomerID', '=', $customer->CustomerID);
+				$fo->AddItem($f);
+				$db = $eduapi->GetCustomerAttribute($edutoken, '', $fo->ToString());
+			}
+
+			foreach($contactAttributes as $attr)
+			{
+				$data = null;
+				foreach($db as $d)
+				{
+					if($d->AttributeID == $attr->AttributeID) {
+						switch($d->AttributeTypeID) {
+							case 1:
+								$data = $d->AttributeChecked;
+								break;
+							case 5:
+								$data = $d->AttributeAlternative->AttributeAlternativeID;
+								break;
+							default:
+								$data = $d->AttributeValue;
+								break;
+						}
+						break;
+					}
+				}
+				renderAttribute($attr, false, "", $data);
+			}
+
+			$so = new XSorting();
+			$s = new XSort('SortIndex', 'ASC');
+			$so->AddItem($s);
+
+			$fo = new XFiltering();
+			$f = new XFilter('ShowOnWeb', '=', 'true');
+			$fo->AddItem($f);
+			$f = new XFilter('AttributeOwnerTypeID', '=', 3);
+			$fo->AddItem($f);
+			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
+			$db = array();
+			/*if($contact->PersonID != 0) {
+				$fo = new XFiltering();
+				$f = new XFilter('PersonID', '=', $contact->PersonID);
+				$fo->AddItem($f);
+				$db = $eduapi->GetPersonAttribute($edutoken, '', $fo->ToString());
+			}*/
+
+			foreach($contactAttributes as $attr)
+			{
+				$data = null;
+				foreach($db as $d)
+				{
+					if($d->AttributeID == $attr->AttributeID) {
+						switch($d->AttributeTypeID) {
+							case 1:
+								$data = $d->AttributeChecked;
+								break;
+							case 5:
+								$data = $d->AttributeAlternative->AttributeAlternativeID;
+								break;
+							default:
+								$data = $d->AttributeValue;
+								break;
+						}
+						break;
+					}
+				}
+				renderAttribute($attr, false, "contact", $data);
+			}
+
+			?>
 		</div>
 		<br />

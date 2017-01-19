@@ -94,11 +94,11 @@ else
 			<?php
 			$singlePersonBooking = get_option('eduadmin-singlePersonBooking', false);
 			?>
-			<!--<label>
+			<label>
 				<input type="checkbox" name="eduadmin-singlePersonBooking"<?php echo ($singlePersonBooking === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
 				<?php _e("Participant is also customer and contact (Only allow a single participant)", "eduadmin"); ?>
 			</label>
-			<br />-->
+			<br />
 			<?php
 			$allowDiscountCode = get_option('eduadmin-allowDiscountCode', false);
 			?>

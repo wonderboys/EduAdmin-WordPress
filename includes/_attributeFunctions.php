@@ -104,7 +104,7 @@ function renderCheckboxListField($attribute, $multiple, $suffix, $data)
 	echo "</div><div class=\"inputHolder\">";
 	foreach($attribute->AttributeAlternative as $val)
 	{
-		echo "\t<label><input type=\"checkbox\" name=\"edu-attr_" . $attribute->AttributeID . ($suffix != "" ? "-" . $suffix : "") . ($multiple ? "[]" : "") . "\" value=\"" . $val->AttributeAlternativeID . "\">" . $val->AttributeAlternativeDescription . "</label>\n";
+		echo "\t<label><input" . ($data != null && $data == $val->AttributeAlternativeID ? " checked=\"checked\"" : "") . " type=\"checkbox\" name=\"edu-attr_" . $attribute->AttributeID . ($suffix != "" ? "-" . $suffix : "") . ($multiple ? "[]" : "") . "\" value=\"" . $val->AttributeAlternativeID . "\">" . $val->AttributeAlternativeDescription . "</label>\n";
 	}
 	echo "</div>";
 }
