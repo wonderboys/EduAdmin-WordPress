@@ -31,14 +31,14 @@ if(isset($_POST['resetTranslation']))
 		?>
 		<tr>
 			<td><?php echo $phrase; ?></td>
-			<td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" data-key="<?php echo esc_attr($phrase); ?>" placeholder="<?php echo esc_attr($originalPhrases[$phrase]->OldPhrase); ?>" value="<?php echo esc_attr($phrases[$phrase]->OldPhrase); ?>" /></td>
+			<td><input type="text" class="form-control" style="width: 300px;" onblur="update_phrase(event);" data-key="<?php echo esc_attr($phrase); ?>" placeholder="<?php echo esc_attr($phrase); ?>" value="<?php echo esc_attr($translation["OldPhrase"]); ?>" /></td>
 		</tr>
 		<?php
 	}
 ?>
 			</table>
 			<p class="submit">
-				<input type="submit" disabled name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__("Save settings", "eduadmin"); ?>" />
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__("Save settings", "eduadmin"); ?>" />
 				<input type="button" onclick="var c = confirm('<?php _e("Are you sure you want to reset the translation?", "eduadmin"); ?>'); if (c) { var f = document.getElementById('resetForm').submit(); } else { return false; }" class="button button-secondary" value="<?php echo esc_attr__("Reset translations", "eduadmin"); ?>" />
 			</p>
 		</div>
