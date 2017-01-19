@@ -6,6 +6,9 @@
 - Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
 - Fixing `frontend.js` to work with single participant-settings.
 
+## [0.9.14]
+### Added
+- Attributes can now be saved on customers, contacts and participants (person) (Only multiple participants currently)
 
 ## [0.9.13]
 ### Added
@@ -96,7 +99,8 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.13...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.14...HEAD
+[0.9.14]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.13...v0.9.14
 [0.9.13]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.12...v0.9.13
 [0.9.12]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.10...v0.9.11

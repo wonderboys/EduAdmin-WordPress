@@ -172,7 +172,6 @@ else
 		{
 			$at = new CustomerAttribute();
 			$at->CustomerID = $customer->CustomerID;
-			//$at->CustomerAttributeID = $attr->AttributeID;
 			$at->AttributeID = $attr->AttributeID;
 
 			switch($attr->AttributeTypeID)
@@ -181,7 +180,9 @@ else
 					$at->AttributeChecked = true;
 					break;
 				case 5:
-					$at->AttributeAlternative = $_POST[$fieldId];
+					$alt = new AttributeAlternative();
+					$alt->AttributeAlternativeID = $_POST[$fieldId];
+					$at->AttributeAlternative[] = $alt;
 					break;
 				default:
 					$at->AttributeValue = $_POST[$fieldId];
@@ -283,8 +284,7 @@ else
 		if(isset($_POST[$fieldId]))
 		{
 			$at = new CustomerContactAttribute();
-			$at->CustomerID = $customer->CustomerID;
-			//$at->CustomerAttributeID = $attr->AttributeID;
+			$at->CustomerContactID = $contact->CustomerContactID;
 			$at->AttributeID = $attr->AttributeID;
 
 			switch($attr->AttributeTypeID)
@@ -293,7 +293,9 @@ else
 					$at->AttributeChecked = true;
 					break;
 				case 5:
-					$at->AttributeAlternative = $_POST[$fieldId];
+					$alt = new AttributeAlternative();
+					$alt->AttributeAlternativeID = $_POST[$fieldId];
+					$at->AttributeAlternative[] = $alt;
 					break;
 				default:
 					$at->AttributeValue = $_POST[$fieldId];
@@ -304,7 +306,7 @@ else
 		}
 	}
 
-	$res = $eduapi->SetCustomerAttribute($edutoken, $cmpArr);
+	$res = $eduapi->SetCustomerContactAttributes($edutoken, $cmpArr);
 }
 
 $persons = array();
@@ -326,6 +328,18 @@ $ft->AddItem($f);
 $subEvents = $eduapi->GetSubEvent($edutoken, $st->ToString(), $ft->ToString());
 
 $pArr = array();
+
+$so = new XSorting();
+$s = new XSort('SortIndex', 'ASC');
+$so->AddItem($s);
+
+$fo = new XFiltering();
+$f = new XFilter('ShowOnWeb', '=', 'true');
+$fo->AddItem($f);
+$f = new XFilter('AttributeOwnerTypeID', '=', 3);
+$fo->AddItem($f);
+$personAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
+
 foreach($_POST['participantFirstName'] as $key => $value)
 {
 	if($key == "0")
@@ -342,7 +356,6 @@ foreach($_POST['participantFirstName'] as $key => $value)
 		$person->PersonPhone = trim($_POST['participantPhone'][$key]);
 		$person->PersonMobile = trim($_POST['participantMobile'][$key]);
 
-
 		$ft = new XFiltering();
 		$f = new XFilter('CustomerID', '=', $customer->CustomerID);
 		$ft->AddItem($f);
@@ -355,6 +368,37 @@ foreach($_POST['participantFirstName'] as $key => $value)
 		{
 			$person = $matchingPersons[0];
 		}
+
+		$cmpArr = array();
+
+		foreach($personAttributes as $attr)
+		{
+			$fieldId = "edu-attr_" . $attr->AttributeID;
+			if(isset($_POST[$fieldId][$key]))
+			{
+				$at = new Attribute();
+				$at->AttributeID = $attr->AttributeID;
+
+				switch($attr->AttributeTypeID)
+				{
+					case 1:
+						//$at->AttributeChecked = true;
+						break;
+					case 5:
+						$alt = new AttributeAlternative();
+						$alt->AttributeAlternativeID = $_POST[$fieldId][$key];
+						$at->AttributeAlternative[] = $alt;
+						break;
+					default:
+						$at->AttributeValue = $_POST[$fieldId][$key];
+						break;
+				}
+
+				$cmpArr[] = $at;
+			}
+		}
+
+		$person->Attribute = $cmpArr;
 
 		$person->PersonEmail = trim($_POST['participantEmail'][$key]);
 		$person->PersonPhone = trim($_POST['participantPhone'][$key]);
@@ -387,8 +431,6 @@ foreach($_POST['participantFirstName'] as $key => $value)
 			}
 		}
 
-
-
 		$pArr[] = $person;
 
 		if(!empty($person->PersonEmail) && !in_array($person->PersonEmail, $personEmail))
@@ -418,6 +460,37 @@ if(isset($_POST['contactIsAlsoParticipant']) && $contact->CustomerContactID > 0)
 	{
 		$person = $matchingPersons[0];
 	}
+
+	$cmpArr = array();
+
+	foreach($personAttributes as $attr)
+	{
+		$fieldId = "edu-attr_" . $attr->AttributeID . "-contact";
+		if(isset($_POST[$fieldId]))
+		{
+			$at = new Attribute();
+			$at->AttributeID = $attr->AttributeID;
+
+			switch($attr->AttributeTypeID)
+			{
+				case 1:
+					//$at->AttributeChecked = true;
+					break;
+				case 5:
+					$alt = new AttributeAlternative();
+					$alt->AttributeAlternativeID = $_POST[$fieldId];
+					$at->AttributeAlternative[] = $alt;
+					break;
+				default:
+					$at->AttributeValue = $_POST[$fieldId];
+					break;
+			}
+
+			$cmpArr[] = $at;
+		}
+	}
+
+	$person->Attribute = $cmpArr;
 
 	if(isset($_POST['contactCivReg']))
 	{

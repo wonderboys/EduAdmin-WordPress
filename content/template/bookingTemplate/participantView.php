@@ -63,7 +63,7 @@
 
 					foreach($contactAttributes as $attr)
 					{
-						renderAttribute($attr, true);
+						renderAttribute($attr, false, "contact");
 					}
 
 					?>
