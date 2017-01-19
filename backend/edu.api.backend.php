@@ -8,11 +8,16 @@ foreach($modules as $module)
 {
 	if(strpos($module, '.php') !== FALSE)
 	{
-		if(function_exists('opcache_compile_file') && function_exists('opcache_is_script_cached'))
-		{
-			if(!opcache_is_script_cached(__DIR__ . '/modules/' . $module))
-			{
-				opcache_compile_file(__DIR__ . '/modules/' . $module);
+		if(function_exists('opcache_get_status')) {
+			$opcachestatus = opcache_get_status();
+			if($opcachestatus["opcache_enabled"]) {
+				if(function_exists('opcache_compile_file') && function_exists('opcache_is_script_cached'))
+				{
+					if(!opcache_is_script_cached(__DIR__ . '/modules/' . $module))
+					{
+						opcache_compile_file(__DIR__ . '/modules/' . $module);
+					}
+				}
 			}
 		}
 		include_once(__DIR__ . '/modules/' . $module);
