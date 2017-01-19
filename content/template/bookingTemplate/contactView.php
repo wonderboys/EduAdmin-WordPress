@@ -67,9 +67,35 @@
 			$fo->AddItem($f);
 			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
+			$db = array();
+			if($contact->CustomerContactID != 0) {
+				$fo = new XFiltering();
+				$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
+				$fo->AddItem($f);
+				$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+			}
+
 			foreach($contactAttributes as $attr)
 			{
-				renderAttribute($attr);
+				$data = null;
+				foreach($db as $d)
+				{
+					if($d->AttributeID == $attr->AttributeID) {
+						switch($d->AttributeTypeID) {
+							case 1:
+								$data = $d->AttributeChecked;
+								break;
+							case 5:
+								$data = $d->AttributeAlternative->AttributeAlternativeID;
+								break;
+							default:
+								$data = $d->AttributeValue;
+								break;
+						}
+						break;
+					}
+				}
+				renderAttribute($attr, false, "", $data);
 			}
 
 			?>

@@ -6,6 +6,8 @@
 - Added `__bookSingleParticipant.php` and `__bookMultipleParticipants.php` to handle different settings.
 - Fixing `frontend.js` to work with single participant-settings.
 
+- Adding support to load existing attribute data to customer and contact, when loading the booking form. (Would be bad if we emptied it..)
+
 ## [0.9.14]
 ### Added
 - Attributes can now be saved on customers, contacts and participants (person) (Only multiple participants currently)
