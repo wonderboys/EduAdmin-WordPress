@@ -5,6 +5,7 @@ edu.apiclient = {
 	courseFolder: null,
 	authToken: null,
 	CookieBase: 'edu_',
+	AfterUpdate: null,
 	parseDocument: function() {
 		if(wp_edu != undefined) {
 			edu.apiclient.baseUrl = wp_edu.BaseUrlBackend + '/edu.api.backend.php';
@@ -14,6 +15,10 @@ edu.apiclient = {
 				edu.apiclient.replaceEventListWidget();
 				edu.apiclient.replaceCourseListDates();
 				edu.apiclient.replaceCourseEventList();
+
+				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
+					edu.apiclient.AfterUpdate();
+				}
 			});
 		}
 	},
