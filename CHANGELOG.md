@@ -5,7 +5,8 @@
 - `edu.apiclient.AfterUpdate` can be used as a function in javascript to run after the page has loaded all EduAdmin-related things.
 - Added automatic focus on searchbox after searching
 - Bugfix: It's called `debugTimers` not `debug` :)
-- Missed a `LastApplicationDate` fix in the api
+- Missed a couple `LastApplicationDate` fix in the code
+- Bugfix: It's also commonly known that you should check if all variables are declare
 
 ## [0.9.15]
 ### Added

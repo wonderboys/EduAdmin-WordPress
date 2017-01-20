@@ -5,6 +5,7 @@
   {
     protected $__server;
     public $debugTimers = false;
+    public $debug = false;
     public $timers;
 
       public function __construct()
