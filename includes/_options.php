@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPr
 add_action('admin_init', 'eduadmin_settings_init');
 add_action('admin_menu', 'eduadmin_backend_menu');
 add_action('admin_enqueue_scripts', 'eduadmin_backend_content');
-add_action('wp_enqueue_scripts', 'eduadmin_frontend_content');
+add_action('wp_enqueue_scripts', 'eduadmin_frontend_content', PHP_INT_MAX);
 add_action('add_meta_boxes', 'eduadmin_shortcode_metabox');
 add_action('wp_footer', 'eduadmin_printJavascript');
 
