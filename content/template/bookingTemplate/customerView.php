@@ -137,11 +137,14 @@
 			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
 			$db = array();
-			if($customer->CustomerID != 0) {
-				$fo = new XFiltering();
-				$f = new XFilter('CustomerID', '=', $customer->CustomerID);
-				$fo->AddItem($f);
-				$db = $eduapi->GetCustomerAttribute($edutoken, '', $fo->ToString());
+			if(isset($customer) && isset($customer->CustomerID))
+			{
+				if($customer->CustomerID != 0) {
+					$fo = new XFiltering();
+					$f = new XFilter('CustomerID', '=', $customer->CustomerID);
+					$fo->AddItem($f);
+					$db = $eduapi->GetCustomerAttribute($edutoken, '', $fo->ToString());
+				}
 			}
 
 			foreach($contactAttributes as $attr)

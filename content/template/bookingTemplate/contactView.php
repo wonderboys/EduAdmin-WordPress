@@ -68,11 +68,14 @@
 			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
 			$db = array();
-			if($contact->CustomerContactID != 0) {
-				$fo = new XFiltering();
-				$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
-				$fo->AddItem($f);
-				$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+			if(isset($contact) && isset($contact->CustomerContactID))
+			{
+				if($contact->CustomerContactID != 0) {
+					$fo = new XFiltering();
+					$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
+					$fo->AddItem($f);
+					$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+				}
 			}
 
 			foreach($contactAttributes as $attr)

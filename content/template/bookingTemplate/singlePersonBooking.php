@@ -169,11 +169,15 @@
 			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
 			$db = array();
-			if($contact->CustomerContactID != 0) {
-				$fo = new XFiltering();
-				$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
-				$fo->AddItem($f);
-				$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+
+			if(isset($contact) && isset($contact->CustomerContactID))
+			{
+				if($contact->CustomerContactID != 0) {
+					$fo = new XFiltering();
+					$f = new XFilter('CustomerContactID', '=', $contact->CustomerContactID);
+					$fo->AddItem($f);
+					$db = $eduapi->GetCustomerContactAttribute($edutoken, '', $fo->ToString());
+				}
 			}
 
 			foreach($contactAttributes as $attr)
@@ -199,6 +203,7 @@
 				renderAttribute($attr, false, "", $data);
 			}
 
+
 			$so = new XSorting();
 			$s = new XSort('SortIndex', 'ASC');
 			$so->AddItem($s);
@@ -211,11 +216,14 @@
 			$contactAttributes = $eduapi->GetAttribute($edutoken, $so->ToString(), $fo->ToString());
 
 			$db = array();
-			if($customer->CustomerID != 0) {
-				$fo = new XFiltering();
-				$f = new XFilter('CustomerID', '=', $customer->CustomerID);
-				$fo->AddItem($f);
-				$db = $eduapi->GetCustomerAttribute($edutoken, '', $fo->ToString());
+			if(isset($customer) && isset($customer->CustomerID))
+			{
+				if($customer->CustomerID != 0) {
+					$fo = new XFiltering();
+					$f = new XFilter('CustomerID', '=', $customer->CustomerID);
+					$fo->AddItem($f);
+					$db = $eduapi->GetCustomerAttribute($edutoken, '', $fo->ToString());
+				}
 			}
 
 			foreach($contactAttributes as $attr)
