@@ -15,10 +15,6 @@ edu.apiclient = {
 				edu.apiclient.replaceEventListWidget();
 				edu.apiclient.replaceCourseListDates();
 				edu.apiclient.replaceCourseEventList();
-
-				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
-					edu.apiclient.AfterUpdate();
-				}
 			});
 		}
 	},
@@ -113,6 +109,9 @@ edu.apiclient = {
 						}
 					}
 				}
+				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
+					edu.apiclient.AfterUpdate.call(null);
+				}
 			}
 		});
 	},
@@ -146,6 +145,9 @@ edu.apiclient = {
 			},
 			success: function(d) {
 				jQuery(target).html(d);
+				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
+					edu.apiclient.AfterUpdate.call(null);
+				}
 			}
 		});
 	},
@@ -172,6 +174,9 @@ edu.apiclient = {
 			},
 			success: function(d) {
 				jQuery(target).replaceWith(d);
+				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
+					edu.apiclient.AfterUpdate.call(null);
+				}
 			}
 		});
 	},
@@ -205,6 +210,9 @@ edu.apiclient = {
 			},
 			success: function(d) {
 				jQuery(target).replaceWith(d);
+				if(edu.apiclient.AfterUpdate && typeof edu.apiclient.AfterUpdate == 'function') {
+					edu.apiclient.AfterUpdate.call(null);
+				}
 			}
 		});
 	},
