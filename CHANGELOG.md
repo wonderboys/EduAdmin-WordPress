@@ -7,6 +7,8 @@
 - Bugfix: It's called `debugTimers` not `debug` :)
 - Missed a couple `LastApplicationDate` fix in the code
 - Bugfix: It's also commonly known that you should check if all variables are declare
+- Fixed date listing in event list templates
+- Bugfix: Since you can change login field, we should populate the field used instead of only email.
 
 ## [0.9.15]
 ### Added

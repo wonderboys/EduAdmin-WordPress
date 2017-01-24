@@ -53,9 +53,19 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 
 		if(empty($matchingContacts))
 		{
-			$contact = new stdClass;
-			$contact->Email = $_REQUEST['eduadminloginEmail'];
-			$customer = new stdClass;
+			$contact = new CustomerContact;
+			$selectedLoginField = get_option('eduadmin-loginField', 'Email');
+			switch($selectedLoginField)
+			{
+				case "Email":
+					$contact->Email = $_REQUEST['eduadminloginEmail'];
+					break;
+				case "CivicRegistrationNumber":
+					$contact->CivicRegistrationNumber = $_REQUEST['eduadminloginEmail'];
+					break;
+			}
+
+			$customer = new Customer;
 
 			$user = new stdClass;
 			$user->NewCustomer = true;
