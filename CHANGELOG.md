@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Bugfix: Search applies to events now as well..
 
 ## [0.9.17]
 ### Added

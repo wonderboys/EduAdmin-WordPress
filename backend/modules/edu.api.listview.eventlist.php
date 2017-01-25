@@ -64,9 +64,15 @@ if(!function_exists('edu_api_listview_eventlist'))
 		{
 			$edo = array_filter($edo, function($object) {
 				$name = (!empty($object->PublicName) ? $object->PublicName : $object->ObjectName);
-				$descrMatch = stripos($object->CourseDescription, $request['search']) !== FALSE;
-				$shortDescrMatch = stripos($object->CourseDescriptionShort, $request['search']) !== FALSE;
-				$nameMatch = stripos($name, $request['search']) !== FALSE;
+				$descrMatch = stripos($object->CourseDescription, $_REQUEST['search']) !== FALSE;
+				$shortDescrMatch = stripos($object->CourseDescriptionShort, $_REQUEST['search']) !== FALSE;
+				$nameMatch = stripos($name, $_REQUEST['search']) !== FALSE;
+				/*echo "#namn!#" . $name . " state: ";
+				echo $nameMatch ? "true" : "false" . "#!#<br />";
+				echo "#besk!#" . $object->CourseDescription . " state: ";
+				echo $descrMatch ? "true" : "false" . "#!#<br />";
+				echo "#kort!#" . $object->CourseDescriptionShort . " state: ";
+				echo $shortDescrMatch ? "true" : "false" . "#!#<br /><br />";*/
 				return ($nameMatch || $descrMatch || $shortDescrMatch);
 			});
 		}
@@ -151,6 +157,18 @@ if(!function_exists('edu_api_listview_eventlist'))
 		}
 
 		$ede = $eduapi->GetEvent($edutoken, $sorting->ToString(), $filtering->ToString());
+
+		$ede = array_filter($ede, function($object) use (&$edo) {
+			$pn = $edo;
+			foreach($pn as $subj)
+			{
+				if($object->ObjectID == $subj->ObjectID)
+				{
+					return true;
+				}
+			}
+			return false;
+		});
 
 		$occIds = array();
 		$evIds = array();
