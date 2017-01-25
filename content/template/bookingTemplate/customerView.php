@@ -8,6 +8,10 @@
 					<input type="text" required name="customerName" placeholder="<?php edu_e("Customer name"); ?>" value="<?php echo @esc_attr($customer->CustomerName); ?>" />
 				</div>
 			</label>
+			<?php
+			$noInvoiceFreeEvents = get_option('eduadmin-noInvoiceFreeEvents', false);
+			if($noInvoiceFreeEvents && $firstPrice->Price > 0) {
+			?>
 			<label>
 				<div class="inputLabel">
 					<?php edu_e("Org.No."); ?>
@@ -124,7 +128,7 @@
 				</div>
 			</label>
 			<?php
-
+			}
 			$so = new XSorting();
 			$s = new XSort('SortIndex', 'ASC');
 			$so->AddItem($s);
@@ -169,7 +173,7 @@
 				}
 				renderAttribute($attr, false, "", $data);
 			}
-
+			if($noInvoiceFreeEvents && $firstPrice->Price > 0) {
 			?>
 			<label>
 				<div class="inputHolder alsoInvoiceCustomer">
@@ -178,4 +182,5 @@
 					<?php edu_e("Use other information for invoicing"); ?>
 				</div>
 			</label>
+			<?php } ?>
 		</div>

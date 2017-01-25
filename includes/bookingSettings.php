@@ -147,6 +147,12 @@ else
 			<h4><?php _e("Form settings", "eduadmin"); ?></h4>
 			<button class="button" disabled onclick="showFormWindow(); return false;"><?php _e("Show settings", "eduadmin"); ?></button>
 			<br />
+			<br />
+			<?php $noInvoiceFreeEvents = get_option('eduadmin-noInvoiceFreeEvents', false); ?>
+			<label>
+				<input type="checkbox" name="eduadmin-noInvoiceFreeEvents"<?php echo ($noInvoiceFreeEvents === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Hide invoice information if the event is free", "eduadmin"); ?>
+			</label>
 			<h3><?php _e("Price name settings", "eduadmin"); ?></h3>
 			<?php
 			$priceNameSetting = get_option('eduadmin-selectPricename', 'firstPublic');

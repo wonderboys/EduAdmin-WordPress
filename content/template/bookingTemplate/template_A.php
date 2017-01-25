@@ -212,8 +212,8 @@ else
 						<?php edu_e("Select the event you want to book"); ?>
 					</div>
 
-					<select name="eid" class="dateInfo" onchange="eduBookingView.SelectEvent(this);">
-						<option value="-1"><?php edu_e("Select event"); ?></option>
+					<select name="eid" required class="dateInfo" onchange="eduBookingView.SelectEvent(this);">
+						<option value=""><?php edu_e("Select event"); ?></option>
 						<?php foreach($events as $ev): ?>
 							<option value="<?php echo $ev->EventID; ?>">
 							<?php

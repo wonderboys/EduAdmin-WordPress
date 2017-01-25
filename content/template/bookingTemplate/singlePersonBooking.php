@@ -58,7 +58,10 @@
 		<?php edu_e("You cannot add any more participants."); ?>
 	</div>
 </div>
-
+<?php
+$noInvoiceFreeEvents = get_option('eduadmin-noInvoiceFreeEvents', false);
+if($noInvoiceFreeEvents && $firstPrice->Price > 0) {
+?>
 <div class="customerView">
 	<label>
 		<div class="inputLabel">
@@ -155,7 +158,7 @@
 		</label>
 	</div>
 </div>
-
+<?php } ?>
 <div class="attributeView">
 <?php
 	$so = new XSorting();
