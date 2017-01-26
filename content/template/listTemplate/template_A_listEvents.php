@@ -198,6 +198,18 @@ if(isset($_REQUEST['eduadmin-level']) && !empty($_REQUEST['eduadmin-level']))
 	});
 }
 
+$ede = array_filter($ede, function($object) use (&$edo) {
+	$pn = $edo;
+	foreach($pn as $subj)
+	{
+		if($object->ObjectID == $subj->ObjectID)
+		{
+			return true;
+		}
+	}
+	return false;
+});
+
 $occIds = array();
 $evIds = array();
 
