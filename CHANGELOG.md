@@ -2,7 +2,15 @@
 
 ## [Unreleased]
 ### Added
+
+## [0.9.17.3]
+### Added
+- Added option to set how many "few" spots is when you use "Text only"
+
+## [0.9.17.2]
+### Added
 - Bugfix: Invoice info should be shown if you don't use the setting from [0.9.17]
+
 
 ## [0.9.17.1]
 ### Added
@@ -129,7 +137,9 @@
 - Added inquiry support in course
 
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.1...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.3...HEAD
+[0.9.17.3]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.2...v0.9.17.3
+[0.9.17.2]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.1...v0.9.17.2
 [0.9.17.1]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17...v0.9.17.1
 [0.9.17]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.16...v0.9.17
 [0.9.16]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.15...v0.9.16

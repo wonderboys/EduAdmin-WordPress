@@ -46,6 +46,7 @@ var EduAdmin = {
 			jQuery('#eduadmin-intervalSetting').show();
 			break;
 			case 'alwaysFewSpots':
+			case 'onlyText':
 			jQuery('#eduadmin-alwaysFewSpots').show();
 			break;
 		}

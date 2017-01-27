@@ -64,9 +64,18 @@ function getSpotsLeft($freeSpots, $maxSpots)
 	switch($spotOption)
 	{
 		case "exactNumbers":
-			return sprintf(edu_n('%1$d spot left', '%1$d spots left', $freeSpots), $freeSpots);
+			return sprintf(edu_n('%1$s spot left', '%1$s spots left', $freeSpots), $freeSpots);
 		case "onlyText":
-			return ($freeSpots > 0 ? ($freeSpots > 5 ? edu__('Spots left') : edu__('Few spots left')) : edu__('No spots left'));
+			$fewSpotsLimit = get_option('eduadmin-alwaysFewSpots', 5);
+			if($freeSpots > $fewSpotsLimit) {
+				return edu__('Spots left');
+			} else if ($freeSpots <= $fewSpotsLimit && $freeSpots != 1) {
+				return edu__('Few spots left');
+			} else if ($freeSpots == 1) {
+				return edu__('One spot left');
+			} else if ($freeSpots <= 0) {
+				return edu__('No spots left');
+			}
 		case "intervals":
 			$interval = get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+");
 			if(empty($interval)) {

@@ -64,9 +64,17 @@ function edu_getSpotsLeft($freeSpots, $maxSpots, $spotOption = 'exactNumbers', $
 	switch($spotOption)
 	{
 		case "exactNumbers":
-			return sprintf(edu_n('%1$d spot left', '%1$d spots left', $freeSpots), $freeSpots);
+			return sprintf(edu_n('%1$s spot left', '%1$s spots left', $freeSpots), $freeSpots);
 		case "onlyText":
-			return ($freeSpots > 0 ? ($freeSpots > 5 ? edu__('Spots left') : edu__('Few spots left')) : edu__('No spots left'));
+			if($freeSpots > $alwaysFewSpots) {
+				return edu__('Spots left');
+			} else if ($freeSpots <= $alwaysFewSpots && $freeSpots != 1) {
+				return edu__('Few spots left');
+			} else if ($freeSpots == 1) {
+				return edu__('One spot left');
+			} else if ($freeSpots <= 0) {
+				return edu__('No spots left');
+			}
 		case "intervals":
 			$interval = $spotSettings;
 			if(empty($interval)) {
