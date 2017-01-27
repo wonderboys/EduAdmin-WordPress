@@ -10,7 +10,7 @@
 			</label>
 			<?php
 			$noInvoiceFreeEvents = get_option('eduadmin-noInvoiceFreeEvents', false);
-			if($noInvoiceFreeEvents && $firstPrice->Price > 0) {
+			if(!$noInvoiceFreeEvents || ($noInvoiceFreeEvents && $firstPrice->Price > 0)) {
 			?>
 			<label>
 				<div class="inputLabel">
