@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Bugfix: Invoice info should be shown if you don't use the setting from [0.9.17]
 
 ## [0.9.17.1]
 ### Added
