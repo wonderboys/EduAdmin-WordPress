@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 ### Added
+
+## [0.9.17.4]
+### Added
 - Option to use civic reg.no validation (Swedish) in Booking settings
 - Validation support in `frontendjs.js` to validate swedish civic reg.nos
 - Added css-style to required input fields (`.eduadmin .inputHolder input[required]`)
@@ -141,7 +144,8 @@
 ### Added
 - Added inquiry support in course
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.3...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.4...HEAD
+[0.9.17.4]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.3...v0.9.17.4
 [0.9.17.3]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.2...v0.9.17.3
 [0.9.17.2]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.1...v0.9.17.2
 [0.9.17.1]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17...v0.9.17.1
