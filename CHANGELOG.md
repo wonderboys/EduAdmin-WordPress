@@ -6,6 +6,7 @@
 - Validation support in `frontendjs.js` to validate swedish civic reg.nos
 - Added css-style to required input fields (`.eduadmin .inputHolder input[required]`)
 - Added `<meta name="robots" content="noindex" />` to detail pages if no `courseid` is present, to prevent broken detail page to be indexed by search engines.
+- Bugfix: Booking-form-login now checks the correct field when we try to login
 
 ### Removed
 - Removed validation of existing password to enforce password retrieval on contacts with `NULL` passwords.
