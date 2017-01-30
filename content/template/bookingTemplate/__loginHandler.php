@@ -16,7 +16,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		{
 			foreach($matchingContacts as $con)
 			{
-				if(!empty($con->Loginpass) && $con->CanLogin == 1)
+				if($con->CanLogin == 1)
 				{
 					$_SESSION['needsLogin'] = true;
 					break;
@@ -27,7 +27,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		if(count($matchingContacts) == 1)
 		{
 			$con = $matchingContacts[0];
-			if(!empty($con->Loginpass) && $con->CanLogin == 1)
+			if($con->CanLogin == 1)
 			{
 				$_SESSION['needsLogin'] = true;
 				return;
