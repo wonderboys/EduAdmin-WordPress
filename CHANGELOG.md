@@ -5,6 +5,7 @@
 - Option to use civic reg.no validation (Swedish) in Booking settings
 - Validation support in `frontendjs.js` to validate swedish civic reg.nos
 - Added css-style to required input fields (`.eduadmin .inputHolder input[required]`)
+- Added `<meta name="robots" content="noindex" />` to detail pages if no `courseid` is present, to prevent broken detail page to be indexed by search engines.
 
 ## [0.9.17.3]
 ### Added

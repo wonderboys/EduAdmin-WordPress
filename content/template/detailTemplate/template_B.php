@@ -36,7 +36,7 @@ else
 	if(!$selectedCourse)
 	{
 		?>
-		<script>history.go(-1);</script>
+		<script type="text/javascript">location.href = '<?php echo $baseUrl; ?>';</script>
 		<?php
 		die();
 	}

@@ -81,6 +81,16 @@ function eduadmin_get_detail_view($attributes)
 	}
 }
 
+function edu_no_index() {
+	global $wp_query;
+	$detailpage = get_option('eduadmin-detailViewPage');
+	if($detailpage !== FALSE && $detailpage == $wp_query->queried_object->ID && !isset($wp_query->query['courseId'])) {
+		echo '<meta name="robots" content="noindex" />';
+	}
+}
+
+add_action('wp_head', 'edu_no_index');
+
 function eduadmin_get_booking_view($attributes)
 {
 	if ( !defined('DONOTCACHEPAGE') ){
