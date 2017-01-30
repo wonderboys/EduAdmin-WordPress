@@ -7,6 +7,9 @@
 - Added css-style to required input fields (`.eduadmin .inputHolder input[required]`)
 - Added `<meta name="robots" content="noindex" />` to detail pages if no `courseid` is present, to prevent broken detail page to be indexed by search engines.
 
+### Removed
+- Removed validation of existing password to enforce password retrieval on contacts with `NULL` passwords.
+
 ## [0.9.17.3]
 ### Added
 - Added option to set how many "few" spots is when you use "Text only"
