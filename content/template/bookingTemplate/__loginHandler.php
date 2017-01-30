@@ -4,7 +4,17 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 	if($_REQUEST['bookingLoginAction'] === "checkEmail" && !empty($_REQUEST['eduadminloginEmail']))
 	{
 		$ft = new XFiltering();
-		$f = new XFilter('Email', '=', trim($_REQUEST['eduadminloginEmail']));
+		$selectedLoginField = get_option('eduadmin-loginField', 'Email');
+		switch($selectedLoginField)
+		{
+			case "Email":
+				$f = new XFilter('Email', '=', trim($_REQUEST['eduadminloginEmail']));
+				break;
+			case "CivicRegistrationNumber":
+				$f = new XFilter('CivicRegistrationNumber', '=', trim($_REQUEST['eduadminloginEmail']));
+				break;
+		}
+
 		$ft->AddItem($f);
 		$f = new XFilter('Disabled', '=', false);
 		$ft->AddItem($f);
