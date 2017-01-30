@@ -42,6 +42,7 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-booking', 'eduadmin-hideSubEventDateTime');
 	register_setting('eduadmin-booking', 'eduadmin-allowDiscountCode');
 	register_setting('eduadmin-booking', 'eduadmin-noInvoiceFreeEvents');
+	register_setting('eduadmin-booking', 'eduadmin-validateCivicRegNo');
 
 	/* Phrase settings */
 	register_setting('eduadmin-phrases', 'eduadmin-phrases');

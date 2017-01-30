@@ -40,7 +40,7 @@
 					<?php edu_e("Civic Registration Number"); ?>
 				</div>
 				<div class="inputHolder">
-					<input type="text" id="edu-contactCivReg" required name="contactCivReg" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo @esc_attr($contact->CivicRegistrationNumber); ?>" />
+					<input type="text" id="edu-contactCivReg" class="eduadmin-civicRegNo" pattern="(\d{2,4})-?(\d{2,2})-?(\d{2,2})-?(\d{4,4})" required name="contactCivReg" onchange="eduBookingView.ContactAsParticipant();" placeholder="<?php edu_e("Civic Registration Number"); ?>" value="<?php echo @esc_attr($contact->CivicRegistrationNumber); ?>" />
 				</div>
 			</label>
 			<?php } ?>

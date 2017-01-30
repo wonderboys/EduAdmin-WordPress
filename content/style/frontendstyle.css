@@ -445,6 +445,10 @@
 	display: inline-block;
 }
 
+.eduadmin .inputHolder input[required] {
+	background-color: #feffcc;
+}
+
 .eduadmin .edu-modal
 {
 	display: none;

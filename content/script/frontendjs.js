@@ -282,6 +282,8 @@ var eduBookingView = {
 			'participantCivReg[]'
 		];
 
+		if(ShouldValidateCivRegNo && !eduBookingView.ValidateCivicRegNo()) return false;
+
 		var contactParticipant = document.getElementById('contactIsAlsoParticipant');
 		var contact = 0;
 		if(contactParticipant) {
@@ -330,6 +332,61 @@ var eduBookingView = {
 			}
 		}
 
+		return true;
+	},
+	ValidateCivicRegNo: function() {
+
+		function __isValid(civRegField) {
+			var civReg = civRegField.value;
+			if(!civReg || civReg.length == 0) return false;
+
+			if(!civReg.match(/^(\d{2,4})-?(\d{2})-?(\d{2})-?(\d{4})$/i)) return false;
+
+			var date = new Date();
+			var year = RegExp.$1, month = (RegExp.$2 - 1), day = RegExp.$3, unique = RegExp.$4;
+			if(year.length <= 2) {
+				year = date.getFullYear().toString().substring(0, 2) + year;
+				while(year > date.getFullYear()) year -= 100;
+			}
+
+			var checkDate = new Date(year, month, day);
+			if(Object.prototype.toString.call(checkDate) !== '[object Date]' || isNaN(checkDate.getTime())) return false;
+
+			if(month.length == 1) {
+				month = '0' + (month + 1);
+			} else {
+				month = month + 1
+			}
+
+			if(day.length == 1) {
+				day = '0' + day;
+			}
+
+			var formattedCivReg =
+				year + '-' +
+				month + '-' +
+				day + '-' +
+				unique;
+
+			civRegField.value = formattedCivReg;
+			var cleanCivReg = formattedCivReg.replace(/-/gi, '').substr(2), parity = cleanCivReg.length % 2, sum = 0;
+			for(var i = 0; i < cleanCivReg.length; i++) {
+				var d = parseInt(cleanCivReg.charAt(i), 10);
+				if(i % 2 == parity) { d *= 2; }
+				if(d > 9) { d -= 9; }
+				sum += d;
+			}
+			return (sum % 10) === 0;
+		}
+
+		var civicRegNoFields = jQuery('.eduadmin-civicRegNo');
+		for(var i = 0; i < civicRegNoFields.length; i++) {
+			var field = civicRegNoFields[i];
+			if(!__isValid(field)) {
+				field.focus();
+				return false;
+			}
+		}
 		return true;
 	}
 };

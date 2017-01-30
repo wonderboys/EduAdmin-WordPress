@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 ### Added
+- Option to use civic reg.no validation (Swedish) in Booking settings
+- Validation support in `frontendjs.js` to validate swedish civic reg.nos
+- Added css-style to required input fields (`.eduadmin .inputHolder input[required]`)
 
 ## [0.9.17.3]
 ### Added
@@ -10,7 +13,6 @@
 ## [0.9.17.2]
 ### Added
 - Bugfix: Invoice info should be shown if you don't use the setting from [0.9.17]
-
 
 ## [0.9.17.1]
 ### Added
@@ -65,7 +67,6 @@
 - Added support to validate coupon codes against the api
 - Added support to recalculate the price and post the coupon with the Booking
 
-
 ## [0.9.11]
 ### Added
 - Removed `margin-top: 1.0em; vertical-align: top;` from `.inputLabel` and replaced with `vertical-align: middle;`.
@@ -90,7 +91,6 @@
 
 ### Removed
 - Removed all error suppression regarding dates.
-
 
 ## [0.9.9.2.39]
 ### Added
@@ -135,7 +135,6 @@
 ## 0.9.7 - 2016-09-06
 ### Added
 - Added inquiry support in course
-
 
 [Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.3...HEAD
 [0.9.17.3]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.2...v0.9.17.3

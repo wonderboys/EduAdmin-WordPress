@@ -106,6 +106,14 @@ else
 				<input type="checkbox" name="eduadmin-allowDiscountCode"<?php echo ($allowDiscountCode === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
 				<?php _e("Allow end customers to use discount codes", "eduadmin"); ?>
 			</label>
+			<br />
+			<?php
+			$validateCivicRegNo = get_option('eduadmin-validateCivicRegNo', false);
+			?>
+			<label>
+				<input type="checkbox" name="eduadmin-validateCivicRegNo"<?php echo ($validateCivicRegNo === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Validate civic registration numbers (Swedish)", "eduadmin"); ?>
+			</label>
 			<h4><?php _e("Field order", "eduadmin"); ?></h4>
 			<?php
 			$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');

@@ -372,6 +372,7 @@ else
 		var totalPriceDiscountPercent = <?php echo $discountPercent; ?>;
 		var currency = '<?php echo esc_attr(get_option('eduadmin-currency', 'SEK')); ?>';
 		var vatText = '<?php echo edu__($incVat ? "inc vat" : "ex vat"); ?>';
+		var ShouldValidateCivRegNo = <?php echo (get_option('eduadmin-validateCivicRegNo', false) ? "true" : "false"); ?>;
 		(function() {
 			var title = document.title;
 			title = title.replace('<?php echo esc_attr($originalTitle); ?>', '<?php echo esc_attr($newTitle); ?>');
