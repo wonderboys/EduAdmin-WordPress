@@ -28,6 +28,7 @@ include_once("login_tab_header.php");
 			<th align="left"><?php edu_e("Card name"); ?></th>
 			<th align="left"><?php edu_e("Valid"); ?></th>
 			<th align="right"><?php edu_e("Credits"); ?></th>
+			<th align="right"><?php edu_e("Discount"); ?></th>
 			<th align="right"><?php edu_e("Price"); ?></th>
 		</tr>
 		<?php
@@ -37,14 +38,13 @@ include_once("login_tab_header.php");
 		<?php
 		} else {
 			foreach($cards as $card) {
-				$discount = ($card->DiscountPercent / 100) * $card->Price;
-				$price = $card->Price - $discount;
 		?>
 		<tr>
 			<td><?php echo $card->PublicName; ?></td>
 			<td><?php echo GetOldStartEndDisplayDate($card->ValidFrom, $card->ValidTo, false); ?></td>
 			<td align="right"><?php echo $card->CreditLeft . ' / ' . $card->CreditStartValue; ?></td>
-			<td align="right"><?php echo convertToMoney($price, $currency); ?></td>
+			<td align="right"><?php echo $card->DiscountPercent; ?> %</td>
+			<td align="right"><?php echo convertToMoney($card->Price, $currency); ?></td>
 		</tr>
 		<?php }
 		} ?>

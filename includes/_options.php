@@ -43,6 +43,7 @@ function eduadmin_settings_init()
 	register_setting('eduadmin-booking', 'eduadmin-allowDiscountCode');
 	register_setting('eduadmin-booking', 'eduadmin-noInvoiceFreeEvents');
 	register_setting('eduadmin-booking', 'eduadmin-validateCivicRegNo');
+	register_setting('eduadmin-booking', 'eduadmin-useLimitedDiscount');
 
 	/* Phrase settings */
 	register_setting('eduadmin-phrases', 'eduadmin-phrases');

@@ -107,6 +107,14 @@ else
 				<?php _e("Allow end customers to use discount codes", "eduadmin"); ?>
 			</label>
 			<br />
+			<!--<?php
+			$useLimitedDiscount = get_option('eduadmin-useLimitedDiscount', false);
+			?>
+			<label>
+				<input type="checkbox" name="eduadmin-useLimitedDiscount"<?php echo ($useLimitedDiscount === "true" ? " checked=\"checked\"" : ""); ?> value="true" />
+				<?php _e("Allow end customers to use discount cards", "eduadmin"); ?>
+			</label>
+			<br />-->
 			<?php
 			$validateCivicRegNo = get_option('eduadmin-validateCivicRegNo', false);
 			?>
