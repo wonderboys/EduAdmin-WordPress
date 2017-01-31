@@ -3,6 +3,9 @@
 ## [Unreleased]
 ### Added
 - Added LICENSE.md
+- Added limitedDiscountView in bookingTemplate to handle limited discount cards
+- Added some phrases to defaultPhrases.json (I've got to find a way to do this automagically)
+- Bugfix: Fixed date format function on profile -> discount cards. (used an old function)
 
 ## [0.9.17.4]
 ### Added

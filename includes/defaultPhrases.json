@@ -40,6 +40,7 @@
 	"Dates": "Dates",
 	"dec": "dec",
 	"december": "december",
+	"Discount code": "Discount code",
 	"E-mail address": "E-mail address",
 	"feb": "feb",
 	"february": "february",
@@ -151,5 +152,7 @@
 	"thu": "thu",
 	"fri": "fri",
 	"sat": "sat",
-	"sun": "sun"
+	"sun": "sun",
+	"Validate": "Validate",
+	"Invalid discount code, please check your code and try again.": "Invalid discount code, please check your code and try again."
 }

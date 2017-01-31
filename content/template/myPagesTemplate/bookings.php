@@ -16,6 +16,8 @@ include_once("login_tab_header.php");
 	$filtering = new XFiltering();
 	$f = new XFilter('CustomerID', '=', $customer->CustomerID);
 	$filtering->AddItem($f);
+	$f = new XFilter('Cancelled', '=', false);
+	$filtering->AddItem($f);
 
 	$sorting = new XSorting();
 	$s = new XSort('Created', 'DESC');

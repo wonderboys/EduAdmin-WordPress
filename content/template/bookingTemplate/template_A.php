@@ -271,9 +271,9 @@ else
 
 			<?php
 			$singlePersonBooking = get_option('eduadmin-singlePersonBooking', false);
-			if ($singlePersonBooking):
+			if ($singlePersonBooking) {
 				include_once("singlePersonBooking.php");
-			else:
+			} else {
 				$fieldOrder = get_option('eduadmin-fieldOrder', 'contact_customer');
 				if($fieldOrder == "contact_customer") {
 					include_once("contactView.php");
@@ -283,9 +283,8 @@ else
 					include_once("contactView.php");
 				}
 				include_once("participantView.php");
-			endif;
+			}
 			?>
-
 			<?php if (get_option('eduadmin-selectPricename', 'firstPublic') == "selectWholeEvent"): ?>
 			<div class="priceView">
 				<?php
@@ -326,7 +325,12 @@ else
 				</div>
 			</div>
 			<?php endif; ?>
-
+			<?php
+			$useLimitedDiscount = get_option('eduadmin-useLimitedDiscount', false);
+			if($useLimitedDiscount) {
+				include_once("limitedDiscountView.php");
+			}
+			?>
 			<div class="submitView">
 				<div class="sumTotal">
 					<?php edu_e('Total sum:'); ?> <span id="sumValue" class="sumValue"></span>

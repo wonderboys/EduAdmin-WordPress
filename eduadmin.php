@@ -1,18 +1,12 @@
 <?php
 defined( 'ABSPATH' ) or die( 'This plugin must be run within the scope of WordPress.' );
 
-
-
-include_once("includes/loApiClient.php");
-if(!session_id())
-	session_start();
-
 /*
  * Plugin Name:	EduAdmin Booking
  * Plugin URI:	http://www.eduadmin.se
  * Description:	EduAdmin plugin to allow visitors to book courses at your website
  * Tags:	booking, participants, courses, events, eduadmin, lega online
- * Version:	0.9.17.4
+ * Version:	0.9.17.5
  * Requires at least: 3.0
  * Tested up to: 4.7.1
  * Author:	Chris Gårdenberg, MultiNet Interactive AB
@@ -38,6 +32,10 @@ if(!session_id())
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
+include_once("includes/loApiClient.php");
+if(!session_id())
+	session_start();
 
 include_once("includes/functions.php");
 include_once("includes/_rewrites.php");
@@ -79,7 +77,7 @@ function edu_call_home()
         'wpVersion' => $wp_version,
         'token' => get_option('eduadmin-api-key'),
         'officialVersion' => file_exists(dirname(__FILE__) . "/.official.plugin.php"),
-        'pluginVersion' => '0.9.17.4'
+        'pluginVersion' => '0.9.17.5'
     );
 
     $callHomeUrl = 'http://ws10.multinet.se/edu-plugin/wp_phone_home.php';

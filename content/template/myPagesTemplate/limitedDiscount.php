@@ -37,12 +37,14 @@ include_once("login_tab_header.php");
 		<?php
 		} else {
 			foreach($cards as $card) {
+				$discount = ($card->DiscountPercent / 100) * $card->Price;
+				$price = $card->Price - $discount;
 		?>
 		<tr>
 			<td><?php echo $card->PublicName; ?></td>
-			<td><?php echo GetStartEndDisplayDate($card->ValidFrom, $card->ValidTo, false); ?></td>
+			<td><?php echo GetOldStartEndDisplayDate($card->ValidFrom, $card->ValidTo, false); ?></td>
 			<td align="right"><?php echo $card->CreditLeft . ' / ' . $card->CreditStartValue; ?></td>
-			<td align="right"><?php echo convertToMoney($card->Price, $currency); ?></td>
+			<td align="right"><?php echo convertToMoney($price, $currency); ?></td>
 		</tr>
 		<?php }
 		} ?>
