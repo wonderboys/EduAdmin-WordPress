@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Added LICENSE.md
 
 ## [0.9.17.4]
 ### Added

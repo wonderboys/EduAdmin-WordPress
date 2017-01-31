@@ -23,7 +23,7 @@ if(!session_id())
  */
 /*
     EduAdmin Booking plugin
-    Copyright (C) 2015-2016 Chris Gårdenberg, MultiNet Interactive AB
+    Copyright (C) 2015-2017 Chris Gårdenberg, MultiNet Interactive AB
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
