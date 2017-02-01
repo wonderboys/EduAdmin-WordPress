@@ -632,7 +632,7 @@ function eduadmin_get_detailinfo($attributes)
 
 						'<a class="book-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/?eid=' . $ev->EventID . edu_getQueryString("&", array('eid')) . '" style="text-align: center;">' . edu__("Book") . '</a>'
 					:
-						($eventInterestPage != false ? '<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&") . '">' . edu_e("Inquiry") . '</a>' : '') .
+						($eventInterestPage != false ? '<a class="inquiry-link" href="' . $baseUrl . '/' . makeSlugs($name) . '__' . $selectedCourse->ObjectID . '/book/interest/?eid=' . $ev->EventID . edu_getQueryString("&") . '">' . edu__("Inquiry") . '</a>' : '') .
 						'<i class="fullBooked">' . edu__("Full") . '</i>'
 					) . '
 					</div>';
