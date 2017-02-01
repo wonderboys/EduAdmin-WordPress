@@ -231,7 +231,9 @@ else
 <?php
 $showEventVenue = get_option('eduadmin-showEventVenueName', false);
 ?>
-	<div class="event-table eventDays" data-eduwidget="eventlist" data-objectid="<?php echo esc_attr($selectedCourse->ObjectID); ?>"
+	<div class="event-table eventDays"
+		data-eduwidget="eventlist"
+		data-objectid="<?php echo esc_attr($selectedCourse->ObjectID); ?>"
 		data-spotsleft="<?php echo get_option('eduadmin-spotsLeft', 'exactNumbers'); ?>"
 		data-spotsettings="<?php echo get_option('eduadmin-spotsSettings', "1-5\n5-10\n10+"); ?>"
 		data-fewspots="<?php echo get_option('eduadmin-alwaysFewSpots', "3"); ?>"
@@ -240,6 +242,7 @@ $showEventVenue = get_option('eduadmin-showEventVenueName', false);
 		data-fetchmonths="<?php echo $fetchMonths; ?>"
 		<?php echo (isset($_REQUEST['eid']) ? ' data-event="' . $_REQUEST['eid'] . '"' : ''); ?>
 		data-showvenue="<?php echo @esc_attr($showEventVenue); ?>"
+		data-eventinquiry="<?php echo @esc_attr(get_option('eduadmin-allowInterestRegEvent', false)); ?>"
 	>
 	<?php
 	foreach($events as $ev)

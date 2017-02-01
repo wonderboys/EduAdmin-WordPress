@@ -170,6 +170,7 @@ edu.apiclient = {
 				numberofevents:		jQuery(target).data('numberofevents'),
 				fetchmonths:	jQuery(target).data('fetchmonths'),
 				showvenue:			jQuery(target).data('showvenue'),
+				eventinquiry:	jQuery(target).data('eventinquiry'),
 				phrases: 		wp_edu.Phrases
 			},
 			success: function(d) {

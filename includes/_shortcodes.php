@@ -578,6 +578,7 @@ function eduadmin_get_detailinfo($attributes)
 				' data-order="' . $customOrderBy . '"' .
 				' data-orderby="' . $customOrderByOrder . '"' .
 				' data-showvenue="' . get_option('eduadmin-showEventVenueName', false) . '"' .
+				' data-eventinquiry="' . get_option('eduadmin-allowInterestRegEvent', false) . '"' .
 				'>';
 				$i = 0;
 				$hasHiddenDates = false;

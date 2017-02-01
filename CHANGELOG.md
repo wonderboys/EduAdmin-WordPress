@@ -2,10 +2,17 @@
 
 ## [Unreleased]
 ### Added
+
+## [0.9.17.5]
+### Added
 - Added LICENSE.md
 - Added limitedDiscountView in bookingTemplate to handle limited discount cards
 - Added some phrases to defaultPhrases.json (I've got to find a way to do this automagically)
 - Bugfix: Fixed date format function on profile -> discount cards. (used an old function)
+- Bugfix: Suppressing warnings if `HTTP_REFERER` is missing
+- Bugfix: We should use `edu__` in string concatenations instead of `edu_e`
+- Bugfix: Event inquiry used the old date function
+- Bugfix: We should pass along the settings to use event inquiries all the way..
 
 ## [0.9.17.4]
 ### Added

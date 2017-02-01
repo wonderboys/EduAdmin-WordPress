@@ -176,7 +176,7 @@ if(!function_exists('edu_api_eventlist'))
 		$alwaysFewSpots = $request['fewspots'];
 		$showVenue = $request['showvenue'];
 		$spotSettings = $request['spotsettings'];
-		$showEventInquiry = isset($request['event-inquiry']) && $request['event-inquiry'] == "1";
+		$showEventInquiry = isset($request['eventinquiry']) && $request['eventinquiry'] == "true";
 		$baseUrl = $surl . '/' . $cat;
 		$name = (!empty($selectedCourse->PublicName) ? $selectedCourse->PublicName : $selectedCourse->ObjectName);
 		$retStr .= '<div class="eduadmin"><div class="event-table eventDays">';
