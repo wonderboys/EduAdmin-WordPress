@@ -3,7 +3,7 @@
 		<h2 class="loginTitle"><?php edu_e("Login to My Pages"); ?></h2>
 		<form action="" method="POST">
 			<input type="hidden" name="eduformloginaction" value="" />
-			<input type="hidden" name="eduReturnUrl" value="<?php echo esc_attr($_SERVER['HTTP_REFERER']); ?>" />
+			<input type="hidden" name="eduReturnUrl" value="<?php echo @esc_attr($_SERVER['HTTP_REFERER']); ?>" />
 			<?php
 			$selectedLoginField = get_option('eduadmin-loginField', 'Email');
 			$loginLabel = edu__("E-mail address");
