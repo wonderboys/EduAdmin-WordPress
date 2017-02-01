@@ -73,9 +73,7 @@ else
 		$ft->ToString()
 	);
 
-	$event = $events[0];
-
-	if(!$event)
+	if(count($events) == 0)
 	{
 		?>
 		<script>history.go(-1);</script>
@@ -83,7 +81,7 @@ else
 		die();
 	}
 
-
+	$event = $events[0];
 
 	?>
 <div class="eduadmin">
@@ -93,7 +91,7 @@ else
 		<h1 class="courseTitle"><?php echo $name; ?> - <?php edu_e("Inquiry"); ?> <small><?php echo (!empty($courseLevel) ? $courseLevel[0]->Name : ""); ?></small></h1>
 	</div>
 	<?php
-	echo "<div class=\"dateInfo\">" . GetStartEndDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
+	echo "<div class=\"dateInfo\">" . GetOldStartEndDisplayDate($event->PeriodStart, $event->PeriodEnd) . ", ";
 				echo date("H:i", strtotime($event->PeriodStart)); ?> - <?php echo date("H:i", strtotime($event->PeriodEnd));
 				$addresses = get_transient('eduadmin-location-' . $event->LocationAddressID);
 				if(!$addresses)
