@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 ### Added
+- Added link in booking form to log out the current user (if logged in), in format `Not person? Log out`
+- Added more phrases to `defaultPhrases.json`
 
 ## [0.9.17.5]
 ### Added

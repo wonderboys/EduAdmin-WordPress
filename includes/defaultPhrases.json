@@ -154,5 +154,7 @@
 	"sat": "sat",
 	"sun": "sun",
 	"Validate": "Validate",
-	"Invalid discount code, please check your code and try again.": "Invalid discount code, please check your code and try again."
+	"Invalid discount code, please check your code and try again.": "Invalid discount code, please check your code and try again.",
+	"Please enter your %s to continue.": "Please enter your %s to continue.",
+	"Not %s? %sLog out%s": "Not %s? %sLog out%s"
 }

@@ -24,8 +24,8 @@
 		</div>
 	</label>
 	<label>
-		<div class="inputLabel"><?php edu_e("Password"); ?></div>
-		<div class="inputHolder">
+		<div class="loginLabel"><?php edu_e("Password"); ?></div>
+		<div class="loginInput">
 			<input type="password" name="eduadminpassword" required title="<?php echo esc_attr(edu__("Please enter your password here")); ?>" placeholder="<?php echo esc_attr(edu__("Password")); ?>" />
 		</div>
 	</label>

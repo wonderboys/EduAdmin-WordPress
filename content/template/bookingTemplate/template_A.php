@@ -268,7 +268,19 @@ else
 						?>
 				<?php endif; ?>
 			</div>
+			<?php
+				if(isset($_SESSION['eduadmin-loginUser']) && isset($contact->CustomerContactID) && $contact->CustomerContactID > 0) {
 
+					$surl = get_home_url();
+					$cat = get_option('eduadmin-rewriteBaseUrl');
+					$baseUrl = $surl . '/' . $cat;
+			?>
+			<div class="notUserCheck">
+			<i><?php echo sprintf(edu__("Not %s? %sLog out%s"), "<b>" . $contact->ContactName . "</b>", "<a href=\"" . $baseUrl . "/profile/logout\">", "</a>"); ?></i>
+			</div>
+			<?php
+				}
+			?>
 			<?php
 			$singlePersonBooking = get_option('eduadmin-singlePersonBooking', false);
 			if ($singlePersonBooking) {
