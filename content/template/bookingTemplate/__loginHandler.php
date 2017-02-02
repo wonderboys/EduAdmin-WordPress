@@ -27,7 +27,7 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 			}
 		}
 
-		if(count($matchingContacts) == 1)
+		if(count($matchingContacts) >= 1)
 		{
 			$con = $matchingContacts[0];
 			if($con->CanLogin == 1)

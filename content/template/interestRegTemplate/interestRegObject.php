@@ -100,12 +100,16 @@ else
 					</textarea>
 				</div>
 			</label>
+			<?php if(get_option('eduadmin-singlePersonBooking', false)) { ?>
+			<input type="hidden" name="edu-participants" value="1" />
+			<?php } else { ?>
 			<label>
 				<div class="inputLabel"><?php edu_e("Participants"); ?> *</div>
 				<div class="inputHolder">
 					<input type="number" min="1" required name="edu-participants" placeholder="<?php edu_e("Participants"); ?>" />
 				</div>
 			</label>
+			<?php } ?>
 
 			<input type="submit" class="bookButton" value="<?php edu_e("Send inquiry"); ?>" />
 		</form>
