@@ -84,8 +84,11 @@ function eduadmin_get_detail_view($attributes)
 function edu_no_index() {
 	global $wp_query;
 	$detailpage = get_option('eduadmin-detailViewPage');
-	if($detailpage !== FALSE && $detailpage == $wp_query->queried_object->ID && !isset($wp_query->query['courseId'])) {
-		echo '<meta name="robots" content="noindex" />';
+	if(isset($wp_query->queried_object))
+	{
+		if($detailpage !== FALSE && $detailpage == $wp_query->queried_object->ID && !isset($wp_query->query['courseId'])) {
+			echo '<meta name="robots" content="noindex" />';
+		}
 	}
 }
 
