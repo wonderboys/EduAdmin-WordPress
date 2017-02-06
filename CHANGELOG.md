@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 ### Added
+
+## [0.9.17.6]
+### Added
 - Added link in booking form to log out the current user (if logged in), in format `Not person? Log out`
 - Added more phrases to `defaultPhrases.json`
 - If you only allow one participant, inquiries also only allow a single participant.
@@ -159,7 +162,8 @@
 ### Added
 - Added inquiry support in course
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.5...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.6...HEAD
+[0.9.17.6]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.5...v0.9.17.6
 [0.9.17.5]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.4...v0.9.17.5
 [0.9.17.4]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.3...v0.9.17.4
 [0.9.17.3]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.2...v0.9.17.3
