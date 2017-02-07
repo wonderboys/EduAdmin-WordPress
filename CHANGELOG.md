@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Readded `flush_rewrite_rules();` when `eduadmin-options_have_changed` is set to true, so we can get rid of the stupid "Go to Settings -> Permalinks and save to fix the paths" (I hate wordpress)
 
 ## [0.9.17.6]
 ### Added
