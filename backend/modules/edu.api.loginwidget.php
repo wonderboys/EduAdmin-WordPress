@@ -44,5 +44,3 @@ if(isset($_REQUEST['module']) && $_REQUEST['module'] == "login_widget")
 {
 	echo edu_api_loginwidget($_REQUEST);
 }
-
-?>

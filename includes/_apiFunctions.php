@@ -29,4 +29,3 @@ function edu_getTimers() {
 	}
 }
 add_action('wp_footer', 'edu_getTimers');
-?>

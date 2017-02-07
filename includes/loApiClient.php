@@ -4604,4 +4604,3 @@ class XSorting
         return $xml;
     }
 }
-?>

@@ -279,4 +279,3 @@ if(isset($_REQUEST['module']) && $_REQUEST['module'] == "detailinfo_eventlist")
 {
 	echo edu_api_eventlist($_REQUEST);
 }
-?>

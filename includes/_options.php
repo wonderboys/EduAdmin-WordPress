@@ -229,4 +229,3 @@ function eduadmin_printJavascript()
 		echo $str;
 	}
 }
-?>

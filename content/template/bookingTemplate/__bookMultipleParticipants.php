@@ -613,4 +613,3 @@ if(!empty($pArr))
 
 	die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=" . $eventCustomerLnkID . "';</script>");
 }
-?>

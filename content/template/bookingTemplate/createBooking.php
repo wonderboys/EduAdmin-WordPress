@@ -7,5 +7,3 @@ if($singlePersonBooking) {
 } else {
 	include_once("__bookMultipleParticipants.php");
 }
-
-?>

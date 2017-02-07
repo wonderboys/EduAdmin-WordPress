@@ -31,7 +31,7 @@ function edu_LoadPhrases()
 	//print_r($phrases);
 	foreach($phrases as $p => $ph)
 	{
-		
+
 		$nPhrases[$p] = array();
 		if(!is_array($ph)) {
 			$nPhrases[$p]["OldPhrase"] = $ph;
@@ -44,7 +44,7 @@ function edu_LoadPhrases()
 	//print_r($nPhrases);
 
 	$_SESSION['eduadmin-phrases'] = $nPhrases;
-	
+
 	if(is_array($nPhrases)) return $nPhrases;
 
 	return (array)$nPhrases;
@@ -75,4 +75,3 @@ function edu_n($single, $plural, $number)
 {
 	return $number === 1 ? edu__($single) : edu__($plural);
 }
-?>

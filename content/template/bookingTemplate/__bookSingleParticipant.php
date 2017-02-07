@@ -492,7 +492,7 @@ if(!empty($pArr))
 	}
 
 	$ai = $eduapi->GetAccountInfo($edutoken)[0];
-	//print_r($ai);
+
 	$senderEmail = $ai->Email;
 	if(empty($senderEmail))
 	{
@@ -516,7 +516,6 @@ if(!empty($pArr))
 	$jsEncCustomer = json_encode($customer);
 	@$user->Customer = json_decode($jsEncCustomer);
 	$_SESSION['eduadmin-loginUser'] = $user;
-	//die();
+
 	die("<script type=\"text/javascript\">location.href = '" . get_page_link(get_option('eduadmin-thankYouPage','/')) . "?edu-thankyou=" . $eventCustomerLnkID . "';</script>");
 }
-?>

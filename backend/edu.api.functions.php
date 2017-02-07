@@ -514,4 +514,3 @@ if(!function_exists('removeDuplicates'))
 		return $sSubject;
 	}
 }
-?>

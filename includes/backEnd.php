@@ -8,4 +8,3 @@ if(isset($_REQUEST['aui']) && isset($_REQUEST['ah']))
 
 	echo json_encode($validToken);
 }
-?>

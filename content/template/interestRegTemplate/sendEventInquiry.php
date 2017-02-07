@@ -34,4 +34,3 @@ else
 
 	die("<script type=\"text/javascript\">alert('" . edu__("Thank you for your inquiry! We will be in touch!") . "'); location.href = '" . get_page_link('/') . "?edu-thankyouinquiry=" . $inquiryId . "';</script>");
 }
-?>

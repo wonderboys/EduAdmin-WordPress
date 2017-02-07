@@ -442,4 +442,3 @@ foreach($edo as $object)
 }
 $out = ob_get_clean();
 return $out;
-?>

@@ -404,4 +404,3 @@ foreach($ede as $object)
 <?php
 $out = ob_get_clean();
 return $out;
-?>

@@ -23,4 +23,3 @@ foreach($modules as $module)
 		include_once(__DIR__ . '/modules/' . $module);
 	}
 }
-?>

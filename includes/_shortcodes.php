@@ -712,4 +712,3 @@ add_shortcode('eduadmin-loginwidget', 'eduadmin_get_login_widget');
 add_shortcode('eduadmin-loginview', 'eduadmin_get_login_view');
 add_shortcode('eduadmin-objectinterest', 'eduadmin_get_object_interest');
 add_shortcode('eduadmin-eventinterest', 'eduadmin_get_event_interest');
-?>

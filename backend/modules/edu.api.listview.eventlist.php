@@ -480,4 +480,3 @@ if(isset($_REQUEST['module']) && $_REQUEST['module'] == "listview_eventlist")
 {
 	echo edu_api_listview_eventlist($_REQUEST);
 }
-?>

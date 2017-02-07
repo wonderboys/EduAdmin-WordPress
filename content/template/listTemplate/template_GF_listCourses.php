@@ -434,4 +434,3 @@ else
 
 $out = ob_get_clean().'</table>';
 return $out;
-?>

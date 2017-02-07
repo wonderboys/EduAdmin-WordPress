@@ -106,4 +106,3 @@ if(isset($_REQUEST['module']) && $_REQUEST['module'] == "listview_courselist")
 {
 	echo edu_api_listview_courselist($_REQUEST);
 }
-?>

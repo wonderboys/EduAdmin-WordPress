@@ -347,4 +347,3 @@ $newTitle = $name . " | " . $originalTitle;
 <?php }
 $out = ob_get_clean();
 return $out;
-?>

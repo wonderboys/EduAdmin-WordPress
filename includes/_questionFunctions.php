@@ -187,4 +187,3 @@ function renderTextQuestion($question)
 	echo "</div>";
 	echo "</label>";
 }
-?>

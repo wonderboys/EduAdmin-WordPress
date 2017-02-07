@@ -95,4 +95,3 @@ if(isset($_REQUEST['bookingLoginAction']) && !empty($_REQUEST['bookingLoginActio
 		$_SESSION['eduadmin-forgotPassSent'] = $success;
 	}
 }
-?>

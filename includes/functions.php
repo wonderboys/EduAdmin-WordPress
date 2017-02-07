@@ -7,4 +7,3 @@ include_once("_questionFunctions.php");
 include_once("_attributeFunctions.php");
 include_once("_textFunctions.php");
 include_once("_loginFunctions.php");
-?>
