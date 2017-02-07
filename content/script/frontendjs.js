@@ -363,8 +363,8 @@ var eduBookingView = {
 			}
 
 			var formattedCivReg =
-				year + '-' +
-				month + '-' +
+				year +
+				month + 
 				day + '-' +
 				unique;
 

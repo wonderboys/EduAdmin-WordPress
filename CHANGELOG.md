@@ -4,6 +4,7 @@
 ### Added
 - Readded `flush_rewrite_rules();` when `eduadmin-options_have_changed` is set to true, so we can get rid of the stupid "Go to Settings -> Permalinks and save to fix the paths" (I hate wordpress)
 - Removed a lot of `?>` from PHP-files, so we won't output any data where it's unwanted
+- Removed dashes except last one in validation
 
 ## [0.9.17.6]
 ### Added
