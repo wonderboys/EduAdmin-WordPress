@@ -345,7 +345,7 @@ var eduBookingView = {
 			var date = new Date();
 			var year = RegExp.$1, month = (RegExp.$2 - 1), day = RegExp.$3, unique = RegExp.$4;
 			if(year.length <= 2) {
-				year = date.getFullYear().toString().substring(0, 2) + year;
+				year = date.getFullYear().toString().substring(0, 2) + '' + year;
 				while(year > date.getFullYear()) year -= 100;
 			}
 
@@ -363,8 +363,8 @@ var eduBookingView = {
 			}
 
 			var formattedCivReg =
-				year +
-				month + 
+				year + '' +
+				month + '' +
 				day + '-' +
 				unique;
 

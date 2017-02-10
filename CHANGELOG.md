@@ -2,9 +2,13 @@
 
 ## [Unreleased]
 ### Added
+
+## [0.9.17.7]
+### Added
 - Readded `flush_rewrite_rules();` when `eduadmin-options_have_changed` is set to true, so we can get rid of the stupid "Go to Settings -> Permalinks and save to fix the paths" (I hate wordpress)
 - Removed a lot of `?>` from PHP-files, so we won't output any data where it's unwanted
 - Removed dashes except last one in validation
+- Added civic reg.no validation to login forms
 
 ## [0.9.17.6]
 ### Added
@@ -165,7 +169,7 @@
 ### Added
 - Added inquiry support in course
 
-[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.6...HEAD
+[Unreleased]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.7...HEAD
 [0.9.17.7]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.6...v0.9.17.7
 [0.9.17.6]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.5...v0.9.17.6
 [0.9.17.5]: https://github.com/MultinetInteractive/EduAdmin-WordPress/compare/v0.9.17.4...v0.9.17.5
