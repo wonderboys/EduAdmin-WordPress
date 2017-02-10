@@ -30,7 +30,7 @@
 		</div>
 	</label>
 	<button class="bookingLoginButton"><?php edu_e("Log in"); ?></button>
-	<button class="bookingforgotPasswordButton" onclick="this.form.eduadminpassword.value = '-'; this.form.bookingLoginAction.value = 'forgot';"><?php edu_e("Forgot password"); ?></button>
+	<button class="bookingforgotPasswordButton" onclick="this.form.eduadminpassword.value = ''; this.form.bookingLoginAction.value = 'forgot';"><?php edu_e("Forgot password"); ?></button>
 </div>
 	<?php if(isset($_SESSION['eduadminLoginError'])) { ?>
 	<div class="edu-modal warning" style="display: block; clear: both;">
